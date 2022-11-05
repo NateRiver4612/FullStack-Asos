@@ -323,25 +323,25 @@ const Navigation = () => {
         </div>
       </div>
       <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
-        <div className="hidden xl:mx-[110px] text-[13px] mx-[3%] h-full md:flex">
+        <div className="hidden xl:mx-[110px] text-[13px] mx-[2%] h-full md:flex">
           {categories.map((category, index) => {
             if (index == 0) {
               return (
-                <button className="px-3 text-gray-200 capitalize tracking-wide overflow-hidden whitespace-nowrap relative  hover:text-black hover:[&>*]:bg-white">
-                  <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345]  hover:transform-none h-[50px]">
+                <button className="px-3 group text-gray-200 capitalize tracking-wide hover:bg-white overflow-hidden whitespace-nowrap relative hover:text-black hover:[&>*]:bg-white">
+                  <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345] group-hover:bg-white  hover:transform-none h-[50px]">
                     <span>{category}</span>
                   </span>
                 </button>
               );
             }
             return (
-              <button className="px-3 text-gray-200  tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
+              <button className="px-3 text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
                 <span>{category}</span>
               </button>
             );
           })}
-          <button className="px-3 hidden lg:flex text-xs text-gray-200 capitalize overflow-hidden whitespace-nowrap relative  tracking-widehover:text-black hover:[&>*]:bg-white">
-            <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345]  hover:transform-none h-[50px]">
+          <button className="px-3 group hidden lg:flex text-xs text-gray-200 capitalize overflow-hidden whitespace-nowrap relative hover:bg-white tracking-wide hover:text-black">
+            <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345]  group-hover:bg-white hover:transform-none h-[50px]">
               <span>Outlet</span>
             </span>
           </button>
