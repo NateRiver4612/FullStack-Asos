@@ -17,6 +17,8 @@ import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
+
 import { useRouter } from "next/router";
 
 import {
@@ -26,7 +28,6 @@ import {
 import { selectSearch } from "../../redux/features/search/search.slice";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
-import { fontSize } from "@mui/system";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
 
@@ -55,7 +56,7 @@ const Navigation = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [categories, setCategories] = useState(categoriesArr);
 
   const escFunction = useCallback((event) => {
@@ -67,6 +68,7 @@ const Navigation = () => {
     }
   }, []);
 
+  //Listen to whenever user hit esc keyboard so that we turn off the search window
   useEffect(() => {
     document.addEventListener("keydown", escFunction, false);
 
@@ -80,7 +82,7 @@ const Navigation = () => {
     setShowSearch(true);
   };
 
-  const onSubmitHandle = (event: any) => {
+  const onSubmitSearchHandle = (event: any) => {
     event.preventDefault();
 
     let searchExisted = recentSearchs.includes(search);
@@ -92,7 +94,7 @@ const Navigation = () => {
     }
   };
 
-  const onClearHandle = (event: any) => {
+  const onClearSearchHistoryHandle = (event: any) => {
     event.preventDefault();
 
     dispatch(clearHistory());
@@ -143,12 +145,15 @@ const Navigation = () => {
       <div className="header relative z-10 bg-[#2d2d2d] h-[60px]">
         <div className="h-full">
           <div className="flex text-white justify-between items-center h-full ">
-            <div className="bg-black h-full flex items-center pr-6 xl:pl-28 pt-2 pl-8 lg:pl-12 md:pl-24  flex-shrink-0">
-              <a>
+            <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-4 pl-8 lg:pl-12 flex-shrink-0">
+              <button className="lg:hidden">
+                <BiMenu size={26} className="ml-0" />
+              </button>
+              <a className="pt-[5px]">
                 <Image
                   alt="ASOS logo"
                   color="white"
-                  height={40}
+                  height={39}
                   width={70}
                   className="resize-none"
                   src="/logo.jpg"
@@ -178,7 +183,10 @@ const Navigation = () => {
               </Link>
             </ul>
             <div className="h-full w-full hidden sm:flex items-center px-6">
-              <form className="relative w-full " onSubmit={onSubmitHandle}>
+              <form
+                className="relative w-full "
+                onSubmit={onSubmitSearchHandle}
+              >
                 <div className="flex items-center w-full">
                   <input
                     type="text"
@@ -196,7 +204,6 @@ const Navigation = () => {
                   )}
                   <button
                     type="submit"
-                    onClick={onSubmitHandle}
                     disabled={search.length > 0 ? false : true}
                     className={`absolute  transition-all duration-300 z-30 right-1 ${
                       search.length > 0 ? "bg-[#2d2d2d]" : "bg-transparent"
@@ -215,7 +222,7 @@ const Navigation = () => {
                           Recent Searchs
                         </span>
                         <button
-                          onClick={onClearHandle}
+                          onClick={onClearSearchHistoryHandle}
                           className="text-xs text-black tracking-widest font-bold uppercase"
                         >
                           Clear
@@ -247,11 +254,11 @@ const Navigation = () => {
                 <li className="">
                   <div
                     onMouseEnter={() => {
-                      console.log(checked);
-                      setChecked(true);
+                      console.log(showProfile);
+                      setShowProfile(true);
                     }}
                     onMouseLeave={() => {
-                      setChecked(false);
+                      setShowProfile(false);
                     }}
                     className="overflow-hidden cursor-pointer"
                   >
@@ -259,14 +266,14 @@ const Navigation = () => {
 
                     <div
                       onMouseEnter={() => {
-                        console.log(checked);
-                        setChecked(true);
+                        console.log(showProfile);
+                        setShowProfile(true);
                       }}
                       onMouseLeave={() => {
-                        setChecked(false);
+                        setShowProfile(false);
                       }}
                       className={`fixed transition-all ${
-                        !checked ? "max-h-0" : "max-h-[380px]"
+                        !showProfile ? "max-h-0" : "max-h-[380px]"
                       } duration-500 xl:right-36 md:fixed md:right-0 Z-0 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
                     >
                       <div className="h-full ">
@@ -277,7 +284,7 @@ const Navigation = () => {
                           </div>
                           <button
                             onClick={() => {
-                              setChecked(false);
+                              setShowProfile(false);
                             }}
                             className="text-black"
                           >
