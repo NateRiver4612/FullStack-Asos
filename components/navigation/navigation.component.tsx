@@ -365,33 +365,65 @@ const Navigation = ({ navigations }) => {
           </div>
         </div>
         <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
-          <div className="hidden xl:mx-[110px] text-[13px] mx-[2%] h-full md:flex">
+          <div className="hidden relative xl:mx-[110px] text-[13px] mx-4 h-full md:flex">
             {categories?.map((category: any, index: number) => {
               console.log(category);
-              if (index != 1) {
+              if (index != 1 && index != categories.length - 1) {
                 return (
-                  <div className="group">
-                    {index == 0 || index == categories.length - 1 ? (
+                  <div
+                    onMouseEnter={() => {
+                      setShowCategoryCard(true);
+                    }}
+                    onMouseLeave={() => {
+                      setShowCategoryCard(false);
+                    }}
+                    className="group"
+                  >
+                    {index == 0 || index == categories.length - 2 ? (
                       <button className="px-3 h-full text-gray-200 capitalize tracking-wide group-hover:bg-white overflow-hidden whitespace-nowrap relative group-hover:text-black hover:[&>*]:bg-white">
                         <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345] group-hover:bg-white  group-hover:transform-none h-[50px]">
                           <span>{category.content.title}</span>
                         </span>
                       </button>
                     ) : (
-                      <button className="px-3 h-full text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
+                      <button className="px-3 group-hover:bg-white group-hover:text-black h-full text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
                         <span>{category.content.title}</span>
                       </button>
                     )}
-                    {index == 0 ||
-                      (index == 4 && (
-                        <CategoryCard category={category}></CategoryCard>
-                      ))}
+                    <div className="hidden z-20 left-[16px] xl:left-[8.58%] 2xl:left-[7.2%] right-[2%]  xl:right-[5%] 2xl:right-[10%] group-hover:flex h-[calc(100%_-_190px)] fixed bg-black">
+                      <CategoryCard category={category}></CategoryCard>
+                    </div>
                   </div>
                 );
               }
             })}
+            <div
+              onMouseEnter={() => {
+                setShowCategoryCard(true);
+              }}
+              onMouseLeave={() => {
+                setShowCategoryCard(false);
+              }}
+              className="hidden  group"
+            >
+              <button className="px-3 h-full text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
+                <span>
+                  {categories.at(categories.length - 1).content.title}
+                </span>
+              </button>
+
+              <div className="hidden z-20 left-[1.35%] xl:left-[8.6%] 2xl:left-[7.2%] lg:w-[95%] xl:w-[83%] group-hover:flex h-[calc(100%_-_190px)] fixed bg-black">
+                <CategoryCard
+                  category={categories.at(categories.length - 1)}
+                ></CategoryCard>
+              </div>
+            </div>
           </div>
         </div>
+        {/* CategoryCard Opacity Background */}
+        {showCategoryCard && (
+          <div className="w-full absolute z-0 h-[calc(100%_-_110px)] bg-black opacity-50"></div>
+        )}
       </div>
     </Fragment>
   );
