@@ -28,6 +28,8 @@ import {
 import { selectSearch } from "../../redux/features/search/search.slice";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
+import Sidebar from "../sidebar/sidebar.component";
+import CategoryCard from "../category-card/category-card.component";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
 
@@ -46,8 +48,10 @@ const categoriesArr = [
   "brands",
 ];
 
-const Navigation = () => {
+const Navigation = ({ navigations }) => {
   const router = useRouter();
+
+  // console.log(navigations);
 
   const section = router.pathname.split("/")[1];
 
@@ -56,10 +60,13 @@ const Navigation = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-  const [categories, setCategories] = useState(categoriesArr);
+  const [showCategoryCard, setShowCategoryCard] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const [currentNavigation, setCurrentNavigation] = useState(navigations[1]);
 
-  const escFunction = useCallback((event) => {
+  const categories = currentNavigation?.children[4].children;
+
+  const escFunction = useCallback((event: { key: string }) => {
     if (event.key === "Escape") {
       //Do whatever when esc is pressed
       setShowSearch(false);
@@ -77,8 +84,23 @@ const Navigation = () => {
     };
   }, []);
 
+  console.log(currentNavigation);
+
+  useEffect(() => {
+    if (section === "women") {
+      setCurrentNavigation(navigations[1]);
+    } else if (section === "men") {
+      setCurrentNavigation(navigations[0]);
+    }
+  }, [section]);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      setShowSearch(true);
+    }
+  }, [search]);
+
   const onShowSearch = () => {
-    console.log(showSearch);
     setShowSearch(true);
   };
 
@@ -116,6 +138,14 @@ const Navigation = () => {
     }
   };
 
+  const onToggleSidebar = () => {
+    setOpenSidebar(!openSidebar);
+  };
+
+  const onCloseSidebar = () => {
+    setOpenSidebar(false);
+  };
+
   const map1 = new Map([
     ["my account", BiUser],
     ["my orders", FiPackage],
@@ -133,232 +163,244 @@ const Navigation = () => {
   ];
 
   return (
-    <div className="navigation-container ">
+    <Fragment>
+      <Sidebar openSidebar={openSidebar} />
+
       <div
-        onClick={onHideSearch}
+        onClick={onCloseSidebar}
         className={` ${
-          showSearch
-            ? "absolute z-10 h-screen transition-all duration-700 w-screen bg-black opacity-50"
+          openSidebar
+            ? "absolute z-10 h-screen  transition-all duration-700 w-screen bg-black opacity-50"
             : "left-0 right-0 top-0 bottom-0"
         }`}
       ></div>
-      <div className="header relative z-10 bg-[#2d2d2d] h-[60px]">
-        <div className="h-full">
-          <div className="flex text-white justify-between items-center h-full ">
-            <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-4 pl-8 lg:pl-12 flex-shrink-0">
-              <button className="lg:hidden">
-                <BiMenu size={26} className="ml-0" />
-              </button>
-              <a className="pt-[5px]">
-                <Image
-                  alt="ASOS logo"
-                  color="white"
-                  height={39}
-                  width={70}
-                  className="resize-none"
-                  src="/logo.jpg"
-                ></Image>
-              </a>
-            </div>
+      <div className={`navigation-container ${openSidebar && "-z-10"}`}>
+        <div
+          onClick={onHideSearch}
+          className={` ${
+            showSearch
+              ? "absolute z-10 h-screen transition-all duration-700 w-screen bg-black opacity-50"
+              : "left-0 right-0 top-0 bottom-0"
+          }`}
+        ></div>
+        <div
+          className={`header relative ${
+            openSidebar && "-z-10"
+          } bg-[#2d2d2d] h-[60px]`}
+        >
+          <div className="h-full">
+            <div className="flex text-white justify-between items-center h-full ">
+              <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-8 pl-8 lg:pl-12 flex-shrink-0">
+                <button onClick={onToggleSidebar} className="lg:hidden">
+                  <BiMenu size={26} className="ml-0" />
+                </button>
+                <a className="pt-[5px]">
+                  <Image
+                    alt="ASOS logo"
+                    color="white"
+                    height={39}
+                    width={70}
+                    className="resize-none"
+                    src="/logo.jpg"
+                  ></Image>
+                </a>
+              </div>
 
-            <ul className="hidden lg:flex h-full cursor-pointer font-bold text-xs tracking-widest">
-              <Link href="/women">
-                <li
-                  className={`${
-                    section === "women" && "bg-[#525050]"
-                  } hover:bg-[#525050] transition-all duration-300 w-[115px] flex justify-center items-center`}
-                >
-                  WOMEN
-                </li>
-              </Link>
-
-              <Link href="/men">
-                <li
-                  className={`${
-                    section === "men" && "bg-[#525050]"
-                  } hover:bg-[#525050] transition-all duration-300 w-[115px] flex justify-center items-center`}
-                >
-                  MEN
-                </li>
-              </Link>
-            </ul>
-            <div className="h-full w-full hidden sm:flex items-center px-6">
-              <form
-                className="relative w-full "
-                onSubmit={onSubmitSearchHandle}
-              >
-                <div className="flex items-center w-full">
-                  <input
-                    type="text"
-                    placeholder="Search for items and brands"
-                    autoComplete="off"
-                    ref={searchRef}
-                    onClick={onShowSearch}
-                    onChange={onChangeHandle}
-                    className="h-[38px] w-full z-30 rounded-3xl focus:outline-none p-4 text-sm text-gray-600"
-                  />
-                  {search.length > 0 && (
-                    <button className="absolute z-30 right-12">
-                      <MdClear size={22} color="black" fontWeight="bold" />
-                    </button>
-                  )}
-                  <button
-                    type="submit"
-                    disabled={search.length > 0 ? false : true}
-                    className={`absolute  transition-all duration-300 z-30 right-1 ${
-                      search.length > 0 ? "bg-[#2d2d2d]" : "bg-transparent"
-                    }  rounded-full p-1.5`}
+              <ul className="hidden lg:flex h-full cursor-pointer font-bold text-xs tracking-widest">
+                <Link href="/women">
+                  <li
+                    className={`${
+                      section === "women" && "bg-[#525050]"
+                    } hover:bg-[#525050] transition-all duration-300 w-[115px] flex justify-center items-center`}
                   >
-                    <FiSearch
-                      size={22}
-                      color={`${search.length > 0 ? "white" : "black"}`}
-                      fontWeight="bold"
+                    WOMEN
+                  </li>
+                </Link>
+
+                <Link href="/men">
+                  <li
+                    className={`${
+                      section === "men" && "bg-[#525050]"
+                    } hover:bg-[#525050] transition-all duration-300 w-[115px] flex justify-center items-center`}
+                  >
+                    MEN
+                  </li>
+                </Link>
+              </ul>
+              <div className="h-full w-full hidden sm:flex items-center px-6">
+                <form
+                  className="relative w-full "
+                  onSubmit={onSubmitSearchHandle}
+                >
+                  <div className="flex items-center w-full">
+                    <input
+                      type="text"
+                      placeholder="Search for items and brands"
+                      autoComplete="off"
+                      ref={searchRef}
+                      onClick={onShowSearch}
+                      onChange={onChangeHandle}
+                      className="h-[38px] w-full z-30 rounded-3xl focus:outline-none p-4 text-sm text-gray-600"
                     />
-                  </button>
-                  {showSearch && (
-                    <div className=" absolute z-20 h-fit top-5 bg-gray-200 w-full">
-                      <div className="w-full flex justify-between p-3 pt-8">
-                        <span className="text-xs text-gray-400 uppercase font-bold tracking-widest">
-                          Recent Searchs
-                        </span>
-                        <button
-                          onClick={onClearSearchHistoryHandle}
-                          className="text-xs text-black tracking-widest font-bold uppercase"
-                        >
-                          Clear
-                        </button>
-                      </div>
-
-                      <ul className="w-full ">
-                        {recentSearchs
-                          .slice(0)
-                          .reverse()
-                          .map((searchKey, index) => {
-                            return (
-                              <li
-                                key={index + searchKey}
-                                className="text-gray-700 hover:bg-gray-300 px-3 py-1 "
-                              >
-                                {searchKey}
-                              </li>
-                            );
-                          })}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </form>
-            </div>
-            <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
-              <ul className="flex h-full items-center gap-3 xl:gap-6 ">
-                <li className="">
-                  <div
-                    onMouseEnter={() => {
-                      console.log(showProfile);
-                      setShowProfile(true);
-                    }}
-                    onMouseLeave={() => {
-                      setShowProfile(false);
-                    }}
-                    className="overflow-hidden cursor-pointer"
-                  >
-                    <BiUser size={26}></BiUser>
-
-                    <div
-                      onMouseEnter={() => {
-                        console.log(showProfile);
-                        setShowProfile(true);
-                      }}
-                      onMouseLeave={() => {
-                        setShowProfile(false);
-                      }}
-                      className={`fixed transition-all ${
-                        !showProfile ? "max-h-0" : "max-h-[380px]"
-                      } duration-500 xl:right-36 md:fixed md:right-0 Z-0 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
+                    {search.length > 0 && (
+                      <button className="absolute z-30 right-12">
+                        <MdClear size={22} color="black" fontWeight="bold" />
+                      </button>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={search.length > 0 ? false : true}
+                      className={`absolute  transition-all duration-300 z-30 right-1 ${
+                        search.length > 0 ? "bg-[#2d2d2d]" : "bg-transparent"
+                      }  rounded-full p-1.5`}
                     >
-                      <div className="h-full ">
-                        <div className="h-fit flex justify-between bg-gray-200 p-3 items-center">
-                          <div className="flex text-sm h-fit font-semibold text-gray-500 underline gap-2">
-                            <a href="/">Sign In</a> <span>|</span>{" "}
-                            <a href="/">Join</a>
-                          </div>
+                      <FiSearch
+                        size={22}
+                        color={`${search.length > 0 ? "white" : "black"}`}
+                        fontWeight="bold"
+                      />
+                    </button>
+                    {showSearch && (
+                      <div className=" absolute z-20 h-fit top-5 bg-gray-200 w-full">
+                        <div className="w-full flex justify-between p-3 pt-8">
+                          <span className="text-xs text-gray-400 uppercase font-bold tracking-widest">
+                            Recent Searchs
+                          </span>
                           <button
-                            onClick={() => {
-                              setShowProfile(false);
-                            }}
-                            className="text-black"
+                            onClick={onClearSearchHistoryHandle}
+                            className="text-xs text-black tracking-widest font-bold uppercase"
                           >
-                            <MdClear size={27} />
+                            Clear
                           </button>
                         </div>
-                        <ul className="flex flex-col text-gray-600  capitalize">
-                          {platMain.map((key) => {
-                            const icon = map1.get(key);
-                            return (
-                              <li className="flex item-center px-6 py-[12px] hover:bg-gray-300">
-                                {icon({ size: 24 })}
-                                <div className="px-3"></div>
-                                <span className="text-sm">{key}</span>
-                              </li>
-                            );
-                          })}
+
+                        <ul className="w-full ">
+                          {recentSearchs
+                            .slice(0)
+                            .reverse()
+                            .map((searchKey, index) => {
+                              return (
+                                <li
+                                  key={index + searchKey}
+                                  className="text-gray-700 hover:bg-gray-300 px-3 py-1 "
+                                >
+                                  {searchKey}
+                                </li>
+                              );
+                            })}
                         </ul>
                       </div>
-                    </div>
+                    )}
                   </div>
-                </li>
-                <Tooltip title="saved items" arrow>
-                  <li>
-                    <AiOutlineHeart size={26} />
-                  </li>
-                </Tooltip>
+                </form>
+              </div>
+              <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
+                <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
+                  <li className="">
+                    <div className="overflow-hidden cursor-pointer group">
+                      <BiUser size={26}></BiUser>
 
-                <Tooltip title="bag" arrow>
-                  <li>
-                    <RiShoppingBagLine size={26} />
+                      <div
+                        className={`fixed transition-all 
+                
+                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 md:fixed md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
+                      >
+                        <div className="h-full ">
+                          <div className="">
+                            <div className="flex justify-center items-center w-full text-sm h-fit font-semibold text-gray-500 underline">
+                              <a
+                                href="/"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-[50%]"
+                              >
+                                Sign In
+                              </a>
+                              <span>|</span>
+                              <a
+                                href="/"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-[50%]"
+                              >
+                                Join
+                              </a>
+                            </div>
+                          </div>
+                          <ul className="flex flex-col text-gray-600  capitalize">
+                            {platMain.map((key, index) => {
+                              const icon = map1.get(key);
+                              return (
+                                <li
+                                  key={index}
+                                  className="flex item-center px-6 py-[12px] hover:bg-gray-300"
+                                >
+                                  {icon({ size: 24 })}
+                                  <div className="px-3"></div>
+                                  <span className="text-sm">{key}</span>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </li>
-                </Tooltip>
+                  <Tooltip title="saved items" arrow>
+                    <li>
+                      <AiOutlineHeart size={26} />
+                    </li>
+                  </Tooltip>
 
-                <Tooltip title="texting" arrow>
-                  <li>
-                    <AiOutlineMessage size={26} />
-                  </li>
-                </Tooltip>
-              </ul>
+                  <Tooltip title="bag" arrow>
+                    <li>
+                      <RiShoppingBagLine size={26} />
+                    </li>
+                  </Tooltip>
+
+                  <Tooltip title="texting" arrow>
+                    <li>
+                      <AiOutlineMessage size={26} />
+                    </li>
+                  </Tooltip>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
-        <div className="hidden xl:mx-[110px] text-[13px] mx-[2%] h-full md:flex">
-          {categories.map((category, index) => {
-            if (index == 0) {
-              return (
-                <button className="px-3 group text-gray-200 capitalize tracking-wide hover:bg-white overflow-hidden whitespace-nowrap relative hover:text-black hover:[&>*]:bg-white">
-                  <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345] group-hover:bg-white  hover:transform-none h-[50px]">
-                    <span>{category}</span>
-                  </span>
-                </button>
-              );
-            }
-            return (
-              <button className="px-3 text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
-                <span>{category}</span>
-              </button>
-            );
-          })}
-          <button className="px-3 group hidden lg:flex text-xs text-gray-200 capitalize overflow-hidden whitespace-nowrap relative hover:bg-white tracking-wide hover:text-black">
-            <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345]  group-hover:bg-white hover:transform-none h-[50px]">
-              <span>Outlet</span>
-            </span>
-          </button>
-          <button className="px-3 hidden xl:flex text-xs items-center text-gray-200   capitalize tracking-wide hover:bg-white hover:text-black">
-            <span>Marketplace</span>
-          </button>
+        <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
+          <div className="hidden xl:mx-[110px] text-[13px] mx-[2%] h-full md:flex">
+            {categories?.map((category: any, index: number) => {
+              console.log(category);
+              if (index != 1) {
+                return (
+                  <div className="group">
+                    {index == 0 || index == categories.length - 1 ? (
+                      <button className="px-3 h-full text-gray-200 capitalize tracking-wide group-hover:bg-white overflow-hidden whitespace-nowrap relative group-hover:text-black hover:[&>*]:bg-white">
+                        <span className="-skew-x-12 px-4 font-bold flex items-center bg-[#d01345] group-hover:bg-white  group-hover:transform-none h-[50px]">
+                          <span>{category.content.title}</span>
+                        </span>
+                      </button>
+                    ) : (
+                      <button className="px-3 h-full text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
+                        <span>{category.content.title}</span>
+                      </button>
+                    )}
+                    {index == 0 ||
+                      (index == 4 && (
+                        <CategoryCard category={category}></CategoryCard>
+                      ))}
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
+
+//  <div className="hidden left-0 top-[110px] h-[calc(100%_-_110px)] z-30 right-0 absolute bg-transparent hover:hidden  group-hover:flex px-[2%] xl:pl-[8.6%] xl:pr-[5.7%] 2xl:pr-[10%] 2xl:pl-[7.2%]">
+//    <CategoryCard category={category}></CategoryCard>
+//  </div>;
+
+//  <div className="bg-gray-200 opacity-100 z-30 static w-full h-[65%] "></div>;
 
 export default Navigation;
