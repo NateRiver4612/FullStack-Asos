@@ -5936,7 +5936,7 @@ export const navigationData = [
                 channelExclusions: ["webLarge"],
                 webLargePriority: 0,
                 content: {
-                  title: "App and mobile top level",
+                  title: "App and Mobile Top Level",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,
@@ -9733,7 +9733,7 @@ export const navigationData = [
                 channelExclusions: ["webLarge"],
                 webLargePriority: 0,
                 content: {
-                  title: "App and mobile promo",
+                  title: "App and Mobile Promo",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,
@@ -19592,7 +19592,7 @@ export const navigationData = [
                 channelExclusions: ["webLarge"],
                 webLargePriority: 5,
                 content: {
-                  title: "App and Mobile promo",
+                  title: "App and Mobile Promo",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,
@@ -22611,7 +22611,7 @@ export const navigationData = [
                 channelExclusions: ["webLarge"],
                 webLargePriority: 0,
                 content: {
-                  title: "App and mobile top level",
+                  title: "App and Mobile top level",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,

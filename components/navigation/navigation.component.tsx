@@ -158,13 +158,14 @@ const Navigation = ({ navigations }) => {
           if (window.pageYOffset > fixedTop) {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
-            mainHeader[i].className =
-              "category_card hidden z-30 left-[16px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] xl:left-[8.6%] 2xl:left-[7.2%] group-hover:flex h-[66vh] fixed top-0";
+
+            mainHeader[i].classList.add("fixed");
+            mainHeader[i].classList.add("top-0");
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
-              mainHeader[i].className =
-                "category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black";
+              mainHeader[i].classList.remove("fixed");
+              mainHeader[i].classList.remove("top-0");
             }
           }
         }
@@ -321,14 +322,14 @@ const Navigation = ({ navigations }) => {
                             <div className="flex justify-center items-center w-full text-sm h-fit font-semibold text-gray-500 underline">
                               <a
                                 href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-[50%]"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-full"
                               >
                                 Sign In
                               </a>
                               <span>|</span>
                               <a
                                 href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-[50%]"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-full"
                               >
                                 Join
                               </a>
@@ -401,7 +402,7 @@ const Navigation = ({ navigations }) => {
                       </button>
                     )}
                     <div
-                      className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
+                      className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[70vh] absolute bg-black`}
                     >
                       <CategoryCard category={category}></CategoryCard>
                     </div>
@@ -425,7 +426,7 @@ const Navigation = ({ navigations }) => {
               </button>
 
               <div
-                className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
+                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
               >
                 <CategoryCard
                   category={categories.at(categories.length - 1)}
