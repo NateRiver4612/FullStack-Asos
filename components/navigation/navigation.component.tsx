@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useRef,
   useState,
+  useLayoutEffect,
 } from "react";
 import { MdClear } from "react-icons/md";
 import Image from "next/image";
@@ -33,25 +34,9 @@ import CategoryCard from "../category-card/category-card.component";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
 
-const categoriesArr = [
-  "sale",
-  "new in",
-  "clothing",
-  "dresses",
-  "shoes",
-  "sportwear",
-  "accessories",
-  "autumn",
-  "gifting",
-  "topshop",
-  "face + body",
-  "brands",
-];
-
 const Navigation = ({ navigations }) => {
   const router = useRouter();
-
-  // console.log(navigations);
+  const stickyHeader = useRef<HTMLInputElement>(null);
 
   const section = router.pathname.split("/")[1];
 
@@ -83,8 +68,6 @@ const Navigation = ({ navigations }) => {
       document.removeEventListener("keydown", escFunction, false);
     };
   }, []);
-
-  console.log(currentNavigation);
 
   useEffect(() => {
     if (section === "women") {
@@ -161,6 +144,31 @@ const Navigation = ({ navigations }) => {
     "return information",
     "contact preferences",
   ];
+
+  //Remain category card at top of page when user scrolling
+  useLayoutEffect(() => {
+    const mainHeader = document.getElementsByClassName("category_card");
+
+    // let fixedTop = stickyHeader.current.offsetTop;
+    let fixedTop = 112;
+
+    const fixedHeader = () => {
+      for (var i = 0; i < mainHeader.length; i++) {
+        if (mainHeader[i] != undefined) {
+          if (window.pageYOffset > fixedTop) {
+            mainHeader[i].className =
+              "category_card hidden z-30 left-[16px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] fixed top-0";
+          } else {
+            if (mainHeader[i]) {
+              mainHeader[i].className =
+                "category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black";
+            }
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", fixedHeader);
+  }, []);
 
   return (
     <Fragment>
@@ -367,7 +375,6 @@ const Navigation = ({ navigations }) => {
         <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
           <div className="hidden relative xl:mx-[110px] text-[13px] mx-4 h-full md:flex">
             {categories?.map((category: any, index: number) => {
-              console.log(category);
               if (index != 1 && index != categories.length - 1) {
                 return (
                   <div
@@ -390,7 +397,10 @@ const Navigation = ({ navigations }) => {
                         <span>{category.content.title}</span>
                       </button>
                     )}
-                    <div className="hidden z-20 left-[16px] xl:left-[8.58%] 2xl:left-[7.2%] right-[2%]  xl:right-[5%] 2xl:right-[10%] group-hover:flex h-[calc(100%_-_190px)] fixed bg-black">
+                    <div
+                      ref={stickyHeader}
+                      className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
+                    >
                       <CategoryCard category={category}></CategoryCard>
                     </div>
                   </div>
@@ -404,7 +414,7 @@ const Navigation = ({ navigations }) => {
               onMouseLeave={() => {
                 setShowCategoryCard(false);
               }}
-              className="hidden  group"
+              className="hidden xl:block group"
             >
               <button className="px-3 h-full text-gray-200 tracking-wide overflow-hidden whitespace-nowrap capitalize  hover:bg-white hover:text-black">
                 <span>
@@ -412,7 +422,7 @@ const Navigation = ({ navigations }) => {
                 </span>
               </button>
 
-              <div className="hidden z-20 left-[1.35%] xl:left-[8.6%] 2xl:left-[7.2%] lg:w-[95%] xl:w-[83%] group-hover:flex h-[calc(100%_-_190px)] fixed bg-black">
+              <div className="category_card hidden z-30 left-[1.35%] xl:left-[8.6%] 2xl:left-[7.2%] lg:w-[95%] xl:w-[83%]  group-hover:flex h-[calc(100%_-_250px)] bg-black">
                 <CategoryCard
                   category={categories.at(categories.length - 1)}
                 ></CategoryCard>
@@ -422,7 +432,7 @@ const Navigation = ({ navigations }) => {
         </div>
         {/* CategoryCard Opacity Background */}
         {showCategoryCard && (
-          <div className="w-full absolute z-0 h-[calc(100%_-_110px)] bg-black opacity-50"></div>
+          <div className="w-full absolute z-0 h-[120vh] bg-black opacity-50"></div>
         )}
       </div>
     </Fragment>
