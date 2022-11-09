@@ -36,8 +36,6 @@ import CategoryCard from "../category-card/category-card.component";
 
 const Navigation = ({ navigations }) => {
   const router = useRouter();
-  const stickyHeader = useRef<HTMLInputElement>(null);
-
   const section = router.pathname.split("/")[1];
 
   const dispatch = useAppDispatch();
@@ -149,16 +147,21 @@ const Navigation = ({ navigations }) => {
   useLayoutEffect(() => {
     const mainHeader = document.getElementsByClassName("category_card");
 
-    // let fixedTop = stickyHeader.current.offsetTop;
+    // declare a variable that have the size of our header and nagivation bar as the LINE
+    // so that when user scroll the categoy card cross the LINE
+    // we will adjust the css so that the category card still stick to the main display
     let fixedTop = 112;
 
     const fixedHeader = () => {
       for (var i = 0; i < mainHeader.length; i++) {
         if (mainHeader[i] != undefined) {
           if (window.pageYOffset > fixedTop) {
+            // Whenever user scroll throught the LINE
+            // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-30 left-[16px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] fixed top-0";
+              "category_card hidden z-30 left-[16px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] xl:left-[8.6%] 2xl:left-[7.2%] group-hover:flex h-[66vh] fixed top-0";
           } else {
+            // other wise, keep default style
             if (mainHeader[i]) {
               mainHeader[i].className =
                 "category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black";
@@ -398,7 +401,6 @@ const Navigation = ({ navigations }) => {
                       </button>
                     )}
                     <div
-                      ref={stickyHeader}
                       className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
                     >
                       <CategoryCard category={category}></CategoryCard>
@@ -422,7 +424,9 @@ const Navigation = ({ navigations }) => {
                 </span>
               </button>
 
-              <div className="category_card hidden z-30 left-[1.35%] xl:left-[8.6%] 2xl:left-[7.2%] lg:w-[95%] xl:w-[83%]  group-hover:flex h-[calc(100%_-_250px)] bg-black">
+              <div
+                className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
+              >
                 <CategoryCard
                   category={categories.at(categories.length - 1)}
                 ></CategoryCard>
