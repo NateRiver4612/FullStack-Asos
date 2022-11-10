@@ -322,14 +322,14 @@ const Navigation = ({ navigations }) => {
                             <div className="flex justify-center items-center w-full text-sm h-fit font-semibold text-gray-500 underline">
                               <a
                                 href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-full"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full"
                               >
                                 Sign In
                               </a>
                               <span>|</span>
                               <a
                                 href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 text-center w-full"
+                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full"
                               >
                                 Join
                               </a>
@@ -402,7 +402,7 @@ const Navigation = ({ navigations }) => {
                       </button>
                     )}
                     <div
-                      className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[70vh] absolute bg-black`}
+                      className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
                     >
                       <CategoryCard category={category}></CategoryCard>
                     </div>
@@ -426,7 +426,7 @@ const Navigation = ({ navigations }) => {
               </button>
 
               <div
-                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[66vh] absolute bg-black`}
+                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[72vh] absolute bg-black`}
               >
                 <CategoryCard
                   category={categories.at(categories.length - 1)}

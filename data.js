@@ -3166,7 +3166,8 @@ export const navigationData = [
                     content: {
                       title: "Reclaimed Vintage",
                       subTitle: null,
-                      webLargeImageUrl: null,
+                      webLargeImageUrl:
+                        "https://images.asos-media.com/products/river-island-skinny-suit-vest-in-black/202296368-1-black?$n_480w$&wid=476&fit=constrain",
                       mobileImageUrl: null,
                     },
                     display: null,
@@ -5116,63 +5117,6 @@ export const navigationData = [
                     },
                     children: [],
                   },
-                  {
-                    id: "213f5290-7779-4966-a7cd-aed4ac69ca94",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Linen Suits",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/mw_tailoring_linensuits_2M_1866734",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/mw_tailoring_linensuits_2M_1866734",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 19430,
-                      webUrl: "https://www.asos.com/us/men/suits/cat/?cid=5678",
-                      appUrl: "asos://category?cid=19430",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "c2134bb0-96d9-449e-b5dd-881d4046b6b6",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Checked Suits",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/mw_tailoring_checkedsuits_2M_1648822",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/mw_tailoring_checkedsuits_2M_1648822",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 15414,
-                      webUrl:
-                        "https://www.asos.com/us/men/ctas/usa-fashion-online-3/cat/?cid=15414",
-                      appUrl: "asos://category?cid=15414",
-                    },
-                    children: [],
-                  },
                 ],
               },
             ],
@@ -5936,7 +5880,7 @@ export const navigationData = [
                 channelExclusions: ["webLarge"],
                 webLargePriority: 0,
                 content: {
-                  title: "App and Mobile Top Level",
+                  title: "App and Mobile Top evel",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,
@@ -10977,7 +10921,7 @@ export const navigationData = [
                 },
                 display: {
                   webLargeTemplateId: 4,
-                  webLargeTemplateName: "thirdMarketingImage",
+                  webLargeTemplateName: "halfMarketingImage",
                   webLargeColumnSpan: 1,
                   mobileTemplateId: 2,
                   mobileTemplateName: "circleImageRight",
@@ -11062,7 +11006,7 @@ export const navigationData = [
                 },
                 display: {
                   webLargeTemplateId: 4,
-                  webLargeTemplateName: "thirdMarketingImage",
+                  webLargeTemplateName: "halfMarketingImage",
                   webLargeColumnSpan: 1,
                   mobileTemplateId: 2,
                   mobileTemplateName: "circleImageRight",
@@ -12007,7 +11951,7 @@ export const navigationData = [
                 channelExclusions: [],
                 webLargePriority: 1,
                 content: {
-                  title: "New Edits",
+                  title: "",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,
@@ -12609,7 +12553,7 @@ export const navigationData = [
                       title: "Reclaimed Vintage",
                       subTitle: null,
                       webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/mw_gbl_brands_reclaimedvintage_1966883_2m",
+                        "https://images.asos-media.com/navigation/mw_gbl_brands_pullbear_104608843_2m",
                       mobileImageUrl:
                         "https://images.asos-media.com/navigation/mw_gbl_brands_reclaimedvintage_1966883_2m",
                     },

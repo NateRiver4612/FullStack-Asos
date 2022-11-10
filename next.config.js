@@ -9,6 +9,7 @@ const nextConfig = {
       "upload.wikimedia.org",
       "cdn.imgbin.com",
       "www.clipartmax.com",
+      "images.asos-media.com",
     ],
   },
 };
