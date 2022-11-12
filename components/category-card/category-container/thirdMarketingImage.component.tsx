@@ -1,22 +1,22 @@
 import React from "react";
+import Image from "next/image";
 
 const ThirdMarketingImage = ({ categoryItems }) => {
   return (
-    <ul className={`flex flex-col  flex-start pt-4`}>
+    <ul className={`flex flex-col  flex-start gap-2 pt-1`}>
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] group flex flex-start items-center  cursor-pointer  hover:font-bold py-[6px] capitalize w-full  text-gray-500">
-            <img
+          <li className="text-[13x] border-gray-300 border-[1px] px-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold py-[2px] capitalize w-full  text-gray-500">
+            <Image
               src={item.content.webLargeImageUrl}
               width={300}
               height={120}
               alt="picture"
-              className="border-gray-400 border-[1px]"
             />
 
-            <span className="absolute font-bold uppercase text-[14px] pl-4 text-gray-700">
+            <p className="absolute break-all font-bold uppercase text-[14px] pl-4 pr-[8.8%] text-gray-700">
               {item.content.title}
-            </span>
+            </p>
           </li>
         );
       })}

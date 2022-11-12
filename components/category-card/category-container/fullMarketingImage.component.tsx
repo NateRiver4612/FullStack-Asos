@@ -1,23 +1,23 @@
 import React from "react";
 import Image from "next/image";
+import { Fragment } from "react";
 
 const FullMarketingImage = ({ categoryItems }) => {
   return (
-    <ul className={`grid grid-cols-3 gap-3 pt-4`}>
+    <ul className={`grid grid-cols-${categoryItems.length} w-full mt-4 gap-3`}>
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] group flex flex-col items-center gap-4  cursor-pointer hover:font-bold py-[6px] capitalize w-full ">
+          <li className="text-[13x] border-[2px] border-gray-300 hover:border-gray-500 px-[3px] group flex flex-col items-center  cursor-pointer hover:font-bold py-[3px] capitalize ">
             {item.content.webLargeImageUrl && (
               <Image
                 src={item.content.webLargeImageUrl}
                 alt="picture"
-                height={350}
-                width={300}
-                className="group-hover:border-gray-600 group-hover:border-2"
+                height={520}
+                width={420}
               />
             )}
 
-            <span className="absolute text-back uppercase pt-[23%] font-bold text-[18px]">
+            <span className="absolute text-back uppercase mt-[23%] font-bold text-[18px]">
               {item.content.title}
             </span>
           </li>

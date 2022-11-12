@@ -12060,62 +12060,6 @@ export const navigationData = [
             },
             children: [
               {
-                id: "7b174ec9-283c-4b71-b18a-e9c79ad38bd4",
-                alias: null,
-                type: "container",
-                channelExclusions: ["webLarge"],
-                webLargePriority: 0,
-                content: {
-                  title: "A-Z Brands Link",
-                  subTitle: null,
-                  webLargeImageUrl: null,
-                  mobileImageUrl: null,
-                },
-                display: {
-                  webLargeTemplateId: 0,
-                  webLargeTemplateName: "",
-                  webLargeColumnSpan: 1,
-                  mobileTemplateId: 1,
-                  mobileTemplateName: "imageBackground",
-                  mobileDisplayLayout: "list",
-                },
-                style: {
-                  webLargeStyleType: "noTitle",
-                  mobileStyleType: "noTitle",
-                },
-                link: null,
-                children: [
-                  {
-                    id: "31111a22-2e17-444b-bd03-8fd99ef459aa",
-                    alias: null,
-                    type: "aToZBrands",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "A-Z of brands",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/Men-Brands-Brands-Background-image-42979-139-02",
-                      mobileImageUrl: null,
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "premium",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "aToZBrands",
-                      brandSectionAlias: "MW_FP",
-                      categoryId: 1361,
-                      webUrl:
-                        "https://www.asos.com/us/men/a-to-z-of-brands/cat/?cid=1361",
-                      appUrl: "asos://category?cid=1361",
-                    },
-                    children: [],
-                  },
-                ],
-              },
-              {
                 id: "9dea29ac-0070-4a75-97c7-bbdccedbf93b",
                 alias: null,
                 type: "container",
@@ -13664,92 +13608,6 @@ export const navigationData = [
                       webUrl:
                         "https://www.asos.com/us/men/outlet/underwear-socks/cat/?cid=27452",
                       appUrl: "asos://category?cid=27452",
-                    },
-                    children: [],
-                  },
-                ],
-              },
-              {
-                id: "afc238ce-6c14-4974-b803-ea3995561f9f",
-                alias: null,
-                type: "container",
-                channelExclusions: ["webLarge"],
-                webLargePriority: 0,
-                content: {
-                  title: "SHOP BY BODY FIT",
-                  subTitle: null,
-                  webLargeImageUrl: null,
-                  mobileImageUrl: null,
-                },
-                display: {
-                  webLargeTemplateId: 6,
-                  webLargeTemplateName: "gridCircleImageLarge",
-                  webLargeColumnSpan: 1,
-                  mobileTemplateId: 3,
-                  mobileTemplateName: "circleImageList",
-                  mobileDisplayLayout: "list",
-                },
-                style: {
-                  webLargeStyleType: "dark",
-                  mobileStyleType: "dark",
-                },
-                link: null,
-                children: [
-                  {
-                    id: "fef3e7fe-128d-46a8-a5f0-289961e639da",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: [],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Plus Size",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/mw_seasonalrefresh_outlet_shopbyrange_plus_2wl_1407677",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/mw_seasonalrefresh_outlet_shopbyrange_plus_2m_1407677",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 27430,
-                      webUrl:
-                        "https://www.asos.com/us/men/outlet/plus-size/cat/?cid=27430",
-                      appUrl: "asos://category?cid=27430",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "79cbea51-b845-45ad-9b95-dcf56cbe0d9c",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: [],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Tall",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/mw_seasonalrefresh_outlet_shopbyrange_tall_2m_1415768",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/MW_Outlet_Tall_Circle_1140486_011217",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 27443,
-                      webUrl:
-                        "https://www.asos.com/us/men/outlet/tall/cat/?cid=27443",
-                      appUrl: "asos://category?cid=27443",
                     },
                     children: [],
                   },
@@ -21234,36 +21092,7 @@ export const navigationData = [
                     },
                     children: [],
                   },
-                  {
-                    id: "255e139e-c200-427e-927f-6173d443afb7",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: [],
-                    webLargePriority: 3,
-                    content: {
-                      title: "Wedding Guest Dresses",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_dressesforweddings_2M_114881963",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_dressesforweddings_2M_114881963",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 13934,
-                      webUrl:
-                        "https://www.asos.com/us/women/dresses/dresses-for-weddings/cat/?cid=13934&refine=attribute_10155:7699",
-                      appUrl:
-                        "asos://category?cid=13934&refine=attribute_10155:7699",
-                    },
-                    children: [],
-                  },
+
                   {
                     id: "a93e8df0-badd-4fe5-ab90-9718c84abff0",
                     alias: null,
@@ -21320,36 +21149,6 @@ export const navigationData = [
                         "https://www.asos.com/us/women/ctas/usa-online-fashion-10/cat/?cid=16658&refine=attribute_10155:7699",
                       appUrl:
                         "asos://category?cid=16658&refine=attribute_10155:7699",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "fe3aafc1-a4c4-4682-aef6-42e794b587a3",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: [],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Shirt Dresses",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_shirtdress_2M_114696143",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_shirtdress_2M_114696143",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 9579,
-                      webUrl:
-                        "https://www.asos.com/us/women/curve-plus-size/dresses/cat/?cid=9579&refine=attribute_1046:8295",
-                      appUrl:
-                        "asos://category?cid=9579&refine=attribute_1046:8295",
                     },
                     children: [],
                   },
@@ -21615,151 +21414,6 @@ export const navigationData = [
                       webUrl:
                         "https://www.asos.com/us/women/curve-plus-size/cat/?cid=9577&refine=brand:13511",
                       appUrl: "asos://category?cid=9577&refine=brand:13511",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "3dc2dc1f-dd9a-4368-8207-e57775116c4f",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "COLLUSION",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_curve_collusion_3M_102343676",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_curve_collusion_3M_102343676",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 9577,
-                      webUrl:
-                        "https://www.asos.com/us/women/curve-plus-size/cat/?cid=9577&refine=brand:15878",
-                      appUrl: "asos://category?cid=9577&refine=brand:15878",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "cb9791c9-d5a0-478b-bebf-95015585b871",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Yours",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_yours_2M_116400326",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_yours_2M_116400326",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 25388,
-                      webUrl:
-                        "https://www.asos.com/us/women/a-to-z-of-brands/yours/cat/?cid=25388",
-                      appUrl: "asos://category?cid=25388",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "9dae8d23-dd09-445d-81b6-771e195d3c3b",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "In the Style",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_inthestyle_2M_116328567",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_inthestyle_2M_116328567",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 9577,
-                      webUrl:
-                        "https://www.asos.com/us/women/curve-plus-size/cat/?cid=9577&refine=brand:16191",
-                      appUrl: "asos://category?cid=9577&refine=brand:16191",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "d3efaf72-0ae0-4d44-97da-44b5951e7b65",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "New Look Plus",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_newlookplus_2M_118714083",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_plussize_newlookplus_2M_118714083",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 9577,
-                      webUrl:
-                        "https://www.asos.com/us/women/curve-plus-size/cat/?cid=9577&refine=brand:13844",
-                      appUrl: "asos://category?cid=9577&refine=brand:13844",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "01c1e24d-4bcf-49ee-9cd6-eecfb7d61094",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Wednesdays Girl Curve",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_curve_wednesdaysgirlcurve_3M_114120335",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ww_us_curve_wednesdaysgirlcurve_3M_114120335",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 9577,
-                      webUrl:
-                        "https://www.asos.com/us/women/curve-plus-size/cat/?cid=9577&refine=brand:16164",
-                      appUrl: "asos://category?cid=9577&refine=brand:16164",
                     },
                     children: [],
                   },
@@ -27133,64 +26787,6 @@ export const navigationData = [
                     },
                     children: [],
                   },
-                  {
-                    id: "6cd86f00-d231-4564-85dc-e5bbf9b11004",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Too Faced",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/toofaced_fb_1_1680x876",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/toofaced_fb_1_480x480",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 2852,
-                      webUrl:
-                        "https://www.asos.com/us/women/face-body/a-to-z-of-brands/too-faced/cat/?cid=2852",
-                      appUrl: "asos://category?cid=2852",
-                    },
-                    children: [],
-                  },
-                  {
-                    id: "be4af356-447a-4b43-8869-c13262d77bea",
-                    alias: null,
-                    type: "link",
-                    channelExclusions: [],
-                    webLargePriority: 0,
-                    content: {
-                      title: "Olaplex",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/ASOS_CTA_Desktop_020822",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/ASOS_CTA_App_Mobile_020822",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "dark",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "category",
-                      brandSectionAlias: null,
-                      categoryId: 29722,
-                      webUrl:
-                        "https://www.asos.com/us/women/face-body/a-to-z-of-brands/olaplex/cat/?cid=29722",
-                      appUrl: "asos://category?cid=29722",
-                    },
-                    children: [],
-                  },
                 ],
               },
               {
@@ -27308,63 +26904,6 @@ export const navigationData = [
               appUrl: null,
             },
             children: [
-              {
-                id: "4124e0cd-5dff-4419-87ab-69dcc9bc1b99",
-                alias: null,
-                type: "container",
-                channelExclusions: ["webLarge"],
-                webLargePriority: 0,
-                content: {
-                  title: "A-Z Brands Link",
-                  subTitle: null,
-                  webLargeImageUrl: null,
-                  mobileImageUrl: null,
-                },
-                display: {
-                  webLargeTemplateId: 0,
-                  webLargeTemplateName: "",
-                  webLargeColumnSpan: 1,
-                  mobileTemplateId: 1,
-                  mobileTemplateName: "imageBackground",
-                  mobileDisplayLayout: "list",
-                },
-                style: {
-                  webLargeStyleType: "noTitle",
-                  mobileStyleType: "noTitle",
-                },
-                link: null,
-                children: [
-                  {
-                    id: "e51b291e-a7c1-4acb-874b-674ad866b1e1",
-                    alias: null,
-                    type: "aToZBrands",
-                    channelExclusions: ["webLarge"],
-                    webLargePriority: 0,
-                    content: {
-                      title: "A-Z of brands",
-                      subTitle: null,
-                      webLargeImageUrl:
-                        "https://images.asos-media.com/navigation/Women-Brands-Brands-NA-42979-163",
-                      mobileImageUrl:
-                        "https://images.asos-media.com/navigation/Women-Brands-Brands-NA-42979-163",
-                    },
-                    display: null,
-                    style: {
-                      webLargeStyleType: "premium",
-                      mobileStyleType: "dark",
-                    },
-                    link: {
-                      linkType: "aToZBrands",
-                      brandSectionAlias: "WW_FP",
-                      categoryId: 1340,
-                      webUrl:
-                        "https://www.asos.com/us/women/a-to-z-of-brands/cat/?cid=1340",
-                      appUrl: "asos://category?cid=1340",
-                    },
-                    children: [],
-                  },
-                ],
-              },
               {
                 id: "40f32ebb-82d7-4f8e-a9b5-2fc042cda048",
                 alias: null,
@@ -28094,7 +27633,7 @@ export const navigationData = [
                 channelExclusions: [],
                 webLargePriority: 2,
                 content: {
-                  title: "FEATURED BRANDS",
+                  title: "",
                   subTitle: null,
                   webLargeImageUrl: null,
                   mobileImageUrl: null,

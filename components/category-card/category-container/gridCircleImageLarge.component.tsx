@@ -1,17 +1,17 @@
 import React from "react";
+import Image from "next/image";
 
 const GridCircleImageLarge = ({ categoryItems }) => {
   return (
-    <ul className={`grid w-[20vw] grid-cols-2 gap-2 pt-4`}>
+    <ul className={`grid w-[20vw] grid-cols-2 gap-1 pt-4`}>
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] group flex flex-col items-center gap-4  cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500">
-            <img
+          <li className="text-[13x] rounded-full overflow-hidden group flex flex-col items-center gap-4  cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500">
+            <Image
               src={item.content.webLargeImageUrl}
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               alt="picture"
-              className="rounded-full group-hover:border-gray-600 group-hover:border-2"
             />
 
             <span>{item.content.title}</span>

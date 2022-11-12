@@ -31,6 +31,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar.component";
 import CategoryCard from "../category-card/category-card.component";
+import { FormControlUnstyled } from "@mui/base";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
 
@@ -67,6 +68,7 @@ const Navigation = ({ navigations }) => {
     };
   }, []);
 
+  //Set the current navigations depends on the route
   useEffect(() => {
     if (section === "women") {
       setCurrentNavigation(navigations[1]);
@@ -75,6 +77,8 @@ const Navigation = ({ navigations }) => {
     }
   }, [section]);
 
+  // Handle to open the search application whenever
+  // the user type any thing in the search input
   useEffect(() => {
     if (search.length > 0) {
       setShowSearch(true);
@@ -158,14 +162,13 @@ const Navigation = ({ navigations }) => {
           if (window.pageYOffset > fixedTop) {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
-
-            mainHeader[i].classList.add("fixed");
-            mainHeader[i].classList.add("top-0");
+            mainHeader[i].className =
+              "category_card hidden z-10 left-[1.5%] 2xl:left-[7.2%] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
-              mainHeader[i].classList.remove("fixed");
-              mainHeader[i].classList.remove("top-0");
+              mainHeader[i].className =
+                "category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black";
             }
           }
         }
@@ -426,7 +429,7 @@ const Navigation = ({ navigations }) => {
               </button>
 
               <div
-                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-[72vh] absolute bg-black`}
+                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
               >
                 <CategoryCard
                   category={categories.at(categories.length - 1)}
