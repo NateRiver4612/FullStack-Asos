@@ -6,7 +6,10 @@ const ThirdMarketingImage = ({ categoryItems }) => {
     <ul className={`flex flex-col  flex-start gap-2 pt-1`}>
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] border-gray-300 border-[1px] px-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold py-[2px] capitalize w-full  text-gray-500">
+          <li
+            key={item.id}
+            className="text-[13x] relative border-gray-300 border-[1px] px-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold py-[2px] capitalize w-full  text-gray-500"
+          >
             <Image
               src={item.content.webLargeImageUrl}
               width={300}
@@ -14,7 +17,7 @@ const ThirdMarketingImage = ({ categoryItems }) => {
               alt="picture"
             />
 
-            <p className="absolute break-all font-bold uppercase text-[14px] pl-4 pr-[8.8%] text-gray-700">
+            <p className="absolute break-normal font-bold uppercase text-[14px] pl-4 w-[70%] text-gray-700">
               {item.content.title}
             </p>
           </li>

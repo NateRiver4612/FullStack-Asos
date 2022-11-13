@@ -25,7 +25,7 @@ const CategoryCard = ({ category }) => {
 
         if (categoryItems.length > 0) {
           return (
-            <Fragment>
+            <Fragment key={container.id}>
               <div className="w-fit py-5 px-8">
                 {container.content.title.includes("CTA") == false && (
                   <h1 className="uppercase font-bold underline underline-offset-4 tracking-wider text-[14px]">

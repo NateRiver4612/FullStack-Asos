@@ -32,6 +32,7 @@
     "react-redux": "^8.0.4",
     "react-slidedown": "^2.4.7",
     "redux-persist": "^6.0.0",
+    "swiper": "^8.4.4",
     "tailwind-styled-components": "^2.2.0"
   },
   "devDependencies": {

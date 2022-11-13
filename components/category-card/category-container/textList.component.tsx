@@ -9,7 +9,10 @@ const TextList = ({ categoryItems }) => {
     >
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] w-[20vw]   flex items-center gap-4 cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500">
+          <li
+            key={item.id}
+            className="text-[13x] w-[20vw]   flex items-center gap-4 cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500"
+          >
             <span
               className={`${
                 item.style.webLargeStyleType == "premium" ? "font-bold" : ""

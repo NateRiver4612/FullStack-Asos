@@ -111,6 +111,7 @@ const Navigation = ({ navigations }) => {
     setShowSearch(false);
   };
 
+  // Handle user typing text
   const onChangeHandle = (event: any) => {
     event.preventDefault();
 
@@ -179,7 +180,7 @@ const Navigation = ({ navigations }) => {
 
   return (
     <Fragment>
-      <Sidebar openSidebar={openSidebar} />
+      <Sidebar navigations={navigations} openSidebar={openSidebar} />
 
       <div
         onClick={onCloseSidebar}
@@ -296,7 +297,7 @@ const Navigation = ({ navigations }) => {
                             .map((searchKey, index) => {
                               return (
                                 <li
-                                  key={index + searchKey}
+                                  key={index}
                                   className="text-gray-700 hover:bg-gray-300 px-3 py-1 "
                                 >
                                   {searchKey}
@@ -348,7 +349,7 @@ const Navigation = ({ navigations }) => {
                                 >
                                   {icon({ size: 24 })}
                                   <div className="px-3"></div>
-                                  <span className="text-sm">{key}</span>
+                                  <span className="text-sm">{}</span>
                                 </li>
                               );
                             })}
@@ -385,6 +386,7 @@ const Navigation = ({ navigations }) => {
               if (index != 1 && index != categories.length - 1) {
                 return (
                   <div
+                    key={category.id}
                     onMouseEnter={() => {
                       setShowCategoryCard(true);
                     }}

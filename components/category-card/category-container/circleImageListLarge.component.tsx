@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const CircleImageListLarge = ({ categoryItems }) => {
   return (
@@ -9,19 +10,25 @@ const CircleImageListLarge = ({ categoryItems }) => {
     >
       {categoryItems.map((item) => {
         return (
-          <li className="text-[13x] w-[22vw] flex items-center gap-4 cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500">
-            <img
-              src={item.content.webLargeImageUrl}
-              width={40}
-              height={40}
-              alt="avatar"
-              className="rounded-full"
-            />
+          <div
+            key={item.id}
+            className="text-[13x] w-[22vw] flex items-center gap-4 cursor-pointer hover:font-bold py-[6px] 
+            capitalize w-full text-gray-500 hover:[&>div]:border-gray-500 group"
+          >
+            <div className="rounded-full p-[2px] border-2 box-content border-gray-300">
+              <img
+                src={item.content.webLargeImageUrl}
+                className="rounded-full"
+                alt="avatar"
+                width={40}
+                height={40}
+              />
+            </div>
 
             <span className="border-b-[1px] flex items-center h-full w-[40%] border-gray-200">
               {item.content.title}
             </span>
-          </li>
+          </div>
         );
       })}
     </ul>

@@ -8,5 +8,8 @@ module.exports = {
   theme: {
     extend: {},
   },
+  variants: {
+    borderColor: ["group-hover"],
+  },
   plugins: [],
 };

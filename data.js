@@ -190,34 +190,6 @@ export const navigationData = [
             children: [],
           },
           {
-            id: "6cb353c7-1109-4fb3-ac18-870b2a86515f",
-            alias: null,
-            type: "link",
-            channelExclusions: ["apps", "webLarge"],
-            webLargePriority: 0,
-            content: {
-              title: "Bestsellers",
-              subTitle: null,
-              webLargeImageUrl:
-                "https://images.asos-media.com/navigation/mob_promo1_us_2292x762_281022",
-              mobileImageUrl:
-                "https://images.asos-media.com/navigation/mob_promo1_us_2292x762_281022",
-            },
-            display: null,
-            style: {
-              webLargeStyleType: "dark",
-              mobileStyleType: "noTitle",
-            },
-            link: {
-              linkType: "internal",
-              brandSectionAlias: null,
-              categoryId: null,
-              webUrl: "https://www.asos.com/us/discover/our-apps/",
-              appUrl: null,
-            },
-            children: [],
-          },
-          {
             id: "3c2c512a-0614-4b67-824a-d4b686add347",
             alias: null,
             type: "link",
@@ -227,7 +199,7 @@ export const navigationData = [
               title: "UP TO 50% OFF",
               subTitle: null,
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/plain_1_1m_041021",
+                "https://images.asos-media.com/navigation/2022_BLACKFRIDAY_HOMEPAGE_NAVBNNERS_APPNAV_GREEN_MW_WW_US_CA_MX_2292x762?&$n_320w$",
               mobileImageUrl:
                 "https://images.asos-media.com/navigation/plain_1_1m_041021",
             },
@@ -14350,7 +14322,7 @@ export const navigationData = [
               title: "Unlimited express delivery",
               subTitle: null,
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/6m_asospremier_160922",
+                "https://images.asos-media.com/navigation/moreasos_students_6m?&$n_320w$",
               mobileImageUrl:
                 "https://images.asos-media.com/navigation/6m_asospremier_160922",
             },
@@ -14593,35 +14565,6 @@ export const navigationData = [
         link: null,
         children: [
           {
-            id: "c4c4c171-b761-4828-959e-a26810a6bec9",
-            alias: null,
-            type: "link",
-            channelExclusions: ["webLarge", "webSmall"],
-            webLargePriority: 0,
-            content: {
-              title: "Bestsellers",
-              subTitle: null,
-              webLargeImageUrl:
-                "https://images.asos-media.com/navigation/app_promo1_us_2292x762_281022",
-              mobileImageUrl:
-                "https://images.asos-media.com/navigation/app_promo1_us_2292x762_281022",
-            },
-            display: null,
-            style: {
-              webLargeStyleType: "dark",
-              mobileStyleType: "noTitle",
-            },
-            link: {
-              linkType: "category",
-              brandSectionAlias: null,
-              categoryId: 50041,
-              webUrl:
-                "https://www.asos.com/us/women/ctas/coded-promos/promo-1/cat/?cid=50041",
-              appUrl: "asos://category?cid=50041",
-            },
-            children: [],
-          },
-          {
             id: "c934568e-cb05-4a5c-9c57-5d3847eb732e",
             alias: null,
             type: "link",
@@ -14659,7 +14602,7 @@ export const navigationData = [
               title: "UP TO 50% OFF",
               subTitle: null,
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/plain_1_1m_041021",
+                "https://images.asos-media.com/navigation/2022_BLACKFRIDAY_HOMEPAGE_NAVBNNERS_APPNAV_GREEN_MW_WW_US_CA_MX_2292x762?&$n_320w$",
               mobileImageUrl:
                 "https://images.asos-media.com/navigation/plain_1_1m_041021",
             },
@@ -29283,7 +29226,7 @@ export const navigationData = [
               title: "Unlimited express shipping",
               subTitle: null,
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/6m_asospremier_160922",
+                "https://images.asos-media.com/navigation/students-feb-2018-6m",
               mobileImageUrl:
                 "https://images.asos-media.com/navigation/6m_asospremier_160922",
             },
