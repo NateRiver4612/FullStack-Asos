@@ -8,7 +8,7 @@ const ThirdMarketingImage = ({ categoryItems }) => {
         return (
           <li
             key={item.id}
-            className="text-[13x] relative border-gray-300 border-[1px] px-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold py-[2px] capitalize w-full  text-gray-500"
+            className="text-[13x] relative border-gray-200 border-[2px] hover:border-gray-400 p-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold  capitalize w-full  text-gray-500"
           >
             <Image
               src={item.content.webLargeImageUrl}

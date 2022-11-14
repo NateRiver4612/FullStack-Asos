@@ -167,7 +167,7 @@ export const navigationData = [
             channelExclusions: ["webLarge", "webSmall"],
             webLargePriority: 0,
             content: {
-              title: "Bestsellers",
+              title: "",
               subTitle: null,
               webLargeImageUrl:
                 "https://images.asos-media.com/navigation/app_promo1_us_2292x762_281022",
@@ -196,7 +196,7 @@ export const navigationData = [
             channelExclusions: [],
             webLargePriority: 0,
             content: {
-              title: "UP TO 50% OFF",
+              title: "",
               subTitle: null,
               webLargeImageUrl:
                 "https://images.asos-media.com/navigation/2022_BLACKFRIDAY_HOMEPAGE_NAVBNNERS_APPNAV_GREEN_MW_WW_US_CA_MX_2292x762?&$n_320w$",
@@ -14571,7 +14571,7 @@ export const navigationData = [
             channelExclusions: ["apps", "webLarge"],
             webLargePriority: 0,
             content: {
-              title: "Bestsellers",
+              title: "",
               subTitle: null,
               webLargeImageUrl:
                 "https://images.asos-media.com/navigation/mob_promo1_us_2292x762_281022",
@@ -14599,10 +14599,10 @@ export const navigationData = [
             channelExclusions: [],
             webLargePriority: 0,
             content: {
-              title: "UP TO 50% OFF",
+              title: "Top Dresses under 20%",
               subTitle: null,
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/2022_BLACKFRIDAY_HOMEPAGE_NAVBNNERS_APPNAV_GREEN_MW_WW_US_CA_MX_2292x762?&$n_320w$",
+                "https://images.asos-media.com/navigation/WW_AUSummerDresses_1M_171117?&$n_320w$",
               mobileImageUrl:
                 "https://images.asos-media.com/navigation/plain_1_1m_041021",
             },

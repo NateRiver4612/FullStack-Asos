@@ -349,7 +349,7 @@ const Navigation = ({ navigations }) => {
                                 >
                                   {icon({ size: 24 })}
                                   <div className="px-3"></div>
-                                  <span className="text-sm">{}</span>
+                                  <span className="text-sm">{key}</span>
                                 </li>
                               );
                             })}

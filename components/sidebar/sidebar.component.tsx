@@ -92,6 +92,11 @@ const Sidebar = ({ navigations, openSidebar }) => {
                               src={item.content.webLargeImageUrl}
                               alt="picture"
                             />
+                            <p
+                              className={`absolute break-normal font-bold uppercase  w-[50%] pl-4  text-black`}
+                            >
+                              {item.content.title}
+                            </p>
                           </li>
                         </SwiperSlide>
                       );

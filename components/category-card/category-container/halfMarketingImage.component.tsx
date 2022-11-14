@@ -8,7 +8,7 @@ const HalfMarketingImage = ({ categoryItems }) => {
         return (
           <li
             key={item.id}
-            className="text-[13x] relative hover:border-gray-500 border-gray-300 border-[1px] group flex justify-center cursor-pointer  hover:font-bold py-[2px] px-[2px] capitalize w-full  text-gray-500"
+            className="text-[13x] relative hover:border-gray-500 border-gray-200 border-[2px] group flex justify-center cursor-pointer  hover:font-bold p-[2px] capitalize w-full  text-gray-500"
           >
             <Image
               src={item.content.webLargeImageUrl}
