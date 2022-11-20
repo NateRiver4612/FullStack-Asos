@@ -19,7 +19,6 @@ import { TbPackgeImport } from "react-icons/tb";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { BiMenu } from "react-icons/bi";
-
 import { useRouter } from "next/router";
 
 import {
@@ -438,6 +437,16 @@ const Navigation = ({ navigations }) => {
                 ></CategoryCard>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="hidden bg-black h-[49px] w-full top-[50%] md:flex">
+          <div className="w-full h-full bg-[#9cf0e0] font-bold flex flex-col items-center justify-center tracking-widest ">
+            <p className="uppercase text-[13px]">25% off all topman</p>
+            <p className="capitalize text-[12px]">with code: TOP25</p>
+          </div>
+          <div className="w-full h-full bg-black text-[#9cf0e0] font-bold flex flex-col items-center justify-center tracking-widest ">
+            <p className="uppercase text-[13px]">black friday warn-up</p>
+            <p className="capitalize text-[12px]">with code: TOP25</p>
           </div>
         </div>
         {/* CategoryCard Opacity Background */}

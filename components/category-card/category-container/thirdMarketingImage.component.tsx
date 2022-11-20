@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const ThirdMarketingImage = ({ categoryItems }) => {
   return (
-    <ul className={`flex flex-col  flex-start gap-2 pt-1`}>
+    <ul className={`flex flex-col flex-start gap-2 pt-2`}>
       {categoryItems.map((item) => {
         return (
           <li

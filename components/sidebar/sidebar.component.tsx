@@ -72,13 +72,12 @@ const Sidebar = ({ navigations, openSidebar }) => {
 
             if (navigation.content.title.includes("App and Mobile")) {
               return (
-                <div>
+                <div key={navigation.id}>
                   <Swiper
                     spaceBetween={30}
                     pagination={{
                       clickable: true,
                     }}
-                    key={navigation.id}
                     modules={[Pagination]}
                     className="mySwiper"
                   >
@@ -92,11 +91,12 @@ const Sidebar = ({ navigations, openSidebar }) => {
                               src={item.content.webLargeImageUrl}
                               alt="picture"
                             />
-                            <p
-                              className={`absolute break-normal font-bold uppercase  w-[50%] pl-4  text-black`}
-                            >
-                              {item.content.title}
-                            </p>
+                            <div className="absolute top-3 font-bold uppercase h-full w-full text-[15px] pl-4 text-black">
+                              <p className={`w-[50%]`}>{item.content.title}</p>
+                              <p className="font-light w-full">
+                                {item.content.subTitle}
+                              </p>
+                            </div>
                           </li>
                         </SwiperSlide>
                       );

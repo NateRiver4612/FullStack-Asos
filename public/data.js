@@ -167,12 +167,12 @@ export const navigationData = [
             channelExclusions: ["webLarge", "webSmall"],
             webLargePriority: 0,
             content: {
-              title: "",
-              subTitle: null,
+              title: "20% OFF SUITS & MORE!",
+              subTitle: "With code: EVENTS",
               webLargeImageUrl:
-                "https://images.asos-media.com/navigation/app_promo1_us_2292x762_281022",
+                "https://images.asos-media.com/navigation/gradient_2_1m_041021",
               mobileImageUrl:
-                "https://images.asos-media.com/navigation/app_promo1_us_2292x762_281022",
+                "https://images.asos-media.com/navigation/gradient_2_1m_041021",
             },
             display: null,
             style: {
@@ -14565,6 +14565,35 @@ export const navigationData = [
         link: null,
         children: [
           {
+            id: "612c0cd2-f361-4072-b57e-e3aa0d2fdfce",
+            alias: null,
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "Top Dresses",
+              subTitle: "under 20%",
+              webLargeImageUrl:
+                "https://images.asos-media.com/navigation/WW_AUSummerDresses_1M_171117?&$n_320w$",
+              mobileImageUrl:
+                "https://images.asos-media.com/navigation/plain_1_1m_041021",
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "category",
+              brandSectionAlias: null,
+              categoryId: 28023,
+              webUrl:
+                "https://www.asos.com/us/women/ctas/generic-promos/promotion-3/cat/?cid=28023",
+              appUrl: "asos://category?cid=28023",
+            },
+            children: [],
+          },
+          {
             id: "c934568e-cb05-4a5c-9c57-5d3847eb732e",
             alias: null,
             type: "link",
@@ -14589,35 +14618,6 @@ export const navigationData = [
               categoryId: null,
               webUrl: "https://www.asos.com/us/discover/our-apps/",
               appUrl: null,
-            },
-            children: [],
-          },
-          {
-            id: "612c0cd2-f361-4072-b57e-e3aa0d2fdfce",
-            alias: null,
-            type: "link",
-            channelExclusions: [],
-            webLargePriority: 0,
-            content: {
-              title: "Top Dresses under 20%",
-              subTitle: null,
-              webLargeImageUrl:
-                "https://images.asos-media.com/navigation/WW_AUSummerDresses_1M_171117?&$n_320w$",
-              mobileImageUrl:
-                "https://images.asos-media.com/navigation/plain_1_1m_041021",
-            },
-            display: null,
-            style: {
-              webLargeStyleType: "dark",
-              mobileStyleType: "dark",
-            },
-            link: {
-              linkType: "category",
-              brandSectionAlias: null,
-              categoryId: 28023,
-              webUrl:
-                "https://www.asos.com/us/women/ctas/generic-promos/promotion-3/cat/?cid=28023",
-              appUrl: "asos://category?cid=28023",
             },
             children: [],
           },
@@ -29278,6 +29278,7 @@ export const navigationData = [
     ],
   },
 ];
+
 export const brandsData = [
   {
     id: "c808177e-74e5-4b73-90a4-cd2e4ecc81e1",
@@ -64815,6 +64816,7 @@ export const brandsData = [
     ],
   },
 ];
+
 export const footer = [
   {
     id: "bf83f496-32c3-4a13-99e4-03591f384ff0",
@@ -65293,6 +65295,617 @@ export const footer = [
             "https://www.asos.com/us/discover/refer-a-friend/?situation=web_footer",
         },
         children: [],
+      },
+    ],
+  },
+];
+
+export const homePageData = [
+  {
+    id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+    alias: "MW",
+    type: "link",
+    content: {
+      title: "Men",
+      subTitle: null,
+      webLargeImageUrl: null,
+      mobileImageUrl: null,
+    },
+    display: null,
+    style: {
+      webLargeStyleType: "dark",
+      mobileStyleType: "dark",
+    },
+    link: {
+      linkType: "internal",
+      brandSectionAlias: null,
+      categoryId: null,
+      webUrl: "https://www.asos.com/us/men/",
+      appUrl: null,
+    },
+    children: [
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_0",
+          subTitle: null,
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "25% off all topman",
+              subTitle: "with code: top25",
+              webLargeImageUrl: "",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "black friday warm up",
+              subTitle: "the up-to-60% edit",
+              webLargeImageUrl: "",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+
+            children: null,
+          },
+        ],
+      },
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_1",
+          subTitle: "Main home page display",
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "25% OFF Event",
+              subTitle: "24 hours event",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/events-2022/black-friday/2022/wk12/saturday/topshop-topman/us-ca-mx/25/2022_blackfriday_homepage_desktophero_25-topman_mw_us-ca-mx_1258x600.jpg",
+              mobileImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/events-2022/black-friday/2022/wk12/saturday/topshop-topman/us-ca-mx/25/2022_blackfriday_homepage_mobilehero_25-topman_mw_us-ca-mx_640x692.jpg",
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+        ],
+      },
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_2",
+          subTitle: "Special Offers",
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: null,
+              subTitle: null,
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/events-2022/black-friday/2022/wk12/monday/dresses-and-tops/uk-roi/20/2022blackfridayhomepagedesktopglobalbannerdressestopsukroi2880x240v1.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+        ],
+      },
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_3",
+          subTitle: "Occasional Wear",
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "thanksgiving",
+              subTitle: "Oh, it's GIVING",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/oct/24/moments/mw_us_mw_thanksgiving_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "the north face",
+              subTitle: "as seen outdoors",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/nov/07/moments/mw_global_the_north_face_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "wild wild west",
+              subTitle: "giddy up",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/nov/07/moments/mw_global_western_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "hugo",
+              subTitle: "like a boss",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/nov/07/moments/mw_global_hugo_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+        ],
+      },
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_4",
+          subTitle: "Top Trends",
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "e-boy energy",
+              subTitle: "big on the scene",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/nov/07/moments/mw_global_eboy_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "radio retro",
+              subTitle: "classics remixed",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/mw/2022/nov/07/moments/mw_global_asos_design_heirloom_moment_870x1110.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+        ],
+      },
+      {
+        id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+        alias: "MW",
+        type: "link",
+        content: {
+          title: "Section_5",
+          subTitle: "trending brands",
+          webLargeImageUrl: "",
+          mobileImageUrl: null,
+        },
+        display: null,
+        style: {
+          webLargeStyleType: "dark",
+          mobileStyleType: "dark",
+        },
+        link: {
+          linkType: "internal",
+          brandSectionAlias: null,
+          categoryId: null,
+          webUrl: "https://www.asos.com/us/men/",
+          appUrl: null,
+        },
+        children: [
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "asos design",
+              subTitle: "",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/asos-design-logo_256_v4.png",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "the north face",
+              subTitle: "classics remixed",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/north-face.png",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "topman",
+              subTitle: "",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/topman_logo_256x128_v3.png",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "new balance",
+              subTitle: "",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/new-balance-hp-logos-256x256.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "jack and jones",
+              subTitle: "",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/jack-jones-hp-logos-256x256.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+          {
+            id: "7276d7f9-b810-4743-8c11-eccb260bdaed",
+            alias: "MW",
+            type: "link",
+            channelExclusions: [],
+            webLargePriority: 0,
+            content: {
+              title: "adidas",
+              subTitle: "",
+              webLargeImageUrl:
+                "https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/adidas-hp-logos-256x256.jpg",
+              mobileImageUrl: null,
+            },
+            display: null,
+            style: {
+              webLargeStyleType: "dark",
+              mobileStyleType: "dark",
+            },
+            link: {
+              linkType: "internal",
+              brandSectionAlias: null,
+              categoryId: 50058,
+              webUrl: "https://www.asos.com/us/men/",
+              appUrl: null,
+            },
+            children: null,
+          },
+        ],
       },
     ],
   },

@@ -10,6 +10,7 @@ const nextConfig = {
       "cdn.imgbin.com",
       "www.clipartmax.com",
       "images.asos-media.com",
+      "content.asos-media.com",
     ],
   },
 };

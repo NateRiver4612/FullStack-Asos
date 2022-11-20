@@ -7,7 +7,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../components/spinner/spinner.component";
 
-import { navigationData } from "../data";
+import { navigationData } from "../public/data";
 
 // const options = {
 //   method: "GET",

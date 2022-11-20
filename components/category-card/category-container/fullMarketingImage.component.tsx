@@ -34,7 +34,7 @@ const FullMarketingImage = ({ categoryItems }) => {
               />
             )}
 
-            <span className="absolute text-back uppercase bottom-[10%] font-bold text-[18px]">
+            <span className="absolute text-back uppercase bottom-[7%] font-bold text-[18px]">
               {item.content.title}
             </span>
           </li>
