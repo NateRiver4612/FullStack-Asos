@@ -1,13 +1,10 @@
 import React from "react";
-import { useRouter } from "next/router";
 import Section_1 from "../../components/homeSections/Section_1.component";
 import Section_2 from "../../components/homeSections/Section_2.component";
 import Section_3 from "../../components/homeSections/Section_3.component";
 import Section_4 from "../../components/homeSections/Section_4.component";
 import Section_5 from "../../components/homeSections/Section_5.component";
 import Section_6 from "../../components/homeSections/Section_6.component";
-
-import Image from "next/image";
 
 const index = ({ sections }) => {
   return (
@@ -65,7 +62,13 @@ export async function getStaticProps({ params: { mainRouteId } }) {
   const response = await fetch("http://localhost:3000/api/homePageData");
   const homePageData = await response.json();
 
-  const sections = homePageData[0].children;
+  var sections;
+
+  if (mainRouteId == "men") {
+    sections = homePageData[0].children;
+  } else if (mainRouteId == "women") {
+    sections = homePageData[1].children;
+  }
 
   return {
     props: {

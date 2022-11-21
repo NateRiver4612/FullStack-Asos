@@ -36,11 +36,13 @@ import { FormControlUnstyled } from "@mui/base";
 
 const Navigation = ({ navigations }) => {
   const router = useRouter();
-  const section = router.pathname.split("/")[1];
+  const section = router.query.mainRouteId;
 
   const dispatch = useAppDispatch();
+
   const recentSearchs = useAppSelector(selectSearch);
   const searchRef = useRef<HTMLInputElement>(null);
+
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [showCategoryCard, setShowCategoryCard] = useState(false);

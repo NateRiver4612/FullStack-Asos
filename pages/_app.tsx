@@ -7,7 +7,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Spinner from "../components/spinner/spinner.component";
 
-import { navigationData } from "../public/data";
+import { navigationData, footerData } from "../public/data";
+import PaymentSection from "../components/payment/Payment-Section.component";
+import Footer from "../components/footer/Footer.component";
 
 // const options = {
 //   method: "GET",
@@ -50,6 +52,8 @@ function MyApp({ Component, pageProps, data }) {
           <div>
             <Component {...pageProps} />
           </div>
+          <PaymentSection />
+          <Footer footers={footerData} />
         </div>
       </PersistGate>
     </Provider>
