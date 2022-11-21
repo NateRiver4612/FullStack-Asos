@@ -14,7 +14,7 @@ const listPaymentIcon = [
 
 const PaymentSection = () => {
   return (
-    <div className="w-full flex gap-14 my-5">
+    <div className="w-full hidden  md:flex gap-14 my-5">
       <ul className="flex w-[50%] xl:w-[75%] gap-12 items-center justify-end border-r-[1px] border-gray-300 pr-14">
         <li>
           <Link href="/">

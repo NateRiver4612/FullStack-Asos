@@ -4,7 +4,7 @@ const Section_6 = ({ data }) => {
   const listItem = data.children;
   return (
     <div className="flex flex-col items-center mt-20">
-      <h1 className="xl:text-2xl text-md tracking-widest font-bold">
+      <h1 className="lg:text-xl xl:text-2xl text-md tracking-widest font-bold">
         TOP MEN'S CATEGORIES
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-4 w-full md:w-[80%] lg:w-[85%] mt-[7%] xl:mt-[2%]">

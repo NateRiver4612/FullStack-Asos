@@ -3,7 +3,7 @@ import React from "react";
 const Footer = ({ footers }) => {
   return (
     <div
-      className={`w-full  bg-gray-200 hidden md:grid px-[7%] py-[2%] md:grid-cols-3 lg:grid-cols-4`}
+      className={`w-full bg-gray-200 hidden md:grid px-[7%] py-[2%] md:grid-cols-3 lg:grid-cols-4`}
     >
       {footers.map((footer) => {
         const { children, content } = footer;

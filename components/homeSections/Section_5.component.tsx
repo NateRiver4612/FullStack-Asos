@@ -6,7 +6,7 @@ const Section_5 = ({ data }) => {
 
   return (
     <div className="mt-[10%] xl:mt-[3%] text-center">
-      <h1 className="tracking-wide text-md xl:text-2xl font-bold">
+      <h1 className="tracking-wide text-md lg:text-xl xl:text-2xl font-bold">
         TRENDING BRANDS
       </h1>
       <div className="flex justify-center flex-wrap xl:gap-6 mt-[3%] px-0 xl:px-4 lg:px-1">

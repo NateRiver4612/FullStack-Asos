@@ -32,10 +32,10 @@ const index = ({ sections }) => {
           src="https://content.asos-media.com/-/media/homepages/unisex/homepages/2022/07_july/premier-re-brand/live-assets/desktop-banner-2880x320_compress.jpg"
         />
         <img
-          className="absolute mt-[3%] xl:mt-[1.5%] "
+          className="absolute mt-[3%] md:mt-[2%] lg:mt-[1.5%] "
           src="https://content.asos-media.com/-/media/homepages/unisex/homepages/2022/07_july/premier-re-brand/logo-dt-mob---493x46--v2.png"
         />
-        <span className="absolute mt-[17%] xl:mt-[5.5%] text-gray-900 tracking-wide text-md break-normal text-center w-[90%] xl:text-2xl font-bold  pb-20">
+        <span className="absolute mt-[15%] sm:mt-[12%] md:mt-[9%] lg:mt-[6%] xl:mt-[5.5%] md:text-lg text-gray-900 tracking-wide text-md break-normal text-center w-[90%] lg:text-xl xl:text-2xl font-bold  pb-20">
           Unlimited free Next Day Delivery for a whole year for $24.99
         </span>
         <span className="text-xs absolute self-end pb-3">
