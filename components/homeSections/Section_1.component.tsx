@@ -6,7 +6,7 @@ const Section_1 = ({ data }) => {
 
   return (
     <div className="w-full h-full flex justify-center pt-[1px] cursor-pointer">
-      <img src={item.content.webLargeImageUrl} />
+      <Image height={595} width={1250} src={item.content.webLargeImageUrl} />
     </div>
   );
 };

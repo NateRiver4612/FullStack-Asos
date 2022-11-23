@@ -29,7 +29,7 @@ import { selectSearch } from "../../redux/features/search/search.slice";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar.component";
-import CategoryCard from "../category-card/category-card.component";
+import CategoryCard from "../category-card/Category-Card.component";
 import { FormControlUnstyled } from "@mui/base";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
@@ -165,7 +165,7 @@ const Navigation = ({ navigations }) => {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-10 left-[1.5%] 2xl:left-[7.2%] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex fixed top-0 bg-black";
+              "category_card hidden z-10 left-[1.5%]  2xl:left-[7.17%] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
@@ -200,6 +200,10 @@ const Navigation = ({ navigations }) => {
               : "left-0 right-0 top-0 bottom-0"
           }`}
         ></div>
+        {/* CategoryCard Opacity Background */}
+        {showCategoryCard && (
+          <div className="z-0 fixed  w-screen h-screen bg-black opacity-50"></div>
+        )}
         <div
           className={`header relative ${
             openSidebar && "-z-10"
@@ -410,7 +414,10 @@ const Navigation = ({ navigations }) => {
                     <div
                       className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
                     >
-                      <CategoryCard category={category}></CategoryCard>
+                      <CategoryCard
+                        section={section}
+                        category={category}
+                      ></CategoryCard>
                     </div>
                   </div>
                 );
@@ -435,6 +442,7 @@ const Navigation = ({ navigations }) => {
                 className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
               >
                 <CategoryCard
+                  section={section}
                   category={categories.at(categories.length - 1)}
                 ></CategoryCard>
               </div>
@@ -442,19 +450,23 @@ const Navigation = ({ navigations }) => {
           </div>
         </div>
         <div className="hidden bg-black h-[49px] w-full top-[50%] md:flex">
-          <div className="w-full h-full bg-[#9cf0e0] font-bold flex flex-col items-center justify-center tracking-widest ">
+          <div
+            className={`w-full h-full ${
+              section == "men" ? "bg-[#9cf0e0]" : "bg-[#9d68fe]"
+            } transition-all duration-500 font-bold flex flex-col items-center justify-center tracking-widest `}
+          >
             <p className="uppercase text-[13px]">25% off all topman</p>
             <p className="capitalize text-[12px]">with code: TOP25</p>
           </div>
-          <div className="w-full h-full bg-black text-[#9cf0e0] font-bold flex flex-col items-center justify-center tracking-widest ">
+          <div
+            className={`w-full h-full bg-black ${
+              section == "men" ? "text-[#9cf0e0]" : "text-[#9d68fe]"
+            } font-bold transition-all duration-700 flex flex-col items-center justify-center tracking-widest `}
+          >
             <p className="uppercase text-[13px]">black friday warn-up</p>
             <p className="capitalize text-[12px]">with code: TOP25</p>
           </div>
         </div>
-        {/* CategoryCard Opacity Background */}
-        {showCategoryCard && (
-          <div className="w-full absolute z-0 h-[120vh] bg-black opacity-50"></div>
-        )}
       </div>
     </Fragment>
   );

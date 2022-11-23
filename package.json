@@ -36,6 +36,7 @@
     "tailwind-styled-components": "^2.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/react": "18.0.24",
     "autoprefixer": "^10.4.12",
     "eslint": "8.25.0",

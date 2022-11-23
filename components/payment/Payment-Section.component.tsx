@@ -14,7 +14,7 @@ const listPaymentIcon = [
 
 const PaymentSection = () => {
   return (
-    <div className="w-full hidden  md:flex gap-14 my-5">
+    <div className="w-full hidden bottom-0 md:flex gap-14 my-5">
       <ul className="flex w-[50%] xl:w-[75%] gap-12 items-center justify-end border-r-[1px] border-gray-300 pr-14">
         <li>
           <Link href="/">
@@ -32,7 +32,7 @@ const PaymentSection = () => {
           </Link>
         </li>
       </ul>
-      <ul className="flex w-full gap-9 items-center">
+      <ul className="flex w-full gap-9 items-center -z-10">
         {listPaymentIcon.map((icon) => {
           return (
             <li key={icon}>

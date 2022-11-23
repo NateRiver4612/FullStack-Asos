@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { MdClear } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination, Navigation } from "swiper";
 import "swiper/css/bundle";
 
 // Import Swiper styles
@@ -78,7 +78,11 @@ const Sidebar = ({ navigations, openSidebar }) => {
                     pagination={{
                       clickable: true,
                     }}
-                    modules={[Pagination]}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    modules={[Autoplay, Pagination]}
                     className="mySwiper"
                   >
                     {navigationItems.map((item) => {

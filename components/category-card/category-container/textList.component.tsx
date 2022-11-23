@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 
-const TextList = ({ categoryItems }) => {
+const TextList = ({ categoryTitle, categoryItems, section }) => {
   return (
     <ul
       className={`grid ${
@@ -13,13 +14,17 @@ const TextList = ({ categoryItems }) => {
             key={item.id}
             className="text-[13x] w-[20vw]   flex items-center gap-4 cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500"
           >
-            <span
-              className={`${
-                item.style.webLargeStyleType == "premium" ? "font-bold" : ""
-              } `}
+            <Link
+              href={`/${section}/${categoryTitle}/${item.content.title}-${item.link.categoryId}`}
             >
-              {item.content.title}
-            </span>
+              <span
+                className={`${
+                  item.style.webLargeStyleType == "premium" ? "font-bold" : ""
+                } `}
+              >
+                {item.content.title}
+              </span>
+            </Link>
           </li>
         );
       })}

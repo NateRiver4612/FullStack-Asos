@@ -7,7 +7,8 @@ import FullMarketingImage from "./category-container/fullMarketingImage.componen
 import ThirdMarketingImage from "./category-container/thirdMarketingImage.component";
 import HalfMarketingImage from "./category-container/halfMarketingImage.component";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ section, category }) => {
+  const categoryTitle = category.content.title;
   var categoryContainers = category?.children;
 
   categoryContainers = categoryContainers?.filter(
@@ -18,7 +19,7 @@ const CategoryCard = ({ category }) => {
   );
 
   return (
-    <div className="w-full h-full bg-gray-100 flex relative">
+    <div className="w-full h-full bg-gray-100 flex">
       {categoryContainers?.map((container) => {
         const categoryItems = container.children;
         const categoryDisplay = container.display;
@@ -34,7 +35,11 @@ const CategoryCard = ({ category }) => {
                 )}
                 {(categoryDisplay.webLargeTemplateName == "textList" ||
                   categoryDisplay.webLargeTemplateName == "") && (
-                  <TextList categoryItems={categoryItems}></TextList>
+                  <TextList
+                    categoryTitle={categoryTitle}
+                    section={section}
+                    categoryItems={categoryItems}
+                  ></TextList>
                 )}
                 {categoryDisplay.webLargeTemplateName ==
                   "circleImageListLarge" && (

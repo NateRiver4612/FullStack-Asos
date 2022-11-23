@@ -11,5 +11,5 @@ module.exports = {
   variants: {
     borderColor: ["group-hover"],
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
