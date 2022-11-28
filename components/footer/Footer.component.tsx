@@ -8,13 +8,19 @@ const Footer = ({ footers }) => {
       {footers.map((footer) => {
         const { children, content } = footer;
         return (
-          <div className="border-b-[1px] lg:border-none border-gray-300 pb-5">
+          <div
+            key={footer.id + content.title}
+            className="border-b-[1px] lg:border-none border-gray-300 pb-5"
+          >
             <span className="uppercase font-bold text-[14px] text-gray-500 tracking-widest">
               {content.title}
             </span>
             <ul className="pt-2">
               {children.map((item) => (
-                <li className="text-gray-500 py-1 text-[13px]">
+                <li
+                  key={item.key + item.content.title}
+                  className="text-gray-500 py-1 text-[13px]"
+                >
                   {item.content.title}
                 </li>
               ))}

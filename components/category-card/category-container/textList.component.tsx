@@ -15,7 +15,12 @@ const TextList = ({ categoryTitle, categoryItems, section }) => {
             className="text-[13x] w-[20vw]   flex items-center gap-4 cursor-pointer hover:text-gray-600 hover:font-bold py-[6px] capitalize w-full  text-gray-500"
           >
             <Link
-              href={`/${section}/${categoryTitle}/${item.content.title}-${item.link.categoryId}`}
+              href={`/${section}/${categoryTitle.replace(
+                " ",
+                "-"
+              )}/${item.content.title.replace(" ", "-")}-${
+                item.link.categoryId
+              }`}
             >
               <span
                 className={`${

@@ -215,7 +215,7 @@ const Navigation = ({ navigations }) => {
                 <button onClick={onToggleSidebar} className="lg:hidden">
                   <BiMenu size={26} className="ml-0" />
                 </button>
-                <a className="pt-[5px]">
+                <Link href="/" className="pt-[5px]">
                   <Image
                     alt="ASOS logo"
                     color="white"
@@ -224,7 +224,7 @@ const Navigation = ({ navigations }) => {
                     className="resize-none"
                     src="/logo.jpg"
                   ></Image>
-                </a>
+                </Link>
               </div>
 
               <ul className="hidden lg:flex h-full cursor-pointer font-bold text-xs tracking-widest">
@@ -326,22 +326,17 @@ const Navigation = ({ navigations }) => {
                 
                         max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 md:fixed md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
                       >
-                        <div className="h-full ">
-                          <div className="">
-                            <div className="flex justify-center items-center w-full text-sm h-fit font-semibold text-gray-500 underline">
-                              <a
-                                href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full"
-                              >
-                                Sign In
-                              </a>
-                              <span>|</span>
-                              <a
-                                href="/"
-                                className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full"
-                              >
-                                Join
-                              </a>
+                        <div className="h-full">
+                          <div className="static">
+                            <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
+                              <span className="hover:text-gray-900  hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
+                                <Link href="/">Sign In</Link>
+                              </span>
+
+                              <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
+                              <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
+                                <Link href="/">Join</Link>
+                              </span>
                             </div>
                           </div>
                           <ul className="flex flex-col text-gray-600  capitalize">
