@@ -5,11 +5,21 @@ import Navigation from "../components/navigation/navigation.component";
 import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Spinner from "../components/spinner/spinner.component";
+import Spinner from "../components/progress-bar/Progress-Bar.component";
 
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/Payment-Section.component";
 import Footer from "../components/footer/Footer.component";
+
+import "nprogress/nprogress.css";
+
+import dynamic from "next/dynamic";
+const ProgressBar = dynamic(
+  () => import("../components/progress-bar/Progress-Bar.component"),
+  {
+    ssr: false,
+  }
+);
 
 // const options = {
 //   method: "GET",
@@ -21,7 +31,7 @@ import Footer from "../components/footer/Footer.component";
 //   },
 // };
 
-function MyApp({ Component, pageProps, data }) {
+function MyApp({ Component, pageProps }) {
   const [navigations, setNavigations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +52,17 @@ function MyApp({ Component, pageProps, data }) {
 
   //   fetchNavigation();
   // }, []);
+
+  console.log(pageProps);
+
+  useEffect(() => {
+    if (!pageProps.data) {
+      console.log(isLoading);
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [pageProps]);
 
   return (
     <Provider store={store}>
@@ -70,6 +91,7 @@ function MyApp({ Component, pageProps, data }) {
           </div>
         </div>
       </PersistGate>
+      <ProgressBar></ProgressBar>
     </Provider>
   );
 }

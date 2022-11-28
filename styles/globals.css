@@ -9,3 +9,8 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+#nprogress .bar {
+    background: #e1dfe0 !important;
+    height: 5px !important;
+}

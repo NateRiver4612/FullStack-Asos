@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import {
   AiOutlineHeart,
@@ -10,13 +10,24 @@ import {
 import { BiChevronDown } from "react-icons/bi";
 
 const ProductList = ({ data }) => {
+  if (!data) {
+    console.log("Hello");
+    return <div>Hello</div>;
+  }
+
   const { categoryName, products, itemCount, facets } = data;
-  console.log(data);
+
   return (
-    <div className=" w-full flex flex-col items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
-      <div className="w-[90%] flex flex-wrap gap-4 pb-4">
+    <div className=" w-full flex flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
+      <div className="font-bold text-center text-2xl pb-20 border-b-[1px] border-gray-200 w-full">
+        {categoryName}
+      </div>
+      <div className="w-[90%] grid-cols-2 md:grid-cols-4 pt-2 grid xl:grid-cols-5 2xl:grid-cols-6 gap-4 pb-4">
         {facets.map((face) => (
-          <div className="border-t-[2px] w-[13.29%] flex items-center justify-between border-b-[2px]  py-[6px] px-[4px] text-sm text-gray-500 border-gray-200">
+          <div
+            key={face.id}
+            className="border-t-[2px] w-full flex items-center justify-between border-b-[2px]  py-[6px] px-[4px] text-sm text-gray-500 border-gray-200"
+          >
             {face.name}
             <span>
               <BiChevronDown size={15} />

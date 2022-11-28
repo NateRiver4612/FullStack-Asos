@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       store: "US",
       offset: "0",
       categoryId: `${categoryId}`,
-      limit: "10",
+      limit: "100",
       country: "US",
       sort: "freshness",
       currency: "USD",
