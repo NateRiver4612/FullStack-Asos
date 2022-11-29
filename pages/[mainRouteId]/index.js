@@ -58,9 +58,10 @@ export async function getStaticPaths(context) {
   };
 }
 
+import { LoadHomePageData } from "../../utils/LoadHomePageData";
+
 export async function getStaticProps({ params: { mainRouteId } }) {
-  const response = await fetch("http://localhost:3000/api/homePageData");
-  const homePageData = await response.json();
+  const homePageData = await LoadHomePageData();
 
   var sections;
 

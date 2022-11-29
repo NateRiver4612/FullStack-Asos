@@ -6,6 +6,7 @@ import {
   AiOutlineUp,
   AiOutlineDown,
 } from "react-icons/ai";
+import Image from "next/image";
 
 import { BiChevronDown } from "react-icons/bi";
 
@@ -41,11 +42,12 @@ const ProductList = ({ data }) => {
       </div>
       <div className="grid w-[90%] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
         {products.map((product) => {
+          console.log(product);
           const { price, imageUrl, name, isSellingFast } = product;
           return (
             <div key={product.id} className="flex flex-col mt-5 -z-10">
               <div className="flex justify-end items-end">
-                <img src={`https://${imageUrl}`} />
+                <Image height={380} width={300} src={`https://${imageUrl}`} />
                 {isSellingFast && (
                   <span className="font-bold text-[12px] absolute mb-[12%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/60 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
                     selling fast
