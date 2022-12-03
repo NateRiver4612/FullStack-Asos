@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/progress-bar/progress-bar.component";
 
 import { navigationData, footerData } from "../public/data";
-import PaymentSection from "../components/payment/payment-section.component";
+import PaymentSection from "../components/payment/Payment-Section.component";
 // import Footer from "../components/footer/Footer.component";
 
 import "nprogress/nprogress.css";
@@ -29,7 +29,7 @@ const Navigation = dynamic(
   }
 );
 
-const Footer = dynamic(() => import("../components/footer/footer.component"), {
+const Footer = dynamic(() => import("../components/footer/Footer.component"), {
   ssr: false,
 });
 
