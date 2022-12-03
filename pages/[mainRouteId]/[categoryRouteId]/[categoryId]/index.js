@@ -11,11 +11,6 @@ import Image from "next/image";
 import { BiChevronDown } from "react-icons/bi";
 
 const ProductList = ({ data }) => {
-  if (!data) {
-    console.log("Hello");
-    return <div>Hello</div>;
-  }
-
   const { categoryName, products, itemCount, facets } = data;
 
   return (
@@ -23,19 +18,22 @@ const ProductList = ({ data }) => {
       <div className="font-bold text-center text-2xl pb-20 border-b-[1px] border-gray-200 w-full">
         {categoryName}
       </div>
-      <div className="w-[90%] grid-cols-2 md:grid-cols-4 pt-2 grid xl:grid-cols-5 2xl:grid-cols-6 gap-4 pb-4">
-        {facets.map((face) => (
-          <div
-            key={face.id}
-            className="border-t-[2px] w-full flex items-center justify-between border-b-[2px]  py-[6px] px-[4px] text-sm text-gray-500 border-gray-200"
-          >
-            {face.name}
-            <span>
-              <BiChevronDown size={15} />
-            </span>
-          </div>
-        ))}
+      <div className="w-full bg-gray-100 flex justify-center">
+        <div className="w-[90%]  grid-cols-2 md:grid-cols-4 pt-2 grid xl:grid-cols-5 2xl:grid-cols-6 gap-4 pb-4">
+          {facets.map((face) => (
+            <div
+              key={face.id}
+              className="border-y-[2px] w-full flex items-center justify-between py-[6px] px-[4px] text-sm text-gray-500 border-gray-200"
+            >
+              {face.name}
+              <span>
+                <BiChevronDown size={18} />
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
+
       <div className="w-[90%] text-center text-gray-500 text-[13px]">
         {itemCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} styles
         found
