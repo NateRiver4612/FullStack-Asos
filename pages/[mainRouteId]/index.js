@@ -1,10 +1,10 @@
 import React from "react";
-import Section_1 from "../../components/homeSections/Section_1.component";
-import Section_2 from "../../components/homeSections/Section_2.component";
-import Section_3 from "../../components/homeSections/Section_3.component";
-import Section_4 from "../../components/homeSections/Section_4.component";
-import Section_5 from "../../components/homeSections/Section_5.component";
-import Section_6 from "../../components/homeSections/Section_6.component";
+import Section_1 from "../../components/homeSections/section_1.component";
+import Section_2 from "../../components/homeSections/section_2.component";
+import Section_3 from "../../components/homeSections/section_3.component";
+import Section_4 from "../../components/homeSections/section_4.component";
+import Section_5 from "../../components/homeSections/section_5.component";
+import Section_6 from "../../components/homeSections/section_6.component";
 
 const index = ({ sections }) => {
   return (

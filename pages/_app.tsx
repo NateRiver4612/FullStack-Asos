@@ -5,10 +5,10 @@ import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Spinner from "../components/progress-bar/Progress-Bar.component";
+import Spinner from "../components/progress-bar/progress-bar.component";
 
 import { navigationData, footerData } from "../public/data";
-import PaymentSection from "../components/payment/Payment-Section.component";
+import PaymentSection from "../components/payment/payment-section.component";
 // import Footer from "../components/footer/Footer.component";
 
 import "nprogress/nprogress.css";
@@ -16,7 +16,7 @@ import "nprogress/nprogress.css";
 import dynamic from "next/dynamic";
 
 const ProgressBar = dynamic(
-  () => import("../components/progress-bar/Progress-Bar.component"),
+  () => import("../components/progress-bar/progress-bar.component"),
   {
     ssr: false,
   }
@@ -29,7 +29,7 @@ const Navigation = dynamic(
   }
 );
 
-const Footer = dynamic(() => import("../components/footer/Footer.component"), {
+const Footer = dynamic(() => import("../components/footer/footer.component"), {
   ssr: false,
 });
 

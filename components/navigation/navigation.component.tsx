@@ -29,7 +29,7 @@ import { selectSearch } from "../../redux/features/search/search.slice";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar.component";
-import CategoryCard from "../category-card/CategoryCard.component";
+import CategoryCard from "../category-card/category-card.component";
 import { FormControlUnstyled } from "@mui/base";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
