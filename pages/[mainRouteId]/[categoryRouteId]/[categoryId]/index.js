@@ -34,7 +34,6 @@ const ProductList = ({ data }) => {
       </div>
       <div className="grid w-[90%] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
         {products.map((product) => {
-          console.log(product);
           const { price, imageUrl, name, isSellingFast } = product;
           return (
             <div key={product.id} className="flex flex-col mt-5 -z-10">
@@ -82,7 +81,7 @@ const ProductList = ({ data }) => {
 export async function getServerSideProps({ params: { categoryId } }) {
   try {
     const response = await fetch("http://localhost:3000/api/listProductData", {
-      body: JSON.stringify({ categoryId: categoryId }),
+      body: JSON.stringify({ categoryId: "4209" }),
       method: "POST",
     });
 
