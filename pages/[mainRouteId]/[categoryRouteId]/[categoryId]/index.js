@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import { MdOutlineAttachMoney } from "react-icons/md";
-import {
-  AiOutlineHeart,
-  AiFillHeart,
-  AiOutlineUp,
-  AiOutlineDown,
-} from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import Image from "next/image";
 
 import { BiChevronDown } from "react-icons/bi";

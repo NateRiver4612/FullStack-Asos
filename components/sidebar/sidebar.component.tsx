@@ -1,8 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
-import { MdClear } from "react-icons/md";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import "swiper/css/bundle";
 
 // Import Swiper styles
@@ -27,13 +25,6 @@ const Sidebar = ({ navigations, openSidebar }) => {
     } else {
       navigationArr = navigations[1].children;
     }
-
-    // if (Array.isArray(navigationArr)) {
-    //   navigationArr = navigationArr.filter(
-    //     (navigation: { content: { title: string | string[] } }) =>
-    //       navigation.content.title.includes("App and Mobile") == false
-    //   );
-    // }
 
     setCurrentNavigation(navigationArr);
   }, [section]);
