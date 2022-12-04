@@ -216,14 +216,16 @@ const Navigation = ({ navigations }) => {
                   <BiMenu size={26} className="ml-0" />
                 </button>
                 <Link href="/" className="pt-[5px]">
-                  <Image
-                    alt="ASOS logo"
-                    color="white"
-                    height={39}
-                    width={70}
-                    className="resize-none"
-                    src="/logo.jpg"
-                  ></Image>
+                  <a>
+                    <Image
+                      alt="ASOS logo"
+                      color="white"
+                      height={39}
+                      width={70}
+                      className="resize-none"
+                      src="/logo.jpg"
+                    />
+                  </a>
                 </Link>
               </div>
 

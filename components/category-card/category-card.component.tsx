@@ -44,30 +44,40 @@ const CategoryCard = ({ section, category }) => {
                 {categoryDisplay.webLargeTemplateName ==
                   "circleImageListLarge" && (
                   <CircleImageListLarge
+                    categoryTitle={categoryTitle}
+                    section={section}
                     categoryItems={categoryItems}
                   ></CircleImageListLarge>
                 )}
                 {categoryDisplay.webLargeTemplateName ==
                   "gridCircleImageLarge" && (
                   <GridCircleImageLarge
+                    categoryTitle={categoryTitle}
+                    section={section}
                     categoryItems={categoryItems}
                   ></GridCircleImageLarge>
                 )}
                 {categoryDisplay.webLargeTemplateName ==
                   "fullMarketingImage" && (
                   <FullMarketingImage
+                    categoryTitle={categoryTitle}
+                    section={section}
                     categoryItems={categoryItems}
                   ></FullMarketingImage>
                 )}
                 {categoryDisplay.webLargeTemplateName ==
                   "thirdMarketingImage" && (
                   <ThirdMarketingImage
+                    categoryTitle={categoryTitle}
+                    section={section}
                     categoryItems={categoryItems}
                   ></ThirdMarketingImage>
                 )}
                 {categoryDisplay.webLargeTemplateName ==
                   "halfMarketingImage" && (
                   <HalfMarketingImage
+                    categoryTitle={categoryTitle}
+                    section={section}
                     categoryItems={categoryItems}
                   ></HalfMarketingImage>
                 )}

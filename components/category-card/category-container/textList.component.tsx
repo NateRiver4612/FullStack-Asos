@@ -34,4 +34,8 @@ const TextList = ({ categoryTitle, categoryItems, section }) => {
   );
 };
 
+//  href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+//                 item.link.categoryId
+//               }`}
+
 export default TextList;

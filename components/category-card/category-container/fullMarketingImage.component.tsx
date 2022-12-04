@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Fragment } from "react";
+import Link from "next/link";
 
-const FullMarketingImage = ({ categoryItems }) => {
+const FullMarketingImage = ({ section, categoryTitle, categoryItems }) => {
   const [cols, setCols] = useState(categoryItems.length);
 
   useEffect(() => {
@@ -26,17 +26,31 @@ const FullMarketingImage = ({ categoryItems }) => {
             className="text-[13x] relative border-[2px] border-gray-300 hover:border-gray-500 px-[3px] group flex flex-col items-center  cursor-pointer hover:font-bold py-[3px] capitalize "
           >
             {item.content.webLargeImageUrl && (
-              <Image
-                src={item.content.webLargeImageUrl}
-                alt="picture"
-                height={500}
-                width={420}
-              />
+              <Link
+                href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`}
+              >
+                <a>
+                  <Image
+                    src={item.content.webLargeImageUrl}
+                    alt="picture"
+                    height={500}
+                    width={420}
+                  />
+                </a>
+              </Link>
             )}
 
-            <span className="absolute text-back uppercase bottom-[7%] font-bold text-[18px]">
-              {item.content.title}
-            </span>
+            <Link
+              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
+              <span className="absolute text-back uppercase bottom-[7%] font-bold text-[18px]">
+                {item.content.title}
+              </span>
+            </Link>
           </li>
         );
       })}

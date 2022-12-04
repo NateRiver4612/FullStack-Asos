@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const GridCircleImageLarge = ({ categoryItems }) => {
+const GridCircleImageLarge = ({ section, categoryTitle, categoryItems }) => {
   return (
     <ul className={`grid w-[20vw] grid-cols-2 gap-1 pt-4`}>
       {categoryItems.map((item) => {
@@ -9,19 +10,31 @@ const GridCircleImageLarge = ({ categoryItems }) => {
           <div
             key={item.id}
             className="relative text-[13x] group justify-center flex flex-col cursor-pointer py-3 items-center gap-4 capitalize  text-gray-500 hover:font-bold 
-            hover:[&>div]:border-gray-500"
+            hover:[&>*]:border-gray-500"
           >
-            <div className="border-[3px] border-gray-200 rounded-full p-[3px] ">
-              <img
-                src={item.content.webLargeImageUrl}
-                width={80}
-                height={80}
-                alt="picture"
-                className="rounded-full"
-              />
-            </div>
+            <Link
+              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
+              <a className="border-[3px] border-gray-200 flex items-center rounded-full p-[3px] ">
+                <Image
+                  src={item.content.webLargeImageUrl}
+                  width={80}
+                  height={80}
+                  alt="picture"
+                  className="rounded-full"
+                />
+              </a>
+            </Link>
 
-            <span className="">{item.content.title}</span>
+            <Link
+              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
+              <span className="">{item.content.title}</span>
+            </Link>
           </div>
         );
       })}

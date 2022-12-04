@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const HalfMarketingImage = ({ categoryItems }) => {
+const HalfMarketingImage = ({ section, categoryTitle, categoryItems }) => {
   return (
     <ul className={`flex flex-col gap-2 pt-4`}>
       {categoryItems.map((item) => {
@@ -10,16 +11,30 @@ const HalfMarketingImage = ({ categoryItems }) => {
             key={item.id}
             className="text-[13x] relative hover:border-gray-500 border-gray-200 border-[2px] group flex justify-center cursor-pointer  hover:font-bold p-[2px] capitalize w-full  text-gray-500"
           >
-            <Image
-              src={item.content.webLargeImageUrl}
-              width={300}
-              height={150}
-              alt="picture"
-            />
+            <Link
+              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
+              <a>
+                <Image
+                  src={item.content.webLargeImageUrl}
+                  width={300}
+                  height={150}
+                  alt="picture"
+                />
+              </a>
+            </Link>
 
-            <span className="absolute font-bold uppercase text-[14px] bottom-[15%] text-gray-700">
-              {item.content.title}
-            </span>
+            <Link
+              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
+              <span className="absolute font-bold uppercase text-[14px] bottom-[15%] text-gray-700">
+                {item.content.title}
+              </span>
+            </Link>
           </li>
         );
       })}
