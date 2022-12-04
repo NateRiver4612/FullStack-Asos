@@ -13,7 +13,7 @@ const Section_5 = ({ data }) => {
         {listItem.map((item, index) => {
           const { webLargeImageUrl, title, subTitle } = item.content;
           return (
-            <div key={item.id + index} className="cursor-pointer">
+            <div key={item.id + index} className="cursor-pointer -z-10">
               <Image height={185} width={185} src={webLargeImageUrl} />
             </div>
           );

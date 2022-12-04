@@ -16,7 +16,7 @@ const HalfMarketingImage = ({ section, categoryTitle, categoryItems }) => {
                 item.link.categoryId
               }`}
             >
-              <a>
+              <a className="flex items-center">
                 <Image
                   src={item.content.webLargeImageUrl}
                   width={300}

@@ -11,7 +11,7 @@ const Section_4 = ({ data }) => {
           return (
             <div
               key={item.id + index}
-              className="flex flex-col items-center tracking-wider mt-5 cursor-pointer"
+              className="flex flex-col -z-10 items-center tracking-wider mt-5 cursor-pointer"
             >
               <Image src={webLargeImageUrl} width={510} height={640} />
               <span className="uppercase text-2xl font-bold pt-4">{title}</span>
