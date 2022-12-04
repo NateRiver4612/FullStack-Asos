@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js"  ],
+, "pages/[mainRouteId]/[categoryRouteId]/[categoryid]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryid]/[categoryId].js"  ],
   "exclude": [
     "node_modules"
   ]

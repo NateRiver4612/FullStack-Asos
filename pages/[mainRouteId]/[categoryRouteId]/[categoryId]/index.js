@@ -81,7 +81,7 @@ const ProductList = ({ data }) => {
 export async function getServerSideProps({ params: { categoryId } }) {
   try {
     const response = await fetch("http://localhost:3000/api/listProductData", {
-      body: JSON.stringify({ categoryId: "4209" }),
+      body: JSON.stringify({ categoryId: categoryId }),
       method: "POST",
     });
 

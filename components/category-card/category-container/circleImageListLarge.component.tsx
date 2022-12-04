@@ -15,13 +15,14 @@ const CircleImageListLarge = ({ categoryItems }) => {
             className="text-[13x] w-[22vw] flex items-center gap-4 cursor-pointer hover:font-bold py-[6px] 
             capitalize w-full text-gray-500 hover:[&>div]:border-gray-500 group"
           >
-            <div className="rounded-full p-[2px] border-2 box-content border-gray-300">
-              <img
+            <div className="rounded-full p-[2px] flex items-center justify-center border-2 box-content border-gray-300">
+              <Image
                 src={item.content.webLargeImageUrl}
                 className="rounded-full"
                 alt="avatar"
-                width={40}
-                height={40}
+                width={32}
+                height={32}
+                unoptimized
               />
             </div>
 
