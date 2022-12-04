@@ -215,7 +215,7 @@ const Navigation = ({ navigations }) => {
                 <button onClick={onToggleSidebar} className="lg:hidden">
                   <BiMenu size={26} className="ml-0" />
                 </button>
-                <Link href="/" className="pt-[5px]">
+                {/* <Link href="/" className="pt-[5px]">
                   <a>
                     <Image
                       alt="ASOS logo"
@@ -226,7 +226,7 @@ const Navigation = ({ navigations }) => {
                       src="/logo.jpg"
                     />
                   </a>
-                </Link>
+                </Link> */}
               </div>
 
               <ul className="hidden lg:flex h-full cursor-pointer font-bold text-xs tracking-widest">

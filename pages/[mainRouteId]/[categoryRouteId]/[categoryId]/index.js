@@ -9,7 +9,7 @@ const ProductList = ({ data }) => {
 
   return (
     <div className=" w-full flex flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
-      <div className="font-bold text-center text-2xl pb-20 border-b-[1px] border-gray-200 w-full">
+      <div className="font-bold text-center capitalize  text-2xl pb-20 border-b-[1px] border-gray-200 w-full">
         {categoryName}
       </div>
       <div className="w-full bg-gray-100 flex justify-center">
