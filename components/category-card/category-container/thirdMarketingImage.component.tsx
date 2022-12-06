@@ -12,9 +12,12 @@ const ThirdMarketingImage = ({ section, categoryTitle, categoryItems }) => {
             className="text-[13x] relative border-gray-200 border-[2px] hover:border-gray-400 p-[2px] group flex flex-start items-center  cursor-pointer  hover:font-bold  capitalize w-full  text-gray-500"
           >
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <a className="flex items-center">
                 <Image
@@ -26,9 +29,12 @@ const ThirdMarketingImage = ({ section, categoryTitle, categoryItems }) => {
               </a>
             </Link>
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <p className="absolute break-normal font-bold uppercase text-[14px] pl-4 w-[70%] text-gray-700">
                 {item.content.title}

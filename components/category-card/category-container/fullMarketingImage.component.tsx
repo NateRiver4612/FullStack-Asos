@@ -27,9 +27,15 @@ const FullMarketingImage = ({ section, categoryTitle, categoryItems }) => {
           >
             {item.content.webLargeImageUrl && (
               <Link
-                href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                  item.link.categoryId
-                }`}
+                href={{
+                  pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                    item.link.categoryId
+                  }`,
+                  query: {
+                    cid: item.link.categoryId,
+                    item: item.content.title,
+                  },
+                }}
               >
                 <a className="flex items-center">
                   <Image

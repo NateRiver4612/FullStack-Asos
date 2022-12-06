@@ -12,9 +12,12 @@ const HalfMarketingImage = ({ section, categoryTitle, categoryItems }) => {
             className="text-[13x] relative hover:border-gray-500 border-gray-200 border-[2px] group flex justify-center cursor-pointer  hover:font-bold p-[2px] capitalize w-full  text-gray-500"
           >
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <a className="flex items-center">
                 <Image
@@ -27,9 +30,12 @@ const HalfMarketingImage = ({ section, categoryTitle, categoryItems }) => {
             </Link>
 
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <span className="absolute font-bold uppercase text-[14px] bottom-[15%] text-gray-700">
                 {item.content.title}

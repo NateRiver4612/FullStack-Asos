@@ -11,12 +11,15 @@ const Section_4 = ({ data }) => {
           return (
             <div
               key={item.id + index}
-              className="flex flex-col -z-10 items-center tracking-wider mt-5 cursor-pointer"
+              className="flex flex-col  items-center tracking-wider mt-5 cursor-pointer"
             >
-              <Image src={webLargeImageUrl} width={510} height={640} />
-              <span className="uppercase text-2xl font-bold pt-4">{title}</span>
+              <div className="-z-10">
+                <Image src={webLargeImageUrl} width={510} height={640} />
+              </div>
+
+              <span className="uppercase text-2xl font-bold pt-3">{title}</span>
               <span className="capitalize mt-2">{subTitle}</span>
-              <button className="uppercase mt-3 hover:bg-black hover:text-white transition-all duration-300 text-gray-800 font-bold tracking-widest text-[16px] border-2 py-3 px-5 border-gray-800 ">
+              <button className="uppercase mt-3 hover:bg-black cursor-pointer hover:text-white transition-all duration-300 text-gray-800 font-bold tracking-widest text-[16px] border-2 py-3 px-5 border-gray-800 ">
                 shop the trend
               </button>
             </div>

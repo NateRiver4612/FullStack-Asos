@@ -13,9 +13,12 @@ const GridCircleImageLarge = ({ section, categoryTitle, categoryItems }) => {
             hover:[&>*]:border-gray-500"
           >
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <a className="border-[3px] border-gray-200 flex items-center rounded-full p-[3px] ">
                 <Image
@@ -29,9 +32,12 @@ const GridCircleImageLarge = ({ section, categoryTitle, categoryItems }) => {
             </Link>
 
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <span className="">{item.content.title}</span>
             </Link>

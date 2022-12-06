@@ -17,9 +17,12 @@ const CircleImageListLarge = ({ section, categoryTitle, categoryItems }) => {
             capitalize w-full text-gray-500 hover:[&>*]:border-gray-500 group"
           >
             <Link
-              href={`/${section}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`}
+              href={{
+                pathname: `/${section}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`,
+                query: { cid: item.link.categoryId, item: item.content.title },
+              }}
             >
               <a className="rounded-full p-[2px] flex items-center justify-center border-2 box-content border-gray-300">
                 <Image
