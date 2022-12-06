@@ -35,11 +35,19 @@ const Footer = dynamic(() => import("../components/footer/footer.component"), {
   ssr: true,
 });
 
+const Breadcrumbs = dynamic(
+  () => import("../components/breadcrums/breadcrums.component"),
+  {
+    ssr: true,
+  }
+);
+
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Navigation navigations={navigationData}></Navigation>
+        <Breadcrumbs />
         <div>
           <div>
             <Component {...pageProps} />

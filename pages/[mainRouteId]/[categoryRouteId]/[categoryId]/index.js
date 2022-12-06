@@ -39,7 +39,7 @@ const ProductList = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context);
+  console.log(context.query);
 
   const { categoryId } = context.params;
 
