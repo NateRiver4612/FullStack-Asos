@@ -84,6 +84,10 @@ const Navigation = ({ navigations }) => {
     if (search.length > 0) {
       setShowSearch(true);
     }
+
+    return () => {
+      setShowSearch(false);
+    };
   }, [search]);
 
   const onShowSearch = () => {

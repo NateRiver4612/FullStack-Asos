@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ProductOverview,
   ProductFace,
@@ -6,6 +6,7 @@ import {
 
 const ProductList = ({ data }) => {
   const { categoryName, products, itemCount, facets } = data;
+  const [active, setActive] = useState("");
 
   return (
     <div className=" w-full flex flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
@@ -15,7 +16,12 @@ const ProductList = ({ data }) => {
       <div className="w-full bg-gray-100 flex justify-center">
         <div className="w-[90%]  grid-cols-2 md:grid-cols-4 pt-2 grid xl:grid-cols-5 2xl:grid-cols-6 gap-4 pb-4">
           {facets.map((face) => (
-            <ProductFace key={face.id} face={face} />
+            <ProductFace
+              key={face.id}
+              face={face}
+              active={active}
+              handleClick={setActive}
+            />
           ))}
         </div>
       </div>
@@ -39,8 +45,6 @@ const ProductList = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context.query);
-
   const { categoryId } = context.params;
 
   const response = await fetch("http://localhost:3000/api/listProductData", {

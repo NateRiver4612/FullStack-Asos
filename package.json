@@ -20,6 +20,7 @@
     "apollo-server-micro": "^3.10.3",
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
+    "framer-motion": "^7.10.3",
     "graphql": "^16.6.0",
     "micro": "^9.4.1",
     "mongoose": "^6.6.6",

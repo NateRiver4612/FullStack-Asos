@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 const Breadcrums = () => {
   const router = useRouter();
 
-  console.log(router);
-
   const { mainRouteId, item, categoryRouteId } = router.query;
 
   return (
@@ -31,12 +29,14 @@ const Breadcrums = () => {
           <span>{categoryRouteId}</span>
         </li>
 
-        <li className="flex items-center capitalize gap-3 text-gray-500">
-          <span className="pt-1">
-            <BsChevronRight size={8} />
-          </span>
-          <span>{item}</span>
-        </li>
+        {item && (
+          <li className="flex items-center capitalize gap-3 text-gray-500">
+            <span className="pt-1">
+              <BsChevronRight size={8} />
+            </span>
+            <span>{item}</span>
+          </li>
+        )}
       </ul>
     </div>
   );
