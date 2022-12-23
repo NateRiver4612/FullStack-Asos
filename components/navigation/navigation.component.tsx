@@ -160,7 +160,7 @@ const Navigation = ({ navigations }) => {
     // declare a variable that have the size of our header and nagivation bar as the LINE
     // so that when user scroll the categoy card cross the LINE
     // we will adjust the css so that the category card still stick to the main display
-    let fixedTop = 112;
+    let fixedTop = 108;
 
     const fixedHeader = () => {
       for (var i = 0; i < mainHeader.length; i++) {
@@ -169,12 +169,12 @@ const Navigation = ({ navigations }) => {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-10 left-[1.5%]  2xl:left-[7.17%] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex fixed top-0 bg-black";
+              "category_card hidden z-30 lg:left-[1.5%] xl:left-[7.7%] 2xl:left-[6.45%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
               mainHeader[i].className =
-                "category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black";
+                "category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[87vw] group-hover:flex h-fit absolute bg-black";
             }
           }
         }
@@ -191,8 +191,8 @@ const Navigation = ({ navigations }) => {
         onClick={onCloseSidebar}
         className={` ${
           openSidebar
-            ? "absolute z-10 h-screen  transition-all duration-700 w-screen bg-black opacity-50"
-            : "left-0 right-0 top-0 bottom-0"
+            ? "absolute z-30 h-screen  transition-all duration-700 w-screen bg-black opacity-50"
+            : "left-0 top-0 "
         }`}
       ></div>
       <div className={`navigation-container ${openSidebar && "-z-10"}`}>
@@ -205,9 +205,9 @@ const Navigation = ({ navigations }) => {
           }`}
         ></div>
         {/* CategoryCard Opacity Background */}
-        {showCategoryCard && (
-          <div className="z-0 fixed  w-screen h-screen bg-black opacity-50"></div>
-        )}
+        {/* {showCategoryCard && (
+          <div className=" absolute z-0 w-screen h-screen bg-black opacity-50"></div>
+        )} */}
         <div
           className={`header relative ${
             openSidebar && "-z-10"
@@ -413,7 +413,7 @@ const Navigation = ({ navigations }) => {
                       </button>
                     )}
                     <div
-                      className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
+                      className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw]  2xl:w-[87vw] group-hover:flex h-fit absolute bg-black`}
                     >
                       <CategoryCard
                         section={section}
@@ -440,7 +440,7 @@ const Navigation = ({ navigations }) => {
               </button>
 
               <div
-                className={`category_card hidden z-10 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[83vw] group-hover:flex h-fit absolute bg-black`}
+                className={`category_card hidden z-30 left-[0px] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex h-fit absolute bg-black`}
               >
                 <CategoryCard
                   section={section}

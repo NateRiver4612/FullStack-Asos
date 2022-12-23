@@ -2,12 +2,22 @@ import React from "react";
 import { BiChevronDown, BiCheck, BiX } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
+import { useRouter } from "next/router";
 
-const ProductFace = ({ face, active, handleClick }) => {
-  console.log(face);
+const ProductFace = ({ face, active, handleClick, index }) => {
+  const router = useRouter();
+  const keys = Object.keys(router.query);
+  const values = Object.values(router.query);
+
+  const isActive = keys.includes(face.id);
+  const filterations = face.facetValues.filter((item) =>
+    values.includes(item.id)
+  );
+
   return (
     <div
-      className="static "
+      id="face"
+      className="relative "
       onClick={() => {
         if (active === face.id) {
           return handleClick("");
@@ -18,8 +28,10 @@ const ProductFace = ({ face, active, handleClick }) => {
       <div
         key={face.id}
         className={`border-y-[2px] ${
-          face.id === active ? "font-semibold bg-gray-200 border-gray-300" : ""
-        } cursor-pointer hover:font-semibold 
+          face.id === active || isActive
+            ? "font-semibold bg-gray-200 border-gray-300"
+            : ""
+        } cursor-pointer hover:font-semibold static
         w-full flex items-center justify-between py-[6px] px-[4px] text-sm text-gray-500 border-gray-200`}
       >
         {face.name}
@@ -28,12 +40,32 @@ const ProductFace = ({ face, active, handleClick }) => {
         </span>
       </div>
       {face.id === active && (
-        <div className="absolute hidden drop-shadow-2xl md:block h-fit bg-gray-200 h-full md:w-[35%]  lg:w-[30%] xl:w-[340px] p-3">
-          <div className="flex justify-between items-center">
-            <span className="text-gray-500">0 selected</span>
-            <button className="flex items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500">
-              <BiCheck size={20} /> All
-            </button>
+        <div
+          className={`absolute z-10 ${
+            index % 2 != 0 ? "right-[0]" : "left-[0]"
+          } hidden drop-shadow-2xl md:block h-fit bg-gray-200 h-full  w-[340px] p-3`}
+        >
+          <div className="flex justify-between items-center ">
+            <span className="text-gray-500">
+              {filterations.length > 0 && `${filterations.length} is selected`}
+            </span>
+            {filterations.length > 0 ? (
+              <button
+                onClick={() => {
+                  delete router.query[face.id];
+                  router.push(router);
+
+                  return;
+                }}
+                className="flex hover:bg-gray-500 hover:text-white transition-all duration-200 items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500"
+              >
+                Clear
+              </button>
+            ) : (
+              <button className="flex hover:bg-gray-500 hover:text-white transition-all duration-200  items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500">
+                <BiCheck size={20} /> All
+              </button>
+            )}
           </div>
           {face.facetValues.length > 10 && (
             <div className="mt-5">
@@ -55,12 +87,21 @@ const ProductFace = ({ face, active, handleClick }) => {
           )}
 
           <ul className="flex overflow-scroll pb-4 border-t-2 border-gray-300  max-h-[220px] flex-col mt-5">
-            {face.facetValues.map((face, index) => {
-              const { count, id, name } = face;
+            {face.facetValues.map((value, index) => {
+              const { count, id, name } = value;
+
               return (
                 <li
+                  onClick={() => {
+                    router.query[face.id] = id;
+                    router.push(router);
+                    return;
+                  }}
                   key={name + id}
-                  className="flex gap-2 cursor-pointer mt-2 transition-all duration-200 bg-gray-200 hover:drop-shadow-lg rounded-[3px] text-[14px] px-4 py-[12px]"
+                  className={`flex gap-2 ${
+                    values.includes(value.id) ? "bg-gray-300" : "bg-gray-200"
+                  } cursor-pointer mt-2  transition-all duration-200 
+                   hover:drop-shadow-lg rounded-[3px] text-[14px] px-4 py-[12px]`}
                 >
                   <span className="text-gray-600">{name}</span>
                   <span className="text-gray-400">({count})</span>
