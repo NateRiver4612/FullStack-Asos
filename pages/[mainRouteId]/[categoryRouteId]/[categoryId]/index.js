@@ -6,7 +6,7 @@ import {
 
 const ProductList = ({ data, query }) => {
   const { categoryName, products, itemCount, facets } = data;
-  const [active, setActive] = useState();
+  const [active, setActive] = useState("");
 
   return (
     <div className=" w-full flex flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
@@ -54,8 +54,6 @@ export async function getServerSideProps(context) {
 
     bodyObj[key] = value;
   });
-
-  console.log(JSON.stringify(bodyObj));
 
   const response = await fetch("http://localhost:3000/api/listProductData", {
     body: JSON.stringify(bodyObj),

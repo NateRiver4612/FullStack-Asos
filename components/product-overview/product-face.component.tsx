@@ -7,16 +7,13 @@ import { useRouter } from "next/router";
 const ProductFace = ({ face, active, handleClick, index }) => {
   const router = useRouter();
   const keys = Object.keys(router.query);
-  const values = Object.values(router.query);
 
   const isActive = keys.includes(face.id);
 
   const filterations = face.facetValues.filter((item) =>
     router.query[face.id]?.includes(item.id)
   );
-  const filterationIds = filterations.map((filter) => filter.id);
-
-  console.log(filterationIds);
+  var filterationIds = filterations.map((filter) => filter.id);
 
   return (
     <div id="face" className="relative ">
@@ -96,15 +93,30 @@ const ProductFace = ({ face, active, handleClick, index }) => {
               return (
                 <li
                   onClick={() => {
-                    if (Object.keys(router.query).includes(face.id)) {
-                      if (!router.query[face.id].includes(id)) {
-                        router.query[face.id] = `${
-                          router.query[face.id]
-                        },${id}`;
+                    //Handle if the face's value is already existed
+                    if (isActive) {
+                      //Handle multiple filterations
+                      if (!filterationIds.includes(id)) {
+                        filterationIds.push(id);
+                        router.query[face.id] = filterationIds.join(",");
 
-                        router.push(router);
+                        return router.push(router);
                       }
-                      return;
+                      //Handle select again to remove filteration
+                      else {
+                        //Handle user want to remove filterations while there is only one filteration left
+                        if (filterationIds.length == 1) {
+                          delete router.query[face.id];
+                          return router.push(router);
+                        }
+
+                        filterationIds = filterationIds.filter(
+                          (filterId) => filterId != id
+                        );
+
+                        router.query[face.id] = filterationIds.join(",");
+                        return router.push(router);
+                      }
                     }
 
                     router.query[face.id] = id;
