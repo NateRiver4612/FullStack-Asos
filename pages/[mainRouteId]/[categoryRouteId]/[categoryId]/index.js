@@ -55,6 +55,8 @@ export async function getServerSideProps(context) {
     bodyObj[key] = value;
   });
 
+  console.log(JSON.stringify(bodyObj));
+
   const response = await fetch("http://localhost:3000/api/listProductData", {
     body: JSON.stringify(bodyObj),
     method: "POST",

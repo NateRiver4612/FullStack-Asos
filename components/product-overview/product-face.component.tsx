@@ -10,22 +10,23 @@ const ProductFace = ({ face, active, handleClick, index }) => {
   const values = Object.values(router.query);
 
   const isActive = keys.includes(face.id);
+
   const filterations = face.facetValues.filter((item) =>
-    values.includes(item.id)
+    router.query[face.id]?.includes(item.id)
   );
+  const filterationIds = filterations.map((filter) => filter.id);
+
+  console.log(filterationIds);
 
   return (
-    <div
-      id="face"
-      className="relative "
-      onClick={() => {
-        if (active === face.id) {
-          return handleClick("");
-        }
-        return handleClick(face.id);
-      }}
-    >
+    <div id="face" className="relative ">
       <div
+        onClick={() => {
+          if (active === face.id) {
+            return handleClick("");
+          }
+          return handleClick(face.id);
+        }}
         key={face.id}
         className={`border-y-[2px] ${
           face.id === active || isActive
@@ -47,7 +48,9 @@ const ProductFace = ({ face, active, handleClick, index }) => {
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">
-              {filterations.length > 0 && `${filterations.length} is selected`}
+              {filterations.length > 0
+                ? `${filterations.length} is selected`
+                : "0 is selected"}
             </span>
             {filterations.length > 0 ? (
               <button
@@ -93,13 +96,25 @@ const ProductFace = ({ face, active, handleClick, index }) => {
               return (
                 <li
                   onClick={() => {
+                    if (Object.keys(router.query).includes(face.id)) {
+                      if (!router.query[face.id].includes(id)) {
+                        router.query[face.id] = `${
+                          router.query[face.id]
+                        },${id}`;
+
+                        router.push(router);
+                      }
+                      return;
+                    }
+
                     router.query[face.id] = id;
                     router.push(router);
+
                     return;
                   }}
                   key={name + id}
                   className={`flex gap-2 ${
-                    values.includes(value.id) ? "bg-gray-300" : "bg-gray-200"
+                    filterationIds.includes(id) ? "bg-gray-300" : "bg-gray-200"
                   } cursor-pointer mt-2  transition-all duration-200 
                    hover:drop-shadow-lg rounded-[3px] text-[14px] px-4 py-[12px]`}
                 >
