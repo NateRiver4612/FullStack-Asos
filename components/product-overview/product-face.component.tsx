@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { BiChevronDown, BiCheck, BiX } from "react-icons/bi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/router";
+import FilterSidebar from "../sidebar/filter-sidebar.component";
 
 const ProductFace = ({ face, active, handleClick, index }) => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const ProductFace = ({ face, active, handleClick, index }) => {
         <div
           className={`absolute z-10 ${
             index % 2 != 0 ? "right-[0]" : "left-[0]"
-          } hidden drop-shadow-2xl md:block h-fit bg-gray-200 h-full  w-[340px] p-3`}
+          } drop-shadow-2xl h-fit bg-gray-200 h-full  w-[340px] p-3`}
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">

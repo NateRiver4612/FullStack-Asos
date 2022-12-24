@@ -169,7 +169,7 @@ const Navigation = ({ navigations }) => {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-30 lg:left-[1.5%] xl:left-[7.7%] 2xl:left-[6.45%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
+              "category_card hidden z-30 lg:left-[1.4%] xl:left-[7.7%] 2xl:left-[6.45%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
