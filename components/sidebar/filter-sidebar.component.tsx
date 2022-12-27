@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { useRouter } from "next/router";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,9 +11,10 @@ const FilterCard = ({
   face,
   isOpen,
   addFilterClick,
+  handleSubmit,
 }) => {
   const [filterItemsId, setFilterItemsId] = useState([]);
-  const router = useRouter();
+
   useEffect(() => {
     if (filters && face && filters[face.id]) {
       const filterItemsId = filters[face.id].map((item) => item.id);
@@ -22,16 +22,6 @@ const FilterCard = ({
       setFilterItemsId(filterItemsId);
     }
   }, [filters, face]);
-
-  const handleSubmit = () => {
-    console.log(filters);
-
-    router.query[face.id] = filters[face.id]
-      .map((filter) => filter.id)
-      .join(",");
-    console.log(router.query);
-    router.push(router);
-  };
 
   return (
     <div
@@ -81,34 +71,16 @@ const FilterCard = ({
   );
 };
 
-const FilterSidebar = ({ facets, isOpen, active, handleClick }) => {
+const FilterSidebar = ({
+  facets,
+  filters,
+  isOpen,
+  addFilters,
+  handleSubmit,
+}) => {
   const [face, setFace] = useState(null);
-  const [filters, setFilters] = useState({});
-  const router = useRouter();
 
-  const addFilters = (title, filter) => {
-    let finalObj = { ...filters };
-    // check if final object has the relevent key
-    if (finalObj.hasOwnProperty(title)) {
-      // if it has that key then push the value according to the key
-      finalObj[title].push(filter);
-    } else {
-      finalObj[title] = [filter];
-    }
-
-    return setFilters(finalObj);
-  };
-
-  const handleSubmit = () => {
-    console.log(filters);
-
-    Object.keys(filters).map((key) => {
-      console.log(filters[key].join(","));
-      router.query[key] = filters[key].map((filter) => filter.id).join(",");
-    });
-    console.log(router.query);
-    router.push(router);
-  };
+  console.log(filters);
 
   return (
     <Fragment>
@@ -139,8 +111,9 @@ const FilterSidebar = ({ facets, isOpen, active, handleClick }) => {
                   />
                 </div>
                 <span className="text-gray-400 text-[14px] truncate">
-                  {filters[item.id] &&
-                    filters[item.id].map((filter) => filter.name).join(", ")}
+                  {/* {filters &&
+                    filters[item.id] &&
+                    filters[item.id].map((filter) => filter.name).join(", ")} */}
                 </span>
               </li>
             );
@@ -160,6 +133,7 @@ const FilterSidebar = ({ facets, isOpen, active, handleClick }) => {
         face={face}
         filters={filters}
         isOpen={isOpen}
+        handleSubmit={handleSubmit}
         setFaceClick={setFace}
         addFilterClick={addFilters}
       ></FilterCard>

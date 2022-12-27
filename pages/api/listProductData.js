@@ -23,5 +23,7 @@ export default async function handler(req, res) {
 
   const response = await axios.request(options);
 
+  console.log(response);
+
   res.status(200).json(response.data);
 }

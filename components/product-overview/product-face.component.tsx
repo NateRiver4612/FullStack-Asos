@@ -5,17 +5,21 @@ import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/router";
 import FilterSidebar from "../sidebar/filter-sidebar.component";
 
-const ProductFace = ({ face, active, handleClick, index }) => {
+const ProductFace = ({
+  face,
+  active,
+  filters,
+  addFilters,
+  handleClick,
+  handleSubmit,
+  index,
+}) => {
   const router = useRouter();
-  const keys = Object.keys(router.query);
 
-  const isActive = keys.includes(face.id);
+  const filterItemsId = filters[face.id]?.map((item) => item.id);
+  const filterItemsKey = Object.keys(filters);
 
-  const filterations = face.facetValues.filter((item) =>
-    router.query[face.id]?.includes(item.id)
-  );
-  var filterationIds = filterations.map((filter) => filter.id);
-
+  const isFaceActive = filterItemsKey.includes(face.id);
   return (
     <div id="face" className="relative ">
       <div
@@ -27,7 +31,7 @@ const ProductFace = ({ face, active, handleClick, index }) => {
         }}
         key={face.id}
         className={`border-y-[2px] ${
-          face.id === active || isActive
+          face.id === active || isFaceActive
             ? "font-semibold bg-gray-200 border-gray-300"
             : ""
         } cursor-pointer hover:font-semibold static
@@ -46,17 +50,17 @@ const ProductFace = ({ face, active, handleClick, index }) => {
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">
-              {filterations.length > 0
-                ? `${filterations.length} is selected`
+              {filters[face.id] && filters[face.id].length > 0
+                ? `${filters[face.id].length} is selected`
                 : "0 is selected"}
             </span>
-            {filterations.length > 0 ? (
+            {filters[face.id] && filters[face.id].length > 0 ? (
               <button
                 onClick={() => {
                   delete router.query[face.id];
                   router.push(router);
 
-                  return;
+                  return handleClick("");
                 }}
                 className="flex hover:bg-gray-500 hover:text-white transition-all duration-200 items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500"
               >
@@ -94,40 +98,13 @@ const ProductFace = ({ face, active, handleClick, index }) => {
               return (
                 <li
                   onClick={() => {
-                    //Handle if the face's value is already existed
-                    if (isActive) {
-                      //Handle multiple filterations
-                      if (!filterationIds.includes(id)) {
-                        filterationIds.push(id);
-                        router.query[face.id] = filterationIds.join(",");
-
-                        return router.push(router);
-                      }
-                      //Handle select again to remove filteration
-                      else {
-                        //Handle user want to remove filterations while there is only one filteration left
-                        if (filterationIds.length == 1) {
-                          delete router.query[face.id];
-                          return router.push(router);
-                        }
-
-                        filterationIds = filterationIds.filter(
-                          (filterId) => filterId != id
-                        );
-
-                        router.query[face.id] = filterationIds.join(",");
-                        return router.push(router);
-                      }
-                    }
-
-                    router.query[face.id] = id;
-                    router.push(router);
-
-                    return;
+                    return addFilters(face.id, value);
                   }}
                   key={name + id}
                   className={`flex gap-2 ${
-                    filterationIds.includes(id) ? "bg-gray-300" : "bg-gray-200"
+                    filterItemsId && filterItemsId.includes(id)
+                      ? "bg-gray-300"
+                      : "bg-gray-200"
                   } cursor-pointer mt-2  transition-all duration-200 
                    hover:drop-shadow-lg rounded-[3px] text-[14px] px-4 py-[12px]`}
                 >
@@ -137,6 +114,15 @@ const ProductFace = ({ face, active, handleClick, index }) => {
               );
             })}
           </ul>
+
+          <div className="w-full bottom-0  flex justify-center ">
+            <button
+              onClick={handleSubmit}
+              className="font-bold tracking-widest uppercase bg-black py-3 text-white text-sm w-full"
+            >
+              view items
+            </button>
+          </div>
         </div>
       )}
     </div>
