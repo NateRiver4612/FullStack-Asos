@@ -9,6 +9,7 @@ import { Sidebar_CircleImageList } from "./sidebar-section.component/Sidebar-Cir
 import "swiper/css";
 import "swiper/css/pagination";
 import { MdArrowBackIos } from "react-icons/md";
+import { Sidebar_CircleImageRight } from "./sidebar-section.component/Sidebar-CirlcleImageRight.component";
 
 const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
   return (
@@ -85,6 +86,14 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
                       categoryTitle={section.content.title}
                     />
                   )}
+
+                  {section.display.mobileTemplateName == "circleImageRight" && (
+                    <Sidebar_CircleImageRight
+                      gender={gender}
+                      categoryItems={section.children}
+                      categoryTitle={section.content.title}
+                    />
+                  )}
                 </Fragment>
               )
             );
@@ -141,7 +150,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
             men
           </li>
         </ul>
-        <ul className="h-full w-full  pb-24 flex flex-col overflow-scroll relative">
+        <ul className="h-full w-full  pb-24 flex flex-col overflow-scroll overflow-x-hidden relative">
           {Array.isArray(currentNavigation) &&
             currentNavigation.map((navigation) => {
               const navigationItems = navigation.children;

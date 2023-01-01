@@ -8,13 +8,13 @@ export const Sidebar_CircleImageList = ({
   categoryItems,
 }) => {
   return (
-    <ul className={`grid grid-cols-1 px-4`}>
+    <ul className={`grid grid-cols-1 px-4 `}>
       {categoryItems.map((item) => {
         return (
           <div
             key={item.id}
-            className="w-full py-[10px] flex items-center gap-4 cursor-pointer hover:font-bold py-[6px] 
-            capitalize w-full text-gray-600  border-y-[0.2px] boder-gray-300"
+            className=" py-[10px] flex items-center gap-4 cursor-pointer hover:font-bold py-[6px] 
+            capitalize  text-gray-600  border-y-[0.2px] boder-gray-300"
           >
             <Link
               href={{
