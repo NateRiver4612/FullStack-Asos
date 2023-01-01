@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+import axios from "axios";
 import {
   ProductOverview,
   ProductFace,
@@ -22,8 +23,6 @@ const ProductList = ({ data }) => {
     delete filterObj["item"];
     delete filterObj["cid"];
     delete filterObj["mainRouteId"];
-
-    console.log(filterObj);
 
     setFilters(filterObj);
   }, [router.query]);
@@ -53,14 +52,14 @@ const ProductList = ({ data }) => {
   };
 
   const handleSubmit = () => {
-    Object.keys(filters).map((key) => {
-      router.query[key] = filters[key].map((filter) => filter.id).join(",");
-    });
+    if (Object.keys(filters).length > 0) {
+      Object.keys(filters).map((key) => {
+        router.query[key] = filters[key].map((filter) => filter.id).join(",");
+      });
 
-    router.push(router);
+      return router.push(router);
+    }
   };
-
-  console.log(filters);
 
   return (
     <Fragment>
@@ -153,22 +152,29 @@ export async function getServerSideProps(context) {
     bodyObj[key] = value;
   });
 
-  console.log(bodyObj);
-
-  // const response = await fetch("http://localhost:3000/api/listProductData", {
-  //   body: JSON.stringify(bodyObj),
-  //   method: "POST",
-  // });
-  // console.log(response);
-
-  // const data = await response.json();
-
-  const data = {
-    categoryName: "Blabla",
-    products: [],
-    itemCount: 200,
-    facets: [],
+  const options = {
+    method: "GET",
+    url: "https://asos2.p.rapidapi.com/products/v2/list",
+    params: {
+      store: "US",
+      offset: "0",
+      limit: "100",
+      country: "US",
+      sort: "freshness",
+      currency: "USD",
+      sizeSchema: "US",
+      lang: "en-US",
+      ...bodyObj,
+    },
+    headers: {
+      "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
+      "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+    },
   };
+
+  const response = await axios.request(options);
+
+  const data = response.data;
 
   return { props: { data: data } };
 }

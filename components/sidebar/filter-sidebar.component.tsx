@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";
@@ -13,15 +13,7 @@ const FilterCard = ({
   addFilterClick,
   handleSubmit,
 }) => {
-  const [filterItemsId, setFilterItemsId] = useState([]);
-
-  useEffect(() => {
-    if (filters && face && filters[face.id]) {
-      const filterItemsId = filters[face.id].map((item) => item.id);
-
-      setFilterItemsId(filterItemsId);
-    }
-  }, [filters, face]);
+  const filterItemsId = filters[face?.id]?.map((item) => item.id);
 
   return (
     <div
@@ -79,8 +71,6 @@ const FilterSidebar = ({
   handleSubmit,
 }) => {
   const [face, setFace] = useState(null);
-
-  console.log(filters);
 
   return (
     <Fragment>

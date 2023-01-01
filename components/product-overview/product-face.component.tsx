@@ -1,9 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { BiChevronDown, BiCheck, BiX } from "react-icons/bi";
-import { AiOutlineCheck } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { useRouter } from "next/router";
-import FilterSidebar from "../sidebar/filter-sidebar.component";
 
 const ProductFace = ({
   face,

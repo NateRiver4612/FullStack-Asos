@@ -191,7 +191,7 @@ const Navigation = ({ navigations }) => {
         onClick={onCloseSidebar}
         className={` ${
           openSidebar
-            ? "absolute z-30 h-screen  transition-all duration-700 w-screen bg-black opacity-50"
+            ? " z-30 h-screen fixed top-0 bottom-0 transition-all duration-700 w-screen bg-black opacity-50"
             : "left-0 top-0 "
         }`}
       ></div>

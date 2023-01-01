@@ -1,6 +1,8 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
+  console.log("Goku", JSON.parse(req.body));
+
   const options = {
     method: "GET",
     url: "https://asos2.p.rapidapi.com/products/v2/list",
@@ -13,7 +15,7 @@ export default async function handler(req, res) {
       currency: "USD",
       sizeSchema: "US",
       lang: "en-US",
-      ...JSON.parse(req.body),
+      ...req.body,
     },
     headers: {
       "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
@@ -21,9 +23,16 @@ export default async function handler(req, res) {
     },
   };
 
+  // axios
+  //   .request(options)
+  //   .then(function (response) {
+  //     console.log(response.data);
+  //   })
+  //   .catch(function (error) {
+  //     console.error(error);
+  //   });
+
   const response = await axios.request(options);
 
-  console.log(response);
-
-  res.status(200).json(response.data);
+  return res.status(200).json(response.data);
 }
