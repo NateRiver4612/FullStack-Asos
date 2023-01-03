@@ -26,7 +26,6 @@ const ProductList = ({ data }) => {
 
     //Convert query obj into filters object format
     Object.keys(filterObj).map((key) => {
-      console.log(typeof filterObj[key]);
       if (typeof filterObj[key] == "string") {
         filterObj[key] = filterObj[key].split(",");
       }
@@ -46,7 +45,7 @@ const ProductList = ({ data }) => {
       const filterAdded = finalObj[title].find(
         (filterId) => filterId === filter.id
       );
-      console.log(filterAdded);
+
       if (filterAdded) {
         finalObj[title] = finalObj[title].filter(
           (filterId) => filterId != filter.id
@@ -75,7 +74,6 @@ const ProductList = ({ data }) => {
       }
     });
 
-    console.log(queryObj, router);
     setOpenFilter(false);
     return router.push(router);
   };

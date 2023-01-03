@@ -91,11 +91,10 @@ const FilterSidebar = ({
         </div>
         <ul className="max-h-[84%] text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
           {facets.map((face: any, index: Int16Array) => {
-            console.log(filters, filters[face.id]);
             const faceFilters = face.facetValues.filter((filter) =>
               filters[face.id]?.includes(filter.id)
             );
-            console.log("FaceFilterd", faceFilters);
+
             return (
               <li
                 onClick={() => {

@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-  console.log("Goku", JSON.parse(req.body));
-
   const options = {
     method: "GET",
     url: "https://asos2.p.rapidapi.com/products/v2/list",
