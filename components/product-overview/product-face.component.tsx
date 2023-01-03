@@ -51,11 +51,11 @@ const ProductFace = ({
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">
-              {filters[face.id] && filters[face.id].length > 0
+              {filters[face.id]?.length > 0
                 ? `${filters[face.id].length} is selected`
                 : "0 is selected"}
             </span>
-            {filters[face.id] && filters[face.id].length > 0 ? (
+            {filters[face.id]?.length > 0 ? (
               <button
                 onClick={() => {
                   delete router.query[face.id];
@@ -115,15 +115,6 @@ const ProductFace = ({
               );
             })}
           </ul>
-
-          <div className="w-full bottom-0  flex justify-center ">
-            <button
-              onClick={handleSubmit}
-              className="font-bold tracking-widest uppercase bg-black py-3 text-white text-sm w-full"
-            >
-              view items
-            </button>
-          </div>
         </div>
       )}
     </div>

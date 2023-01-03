@@ -58,7 +58,6 @@ const ProductList = ({ data }) => {
       finalObj[title] = [filter.id];
     }
 
-    console.log(finalObj);
     return setFilters(finalObj);
   };
 
@@ -77,6 +76,7 @@ const ProductList = ({ data }) => {
     });
 
     console.log(queryObj, router);
+    setOpenFilter(false);
     return router.push(router);
   };
 

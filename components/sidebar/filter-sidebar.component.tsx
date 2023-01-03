@@ -13,13 +13,11 @@ const FilterCard = ({
   addFilterClick,
   handleSubmit,
 }) => {
-  const [filterItemsId, setFilterItemsId] = useState([]);
+  let filterItemsId = [];
 
-  useEffect(() => {
-    if (filters && face) {
-      return setFilterItemsId(filters[face.id]);
-    }
-  }, [filters, face]);
+  if (filters && face) {
+    filterItemsId = filters[face.id];
+  }
 
   return (
     <div
@@ -36,26 +34,29 @@ const FilterCard = ({
             }}
             size={25}
           />
-          {face && face.name}
+          {face?.name}
         </span>
       </div>
       <ul className="h-[84%]  text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
-        {face &&
-          face.facetValues.map((item: any, index: Int16Array) => {
-            return (
-              <li
-                onClick={() => addFilterClick(face.id, item)}
-                key={item.id + index}
-                className={`flex  items-center 
-                ${filterItemsId.includes(item.id) && "bg-gray-300"}
+        {face?.facetValues.map((item: any, index: Int16Array) => {
+          return (
+            <li
+              onClick={() => addFilterClick(face.id, item)}
+              key={item.id + index}
+              className={`flex  items-center 
+                ${
+                  filterItemsId &&
+                  filterItemsId.includes(item.id) &&
+                  "bg-gray-300"
+                }
                 justify-between border-b-[1px] border-gray-200 cursor-pointer rounded-lg 
           transition-all duration-200 text-gray-500 text-[16px] px-4 py-[25px] font-semibold`}
-              >
-                <span>{item.name}</span>
-                <span>({item.count})</span>
-              </li>
-            );
-          })}
+            >
+              <span>{item.name}</span>
+              <span>({item.count})</span>
+            </li>
+          );
+        })}
       </ul>
       <div className="w-full bottom-0 flex justify-center p-3">
         <button
@@ -89,27 +90,30 @@ const FilterSidebar = ({
           <span className="text-xl">FILTER</span>
         </div>
         <ul className="max-h-[84%] text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
-          {facets.map((item: any, index: Int16Array) => {
+          {facets.map((face: any, index: Int16Array) => {
+            console.log(filters, filters[face.id]);
+            const faceFilters = face.facetValues.filter((filter) =>
+              filters[face.id]?.includes(filter.id)
+            );
+            console.log("FaceFilterd", faceFilters);
             return (
               <li
                 onClick={() => {
-                  setFace(item);
+                  setFace(face);
                 }}
-                key={item.id + index}
+                key={face.id + index}
                 className={`flex gap-2 flex-col border-b-[1px] border-gray-200 cursor-pointer 
           transition-all duration-200 text-gray-500 text-[16px] px-4 py-[25px] font-semibold`}
               >
                 <div className="flex items-center justify-between w-full">
-                  <span>{item.name}</span>
+                  <span>{face.name}</span>
                   <MdOutlineKeyboardArrowRight
                     className="text-gray-400"
                     size={20}
                   />
                 </div>
                 <span className="text-gray-400 text-[14px] truncate">
-                  {/* {filters &&
-                    filters[item.id] &&
-                    filters[item.id].map((filter) => filter.name).join(", ")} */}
+                  {faceFilters?.map((filter) => filter.name).join(", ")}
                 </span>
               </li>
             );
