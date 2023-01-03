@@ -37,7 +37,6 @@ import { FormControlUnstyled } from "@mui/base";
 const Navigation = ({ navigations }) => {
   const router = useRouter();
   const section = router.query.mainRouteId;
-
   const dispatch = useAppDispatch();
 
   const recentSearchs = useAppSelector(selectSearch);

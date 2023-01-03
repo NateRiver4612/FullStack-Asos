@@ -17,48 +17,67 @@ const ProductList = ({ data }) => {
   const router = useRouter();
 
   useEffect(() => {
-    const filterObj = router.query;
+    const filterObj = { ...router.query };
     delete filterObj["categoryId"];
     delete filterObj["categoryRouteId"];
     delete filterObj["item"];
     delete filterObj["cid"];
     delete filterObj["mainRouteId"];
 
-    setFilters(filterObj);
+    //Convert query obj into filters object format
+    Object.keys(filterObj).map((key) => {
+      console.log(typeof filterObj[key]);
+      if (typeof filterObj[key] == "string") {
+        filterObj[key] = filterObj[key].split(",");
+      }
+    });
+
+    return setFilters(filterObj);
   }, [router.query]);
 
   //This function will update filter object by add a object
   //New Object: contain an ID as the key the array of filter Id as value
   const addFilters = (title, filter) => {
     var finalObj = { ...filters };
+
     // check if final object has the relevent key
     if (finalObj.hasOwnProperty(title)) {
       // if it has that key then push the value according to the key
-
-      const filterAdded = finalObj[title].find((item) => item.id === filter.id);
-
+      const filterAdded = finalObj[title].find(
+        (filterId) => filterId === filter.id
+      );
+      console.log(filterAdded);
       if (filterAdded) {
         finalObj[title] = finalObj[title].filter(
-          (item) => item.id != filter.id
+          (filterId) => filterId != filter.id
         );
       } else {
-        finalObj[title].push(filter);
+        finalObj[title].push(filter.id);
       }
     } else {
-      finalObj[title] = [filter];
+      finalObj[title] = [filter.id];
     }
 
+    console.log(finalObj);
     return setFilters(finalObj);
   };
 
   const handleSubmit = () => {
-    if (Object.keys(filters).length > 0) {
-      Object.keys(filters).map((key) => {
-        router.query[key] = filters[key].map((filter) => filter.id).join(",");
-      });
+    //Convert filters to query format
+    if (Object.keys(filters).length <= 0) return;
 
-      return router.push(router);
-    }
+    var queryObj = { ...filters };
+
+    Object.keys(queryObj).map((key) => {
+      queryObj[key] = queryObj[key].join(",");
+      router.query[key] = queryObj[key];
+      if (router.query[key].length <= 0) {
+        delete router.query[key];
+      }
+    });
+
+    console.log(queryObj, router);
+    return router.push(router);
   };
 
   return (

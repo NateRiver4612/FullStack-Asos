@@ -10,24 +10,37 @@ export const Sidebar_CircleImageRight = ({
   return (
     <ul className={`grid grid-cols-1 gap-3 mt-3 px-4`}>
       {categoryItems.map((item) => {
+        console.log(categoryTitle);
         return (
           <li
-            className={`text-[15x] p-2 bg-gray-100 relative flex justity-between items-center cursor-pointer tracking-widest hover:font-bold capitalize w-full  text-gray-500`}
+            className={`text-[15x] p-2 bg-[#efefef] relative flex justity-between items-center cursor-pointer tracking-widest hover:font-bold capitalize w-full  text-gray-500`}
           >
-            <div className="font-bold flex items-center uppercase h-full w-full text-[15px] pl-4 text-black">
-              <p className={`w-full`}>{item.content.title}</p>
+            <div className="font-bold flex items-center uppercase h-full w-full text-[13px] leading-5 pl-4 text-black">
+              <a
+                href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`}
+                className={`w-full`}
+              >
+                {item.content.title}
+              </a>
               <p className="font-light w-full">{item.content.subTitle}</p>
             </div>
 
-            <a className="">
+            <Link
+              href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
+                item.link.categoryId
+              }`}
+            >
               <Image
-                height={150}
-                width={150}
+                height={100}
+                width={100}
+                objectFit="cover"
                 className="rounded-full"
                 src={item.content.webLargeImageUrl}
                 alt="picture"
               />
-            </a>
+            </Link>
           </li>
         );
       })}

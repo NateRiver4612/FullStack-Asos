@@ -24,60 +24,65 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
           {category?.content.title}
         </span>
       </div>
-      <ul className="h-full w-full  pb-24 flex flex-col overflow-scroll relative">
+      <ul className="h-full w-full overflow-x-hidden pb-24 flex flex-col overflow-scroll relative">
         {category &&
           category.children.map((section, index) => {
             console.log(section);
-            if (section.content.title.includes("App and Mobile")) {
+            if (section.content.title.includes("App")) {
               const items = section.children;
               return (
-                <div key={section.id} className="px-4 pt-4">
-                  <Swiper
-                    spaceBetween={30}
-                    pagination={{
-                      clickable: true,
-                    }}
-                    autoplay={{
-                      delay: 2000,
-                      disableOnInteraction: false,
-                    }}
-                    modules={[Autoplay, Pagination]}
-                    className="mySwiper"
-                  >
-                    {items.map((item) => {
-                      return (
-                        <SwiperSlide key={item.id}>
-                          <li
-                            className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold  capitalize w-full  text-gray-800`}
-                          >
-                            <img
-                              src={item.content.webLargeImageUrl}
-                              alt="picture"
-                            />
-                            <div className="absolute font-bold flex items-center uppercase h-full w-full text-[18px] pl-4 text-black">
-                              <p className={`w-[50%] text-gray-800`}>
-                                {item.content.title}
-                              </p>
-                              <p className="font-light w-full">
-                                {item.content.subTitle}
-                              </p>
-                            </div>
-                          </li>
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
-                </div>
+                items.length > 0 && (
+                  <div key={section.id + index} className="px-4 py-4">
+                    <Swiper
+                      spaceBetween={30}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: false,
+                      }}
+                      modules={[Autoplay, Pagination]}
+                      className="mySwiper"
+                    >
+                      {items.map((item, index) => {
+                        console.log(item);
+                        return (
+                          <SwiperSlide key={item.id + index}>
+                            <li
+                              className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold  capitalize w-full  text-gray-800`}
+                            >
+                              <img
+                                src={item.content.webLargeImageUrl}
+                                alt="picture"
+                              />
+                              <div className="absolute font-bold flex items-center uppercase h-full w-full text-[18px] pl-4 text-black">
+                                <p className={`w-[60%] text-gray-800`}>
+                                  {item.content.title}
+                                </p>
+                                <p className="font-light w-[40%]">
+                                  {item.content.subTitle}
+                                </p>
+                              </div>
+                            </li>
+                          </SwiperSlide>
+                        );
+                      })}
+                    </Swiper>
+                  </div>
+                )
               );
             }
             return (
               section.children.length > 0 && (
                 <Fragment>
-                  <div className="bg-gray-200 w-screen px-4 py-5 ">
-                    <span className="text-md font-bold tracking-wider  text-gray-800">
-                      {section.content.title}
-                    </span>
-                  </div>
+                  {section.content.title && (
+                    <div className="bg-gray-200 w-screen px-4 py-5 ">
+                      <span className="text-md font-bold tracking-wider  text-gray-800">
+                        {section.content.title}
+                      </span>
+                    </div>
+                  )}
 
                   {section.display.mobileTemplateName == "circleImageList" && (
                     <Sidebar_CircleImageList
@@ -173,10 +178,11 @@ const Sidebar = ({ navigations, openSidebar }) => {
                       modules={[Autoplay, Pagination]}
                       className="mySwiper"
                     >
-                      {navigationItems.map((item) => {
+                      {navigationItems.map((item, index) => {
                         return (
-                          <SwiperSlide key={item.id}>
+                          <SwiperSlide key={item.id + index}>
                             <li
+                              key={item.id + index}
                               className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold py-[5px] capitalize w-full  text-gray-500`}
                             >
                               <img
@@ -201,7 +207,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
               }
 
               return (
-                <Fragment>
+                <Fragment key={navigation.id}>
                   {navigation.content.title != "Home" &&
                     navigation.content.title != "SPEND AND SAVE NEW" && (
                       <div className="bg-gray-200 w-screen px-5 py-5 mt-6">
@@ -217,9 +223,10 @@ const Sidebar = ({ navigations, openSidebar }) => {
                       multiDisplay ? "grid-cols-2" : "grid-cols-1"
                     }  `}
                   >
-                    {navigationItems.map((item) => {
+                    {navigationItems.map((item, index) => {
                       return (
                         <li
+                          key={item.id + index}
                           onClick={() => setCategory(item)}
                           className={`text-[15x] px-4 py-[7px] relative flex  flex-start ${
                             multiDisplay

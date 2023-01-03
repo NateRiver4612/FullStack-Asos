@@ -14,7 +14,10 @@ const ProductFace = ({
 }) => {
   const router = useRouter();
 
-  const filterItemsId = filters[face.id]?.map((item) => item.id);
+  var filterItemsId = [];
+
+  filterItemsId = filters[face.id];
+
   const filterItemsKey = Object.keys(filters);
 
   const isFaceActive = filterItemsKey.includes(face.id);
