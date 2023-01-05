@@ -10,9 +10,6 @@ import { MdClear } from "react-icons/md";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
-import { AiOutlineHeart } from "react-icons/ai";
-import { RiShoppingBagLine } from "react-icons/ri";
-import { AiOutlineMessage } from "react-icons/ai";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
@@ -20,53 +17,29 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { BiMenu } from "react-icons/bi";
 import { useRouter } from "next/router";
-
+import SearchForm from "./search-form.component";
 import {
   addToHistory,
   clearHistory,
 } from "../../redux/features/search/search.slice";
 import { selectSearch } from "../../redux/features/search/search.slice";
-import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
 import Sidebar from "../sidebar/sidebar.component";
 import CategoryCard from "../category-card/category-card.component";
-import { FormControlUnstyled } from "@mui/base";
+import ProfileCard from "./profile-card.component";
 
 //https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
 
 const Navigation = ({ navigations }) => {
   const router = useRouter();
   const section = router.query.mainRouteId;
-  const dispatch = useAppDispatch();
 
-  const recentSearchs = useAppSelector(selectSearch);
-  const searchRef = useRef<HTMLInputElement>(null);
-
-  const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [showCategoryCard, setShowCategoryCard] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
   const [currentNavigation, setCurrentNavigation] = useState(navigations[1]);
 
   const categories = currentNavigation?.children[4].children;
-
-  const escFunction = useCallback((event: { key: string }) => {
-    if (event.key === "Escape") {
-      //Do whatever when esc is pressed
-      setShowSearch(false);
-      setSearch("");
-      searchRef.current.value = "";
-    }
-  }, []);
-
-  //Listen to whenever user hit esc keyboard so that we turn off the search window
-  useEffect(() => {
-    document.addEventListener("keydown", escFunction, false);
-
-    return () => {
-      document.removeEventListener("keydown", escFunction, false);
-    };
-  }, []);
 
   //Set the current navigations depends on the route
   useEffect(() => {
@@ -77,55 +50,8 @@ const Navigation = ({ navigations }) => {
     }
   }, [section]);
 
-  // Handle to open the search application whenever
-  // the user type any thing in the search input
-  useEffect(() => {
-    if (search.length > 0) {
-      setShowSearch(true);
-    }
-
-    return () => {
-      setShowSearch(false);
-    };
-  }, [search]);
-
-  const onShowSearch = () => {
-    setShowSearch(true);
-  };
-
-  const onSubmitSearchHandle = (event: any) => {
-    event.preventDefault();
-
-    let searchExisted = recentSearchs.includes(search);
-
-    if (search.length > 0 && !searchExisted) {
-      setSearch("");
-      searchRef.current.value = "";
-      dispatch(addToHistory(search));
-    }
-  };
-
-  const onClearSearchHistoryHandle = (event: any) => {
-    event.preventDefault();
-
-    dispatch(clearHistory());
-  };
-
   const onHideSearch = () => {
     setShowSearch(false);
-  };
-
-  // Handle user typing text
-  const onChangeHandle = (event: any) => {
-    event.preventDefault();
-
-    let text = event.target.value;
-
-    if (text.length > 0) {
-      setSearch(text);
-    } else {
-      setSearch("");
-    }
   };
 
   const onToggleSidebar = () => {
@@ -135,22 +61,6 @@ const Navigation = ({ navigations }) => {
   const onCloseSidebar = () => {
     setOpenSidebar(false);
   };
-
-  const map1 = new Map([
-    ["my account", BiUser],
-    ["my orders", FiPackage],
-    ["my returns", TbPackgeImport],
-    ["return information", AiOutlineQuestionCircle],
-    ["contact preferences", BiMessageSquareDots],
-  ]);
-
-  const platMain = [
-    "my account",
-    "my orders",
-    "my returns",
-    "return information",
-    "contact preferences",
-  ];
 
   //Remain category card at top of page when user scrolling
   useLayoutEffect(() => {
@@ -168,7 +78,7 @@ const Navigation = ({ navigations }) => {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-30 lg:left-[1.4%] xl:left-[7.7%] 2xl:left-[6.45%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
+              "category_card hidden z-30 lg:left-[1.43%] xl:left-[8.54%] 2xl:left-[7.15%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
@@ -254,134 +164,12 @@ const Navigation = ({ navigations }) => {
                 </Link>
               </ul>
               <div className="h-full w-full hidden sm:flex items-center px-6">
-                <form
-                  className="relative w-full "
-                  onSubmit={onSubmitSearchHandle}
-                >
-                  <div className="flex items-center w-full">
-                    <input
-                      type="text"
-                      placeholder="Search for items and brands"
-                      autoComplete="off"
-                      ref={searchRef}
-                      onClick={onShowSearch}
-                      onChange={onChangeHandle}
-                      className="h-[38px] w-full z-30 rounded-3xl focus:outline-none p-4 text-sm text-gray-600"
-                    />
-                    {search.length > 0 && (
-                      <button className="absolute z-30 right-12">
-                        <MdClear size={22} color="black" fontWeight="bold" />
-                      </button>
-                    )}
-                    <button
-                      type="submit"
-                      disabled={search.length > 0 ? false : true}
-                      className={`absolute  transition-all duration-300 z-30 right-1 ${
-                        search.length > 0 ? "bg-[#2d2d2d]" : "bg-transparent"
-                      }  rounded-full p-1.5`}
-                    >
-                      <FiSearch
-                        size={22}
-                        color={`${search.length > 0 ? "white" : "black"}`}
-                        fontWeight="bold"
-                      />
-                    </button>
-                    {showSearch && (
-                      <div className=" absolute z-20 h-fit top-5 bg-gray-200 w-full">
-                        <div className="w-full flex justify-between p-3 pt-8">
-                          <span className="text-xs text-gray-400 uppercase font-bold tracking-widest">
-                            Recent Searchs
-                          </span>
-                          <button
-                            onClick={onClearSearchHistoryHandle}
-                            className="text-xs text-black tracking-widest font-bold uppercase"
-                          >
-                            Clear
-                          </button>
-                        </div>
-
-                        <ul className="w-full ">
-                          {recentSearchs
-                            .slice(0)
-                            .reverse()
-                            .map((searchKey, index) => {
-                              return (
-                                <li
-                                  key={index}
-                                  className="text-gray-700 hover:bg-gray-300 px-3 py-1 "
-                                >
-                                  {searchKey}
-                                </li>
-                              );
-                            })}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </form>
+                <SearchForm
+                  showSearch={showSearch}
+                  setShowSearch={setShowSearch}
+                ></SearchForm>
               </div>
-              <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
-                <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
-                  <li className="">
-                    <div className="overflow-hidden cursor-pointer group">
-                      <BiUser size={26}></BiUser>
-
-                      <div
-                        className={`fixed transition-all 
-                
-                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 md:fixed md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
-                      >
-                        <div className="h-full">
-                          <div className="static">
-                            <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
-                              <span className="hover:text-gray-900  hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                                <Link href="/">Sign In</Link>
-                              </span>
-
-                              <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
-                              <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                                <Link href="/">Join</Link>
-                              </span>
-                            </div>
-                          </div>
-                          <ul className="flex flex-col text-gray-600  capitalize">
-                            {platMain.map((key, index) => {
-                              const icon = map1.get(key);
-                              return (
-                                <li
-                                  key={index}
-                                  className="flex item-center px-6 py-[12px] hover:bg-gray-300"
-                                >
-                                  {icon({ size: 24 })}
-                                  <div className="px-3"></div>
-                                  <span className="text-sm">{key}</span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <Tooltip title="saved items" arrow>
-                    <li>
-                      <AiOutlineHeart size={26} />
-                    </li>
-                  </Tooltip>
-
-                  <Tooltip title="bag" arrow>
-                    <li>
-                      <RiShoppingBagLine size={26} />
-                    </li>
-                  </Tooltip>
-
-                  <Tooltip title="texting" arrow>
-                    <li>
-                      <AiOutlineMessage size={26} />
-                    </li>
-                  </Tooltip>
-                </ul>
-              </div>
+              <ProfileCard />
             </div>
           </div>
         </div>

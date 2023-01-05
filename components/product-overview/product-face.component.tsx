@@ -9,7 +9,8 @@ const ProductFace = ({
   filters,
   addFilters,
   handleClick,
-  handleSubmit,
+  clearFilters,
+  selectAllFilters,
   index,
 }) => {
   const router = useRouter();
@@ -21,6 +22,22 @@ const ProductFace = ({
   const filterItemsKey = Object.keys(filters);
 
   const isFaceActive = filterItemsKey.includes(face.id);
+
+  const handleClearFilters = (id) => {
+    // Check if filter already fired
+    // by checking if the face id included in the url query
+    if (Object.keys(router.query).includes(id)) {
+      delete router.query[face.id];
+      return router.push(router);
+    }
+    return clearFilters(id);
+  };
+
+  const handleSelectAllFilters = () => {
+    const allFaceFiltersId = face.facetValues.map((filter) => filter.id);
+    return selectAllFilters(face.id, allFaceFiltersId);
+  };
+
   return (
     <div id="face" className="relative ">
       <div
@@ -57,18 +74,16 @@ const ProductFace = ({
             </span>
             {filters[face.id]?.length > 0 ? (
               <button
-                onClick={() => {
-                  delete router.query[face.id];
-                  router.push(router);
-
-                  return handleClick("");
-                }}
+                onClick={() => handleClearFilters(face.id)}
                 className="flex hover:bg-gray-500 hover:text-white transition-all duration-200 items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500"
               >
                 Clear
               </button>
             ) : (
-              <button className="flex hover:bg-gray-500 hover:text-white transition-all duration-200  items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500">
+              <button
+                onClick={handleSelectAllFilters}
+                className="flex hover:bg-gray-500 hover:text-white transition-all duration-200  items-center tracking-wider font-bold text-gray-500 gap-1 border-2 px-3 py-[2px] border-gray-500"
+              >
                 <BiCheck size={20} /> All
               </button>
             )}

@@ -78,6 +78,21 @@ const ProductList = ({ data }) => {
     return router.push(router);
   };
 
+  const clearFilters = (id) => {
+    const updateFilters = Object.entries(filters).filter(
+      ([key, value]) => key != id
+    );
+
+    return setFilters(updateFilters);
+  };
+
+  const selectAllFilters = (key, value) => {
+    const updateFilters = { ...filters };
+    updateFilters[key] = value;
+
+    return setFilters(updateFilters);
+  };
+
   return (
     <Fragment>
       <div
@@ -109,8 +124,10 @@ const ProductList = ({ data }) => {
                 face={face}
                 filters={filters}
                 addFilters={addFilters}
+                clearFilters={clearFilters}
                 index={index}
                 active={active}
+                selectAllFilters={selectAllFilters}
                 handleClick={setActive}
                 handleSubmit={handleSubmit}
               />
