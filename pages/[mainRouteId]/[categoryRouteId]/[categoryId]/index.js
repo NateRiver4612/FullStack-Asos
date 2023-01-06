@@ -1,12 +1,26 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "axios";
-import {
-  ProductOverview,
-  ProductFace,
-} from "../../../../components/product-overview";
-import { BiChevronDown, BiCheck, BiX } from "react-icons/bi";
-import FilterSidebar from "../../../../components/sidebar/filter-sidebar.component";
+import // ProductOverview,
+// ProductFace,
+"../../../../components/product-overview";
+import { BiChevronDown } from "react-icons/bi";
+// import FilterSidebar from "../../../../components/sidebar/filter-sidebar.component";
 import { useRouter } from "next/router";
+
+import dynamic from "next/dynamic";
+
+const ProductOverview = dynamic(() =>
+  import("../../../../components/product-overview/product-overview.component")
+);
+
+const ProductFace = dynamic(() =>
+  import("../../../../components/product-overview/product-face.component")
+);
+
+const FilterSidebar = dynamic(
+  () => import("../../../../components/sidebar/filter-sidebar.component"),
+  { ssr: true }
+);
 
 const ProductList = ({ data }) => {
   const { categoryName, products, itemCount, facets } = data;

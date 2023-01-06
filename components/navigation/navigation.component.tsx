@@ -1,34 +1,23 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-} from "react";
-import { MdClear } from "react-icons/md";
+import React, { Fragment, useEffect, useState, useLayoutEffect } from "react";
 import Image from "next/image";
-import { FiSearch } from "react-icons/fi";
-import { BiUser } from "react-icons/bi";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
-import { FiPackage } from "react-icons/fi";
-import { TbPackgeImport } from "react-icons/tb";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { BiMessageSquareDots } from "react-icons/bi";
 import { BiMenu } from "react-icons/bi";
 import { useRouter } from "next/router";
 import SearchForm from "./search-form.component";
-import {
-  addToHistory,
-  clearHistory,
-} from "../../redux/features/search/search.slice";
-import { selectSearch } from "../../redux/features/search/search.slice";
-import Link from "next/link";
-import Sidebar from "../sidebar/sidebar.component";
-import CategoryCard from "../category-card/category-card.component";
-import ProfileCard from "./profile-card.component";
 
-//https://asos2.p.rapidapi.com/v2/auto-complete?store=US&country=US&currency=USD&sizeSchema=US&lang=en-US&q=sexy mini dress
+import Link from "next/link";
+import NavigationAdd from "./navigation-ad.component";
+import dynamic from "next/dynamic";
+
+const Sidebar = dynamic(() => import("../sidebar/sidebar.component"), {
+  ssr: true,
+});
+const ProfileCard = dynamic(() => import("./profile-card.component"), {
+  ssr: true,
+});
+const CategoryCard = dynamic(
+  () => import("../category-card/category-card.component"),
+  { ssr: true }
+);
 
 const Navigation = ({ navigations }) => {
   const router = useRouter();
@@ -124,12 +113,12 @@ const Navigation = ({ navigations }) => {
         >
           <div className="h-full">
             <div className="flex text-white justify-between items-center h-full ">
-              <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-8 pl-8 lg:pl-12 flex-shrink-0">
-                <button onClick={onToggleSidebar} className="lg:hidden">
+              <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-5 pl-2 lg:pl-12 flex-shrink-0">
+                <button onClick={onToggleSidebar} className=" lg:hidden">
                   <BiMenu size={26} className="ml-0" />
                 </button>
                 <Link href="/" className="pt-[5px]">
-                  <a>
+                  <a className="flex items-center">
                     <Image
                       alt="ASOS logo"
                       color="white"
@@ -237,24 +226,7 @@ const Navigation = ({ navigations }) => {
             </div>
           </div>
         </div>
-        <div className="hidden bg-black h-[49px] w-full top-[50%] md:flex">
-          <div
-            className={`w-full h-full ${
-              section == "men" ? "bg-[#9cf0e0]" : "bg-[#9d68fe]"
-            } transition-all duration-500 font-bold flex flex-col items-center justify-center tracking-widest `}
-          >
-            <p className="uppercase text-[13px]">25% off all topman</p>
-            <p className="capitalize text-[12px]">with code: TOP25</p>
-          </div>
-          <div
-            className={`w-full h-full bg-black ${
-              section == "men" ? "text-[#9cf0e0]" : "text-[#9d68fe]"
-            } font-bold transition-all duration-700 flex flex-col items-center justify-center tracking-widest `}
-          >
-            <p className="uppercase text-[13px]">black friday warn-up</p>
-            <p className="capitalize text-[12px]">with code: TOP25</p>
-          </div>
-        </div>
+        <NavigationAdd section={section} />
       </div>
     </Fragment>
   );

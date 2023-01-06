@@ -9,9 +9,10 @@ export const Sidebar_CircleImageRight = ({
 }) => {
   return (
     <ul className={`grid grid-cols-1 gap-3 mt-3 px-4`}>
-      {categoryItems.map((item) => {
+      {categoryItems.map((item, index) => {
         return (
           <li
+            key={item.id + index}
             className={`text-[15x] p-2 bg-[#efefef] relative flex justity-between items-center cursor-pointer tracking-widest hover:font-bold capitalize w-full  text-gray-500`}
           >
             <div className="font-bold flex items-center uppercase h-full w-full text-[13px] leading-5 pl-4 text-black">

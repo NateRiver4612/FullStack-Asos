@@ -5,7 +5,7 @@ import Image from "next/image";
 const ProductOverview = ({ product }) => {
   const { price, imageUrl, name, isSellingFast } = product;
   return (
-    <div key={product.id} className="flex flex-col mt-5 -z-10">
+    <div key={product.id} className="flex relative flex-col mt-5 -z-10">
       <div className="flex justify-end items-end">
         <Image height={380} width={300} src={`https://${imageUrl}`} />
         {isSellingFast && (

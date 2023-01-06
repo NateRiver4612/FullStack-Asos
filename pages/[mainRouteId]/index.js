@@ -1,14 +1,61 @@
 import React from "react";
-import {
-  Section_1,
-  Section_2,
-  Section_3,
-  Section_4,
-  Section_5,
-  Section_6,
-  Mutual_Section_1,
-  Mutual_Section_2,
-} from "../../components/homeSections";
+import dynamic from "next/dynamic";
+
+const Section_1 = dynamic(
+  () => import("../../components/homeSections/section_1.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Section_2 = dynamic(
+  () => import("../../components/homeSections/section_2.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Section_3 = dynamic(
+  () => import("../../components/homeSections/section_3.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Section_4 = dynamic(
+  () => import("../../components/homeSections/section_4.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Section_6 = dynamic(
+  () => import("../../components/homeSections/section_6.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Section_5 = dynamic(
+  () => import("../../components/homeSections/section_5.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Mutual_Section_1 = dynamic(
+  () => import("../../components/homeSections/mutual_section_1.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
+
+const Mutual_Section_2 = dynamic(
+  () => import("../../components/homeSections/mutual_section_2.component"),
+  {
+    loading: () => "Loading...",
+  }
+);
 
 const index = ({ sections }) => {
   return (

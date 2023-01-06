@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,body {
+    width: 100% !important;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 * {
     -ms-overflow-style: none;
 }

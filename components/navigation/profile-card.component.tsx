@@ -30,18 +30,18 @@ const ProfileCard = () => {
   return (
     <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
       <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
-        <li className="">
+        <li>
           <div className="overflow-hidden cursor-pointer group">
             <BiUser size={26}></BiUser>
 
             <div
-              className={`transition-all 
-                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 md:absolute md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
+              className={`transition-all hidden md:block
+                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 absolute md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
             >
               <div className="h-full">
                 <div className="static">
                   <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
-                    <span className="hover:text-gray-900  hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
+                    <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
                       <Link href="/">Sign In</Link>
                     </span>
 

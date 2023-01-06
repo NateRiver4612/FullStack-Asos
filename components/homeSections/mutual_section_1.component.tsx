@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Mutual_Section_1 = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex relative justify-center">
       <div className="w-full -z-10 h-[190px] relative">
         <Image
           objectFit="cover"
