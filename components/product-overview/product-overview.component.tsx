@@ -1,12 +1,35 @@
 import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-const ProductOverview = ({ product }) => {
+const ProductOverview = ({ product, section, categoryTitle, item }) => {
   const { price, imageUrl, name, isSellingFast } = product;
+
+  const router = useRouter();
+
+  const handleSelect = () => {
+    const url = router.asPath.split("?")[0] + "Product" + "/" + product.id;
+
+    const query = {
+      cid: router.query.cid,
+      item: product.name,
+      pid: product.id.toString(),
+    };
+
+    return router.push({
+      pathname: url,
+      query: query,
+    });
+  };
+
   return (
-    <div key={product.id} className="flex relative flex-col mt-5 -z-10">
-      <div className="flex justify-end items-end">
+    <div
+      onClick={handleSelect}
+      key={product.id}
+      className="flex relative flex-col cursor-pointer  mt-5 "
+    >
+      <div className="flex justify-end items-end ">
         <Image height={380} width={300} src={`https://${imageUrl}`} />
         {isSellingFast && (
           <span className="font-bold text-[12px] absolute mb-[12%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/60 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">

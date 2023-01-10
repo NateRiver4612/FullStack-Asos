@@ -12,6 +12,7 @@ const nextConfig = {
       "www.clipartmax.com",
       "images.asos-media.com",
       "content.asos-media.com",
+      "images.asos-media.com/products/reclaimed-vintage-unisex-oversized-blazer-in-check-with-fur-trim-part-of-a-set/203439085-1-multi",
     ],
   },
 };

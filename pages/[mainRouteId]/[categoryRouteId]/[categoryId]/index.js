@@ -147,10 +147,10 @@ const ProductList = ({ data }) => {
               />
             ))}
           </div>
-          <div className="w-[10%] hover:drop-shadow-lg  bottom-0 hidden  sm:flex justify-center ">
+          <div className="w-fit  hover:drop-shadow-lg pb-4 bottom-0 hidden  sm:flex justify-center ">
             <button
               onClick={handleSubmit}
-              className="font-bold tracking-widest uppercase bg-black py-3 text-white text-sm w-full"
+              className="font-bold tracking-widest px-4 uppercase bg-black py-3 text-white text-sm w-full"
             >
               view items
             </button>
