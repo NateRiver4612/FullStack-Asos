@@ -2,7 +2,7 @@ import React from "react";
 
 const Bottom_Section = () => {
   return (
-    <div className="bg-gray-300  bottom-0 w-full flex justify-center">
+    <div className="bg-gray-300 bottom-0 w-full flex justify-center">
       <div className="text-gray-500 text-[11px] w-full lg:w-[88.5%] flex p-4 justify-between">
         <span>@ 2022 ASOS</span>
         <div className="flex gap-3">
