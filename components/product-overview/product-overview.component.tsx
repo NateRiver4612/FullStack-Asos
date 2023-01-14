@@ -4,12 +4,14 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const ProductOverview = ({ product, section, categoryTitle, item }) => {
-  const { price, imageUrl, name, isSellingFast } = product;
+  const { price, imageUrl, name, isSellingFast, id } = product;
 
   const router = useRouter();
 
   const handleSelect = () => {
-    const url = router.asPath.split("?")[0] + "Product" + "/" + product.id;
+    const { categoryId, mainRouteId, categoryRouteId } = router.query;
+
+    const url1 = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
     const query = {
       cid: router.query.cid,
@@ -18,7 +20,7 @@ const ProductOverview = ({ product, section, categoryTitle, item }) => {
     };
 
     return router.push({
-      pathname: url,
+      pathname: url1,
       query: query,
     });
   };
