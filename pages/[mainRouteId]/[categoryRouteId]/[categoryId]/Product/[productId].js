@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
@@ -6,8 +6,8 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Zoom, Navigation, Pagination } from "swiper";
+import { ProductOverview } from "../../../../../components/product-overview";
+import { Zoom, Navigation, Pagination, Thumbs } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,64 +27,108 @@ const ProductDetailPage = ({ data }) => {
     rating,
   } = data;
 
-  console.log(data);
+  const [imagesNavSlider, setImagesNavSlider] = useState(null);
+  const [similaritems, setSimilarItems] = useState([]);
+
+  useEffect(() => {
+    const similar_items = JSON.parse(localStorage.getItem("items"));
+
+    const random_items = [...similar_items].sort(() => 0.5 - Math.random());
+
+    setSimilarItems(random_items.slice(0, 18));
+    console.log(similaritems);
+  }, []);
+
+  function getMultipleRandom(arr, num) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+
+    return shuffled.slice(0, num);
+  }
 
   return (
-    <div className="flex flex-col items-center 2xl:pl-[20%] 2xl:pr-[20%] lg:pl-[10%] lg:pr-[10%] md:pr-[5%]">
-      <div className="flex">
+    <div className="flex flex-col items-center 2xl:pl-[20%] 2xl:pr-[20%] lg:pl-[10%] lg:pr-[10%] md:pr-[5%] sm:pr-[5%] sm:pl-[5%]">
+      <div className="flex flex-col sm:flex-row">
         <div className="flex justify-end w-full h-full 2xl:pr-[5%]">
-          <div className="hidden sm:flex flex-col items-end pt-6 pr-6 gap-4 ">
-            {images.map((image, index) => (
-              <div>
-                <Image height={60} width={40} src={`https://${image.url}`} />
-              </div>
-            ))}
+          <div className="slider__col hidden sm:flex flex-col w-[50%] md:w-full mr-[20px] mt-6">
+            <Swiper
+              onSwiper={setImagesNavSlider}
+              direction="vertical"
+              spaceBetween={12}
+              slidesPerView={4}
+              navigation={true}
+              className="swiper-container1  flex flex-col  sm:h-[40vh] md:h-[35vh] lg:h-[30vh] xl:h-[50vh]"
+              modules={[Navigation, Thumbs]}
+            >
+              {images.map((slide, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="slider__image">
+                      <Image
+                        width={50}
+                        height={70}
+                        src={`https://${slide.url}`}
+                        alt=""
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
-          <div className="">
-            <div className="h-full w-[100vw] md:w-[46vw] lg:w-[40vw] xl:w-[33vw] relative w-full">
-              <Swiper
-                style={{
-                  "--swiper-navigation-color": "#fff",
-                  "--swiper-pagination-color": "#fff",
-                }}
-                zoom={true}
-                loop={true}
-                navigation={true}
-                pagination={{
-                  clickable: true,
-                }}
-                modules={[Zoom, Navigation, Pagination]}
-                className="mySwiper"
-              >
-                <SwiperSlide>
-                  <div className="swiper-zoom-container">
-                    <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="swiper-zoom-container">
-                    <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
-                  </div>
-                </SwiperSlide>
-              </Swiper>
 
-              <div className="absolute z-20  items-center  gap-2 bottom-[10%] right-0 font-bold text-white w-[70px] rounded-l-full py-[4px] bg-black/75 flex justify-center">
-                <span className="text-[15px]">2K</span>{" "}
-                <AiFillHeart size={20}></AiFillHeart>
-              </div>
+          <div className="h-full w-[100vw] sm:w-[50vw] md:w-[46vw] lg:w-[40vw] xl:w-[33vw] relative ">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#343530",
+                "--swiper-pagination-color": "#343530",
+                "--swiper-navigation-size": "30px",
+              }}
+              zoom={true}
+              loop={true}
+              thumbs={{
+                swiper:
+                  imagesNavSlider && Object.keys(imagesNavSlider).length > 2
+                    ? imagesNavSlider
+                    : "",
+              }}
+              navigation={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Zoom, Navigation, Pagination, Thumbs]}
+              className="mySwiper"
+            >
+              {images.map((image, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div key={index} className="swiper-zoom-container">
+                      <img
+                        src={`https://${image.url}`}
+                        width={650}
+                        alt="product image"
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+
+            <div className="absolute z-20  items-center  gap-2 bottom-[10%] right-0 font-bold text-white w-[70px] rounded-l-full py-[4px] bg-black/75 flex justify-center">
+              <span className="text-[15px]">2K</span>{" "}
+              <AiFillHeart size={20}></AiFillHeart>
             </div>
           </div>
         </div>
-        <div className="hidden w-[50%] md:flex ml-6 2xl:ml-0 ">
+        <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
           <div className="flex flex-col pt-6">
-            <h1 className="text-[14px] lg:text-[17px] text-gray-800 font-semibold tracking-wide">
+            <h1 className="text-[15px] lg:text-[17px] text-gray-800 font-semibold tracking-wide">
               {name}
             </h1>
             <div className="mt-2 flex flex-col">
               <span className="font-bold text-[13px] lg:text-[17px] tracking-wider text-[#d42051]">
                 Now {price.current.text}
               </span>
-              <div className="flex text-[8px] md:text-[10px] tracking-wide gap-2">
+              <div className="flex text-[8px] md:text-[12px] tracking-wide gap-2">
                 <span className="text-gray-500">RRP {price.previous.text}</span>
                 <span className="text-[#d42051]">(-52%)</span>
               </div>
@@ -155,13 +199,22 @@ const ProductDetailPage = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="flex w-full mt-[5%]">
+      <div className="flex w-full flex-col mt-[5%] px-4 md:px-0">
         <div>
           <span className="uppercase text-[17px] tracking-wider text-gray-800 font-bold">
             you might also like
           </span>
         </div>
-        <div></div>
+        <div className="grid w-full grid-cols-3 sm:grid-cols-5 gap-3">
+          {similaritems.map((product) => {
+            return (
+              <ProductOverview
+                key={product.id}
+                product={product}
+              ></ProductOverview>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

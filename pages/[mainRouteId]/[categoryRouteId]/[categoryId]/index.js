@@ -28,6 +28,9 @@ const ProductList = ({ data }) => {
   const [openFilter, setOpenFilter] = useState(false);
   const [filters, setFilters] = useState({});
 
+  //Save products to localstorage for later using
+  localStorage.setItem("items", JSON.stringify(products));
+
   const router = useRouter();
 
   useEffect(() => {

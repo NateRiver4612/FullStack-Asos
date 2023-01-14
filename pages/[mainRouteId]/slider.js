@@ -1,61 +1,120 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
+import { Navigation, Thumbs, Mousewheel, Zoom, Pagination } from "swiper";
 import "swiper/css";
-import "swiper/css/zoom";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+// import "swiper/css/navigation";
+import { useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
-// import "./styles.css";
+const slides = [
+  "https://picsum.photos/1920/1080",
+  "https://picsum.photos/1920/1081",
+  "https://picsum.photos/1920/1082",
+  "https://picsum.photos/1920/1083",
+];
 
-// import required modules
-import { Zoom, Navigation, Pagination } from "swiper";
-
-export default function Slider() {
+export default function App() {
+  const [imagesNavSlider, setImagesNavSlider] = useState(null);
   return (
-    <div className="bg-black w-[30%] flex justify-center">
-      <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
-        zoom={true}
-        loop={true}
-        navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Zoom, Navigation, Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <div className="swiper-zoom-container">
-            <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
+    <div className="App">
+      <section className="slider">
+        <div className="slider__flex">
+          <div className="slider__col">
+            <div className="slider__thumbs">
+              <Swiper
+                onSwiper={setImagesNavSlider}
+                direction="vertical"
+                spaceBetween={12}
+                slidesPerView={4}
+                navigation={true}
+                className="swiper-container1"
+                modules={[Navigation, Thumbs]}
+              >
+                {slides.map((slide, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <div className="slider__image">
+                        <img src={slide} alt="" />
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="swiper-zoom-container">
-            <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
+
+          <div className="h-full w-[100vw] md:w-[46vw] lg:w-[40vw] xl:w-[33vw] relative ">
+            <Swiper
+              thumbs={{
+                swiper:
+                  imagesNavSlider && Object.keys(imagesNavSlider).length > 2
+                    ? imagesNavSlider
+                    : "",
+              }}
+              style={{
+                "--swiper-navigation-color": "#343530",
+                "--swiper-pagination-color": "#343530",
+                "--swiper-navigation-size": "30px",
+              }}
+              zoom={true}
+              loop={true}
+              navigation={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Zoom, Navigation, Pagination, Thumbs]}
+              className="mySwiper"
+            >
+              {slides.map((image, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div key={index} className="swiper-zoom-container">
+                      <img
+                        src={image}
+                        width={510}
+                        height={600}
+                        alt="product image"
+                      />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+
+            <div className="absolute z-20  items-center  gap-2 bottom-[10%] right-0 font-bold text-white w-[70px] rounded-l-full py-[4px] bg-black/75 flex justify-center">
+              <span className="text-[15px]">2K</span>{" "}
+              <AiFillHeart size={20}></AiFillHeart>
+            </div>
           </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="swiper-zoom-container">
-            <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="swiper-zoom-container">
-            <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="swiper-zoom-container">
-            <img src="https://images.asos-media.com/products/brave-soul-cotton-ribbed-roll-neck-sweater-in-khaki/202867448-1-green?$n_640w$&wid=513&fit=constrain" />
-          </div>
-        </SwiperSlide>
-      </Swiper>
+
+          {/* <div className="slider__images">
+            <Swiper
+              thumbs={{
+                swiper:
+                  imagesNavSlider && Object.keys(imagesNavSlider).length > 2
+                    ? imagesNavSlider
+                    : "",
+              }}
+              direction="horizontal"
+              slidesPerView={1}
+              spaceBetween={32}
+              mousewheel={true}
+              navigation={true}
+              className="swiper-container2"
+              modules={[Navigation, Thumbs, Mousewheel]}
+            >
+              {slides.map((slide, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="slider__image">
+                      <img src={slide} alt="" />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div> */}
+        </div>
+      </section>
     </div>
   );
 }
