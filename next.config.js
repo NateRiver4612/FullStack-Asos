@@ -10,6 +10,7 @@ const nextConfig = {
       "upload.wikimedia.org",
       "cdn.imgbin.com",
       "www.clipartmax.com",
+      "s0.2mdn.net",
       "images.asos-media.com",
       "content.asos-media.com",
       "images.asos-media.com/products/reclaimed-vintage-unisex-oversized-blazer-in-check-with-fur-trim-part-of-a-set/203439085-1-multi",

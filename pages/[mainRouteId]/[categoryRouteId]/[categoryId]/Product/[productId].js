@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { MdOutlineLocalShipping } from "react-icons/md";
-import { TbTruckReturn } from "react-icons/tb";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductOverview } from "../../../../../components/product-overview";
-import { Zoom, Navigation, Pagination, Thumbs } from "swiper";
+import ProductDisplay from "../../../../../components/product/product-display.component";
+import ProductInformation from "../../../../../components/product/product-information.component";
+import { BiCut } from "react-icons/bi";
+import { IoDiamondOutline } from "react-icons/io5";
+import Image from "next/image";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
+import "swiper/css/bundle";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
 // Import Swiper styles
 import "swiper/css";
@@ -27,7 +33,6 @@ const ProductDetailPage = ({ data }) => {
     rating,
   } = data;
 
-  const [imagesNavSlider, setImagesNavSlider] = useState(null);
   const [similaritems, setSimilarItems] = useState([]);
 
   useEffect(() => {
@@ -36,168 +41,13 @@ const ProductDetailPage = ({ data }) => {
     const random_items = [...similar_items].sort(() => 0.5 - Math.random());
 
     setSimilarItems(random_items.slice(0, 18));
-    console.log(similaritems);
   }, []);
-
-  function getMultipleRandom(arr, num) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
-
-    return shuffled.slice(0, num);
-  }
 
   return (
     <div className="flex flex-col items-center 2xl:pl-[20%] 2xl:pr-[20%] lg:pl-[10%] lg:pr-[10%] md:pr-[5%] sm:pr-[5%] sm:pl-[5%]">
-      <div className="flex flex-col sm:flex-row">
-        <div className="flex  w-full h-full 2xl:pr-[5%]">
-          <div className="slider__col hidden sm:flex flex-col w-fit mr-[20px] mt-6">
-            <Swiper
-              onSwiper={setImagesNavSlider}
-              direction="vertical"
-              spaceBetween={12}
-              slidesPerView={4}
-              navigation={true}
-              className=" flex flex-col sm:h-[40vh] md:h-[65%] lg:h-[65%] xl:h-[50vh]"
-              modules={[Navigation, Thumbs]}
-            >
-              {images.map((slide, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <div className="slider__image">
-                      <Image
-                        width={50}
-                        height={70}
-                        src={`https://${slide.url}`}
-                        alt=""
-                      />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-
-          <div className="h-full w-[100vw] sm:w-[50vw] lg:w-[40vw] xl:w-[33vw] relative ">
-            <Swiper
-              style={{
-                "--swiper-navigation-color": "#343530",
-                "--swiper-pagination-color": "#343530",
-                "--swiper-navigation-size": "30px",
-              }}
-              zoom={true}
-              loop={true}
-              thumbs={{
-                swiper:
-                  imagesNavSlider && Object.keys(imagesNavSlider).length > 2
-                    ? imagesNavSlider
-                    : "",
-              }}
-              navigation={true}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Zoom, Navigation, Pagination, Thumbs]}
-              className="mySwiper"
-            >
-              {images.map((image, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <div key={index} className="swiper-zoom-container">
-                      <img
-                        src={`https://${image.url}`}
-                        width={650}
-                        alt="product image"
-                      />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-
-            <div className="absolute z-20  items-center  gap-2 bottom-[10%] right-0 font-bold text-white w-[70px] rounded-l-full py-[4px] bg-black/75 flex justify-center">
-              <span className="text-[15px]">2K</span>{" "}
-              <AiFillHeart size={20}></AiFillHeart>
-            </div>
-          </div>
-        </div>
-        <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
-          <div className="flex flex-col pt-6">
-            <h1 className="text-[14px] lg:text-[17px] text-gray-800 font-semibold tracking-wide">
-              {name}
-            </h1>
-            <div className="mt-2 flex flex-col">
-              <span className="font-bold text-[13px] lg:text-[17px] tracking-wider text-[#d42051]">
-                Now {price.current.text}
-              </span>
-              <div className="flex text-[8px] md:text-[12px] tracking-wide gap-2">
-                <span className="text-gray-500">RRP {price.previous.text}</span>
-                <span className="text-[#d42051]">(-52%)</span>
-              </div>
-            </div>
-            <div className="mt-4 flex text-[10px] lg:text-[15px] gap-2 items-center">
-              <div className="flex gap-2 ">
-                <BsStarFill></BsStarFill>
-                <BsStarFill></BsStarFill>
-                <BsStarFill></BsStarFill>
-                <BsStarFill></BsStarFill>
-                <BsStarHalf></BsStarHalf>
-              </div>
-              <span className="text-[10px] lg:text-[15px] text-gray-600">
-                4.7
-              </span>
-              <span className="text-gray-500 text-[10px] lg:text-[15px]">
-                (3)
-              </span>
-            </div>
-            <div className="flex flex-col mt-4  ">
-              <span className="font-bold tracking-widest text-gray-800 text-[10px] lg:text-[12px]">
-                SIZE:
-              </span>
-              <select className="w-full px-2 outline-none text-[12px] lg:text-[14px] border-[1px] border-gray-400 tracking-wide py-[10px] mt-2">
-                {variants.map((size) => {
-                  return size.isInStock ? (
-                    <option className="flex tracking-widest">
-                      <span className="py-4 ">
-                        {size.brandSize.replaceAll(" ", " - ")}
-                      </span>
-                    </option>
-                  ) : (
-                    <option className="py-24 flex " disabled>
-                      <span className="py-4">
-                        {size.brandSize} - Out of stock
-                      </span>
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <div>
-              <div className="flex mt-4 items-center gap-4 ">
-                <button className="uppercase bg-[#0a8950] w-full font-bold bg-black text-[10px] lg:text-[14px] tracking-widest text-white  py-2">
-                  add to bag
-                </button>
-                <AiOutlineHeart className="cursor-pointer" size={25} />
-              </div>
-              <div className="flex flex-col p-4 border-[1px] border-gray-200 gap-4 mt-5 ">
-                <div className="flex gap-3 text-[10px] lg:text-[13px] tracking-wide text-gray-600">
-                  <MdOutlineLocalShipping size={20} />
-                  Free Delivery
-                </div>
-                <div className="flex gap-3 text-gray-600">
-                  <TbTruckReturn size={20} />
-                  <div className="text-[10px] lg:text-[13px] gap-2 flex flex-col tracking-wide ">
-                    <span>Free Returns.</span>
-                    <span>Ts&Cs apply. More delivery info</span>
-                  </div>
-                </div>
-              </div>
-              <div className="p-4 border-gray-200 border-x-[1px] border-b-[1px]">
-                <span className="text-[8px] lg:text-[10px] underline text-gray-500 tracking-wider">
-                  This product has shipping restrictions.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col w-full sm:flex-row">
+        <ProductDisplay images={images} />
+        <ProductInformation name={name} variants={variants} price={price} />
       </div>
       <div className="flex w-full flex-col mt-[5%] px-4 md:px-0">
         <div>
@@ -215,6 +65,134 @@ const ProductDetailPage = ({ data }) => {
             );
           })}
         </div>
+      </div>
+      <div className="flex w-full flex-col mt-[5%] px-4 md:px-0">
+        <div>
+          <span className="uppercase text-[18px] tracking-wider text-gray-800 font-bold">
+            reviews
+          </span>
+        </div>
+        <div className="flex w-full ">
+          <div className="w-full flex flex-col">
+            <div>
+              <div className="mt-4 flex text-[10px] lg:text-[13px] gap-2 items-center">
+                <div className="flex gap-2 ">
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarHalf></BsStarHalf>
+                </div>
+                <span className="text-[10px] lg:text-[15px] text-gray-700">
+                  4.7
+                </span>
+                <span className="text-gray-500 text-[10px] lg:text-[15px]">
+                  (3 reviews)
+                </span>
+              </div>
+              <span className="text-[14px] pt-2 text-gray-800 tracking-wider">
+                100% of customers recommend this product
+              </span>
+            </div>
+            <div className="mt-6 text-gray-700">
+              <span className="uppercase font-bold text-[14px] tracking-wider">
+                Customer Rating
+              </span>
+              <div className="mt-6 flex flex-col gap-2">
+                <span className="uppercase gap-2 items-center flex text-[12px] font-bold tracking-wider">
+                  <BiCut size={21} />
+                  fit:
+                </span>
+                <div className="w-[80%] h-[13px] bg-gray-200/80">
+                  <div className="ml-[30%] mr-[10%] w-[12%] h-[13px] bg-black/80 block"></div>
+                </div>
+                <div className="flex w-[80%] justify-between text-gray-500 text-[12px]">
+                  <span>Runs Small</span>
+                  <span>Runs Large</span>
+                </div>
+              </div>
+              <div className="mt-6 flex flex-col gap-2">
+                <span className="uppercase gap-2 items-center flex text-[12px] font-bold tracking-wider">
+                  <IoDiamondOutline size={21} />
+                  quality:
+                </span>
+                <div className="w-[80%] h-[13px] bg-gray-200/80">
+                  <div className="ml-[75%] mr-[10%] w-[12%] h-[13px] bg-black/80 block"></div>
+                </div>
+                <div className="flex w-[80%] justify-between text-gray-500 text-[12px]">
+                  <span>Poor</span>
+                  <span>Great</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full xl:pl-[15%]">
+            <span className="uppercase font-bold text-[13.5px] tracking-widest">
+              most recent review
+            </span>
+            <div>
+              <div className="mt-4 flex text-[10px] justify-between lg:text-[13px] gap-2 items-center">
+                <div className="flex gap-2 ">
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarFill></BsStarFill>
+                  <BsStarHalf></BsStarHalf>
+                </div>
+                <span className="text-gray-500 tracking-wider text-[12px]">
+                  14 days ago
+                </span>
+              </div>
+              <span className="text-[10.5px] tracking-widest pt-2 text-gray-500 tracking-wider">
+                Verified Purchasers
+              </span>
+            </div>
+            <div className="flex flex-col gap-1 mt-4 ">
+              <span className="text-[12px] tracking-wider font-bold text-gray-700">
+                FIT PERFECT. GOOD MATERIAL
+              </span>
+              <span className="text-[12px] tracking-wider text-gray-600">
+                Color was great. It fit snug like I was looking for. I’m 175 and
+                wore a medium
+              </span>
+              <button className="uppercase hover:bg-gray-300 hover:text-white font-bold mt-4 tracking-wide text-gray-700 border-gray-300 border-2 py-2">
+                view all reviews
+              </button>
+              <span className="text-[11px] mt-2 text-gray-400">
+                All reviews are verified by ASOS unless otherwise indicated.
+                Where a review states 'originally posted' by one of our brand
+                partners; this has not been verified by ASOS.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-[10%] w-full pb-[10%]">
+        <Swiper
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <img
+              src="https://s0.2mdn.net/dfp/489680/4527299243/1671458257325/A-Converse-HolidayProgramingAdsHO22A01330C-prospecting-mw-970x250-x2.jpg"
+              alt="picture"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="https://s0.2mdn.net/dfp/489680/4527299243/1671461424644/B-Converse-HolidayProgramingAdsHO22A03275C-prospecting-mw-970x250-x2.jpg"
+              alt="picture"
+            />
+          </SwiperSlide>
+        </Swiper>
       </div>
     </div>
   );

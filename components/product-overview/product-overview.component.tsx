@@ -3,7 +3,7 @@ import { AiFillHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const ProductOverview = ({ product, section, categoryTitle, item }) => {
+const ProductOverview = ({ product }) => {
   const { price, imageUrl, name, isSellingFast, id } = product;
 
   const router = useRouter();
