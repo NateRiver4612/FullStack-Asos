@@ -10,11 +10,6 @@ export const Sidebar_CircleImageList = ({
   return (
     <ul className={`grid grid-cols-1 px-4 `}>
       {categoryItems.map((item) => {
-        console.log(
-          !!item.content.mobileImageUrl,
-          !!item.content.webLargeImageUrl
-        );
-
         return (
           item.content.mobileImageUrl &&
           item.content.webLargeImageUrl && (

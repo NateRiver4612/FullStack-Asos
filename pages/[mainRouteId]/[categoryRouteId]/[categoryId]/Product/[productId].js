@@ -72,8 +72,8 @@ const ProductDetailPage = ({ data }) => {
             reviews
           </span>
         </div>
-        <div className="flex w-full ">
-          <div className="w-full flex flex-col">
+        <div className="flex flex-col gap-8 sm:flex-row w-full ">
+          <div className="w-full flex-col">
             <div>
               <div className="mt-4 flex text-[10px] lg:text-[13px] gap-2 items-center">
                 <div className="flex gap-2 ">
@@ -126,7 +126,7 @@ const ProductDetailPage = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="w-full xl:pl-[15%]">
+          <div className="w-full xl:pl-[10%]">
             <span className="uppercase font-bold text-[13.5px] tracking-widest">
               most recent review
             </span>

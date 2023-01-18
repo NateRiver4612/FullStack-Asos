@@ -20,7 +20,6 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
       </div>
       <ul className="h-full w-full overflow-x-hidden pb-24 flex flex-col overflow-scroll relative">
         {category?.children.map((section, index) => {
-          console.log(section);
           if (section.content.title.includes("App")) {
             const items = section.children;
             return (
