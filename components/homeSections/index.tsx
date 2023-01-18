@@ -1,4 +1,4 @@
-import Section_1 from "./section_1.component";
+import Section_1 from "./section1.component";
 import Section_2 from "./section_2.component";
 import Section_3 from "./section_3.component";
 import Section_4 from "./section_4.component";
