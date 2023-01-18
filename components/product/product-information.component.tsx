@@ -8,19 +8,19 @@ const ProductInformation = ({ variants, name, price }) => {
   return (
     <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
       <div className="flex flex-col pt-6">
-        <h1 className="text-[14px] lg:text-[17px] text-gray-800 font-semibold tracking-wide">
+        <h1 className="text-[17px] text-gray-800 font-semibold tracking-wide">
           {name}
         </h1>
         <div className="mt-2 flex flex-col">
-          <span className="font-bold text-[13px] lg:text-[17px] tracking-wider text-[#d42051]">
+          <span className="font-bold text-[17px] tracking-wider text-[#d42051]">
             Now {price.current.text}
           </span>
-          <div className="flex text-[8px] md:text-[12px] tracking-wide gap-2">
+          <div className="flex text-[12px] tracking-wide gap-2">
             <span className="text-gray-500">RRP {price.previous.text}</span>
             <span className="text-[#d42051]">(-52%)</span>
           </div>
         </div>
-        <div className="mt-4 flex text-[10px] lg:text-[13px] gap-2 items-center">
+        <div className="mt-4 flex text-[13px] gap-2 items-center">
           <div className="flex gap-2 ">
             <BsStarFill></BsStarFill>
             <BsStarFill></BsStarFill>
@@ -28,8 +28,8 @@ const ProductInformation = ({ variants, name, price }) => {
             <BsStarFill></BsStarFill>
             <BsStarHalf></BsStarHalf>
           </div>
-          <span className="text-[10px] lg:text-[15px] text-gray-600">4.7</span>
-          <span className="text-gray-500 text-[10px] lg:text-[15px]">(3)</span>
+          <span className="text-[15px] text-gray-600">4.7</span>
+          <span className="text-gray-500 text-[15px]">(3)</span>
         </div>
         <div className="flex flex-col mt-4  ">
           <span className="font-bold tracking-widest text-gray-800 text-[10px] lg:text-[12px]">
