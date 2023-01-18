@@ -38,14 +38,15 @@ const ProductInformation = ({ variants, name, price }) => {
           <select className="w-full px-2 outline-none text-[12px] lg:text-[14px] border-[1px] border-gray-400 tracking-wide py-[10px] mt-2">
             {variants.map((size) => {
               return size.isInStock ? (
-                <option className="flex tracking-widest">
-                  <span className="py-4 ">
-                    {size.brandSize.replaceAll(" ", " - ")}
-                  </span>
+                <option
+                  value={size.brandSize.replaceAll(" ", " - ")}
+                  className="flex tracking-widest py-4"
+                >
+                  {size.brandSize.replaceAll(" ", " - ")}
                 </option>
               ) : (
-                <option className="py-24 flex " disabled>
-                  <span className="py-4">{size.brandSize} - Out of stock</span>
+                <option value={size.brandSize} className="py-4 flex " disabled>
+                  {size.brandSize} - Out of stock
                 </option>
               );
             })}
