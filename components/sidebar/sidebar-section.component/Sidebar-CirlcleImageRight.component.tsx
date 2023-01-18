@@ -16,21 +16,28 @@ export const Sidebar_CircleImageRight = ({
             className={`text-[15x] p-2 bg-[#efefef] relative flex justity-between items-center cursor-pointer tracking-widest hover:font-bold capitalize w-full  text-gray-500`}
           >
             <div className="font-bold flex items-center uppercase h-full w-full text-[13px] leading-5 pl-4 text-black">
-              <a
+              <Link
                 href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
                   item.link.categoryId
-                }`}
-                className={`w-full`}
+                }`.replace("//", "/")}
               >
-                {item.content.title}
-              </a>
+                <a
+                  href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
+                    item.link.categoryId
+                  }`}
+                  className={`w-full text-[15px] text-gray-700`}
+                >
+                  {item.content.title}
+                </a>
+              </Link>
+
               <p className="font-light w-full">{item.content.subTitle}</p>
             </div>
 
             <Link
               href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
                 item.link.categoryId
-              }`}
+              }`.replace("//", "/")}
             >
               <Image
                 height={100}

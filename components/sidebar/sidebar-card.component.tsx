@@ -20,6 +20,7 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
       </div>
       <ul className="h-full w-full overflow-x-hidden pb-24 flex flex-col overflow-scroll relative">
         {category?.children.map((section, index) => {
+          console.log(section);
           if (section.content.title.includes("App")) {
             const items = section.children;
             return (
@@ -67,15 +68,16 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
           return (
             section.children.length > 0 && (
               <Fragment>
-                {section.content.title && (
-                  <div className="bg-gray-200 w-screen px-4 py-5 ">
-                    <span className="text-md font-bold tracking-wider  text-gray-800">
-                      {section.content.title}
-                    </span>
-                  </div>
-                )}
+                {section.content.title &&
+                  !section.content.title.includes("CTA") && (
+                    <div className="bg-gray-200 w-screen px-4 py-5 ">
+                      <span className="text-md font-bold tracking-wider  text-gray-800">
+                        {section.content.title}
+                      </span>
+                    </div>
+                  )}
 
-                {section.display.mobileTemplateName == "circleImageList" && (
+                {section?.display?.mobileTemplateName == "circleImageList" && (
                   <Sidebar_CircleImageList
                     gender={gender}
                     categoryItems={section.children}
@@ -83,7 +85,7 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
                   />
                 )}
 
-                {section.display.mobileTemplateName == "circleImageRight" && (
+                {section?.display?.mobileTemplateName == "circleImageRight" && (
                   <Sidebar_CircleImageRight
                     gender={gender}
                     categoryItems={section.children}
