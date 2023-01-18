@@ -18,7 +18,7 @@ const ProgressBar = dynamic(
 );
 
 const Bottom_Section = dynamic(
-  () => import("../components/homeSections/bottom_section.component"),
+  () => import("../components/homeSections/bottom-section.component"),
   {
     ssr: true,
   }
