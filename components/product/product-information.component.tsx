@@ -3,12 +3,45 @@ import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
+import Select, { StylesConfig } from "react-select";
 
 const ProductInformation = ({ variants, name, price }) => {
+  const options = [];
+
+  variants.map((variant) => {
+    if (variant.isInStock) {
+      options.push({
+        value: variant.brandSize.replaceAll(" ", " - "),
+        label: variant.brandSize.replaceAll(" ", " - "),
+      });
+    } else {
+      options.push({
+        value: `${variant.brandSize} - Out of stock`,
+        label: `${variant.brandSize} - Out of stock`,
+        isDisabled: true,
+      });
+    }
+  });
+  const colourStyles = {
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? undefined
+          : isSelected
+          ? "#e3e4eb"
+          : isFocused
+          ? "#e5e7eb"
+          : undefined,
+        color: isDisabled ? "#ccc" : "#757280",
+      };
+    },
+  };
+
   return (
     <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
       <div className="flex flex-col pt-6">
-        <h1 className="text-[22px] sm:text-[20px] text-gray-800 font-semibold tracking-wide">
+        <h1 className="text-[22px] sm:text-[20px] text-gray-700 font-semibold tracking-wide">
           {name}
         </h1>
         <div className="mt-2 flex flex-col">
@@ -21,7 +54,7 @@ const ProductInformation = ({ variants, name, price }) => {
           </div>
         </div>
         <div className="mt-4 flex text-[15px] sm:text-[13px] gap-2 items-center">
-          <div className="flex gap-2 ">
+          <div className="flex gap-2 text-gray-800">
             <BsStarFill></BsStarFill>
             <BsStarFill></BsStarFill>
             <BsStarFill></BsStarFill>
@@ -35,22 +68,11 @@ const ProductInformation = ({ variants, name, price }) => {
           <span className="font-bold tracking-widest text-gray-800 text-[10px] sm:text-[12px]">
             SIZE:
           </span>
-          <select className="w-full px-2 outline-none text-[12px] sm:text-[14px] border-[1px] border-gray-400 tracking-wide py-[10px] mt-2">
-            {variants.map((size) => {
-              return size.isInStock ? (
-                <option
-                  value={size.brandSize.replaceAll(" ", " - ")}
-                  className="flex tracking-widest py-4"
-                >
-                  {size.brandSize.replaceAll(" ", " - ")}
-                </option>
-              ) : (
-                <option value={size.brandSize} className="py-4 flex " disabled>
-                  {size.brandSize} - Out of stock
-                </option>
-              );
-            })}
-          </select>
+          <Select
+            className="outline-none;"
+            styles={colourStyles}
+            options={options}
+          />
         </div>
         <div>
           <div className="flex mt-4 items-center gap-4 ">
@@ -65,7 +87,7 @@ const ProductInformation = ({ variants, name, price }) => {
               <span className="text-[10px] sm:text-[13px]">Free Delivery</span>
             </div>
             <div className="flex gap-3 text-gray-600">
-              <TbTruckReturn size={24} />
+              <TbTruckReturn size={20} />
               <div className=" gap-2 flex flex-col text-[10px] sm:text-[13px] tracking-wide ">
                 <span>Free Returns.</span>
                 <span>Ts&Cs apply. More delivery info</span>
