@@ -65,7 +65,7 @@ const ProductInformation = ({ variants, name, price }) => {
           <span className="text-gray-500 text-[15px] sm:text-[15px]">(3)</span>
         </div>
         <div className="flex flex-col mt-4  ">
-          <span className="font-bold tracking-widest pb-2 text-gray-800 text-[10px] sm:text-[12px]">
+          <span className="font-bold tracking-widest pb-2 text-gray-800 text-[12px]">
             SIZE:
           </span>
           <Select

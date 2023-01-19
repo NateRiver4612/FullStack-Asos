@@ -24,7 +24,7 @@ const FilterCard = ({
       id="filter-card"
       className={`z-40 sm:hidden bg-gray-100 transition-all fixed top-0  ${
         face != null && isOpen ? "right-[0]" : "right-[-100%]"
-      } w-[94%]  h-full duration-300  bg-gray-100`}
+      } w-[90%]  h-full duration-300  bg-gray-100`}
     >
       <div className="px-4 py-[16px] bg-gray-300 font-bold tracking-widest">
         <span className="text-xl cursor-pointer flex justify-between">
@@ -37,7 +37,7 @@ const FilterCard = ({
           {face?.name}
         </span>
       </div>
-      <ul className="h-[84%]  text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
+      <ul className="h-[82%]  text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
         {face?.facetValues.map((item: any, index: Int16Array) => {
           return (
             <li
