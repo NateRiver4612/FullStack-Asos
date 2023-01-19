@@ -43,6 +43,12 @@ const Breadcrumbs = dynamic(
   }
 );
 
+declare global {
+  interface Window {
+    MSStream: any;
+  }
+}
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const use = async () => {

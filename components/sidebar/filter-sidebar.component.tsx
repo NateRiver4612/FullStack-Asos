@@ -19,6 +19,13 @@ const FilterCard = ({
     filterItemsId = filters[face.id];
   }
 
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS) {
+    console.log("This is a IOS device");
+  } else {
+    console.log("This is Not a IOS device");
+  }
+
   return (
     <div
       id="filter-card"
@@ -37,7 +44,9 @@ const FilterCard = ({
           {face?.name}
         </span>
       </div>
-      <ul className="h-[82%]  text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
+      <ul
+        className={`h-[80%] text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative`}
+      >
         {face?.facetValues.map((item: any, index: Int16Array) => {
           return (
             <li
