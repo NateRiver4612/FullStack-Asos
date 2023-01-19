@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
@@ -43,6 +44,13 @@ const Breadcrumbs = dynamic(
 );
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    const use = async () => {
+      (await import("tw-elements")).default;
+    };
+    use();
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

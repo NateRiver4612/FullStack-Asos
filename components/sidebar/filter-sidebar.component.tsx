@@ -89,7 +89,7 @@ const FilterSidebar = ({
         <div className="px-4 py-[16px] bg-gray-300 font-bold tracking-widest">
           <span className="text-xl">FILTER</span>
         </div>
-        <ul className="max-h-[84%] text-gray-600  tracking-wide w-full p-4 pb-24 flex flex-col overflow-scroll relative">
+        <ul className="max-h-[82%] text-gray-600  tracking-wide w-full p-4 pb-8 flex flex-col overflow-scroll relative">
           {facets.map((face: any, index: Int16Array) => {
             const faceFilters = face.facetValues.filter((filter) =>
               filters[face.id]?.includes(filter.id)
@@ -118,7 +118,7 @@ const FilterSidebar = ({
             );
           })}
         </ul>
-        <div className="w-full bottom-0  flex justify-center p-3">
+        <div className="w-full flex justify-center p-3 pb-[5%]">
           <button
             onClick={handleSubmit}
             className="font-bold tracking-widest uppercase bg-black py-3 text-white text-lg w-full"

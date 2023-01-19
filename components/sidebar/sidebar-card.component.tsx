@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
@@ -8,12 +8,23 @@ import { Sidebar_CircleImageRight } from "./sidebar-section.component/Sidebar-Ci
 const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
   return (
     <div
-      className={`lg:hidden z-40 fixed top-0 bottom-0 ${
-        category && openSidebar ? "w-[315px]" : "w-0"
-      } transition-all overflow-hidden duration-150 h-full bg-white`}
+      className="offcanvas offcanvas-start fixed bottom-0 flex flex-col max-w-[315px] bg-white invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out text-gray-700 top-0 left-0 border-none w-96"
+      tabIndex={-2}
+      id="offcanvas_SidebarCard"
+      aria-labelledby="offcanvas_SidebarCard_Label"
+      // className={`lg:hidden z-40 fixed top-0 bottom-0 ${
+      //   category && openSidebar ? "w-[315px]" : "w-0"
+      // } transition-all overflow-hidden duration-150 h-full bg-white`}
     >
       <div className="h-[60px] px-4 cursor-pointer flex items-center uppercase text-sm text-gray-800 border-b-2 font-bold">
-        <MdArrowBackIos onClick={() => setCategory(null)} size={25} />
+        <MdArrowBackIos
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas_SidebarNavigation"
+          role="button"
+          aria-controls="offcanvas_SidebarNavigation"
+          // onClick={() => setCategory(null)}
+          size={25}
+        />
         <span className="w-full text-center text-lg tracking-widest ">
           {category?.content.title}
         </span>
@@ -41,6 +52,7 @@ const SidebarCard = ({ gender, openSidebar, category, setCategory }) => {
                       return (
                         <SwiperSlide key={item.id + index}>
                           <li
+                            key={item.id + index}
                             className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold  capitalize w-full  text-gray-800`}
                           >
                             <img

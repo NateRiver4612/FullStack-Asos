@@ -34,9 +34,13 @@ const Sidebar = ({ navigations, openSidebar }) => {
   return (
     <Fragment>
       <div
-        className={`lg:hidden z-40 fixed top-0 bottom-0 ${
-          openSidebar ? "w-[315px]" : "w-0"
-        } transition-all overflow-hidden duration-150 h-full bg-white`}
+        className="offcanvas offcanvas-start fixed bottom-0 flex flex-col max-w-[315px] bg-white invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out text-gray-700 top-0 left-0 border-none w-96"
+        tabIndex={-1}
+        id="offcanvas_SidebarNavigation"
+        aria-labelledby="offcanvas_SidebarNavigation_Label"
+        // className={`lg:hidden z-40 fixed top-0 bottom-0 ${
+        //   openSidebar ? "w-[315px]" : "w-0"
+        // } transition-all overflow-hidden duration-150 h-full bg-white`}
       >
         <ul className="h-[60px]  cursor-pointer flex items-center uppercase text-sm text-gray-800 border-b-2 font-bold">
           <li
@@ -59,7 +63,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
             men
           </li>
         </ul>
-        <ul className="h-full w-full  pb-24 flex flex-col overflow-scroll overflow-x-hidden relative">
+        <ul className="h-full w-full  pb-10 flex flex-col overflow-scroll overflow-x-hidden relative">
           {Array.isArray(currentNavigation) &&
             currentNavigation.map((navigation) => {
               const navigationItems = navigation.children;
@@ -114,8 +118,8 @@ const Sidebar = ({ navigations, openSidebar }) => {
                 <Fragment key={navigation.id}>
                   {navigation.content.title != "Home" &&
                     navigation.content.title != "SPEND AND SAVE NEW" && (
-                      <div className="bg-gray-200 w-screen px-5 py-5 mt-6">
-                        <span className="text-lg uppercase font-bold tracking-wider text-black">
+                      <div className="bg-gray-200 w-full px-5 py-5 mt-6">
+                        <span className="text-[15px] uppercase font-bold tracking-wider text-gray-500">
                           {navigation.content.title}
                         </span>
                       </div>
@@ -132,11 +136,15 @@ const Sidebar = ({ navigations, openSidebar }) => {
                         <li
                           key={item.id + index}
                           onClick={() => setCategory(item)}
-                          className={`text-[15x] px-4 py-[7px] relative flex  flex-start ${
+                          data-bs-toggle="offcanvas"
+                          data-bs-target="#offcanvas_SidebarCard"
+                          role="button"
+                          aria-controls="offcanvas_SidebarCard"
+                          className={`px-4 py-[7px] relative flex  flex-start ${
                             multiDisplay
-                              ? "text-xs  justify-center pb-14 [&>p]:top-[70%] leading-6"
-                              : "text-md"
-                          } items-center cursor-pointer tracking-widest hover:font-bold py-[5px] capitalize w-full  text-gray-500`}
+                              ? "text-xs justify-center pb-14 [&>p]:top-[70%] leading-6"
+                              : "text-sm"
+                          }  items-center cursor-pointer tracking-widest hover:font-bold py-[5px] capitalize w-full  text-gray-500`}
                         >
                           <img
                             src={item.content.webLargeImageUrl}
@@ -148,7 +156,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
                               multiDisplay
                                 ? "text-center px-3"
                                 : "text-start px-4"
-                            } w-full font-bold uppercase  text-gray-800`}
+                            } w-full font-bold uppercase text-gray-800`}
                           >
                             {item.content.title}
                           </p>

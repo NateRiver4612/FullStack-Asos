@@ -67,7 +67,7 @@ const Navigation = ({ navigations }) => {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =
-              "category_card hidden z-30 lg:left-[1.5%] xl:left-[8.56%] 2xl:left-[7.15%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
+              "category_card hidden z-30 lg:left-[16px] xl:left-[8.56%] 2xl:left-[7.15%] w-[97vw] xl:w-[89vw] 2xl:w-[87vw]  group-hover:flex fixed top-0 bg-black";
           } else {
             // other wise, keep default style
             if (mainHeader[i]) {
@@ -89,7 +89,7 @@ const Navigation = ({ navigations }) => {
         onClick={onCloseSidebar}
         className={` ${
           openSidebar
-            ? " z-30 h-screen fixed top-0 bottom-0 transition-all duration-700 w-screen bg-black opacity-50"
+            ? " z-30 h-screen fixed overflow-none top-0 bottom-0 transition-all duration-700 w-screen bg-black opacity-50"
             : "left-0 top-0 "
         }`}
       ></div>
@@ -114,7 +114,14 @@ const Navigation = ({ navigations }) => {
           <div className="h-full">
             <div className="flex text-white justify-between items-center h-full ">
               <div className="bg-black h-full flex items-center pr-6 xl:pl-28 gap-5 pl-2 lg:pl-12 flex-shrink-0">
-                <button onClick={onToggleSidebar} className=" lg:hidden">
+                <button
+                  // onClick={onToggleSidebar}
+                  className=" lg:hidden"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvas_SidebarNavigation"
+                  role="button"
+                  aria-controls="offcanvas_SidebarNavigation"
+                >
                   <BiMenu size={26} className="ml-0" />
                 </button>
                 <Link href="/" className="pt-[5px]">
