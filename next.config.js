@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   images: {
+    unoptimized: true,
     domains: [
       "static.wikia.nocookie.net",
       "lh3.googleusercontent.com",
