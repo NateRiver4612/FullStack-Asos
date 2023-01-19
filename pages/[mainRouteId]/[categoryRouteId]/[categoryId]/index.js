@@ -117,7 +117,7 @@ const ProductList = ({ data }) => {
         className={` ${
           !openFilter
             ? "opacity-0 w-0 right-0 top-0 bottom-0 left-0"
-            : "bg-black overflow-hidden opacity-50 transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
+            : "bg-black overflow-y-none opacity-50 transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
         }  sm:hidden `}
       ></div>
       <FilterSidebar

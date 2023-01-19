@@ -84,7 +84,7 @@ const FilterSidebar = ({
       <div
         className={`z-40 sm:hidden ${
           isOpen ? "right-[0]" : "right-[-100%]"
-        } transition-all fixed bottom-0 w-[94%] right-0 duration-300  top-0  bg-gray-100`}
+        } transition-all fixed bottom-0 w-[90%] right-0 duration-300  top-0  bg-gray-100`}
       >
         <div className="px-4 py-[16px] bg-gray-300 font-bold tracking-widest">
           <span className="text-xl">FILTER</span>

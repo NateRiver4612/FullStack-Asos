@@ -41,7 +41,7 @@ const ProductInformation = ({ variants, name, price }) => {
   return (
     <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
       <div className="flex flex-col pt-6">
-        <h1 className="text-[22px] sm:text-[20px] text-gray-700 font-semibold tracking-wide">
+        <h1 className="text-[20px] text-gray-700 font-semibold tracking-wide">
           {name}
         </h1>
         <div className="mt-2 flex flex-col">
