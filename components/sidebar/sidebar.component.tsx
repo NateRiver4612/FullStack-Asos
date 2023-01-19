@@ -38,9 +38,6 @@ const Sidebar = ({ navigations, openSidebar }) => {
         tabIndex={-1}
         id="offcanvas_SidebarNavigation"
         aria-labelledby="offcanvas_SidebarNavigation_Label"
-        // className={`lg:hidden z-40 fixed top-0 bottom-0 ${
-        //   openSidebar ? "w-[315px]" : "w-0"
-        // } transition-all overflow-hidden duration-150 h-full bg-white`}
       >
         <ul className="h-[60px]  cursor-pointer flex items-center uppercase text-sm text-gray-800 border-b-2 font-bold">
           <li
@@ -169,12 +166,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
             })}
         </ul>
       </div>
-      <SidebarCard
-        gender={gender}
-        category={category}
-        setCategory={setCategory}
-        openSidebar={openSidebar}
-      />
+      <SidebarCard gender={gender} category={category} />
     </Fragment>
   );
 };
