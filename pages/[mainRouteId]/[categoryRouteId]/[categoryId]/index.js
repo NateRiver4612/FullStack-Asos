@@ -8,6 +8,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
 
 import dynamic from "next/dynamic";
+import { FormControlUnstyled } from "@mui/base";
 
 const ProductOverview = dynamic(() =>
   import("../../../../components/product-overview/product-overview.component")
@@ -194,6 +195,10 @@ const ProductList = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
+  const { ListProduct } = require("../../../../public/listProduct.data");
+
+  console.log(ListProduct);
+
   var bodyObj = {};
 
   Object.entries(context.query).map((object, index) => {
@@ -227,14 +232,23 @@ export async function getServerSideProps(context) {
 
   // const data = response.data;
 
+  let data = {};
+
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    // development build code
+    console.log("Development");
+    const response = await fetch(
+      "http://localhost:3000/api/local_listProductData"
+    );
+
+    data = await response.json();
+  } else {
+    // production build code
+    console.log("Prodution");
+    data = ListProduct;
+  }
+
   // We fetch local sample data because RapidAPI has expired temporarily
-  const response = await fetch(
-    "http://localhost:3000/api/local_listProductData"
-  );
-
-  const data = await response.json();
-
-  console.log(data);
 
   return { props: { data: data } };
 }
