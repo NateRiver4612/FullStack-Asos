@@ -231,7 +231,7 @@ export const getServerSideProps = async (context) => {
     // development build code
     console.log("Development");
     const response = await fetch(
-      "http://localhost:3000/api/local_listProductData"
+      "http://localhost:3000/api/local_detailProductData"
     );
 
     data = await response.json();
