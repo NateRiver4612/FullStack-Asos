@@ -200,7 +200,7 @@ const ProductDetailPage = ({ data }) => {
 
 export const getServerSideProps = async (context) => {
   const axios = require("axios");
-  const { ProductDetail } = require("../../../../public/detailProduct.data");
+  const { ProductDetail } = require("../../../../../public/detailProduct.data");
 
   // const productId = context.params.productId;
 
