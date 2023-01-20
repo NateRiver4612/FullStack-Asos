@@ -19,8 +19,6 @@ const FilterSidebar = dynamic(
 );
 
 const ProductList = ({ data }) => {
-  const dispatch = useAppDispatch();
-
   const { categoryName, products, itemCount, facets } = data;
   const [active, setActive] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
@@ -30,14 +28,6 @@ const ProductList = ({ data }) => {
   localStorage.setItem("items", JSON.stringify(products));
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (!Object.keys(data) >= 1) {
-      dispatch(setLoading(false));
-    } else {
-      dispatch(setLoading(false));
-    }
-  }, [data]);
 
   useEffect(() => {
     const filterObj = { ...router.query };
