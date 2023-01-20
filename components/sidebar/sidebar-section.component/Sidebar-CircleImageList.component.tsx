@@ -14,6 +14,8 @@ export const Sidebar_CircleImageList = ({
           item.content.mobileImageUrl &&
           item.content.webLargeImageUrl && (
             <div
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
               key={item.id}
               className=" py-[10px] flex items-center gap-4 cursor-pointer hover:font-bold py-[6px] 
             capitalize  text-gray-600  border-t-[0.2px] boder-gray-300"
@@ -29,7 +31,7 @@ export const Sidebar_CircleImageList = ({
                   },
                 }}
               >
-                <a className="rounded-full  flex items-center justify-center ">
+                <a className=" rounded-full  flex items-center justify-center ">
                   <Image
                     src={
                       item.content.mobileImageUrl

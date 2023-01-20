@@ -1,14 +1,10 @@
 import React, { useEffect, useState, Fragment } from "react";
-import axios from "axios";
-import // ProductOverview,
-// ProductFace,
-"../../../../components/product-overview";
 import { BiChevronDown } from "react-icons/bi";
-// import FilterSidebar from "../../../../components/sidebar/filter-sidebar.component";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "../../../../redux/hooks";
+import { setLoading } from "../../../../redux/features/loading/loading.slice";
 
 import dynamic from "next/dynamic";
-import { FormControlUnstyled } from "@mui/base";
 
 const ProductOverview = dynamic(() =>
   import("../../../../components/product-overview/product-overview.component")
@@ -24,6 +20,8 @@ const FilterSidebar = dynamic(
 );
 
 const ProductList = ({ data }) => {
+  const dispatch = useAppDispatch();
+
   const { categoryName, products, itemCount, facets } = data;
   const [active, setActive] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
@@ -33,6 +31,14 @@ const ProductList = ({ data }) => {
   localStorage.setItem("items", JSON.stringify(products));
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (!Object.keys(data) >= 1) {
+      dispatch(setLoading(false));
+    } else {
+      dispatch(setLoading(false));
+    }
+  }, [data]);
 
   useEffect(() => {
     const filterObj = { ...router.query };
@@ -248,8 +254,6 @@ export async function getServerSideProps(context) {
     data = ListProduct[0];
   }
 
-  // We fetch local sample data because RapidAPI has expired temporarily
-  console.log(data);
   return { props: { data: data } };
 }
 

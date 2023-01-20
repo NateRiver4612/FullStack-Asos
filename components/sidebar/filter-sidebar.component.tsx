@@ -127,7 +127,7 @@ const FilterSidebar = ({
             );
           })}
         </ul>
-        <div className="w-full flex justify-center p-3 pb-[5%]">
+        <div className="w-full flex justify-center p-3">
           <button
             onClick={handleSubmit}
             className="font-bold tracking-widest uppercase bg-black py-3 text-white text-[15px] w-full"

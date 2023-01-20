@@ -3,13 +3,14 @@ import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-
+import Router from "next/router";
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
 
 import "nprogress/nprogress.css";
 
 import dynamic from "next/dynamic";
+import Spinner from "../components/spinner/spinner.component";
 
 const ProgressBar = dynamic(
   () => import("../components/progress-bar/progress-bar.component"),
@@ -57,11 +58,32 @@ function MyApp({ Component, pageProps }) {
     use();
   }, []);
 
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    const start = () => {
+      console.log("start");
+      setLoading(true);
+    };
+    const end = () => {
+      setLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Navigation navigations={navigationData}></Navigation>
         <Breadcrumbs />
+        {loading && <Spinner />}
         <div>
           <div>
             <Component {...pageProps} />
