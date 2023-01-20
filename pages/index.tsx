@@ -1,6 +1,5 @@
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
-import { selectLoading } from "../redux/features/loading/loading.slice";
 import { useAppSelector } from "../redux/hooks";
 
 export default function Home() {
@@ -9,10 +8,6 @@ export default function Home() {
   useEffect(() => {
     router.push("/men");
   }, []);
-
-  const isLoading = useAppSelector(selectLoading);
-
-  console.log(isLoading);
 
   return (
     <div className="dark">
