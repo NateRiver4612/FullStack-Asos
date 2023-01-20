@@ -200,6 +200,7 @@ const ProductDetailPage = ({ data }) => {
 
 export const getServerSideProps = async (context) => {
   const axios = require("axios");
+  const { ProductDetail } = require("../../../../public/detailProduct.data");
 
   // const productId = context.params.productId;
 
@@ -224,11 +225,21 @@ export const getServerSideProps = async (context) => {
   // const data = detail_response.data;
 
   // We fetch local sample data because RapidAPI has expired temporarily
-  const response = await fetch(
-    "http://localhost:3000/api/local_detailProductData"
-  );
+  let data = {};
 
-  const data = await response.json();
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    // development build code
+    console.log("Development");
+    const response = await fetch(
+      "http://localhost:3000/api/local_listProductData"
+    );
+
+    data = await response.json();
+  } else {
+    // production build code
+    console.log("Prodution");
+    data = ProductDetail[0];
+  }
 
   return {
     props: {
