@@ -1,10 +1,6 @@
 import React from "react";
-import { useAppSelector } from "../../redux/hooks";
-import { selectLoading } from "../../redux/features/loading/loading.slice";
 
 const Spinner = () => {
-  const isLoading = useAppSelector(selectLoading);
-
   return (
     <div className="h-screen w-screen top-0 bg-gray-200/60 overflow-hidden bottom-0 z-40 fixed flex justify-center items-center">
       <div

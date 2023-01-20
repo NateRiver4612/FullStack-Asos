@@ -62,7 +62,6 @@ function MyApp({ Component, pageProps }) {
 
   React.useEffect(() => {
     const start = () => {
-      console.log("start");
       setLoading(true);
     };
     const end = () => {
