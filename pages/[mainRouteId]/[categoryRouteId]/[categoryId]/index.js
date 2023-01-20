@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "../../../../redux/hooks";
-import { setLoading } from "../../../../redux/features/loading/loading.slice";
 
 import dynamic from "next/dynamic";
 
