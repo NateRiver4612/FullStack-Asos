@@ -117,7 +117,7 @@ const ProductList = ({ data }) => {
         className={` ${
           !openFilter
             ? "opacity-0 w-0 right-0 top-0 bottom-0 left-0"
-            : "bg-black overflow-y-none opacity-50 transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
+            : "bg-black overflow-none h-screen opacity-50 transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
         }  sm:hidden `}
       ></div>
       <FilterSidebar
@@ -203,29 +203,38 @@ export async function getServerSideProps(context) {
     bodyObj[key] = value;
   });
 
-  const options = {
-    method: "GET",
-    url: "https://asos2.p.rapidapi.com/products/v2/list",
-    params: {
-      store: "US",
-      offset: "0",
-      limit: "100",
-      country: "US",
-      sort: "freshness",
-      currency: "USD",
-      sizeSchema: "US",
-      lang: "en-US",
-      ...bodyObj,
-    },
-    headers: {
-      "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
-      "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-    },
-  };
+  // const options = {
+  //   method: "GET",
+  //   url: "https://asos2.p.rapidapi.com/products/v2/list",
+  //   params: {
+  //     store: "US",
+  //     offset: "0",
+  //     limit: "100",
+  //     country: "US",
+  //     sort: "freshness",
+  //     currency: "USD",
+  //     sizeSchema: "US",
+  //     lang: "en-US",
+  //     ...bodyObj,
+  //   },
+  //   headers: {
+  //     "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
+  //     "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+  //   },
+  // };
 
-  const response = await axios.request(options);
+  // const response = await axios.request(options);
 
-  const data = response.data;
+  // const data = response.data;
+
+  // We fetch local sample data because RapidAPI has expired temporarily
+  const response = await fetch(
+    "http://localhost:3000/api/local_listProductData"
+  );
+
+  const data = await response.json();
+
+  console.log(data);
 
   return { props: { data: data } };
 }

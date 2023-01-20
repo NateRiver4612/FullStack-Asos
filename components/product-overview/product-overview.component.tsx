@@ -32,7 +32,12 @@ const ProductOverview = ({ product }) => {
       className="flex relative flex-col cursor-pointer  mt-5 "
     >
       <div className="flex justify-end items-end ">
-        <img height={380} width={300} src={`https://${imageUrl}`} />
+        <img
+          height={380}
+          loading="lazy"
+          width={300}
+          src={`https://${imageUrl}`}
+        />
         {isSellingFast && (
           <span className="font-bold text-[8px] absolute mb-[12%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast

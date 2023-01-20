@@ -59,7 +59,7 @@ const FilterCard = ({
                   "bg-gray-300"
                 }
                 justify-between border-b-[1px] border-gray-200 cursor-pointer rounded-lg 
-          transition-all duration-200 text-gray-500 text-[16px] px-4 py-[25px] font-semibold`}
+          transition-all duration-200 text-gray-500 text-[15px] px-4 py-[25px] font-semibold`}
             >
               <span>{item.name}</span>
               <span>({item.count})</span>
@@ -111,7 +111,7 @@ const FilterSidebar = ({
                 }}
                 key={face.id + index}
                 className={`flex gap-2 flex-col border-b-[1px] border-gray-200 cursor-pointer 
-          transition-all duration-200 text-gray-500 text-[16px] px-4 py-[25px] font-semibold`}
+          transition-all duration-200 text-gray-500 text-[15px] px-4 py-[25px] font-semibold`}
               >
                 <div className="flex items-center justify-between w-full">
                   <span>{face.name}</span>
@@ -130,7 +130,7 @@ const FilterSidebar = ({
         <div className="w-full flex justify-center p-3 pb-[5%]">
           <button
             onClick={handleSubmit}
-            className="font-bold tracking-widest uppercase bg-black py-3 text-white text-lg w-full"
+            className="font-bold tracking-widest uppercase bg-black py-3 text-white text-[15px] w-full"
           >
             view items
           </button>

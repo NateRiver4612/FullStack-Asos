@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./features/search/search.slice";
+import loadingReducer from "./features/loading/loading.slice";
 import storage from "redux-persist/lib/storage";
 import {
   persistReducer,
@@ -14,6 +15,7 @@ import {
 
 const rootReducer = combineReducers({
   search: searchReducer,
+  loading: loadingReducer,
 });
 
 const persistConfig = {

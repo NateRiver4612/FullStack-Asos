@@ -43,10 +43,6 @@ const Navigation = ({ navigations }) => {
     setShowSearch(false);
   };
 
-  const onToggleSidebar = () => {
-    setOpenSidebar(!openSidebar);
-  };
-
   const onCloseSidebar = () => {
     setOpenSidebar(false);
   };
