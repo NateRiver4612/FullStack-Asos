@@ -245,11 +245,11 @@ export async function getServerSideProps(context) {
   } else {
     // production build code
     console.log("Prodution");
-    data = ListProduct;
+    data = ListProduct[0];
   }
 
   // We fetch local sample data because RapidAPI has expired temporarily
-
+  console.log(data);
   return { props: { data: data } };
 }
 
