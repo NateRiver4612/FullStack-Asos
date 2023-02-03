@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const register = () => {
+const Register = () => {
   const [switchState, setSwitchState] = useState(false);
 
   return (
@@ -37,4 +37,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
