@@ -7,7 +7,9 @@ const Spinner = () => {
         className="spinner-border text-gray-300 z-50 animate-spin inline-block w-10 h-10 border-4 rounded-full"
         role="status"
       >
-        <span className="visually-hidden">Loading...</span>
+        <span className="visually-hidden">
+          <img src="/dynamic_incon.svg" />
+        </span>
       </div>
     </div>
   );

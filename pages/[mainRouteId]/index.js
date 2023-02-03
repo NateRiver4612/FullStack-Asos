@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import dynamic from "next/dynamic";
 
 const Section_1 = dynamic(
@@ -59,16 +59,18 @@ const Mutual_Section_2 = dynamic(
 
 const index = ({ sections }) => {
   return (
-    <div className="h-full w-full pb-20">
-      <Section_1 data={sections[1]} />
-      <Section_2 data={sections[2]} />
-      <Section_3 data={sections[3]} />
-      <Section_4 data={sections[4]} />
-      <Mutual_Section_1 />
-      <Mutual_Section_2 />
-      <Section_5 data={sections[5]} />
-      <Section_6 data={sections[6]} />
-    </div>
+    <Fragment>
+      <div className="h-full w-full pb-20">
+        <Section_1 data={sections[1]} />
+        <Section_2 data={sections[2]} />
+        <Section_3 data={sections[3]} />
+        <Section_4 data={sections[4]} />
+        <Mutual_Section_1 />
+        <Mutual_Section_2 />
+        <Section_5 data={sections[5]} />
+        <Section_6 data={sections[6]} />
+      </div>
+    </Fragment>
   );
 };
 

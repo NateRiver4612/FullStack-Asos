@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx", 
-    "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "components/product/product-display.component.js", "components/product/product-display.component.js" ],
+    "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "components/product/product-display.component.js", "components/product/product-display.component.js", "pages/indentity/register.tsx", "pages/indentity/register.tsx" ],
   "exclude": [
     "node_modules"
   ]  

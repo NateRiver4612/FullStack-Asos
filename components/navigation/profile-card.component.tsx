@@ -42,12 +42,12 @@ const ProfileCard = () => {
                 <div className="static">
                   <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
                     <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                      <Link href="/">Sign In</Link>
+                      <Link href="/indentity/register">Sign In</Link>
                     </span>
 
                     <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
                     <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                      <Link href="/">Join</Link>
+                      <Link href="/indentity/register">Join</Link>
                     </span>
                   </div>
                 </div>

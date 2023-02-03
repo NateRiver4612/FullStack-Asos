@@ -15,7 +15,7 @@ const Breadcrums = () => {
         </li>
 
         <li className="flex items-center capitalize gap-3 text-gray-600">
-          <span className="pt-1">
+          <span>
             <BsChevronRight size={8} />
           </span>
 
@@ -23,7 +23,7 @@ const Breadcrums = () => {
         </li>
 
         <li className="flex items-center capitalize gap-3 text-gray-600">
-          <span className="pt-1">
+          <span>
             <BsChevronRight size={8} />
           </span>
           <span>{categoryRouteId}</span>
