@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Router from "next/router";
+import Head from "next/head";
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
 
@@ -79,6 +80,13 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
+      <Head>
+        <link
+          rel="shortcut icon"
+          href="/dynamic_icon.svg"
+          type="image/x-icon"
+        />
+      </Head>
       <PersistGate loading={null} persistor={persistor}>
         <Navigation navigations={navigationData}></Navigation>
         <Breadcrumbs />
