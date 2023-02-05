@@ -8,7 +8,16 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        //font-family: 'Pacifico', cursive;
+        //'Raleway', sans-serif font-family: 'Playfair Display SC', serif;
+        pacifico: ["Pacifico", "cursive"],
+        raleway: ["Raleway", "sans-serif"],
+        sevillana: ["Sevillana", "cursive"],
+        playfair: ["Playfair Display SC", "serif"],
+      },
+    },
   },
   variants: {
     borderColor: ["group-hover"],

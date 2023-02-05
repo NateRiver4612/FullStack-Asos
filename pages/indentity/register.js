@@ -1,35 +1,31 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import RegisterForm from "../../components/register/form.component";
 
 const Register = () => {
-  const [switchState, setSwitchState] = useState(false);
+  const [switchState, setSwitchState] = useState(true);
 
   return (
-    <div className="fixed flex justify-center items-center top-0 bottom-0 w-screen h-screen bg-white z-50 bg-gray-300">
-      <div className="w-[70%] h-[80%] rounded-2xl bg-blue-500">
+    <div className="fixed flex justify-center items-center top-0 bottom-0 w-screen h-screen bg-white z-50 bg-gray-400">
+      <div className="w-[70%] h-[90%] rounded-xl bg-gray-100">
         <div className="p-[3%] flex w-full h-full relative">
-          <div
-            className={`w-[40%] ${
-              switchState ? "bg-black -left-0" : "left-[50%] bg-gray-200"
-            } transition-all duration-1000 mx-[5%] absolute h-[90%]  flex justify-center items-center `}
-          >
-            <button
-              onClick={() => setSwitchState(!switchState)}
-              className="p-4 bg-gray-400 rounded-lg h-fit"
-            >
-              Set
-            </button>
-          </div>
+          <RegisterForm
+            switchState={switchState}
+            setSwitchState={setSwitchState}
+          />
           <div
             className={`absolute w-[50%] mx-[5%] h-[90%] ${
               switchState ? "-right-0" : "right-[40%]"
-            } bg-red-500 transition-all duration-1000 `}
+            } bg-gray-300 z-20 rounded-[30px] transition-all duration-1000 `}
           >
-            <button
-              onClick={() => setSwitchState(!switchState)}
-              className="p-4 bg-gray-400 rounded-lg h-fit"
-            >
-              Set
-            </button>
+            <div>
+              <img src="/images/register_1.jpg" layout="fill" loading="lazy" />
+            </div>
+            <div className="flex justify-center">
+              <span className="text-[30px] font-playfair text-gray-700 tracking-wider font-bold">
+                Shop till you drop
+              </span>
+            </div>
           </div>
         </div>
       </div>
