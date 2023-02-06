@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyledInput } from "./input.componet";
 import Image from "next/image";
+import Link from "next/link";
 
 const RegisterForm = ({ switchState, setSwitchState }) => {
   return (
@@ -9,10 +10,13 @@ const RegisterForm = ({ switchState, setSwitchState }) => {
         switchState ? " -left-0" : "left-[50%] "
       }  transition-all duration-1000 mx-[10%] pt-10 absolute h-[90%] flex flex-col `}
     >
-      <div className="flex h-fit items-center gap-2">
-        <img src="/dynamic_icon.png" height={25} width={25} />
-        <span className="font-extrabold text-[15px] tracking-wide">Asos</span>
-      </div>
+      <Link href="/men">
+        <div className="cursor-pointer w-fit flex h-fit items-center gap-2">
+          <img src="/dynamic_icon.png" height={25} width={25} />
+          <span className="font-extrabold text-[15px] tracking-wide">Asos</span>
+        </div>
+      </Link>
+
       <div className="flex flex-col pt-8">
         <div className="flex flex-col">
           <span
