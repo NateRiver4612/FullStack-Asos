@@ -1,6 +1,5 @@
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useAppSelector } from "../redux/hooks";
 
 export default function Home() {
   const router = useRouter();

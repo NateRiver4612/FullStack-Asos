@@ -2,7 +2,7 @@ import React, { Children } from "react";
 import { TextField, MenuItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const StyledTextField = styled(TextField)({
+export const StyledTextField = styled(TextField)({
   "& label": {
     color: "gray",
     fontSize: "12px",
@@ -33,12 +33,6 @@ const StyledTextField = styled(TextField)({
     },
   },
 });
-
-export const StyledInput = ({ label }) => {
-  return (
-    <StyledTextField id="standard-basic" label={label} variant="standard" />
-  );
-};
 
 export const SelectItem = ({ children }) => {
   return <MenuItem>{children}</MenuItem>;

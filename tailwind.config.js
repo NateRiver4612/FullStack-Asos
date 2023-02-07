@@ -16,6 +16,7 @@ module.exports = {
         raleway: ["Raleway", "sans-serif"],
         sevillana: ["Sevillana", "cursive"],
         playfair: ["Playfair Display SC", "serif"],
+        dancing: ["Dancing Script", "cursive"],
       },
     },
   },

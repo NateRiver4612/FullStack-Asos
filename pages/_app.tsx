@@ -7,6 +7,7 @@ import Router from "next/router";
 import Head from "next/head";
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
+import { AuthUserContextProvider } from "../context/authUserContext";
 
 import "nprogress/nprogress.css";
 
@@ -83,7 +84,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link
           rel="shortcut icon"
-          href="/dynamic_icon.svg"
+          href="/dynamic_icon.png"
           type="image/x-icon"
         />
       </Head>
@@ -93,7 +94,9 @@ function MyApp({ Component, pageProps }) {
         {loading && <Spinner />}
         <div>
           <div>
-            <Component {...pageProps} />
+            <AuthUserContextProvider>
+              <Component {...pageProps} />
+            </AuthUserContextProvider>
           </div>
           <PaymentSection />
           <Footer footers={footerData} />
