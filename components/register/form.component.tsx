@@ -3,8 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "../../context/authUserContext";
 import { StyledTextField } from "./input.componet";
+import { useRouter } from "next/router";
 
 const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
+  const router = useRouter();
+
   const {
     SignInWithGooglePopup,
     SignInWithEmailAndPassword,
@@ -33,6 +36,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
       }
       clearState();
       setLoading(false);
+      router.back();
     } catch (error) {
       alert(error);
     }
@@ -47,6 +51,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
       }
       clearState();
       setLoading(false);
+      router.back();
     } catch (error) {
       alert(error);
     }
@@ -59,6 +64,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
       console.log(authUser);
       clearState();
       setLoading(false);
+      router.back();
     } catch (error) {
       alert(error);
     }

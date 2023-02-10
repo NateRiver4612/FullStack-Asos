@@ -24,7 +24,7 @@ export const TypingText = ({ title, switchState }) => (
 const Register = () => {
   const [switchState, setSwitchState] = useState(true);
   const [loading, setLoading] = useState(false);
-  console.log(loading);
+
   return (
     <div className="fixed flex justify-center items-center top-0 bottom-0 w-screen h-screen bg-white z-50 bg-gray-400">
       {loading && <Spinner></Spinner>}
