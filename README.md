@@ -86,9 +86,9 @@ Go to <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a> and su
 4. Enter your API and copy this code to `.env`
    ```js
    X_RAPIDAPI_KEY= "ENTER_YOUR_X_RAPIDAPI_KEY"
-   X_RAPIDAPI_HOST=asos2.p.rapidapi.com
-   PRODUCT_LIST=https://asos2.p.rapidapi.com/products/v2/list
-   PRODUCT_DETAIL=https://asos2.p.rapidapi.com/products/v3/detail
+   X_RAPIDAPI_HOST= "asos2.p.rapidapi.com"
+   PRODUCT_LIST= "https://asos2.p.rapidapi.com/products/v2/list"
+   PRODUCT_DETAIL= "https://asos2.p.rapidapi.com/products/v3/detail"
    ```
 
 
@@ -101,63 +101,25 @@ This website is uncompleted due to missing data supply, however there won't be n
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+- [ ] Home page
+- [ ] Products page
+- [ ] Product detail page
+- [ ] Registe page
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Email: 
+- nguyenchinhan502@gmail.com 
+- nguyenchinhan.dev@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Mobile:
+- 0909209967
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+Project Link: [https://github.com/NateRiver4612/FullStack-Asos.git](https://github.com/NateRiver4612/FullStack-Asos.git)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
