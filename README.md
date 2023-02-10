@@ -77,7 +77,7 @@ Go to <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a> and su
 1. Get RapidAPI Keys and urls at <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a>
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/NateRiver4612/FullStack-Asos.git
    ```
 3. Install NPM packages
    ```sh
