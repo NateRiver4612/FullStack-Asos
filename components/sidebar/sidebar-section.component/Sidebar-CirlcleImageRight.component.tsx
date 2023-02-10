@@ -10,6 +10,7 @@ export const Sidebar_CircleImageRight = ({
   return (
     <ul className={`grid grid-cols-1 gap-3 mt-3 px-4`}>
       {categoryItems.map((item, index) => {
+        console.log(item);
         return (
           <li
             key={item.id + index}
@@ -17,16 +18,17 @@ export const Sidebar_CircleImageRight = ({
           >
             <div className="font-bold flex items-center uppercase h-full w-full text-[13px] leading-5 pl-4 text-black">
               <Link
-                href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
-                  item.link.categoryId
-                }`.replace("//", "/")}
-              >
-                <a
-                  href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
+                href={{
+                  pathname: `/${gender}/${categoryTitle.replace(" ", "-")}/${
                     item.link.categoryId
-                  }`}
-                  className={`w-full text-[15px] text-gray-700`}
-                >
+                  }`.replace("//", "/"),
+                  query: {
+                    cid: item.link.categoryId,
+                    item: item.content.title,
+                  },
+                }}
+              >
+                <a className={`w-full text-[15px] text-gray-700`}>
                   {item.content.title}
                 </a>
               </Link>
@@ -35,9 +37,15 @@ export const Sidebar_CircleImageRight = ({
             </div>
 
             <Link
-              href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
-                item.link.categoryId
-              }`.replace("//", "/")}
+              href={{
+                pathname: `/${gender}/${categoryTitle.replace(" ", "-")}/${
+                  item.link.categoryId
+                }`.replace("//", "/"),
+                query: {
+                  cid: item.link.categoryId,
+                  item: item.content.title,
+                },
+              }}
             >
               <Image
                 height={100}

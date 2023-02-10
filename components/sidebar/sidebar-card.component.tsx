@@ -74,7 +74,7 @@ const SidebarCard = ({ gender, category }) => {
           }
           return (
             section.children.length > 0 && (
-              <Fragment>
+              <Fragment key={section.id + index}>
                 {section.content.title &&
                   !section.content.title.includes("CTA") && (
                     <div className="bg-gray-200 w-screen px-4 py-5 ">

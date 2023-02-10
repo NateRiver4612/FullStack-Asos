@@ -24,7 +24,7 @@ export const Sidebar_CircleImageList = ({
                 href={{
                   pathname: `/${gender}/${categoryTitle.replace(" ", "-")}/${
                     item.link.categoryId
-                  }`,
+                  }`.replace("//", "/"),
                   query: {
                     cid: item.link.categoryId,
                     item: item.content.title,
@@ -47,9 +47,15 @@ export const Sidebar_CircleImageList = ({
               </Link>
 
               <Link
-                href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
-                  item.link.categoryId
-                }`}
+                href={{
+                  pathname: `/${gender}/${categoryTitle.replace(" ", "-")}/${
+                    item.link.categoryId
+                  }`.replace("//", "/"),
+                  query: {
+                    cid: item.link.categoryId,
+                    item: item.content.title,
+                  },
+                }}
               >
                 <a
                   href={`/${gender}/${categoryTitle.replace(" ", "-")}/${
