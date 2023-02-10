@@ -7,7 +7,7 @@
 <h3 align="center">FullStack Asos</h3>
 
   <p align="center">
-    This website is a clone website was built for practical purposes, got inspired  by this <a href="https://www.asos.com/us/men/">original website</a>, the initial idea was to put every modern technologies that we have learnt into one place and hopefully to be the perfect combination to build a website. 
+   This website is a clone website that was built for practical purposes, got inspired by this original website, the initial idea was to put every modern technology that we have learned into one place and hope to be the perfect combination to build a website.
   </p>
 </div>
 
@@ -46,7 +46,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://full-stack-asos.vercel.app)
 
-For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in the market for it's wellknown advantages such as excellent performance in terms of loadtimes, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. The reason we chose GraphQL over REST APIs is because again for the practical purposes, putting up the challenge, but must do not despite the fact that GraphQL has its own powers to dominate Rest at some aspect such as Data fetching control, alleviating multiples data sources, etc. We use Firebase Auth for user indentification and authentication, simulating items purchase using Stripe, testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
+For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fit in the market for its well-known advantages such as excellent performance in terms of load times, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For the back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. We chose GraphQL over REST APIs because again for practical purposes, putting up the challenge, but must not despite the fact that GraphQL has the power to dominate Rest in some aspects such as Data fetching control, alleviating multiple data sources, etc. We use Firebase Auth for user identification and authentication, simulating items purchased using Stripe, and testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
 
 
 ### Built With
