@@ -44,24 +44,20 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://full-stack-asos.vercel.app)
 
 For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in the market for it's wellknown advantages such as excellent performance in terms of loadtimes, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. The reason we chose GraphQL over REST APIs is because again for the practical purposes, putting up the challenge, but must do not despite the fact that GraphQL has its own powers to dominate Rest at some aspect such as Data fetching control, alleviating multiples data sources, etc. We use Firebase Auth for user indentification and authentication, simulating items purchase using Stripe, testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![MaterialUI][MaterialUI.com]][Material-url]
+* [![TailwindCSS][Tailwind.com]][TailwindCss-url]
+* [![AppoloGraphQl][AppoloGraphQl.com]][AppoloGraphQl-url]
+* [![Firebase][Firebase.com]][Firebase-url]
+* [![ReduxToolkit][ReduxToolkit.com]][ReduxToolkit-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -206,3 +202,13 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[MaterialUI.com]: https://img.shields.io/badge/Material_UI-grey?style=for-the-badge&logo=MUI
+[Material-url]: https://mui.com/
+[Tailwind.com]: https://img.shields.io/badge/Tailwind_Css-grey?style=for-the-badge&logo=Tailwind%20CSS
+[TailwindCss-url]: https://tailwindcss.com/
+[AppoloGraphQl.com]: https://img.shields.io/badge/Appolo_GraphQl-black?style=for-the-badge&logo=Apollo%20GraphQL
+[AppoloGraphQl-url]: https://www.apollographql.com/
+[Firebase.com]: https://img.shields.io/badge/firebase-blue?style=for-the-badge&logo=Firebase
+[Firebase-url]: https://console.firebase.google.com/
+[ReduxToolkit.com]: https://img.shields.io/badge/redux-purple?style=for-the-badge&logo=Redux
+[ReduxToolkit-url]: https://redux-toolkit.js.org/
