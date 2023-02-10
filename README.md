@@ -2,23 +2,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+    <img src="dynamic_icon.png" alt="Logo" width="80" height="80">
 
 <h3 align="center">FullStack Asos</h3>
 
   <p align="center">
-    This website is a clone website was built for practical purposes, got inspired  by this <a href="https://www.asos.com/us/men/">original website</a> ,the initial idea was to put every modern technologies that we have learnt into one place and hopefully to be the perfect combination to build a website. For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in the market for it's wellknown advantages such as excellent performance in terms of loadtimes, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. The reason we chose GraphQL over REST APIs is because again for the practical purposes, putting up the challenge, but must do not despite the fact that GraphQL has its own powers to dominate Rest at some aspect such as Data fetching control, alleviating multiples data sources, etc. We use Firebase Auth for user indentification and authentication, simulating items purchase using Stripe, testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>. That's pretty much everything so far, lets go gamers .    
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    This website is a clone website was built for practical purposes, got inspired  by this <a href="https://www.asos.com/us/men/">original website</a>, the initial idea was to put every modern technologies that we have learnt into one place and hopefully to be the perfect combination to build a website. 
   </p>
 </div>
 
@@ -57,7 +46,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in the market for it's wellknown advantages such as excellent performance in terms of loadtimes, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. The reason we chose GraphQL over REST APIs is because again for the practical purposes, putting up the challenge, but must do not despite the fact that GraphQL has its own powers to dominate Rest at some aspect such as Data fetching control, alleviating multiples data sources, etc. We use Firebase Auth for user indentification and authentication, simulating items purchase using Stripe, testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
