@@ -65,46 +65,36 @@ For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+ 
+Follow these steps below to get and run a copy local version of FullStack Asos 
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Go to <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a> and subscribe their API
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get RapidAPI Keys and urls at <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a>
 2. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
 3. Install NPM packages
    ```sh
-   npm install
+   npm install // yarn install 
    ```
-4. Enter your API in `config.js`
+4. Enter your API and copy this code to `.env`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   X_RAPIDAPI_KEY= "ENTER_YOUR_X_RAPIDAPI_KEY"
+   X_RAPIDAPI_HOST=asos2.p.rapidapi.com
+   PRODUCT_LIST=https://asos2.p.rapidapi.com/products/v2/list
+   PRODUCT_DETAIL=https://asos2.p.rapidapi.com/products/v3/detail
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+This website is uncompleted due to missing data supply, however there won't be no harm for clicking around. This website is responsive so you can use multiple devices, there's few things you can do right now is just view the list and detail of products, and google // email password sign in,sign up.   
 
 
 
@@ -210,5 +200,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [AppoloGraphQl-url]: https://www.apollographql.com/
 [Firebase.com]: https://img.shields.io/badge/firebase-blue?style=for-the-badge&logo=Firebase
 [Firebase-url]: https://console.firebase.google.com/
-[ReduxToolkit.com]: https://img.shields.io/badge/redux-purple?style=for-the-badge&logo=Redux
+[ReduxToolkit.com]: https://img.shields.io/badge/redux_toolkit-purple?style=for-the-badge&logo=Redux
 [ReduxToolkit-url]: https://redux-toolkit.js.org/
