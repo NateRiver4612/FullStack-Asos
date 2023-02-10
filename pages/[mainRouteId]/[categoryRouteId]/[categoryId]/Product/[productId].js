@@ -202,43 +202,35 @@ export const getServerSideProps = async (context) => {
   const axios = require("axios");
   const { ProductDetail } = require("../../../../../public/detailProduct.data");
 
-  // const productId = context.params.productId;
-
-  // const detail_options = {
-  //   method: "GET",
-  //   url: "https://asos2.p.rapidapi.com/products/v3/detail",
-  //   params: {
-  //     id: productId,
-  //     lang: "en-US",
-  //     store: "US",
-  //     sizeSchema: "US",
-  //     currency: "USD",
-  //   },
-  //   headers: {
-  //     "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
-  //     "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-  //   },
-  // };
-
-  // const detail_response = await axios.request(detail_options);
-
-  // const data = detail_response.data;
-
   // We fetch local sample data because RapidAPI has expired temporarily
   let data = {};
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     // development build code
-    console.log("Development");
-    const response = await fetch(
-      "http://localhost:3000/api/local_detailProductData"
-    );
-
-    data = await response.json();
+    data = ProductDetail[0];
   } else {
     // production build code
-    console.log("Prodution");
-    data = ProductDetail[0];
+    const productId = context.params.productId;
+
+    const detail_options = {
+      method: "GET",
+      url: process.env.PRODUCT_DETAIL,
+      params: {
+        id: productId,
+        lang: "en-US",
+        store: "US",
+        sizeSchema: "US",
+        currency: "USD",
+      },
+      headers: {
+        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY,
+        "X-RapidAPI-Host": process.env.X_RAPIDAPI_HOST,
+      },
+    };
+
+    const detail_response = await axios.request(detail_options);
+
+    data = detail_response.data;
   }
 
   return {

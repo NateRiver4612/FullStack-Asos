@@ -8,7 +8,6 @@ import Head from "next/head";
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
 import { AuthUserContextProvider } from "../context/authUserContext";
-
 import "nprogress/nprogress.css";
 
 import dynamic from "next/dynamic";
