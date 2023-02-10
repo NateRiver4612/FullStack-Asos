@@ -189,6 +189,7 @@ const ProductList = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
+  const axios = require("axios");
   const { ListProduct } = require("../../../../public/listProduct.data");
 
   console.log(ListProduct);
