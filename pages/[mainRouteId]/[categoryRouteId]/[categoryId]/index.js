@@ -195,51 +195,45 @@ export async function getServerSideProps(context) {
 
   var bodyObj = {};
 
-  Object.entries(context.query).map((object, index) => {
-    const key = object[0];
-    const value = object[1];
-
-    bodyObj[key] = value;
-  });
-
-  // const options = {
-  //   method: "GET",
-  //   url: "https://asos2.p.rapidapi.com/products/v2/list",
-  //   params: {
-  //     store: "US",
-  //     offset: "0",
-  //     limit: "100",
-  //     country: "US",
-  //     sort: "freshness",
-  //     currency: "USD",
-  //     sizeSchema: "US",
-  //     lang: "en-US",
-  //     ...bodyObj,
-  //   },
-  //   headers: {
-  //     "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
-  //     "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-  //   },
-  // };
-
-  // const response = await axios.request(options);
-
-  // const data = response.data;
-
   let data = {};
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     // development build code
     console.log("Development");
-    const response = await fetch(
-      "http://localhost:3000/api/local_listProductData"
-    );
-
-    data = await response.json();
+    data = ListProduct[0];
   } else {
     // production build code
     console.log("Prodution");
-    data = ListProduct[0];
+    Object.entries(context.query).map((object, index) => {
+      const key = object[0];
+      const value = object[1];
+
+      bodyObj[key] = value;
+    });
+
+    const options = {
+      method: "GET",
+      url: "https://asos2.p.rapidapi.com/products/v2/list",
+      params: {
+        store: "US",
+        offset: "0",
+        limit: "100",
+        country: "US",
+        sort: "freshness",
+        currency: "USD",
+        sizeSchema: "US",
+        lang: "en-US",
+        ...bodyObj,
+      },
+      headers: {
+        "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
+        "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+      },
+    };
+
+    const response = await axios.request(options);
+
+    data = response.data;
   }
 
   return { props: { data: data } };
