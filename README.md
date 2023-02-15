@@ -7,7 +7,7 @@
 <h3 align="center">FullStack Asos</h3>
 
   <p align="center">
-    This website is a clone website was built for practical purposes, got inspired  by this <a href="https://www.asos.com/us/men/">original website</a>, the initial idea was to put every modern technologies that we have learnt into one place and hopefully to be the perfect combination to build a website. 
+   This website is a clone website that was built for practical purposes, got inspired by this original website, the initial idea was to put every modern technology that we have learned into one place and hope to be the perfect combination to build a website.
   </p>
 </div>
 
@@ -46,7 +46,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://full-stack-asos.vercel.app)
 
-For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in the market for it's wellknown advantages such as excellent performance in terms of loadtimes, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. The reason we chose GraphQL over REST APIs is because again for the practical purposes, putting up the challenge, but must do not despite the fact that GraphQL has its own powers to dominate Rest at some aspect such as Data fetching control, alleviating multiples data sources, etc. We use Firebase Auth for user indentification and authentication, simulating items purchase using Stripe, testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
+For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fit in the market for its well-known advantages such as excellent performance in terms of load times, great SEO, load times helped with "lazy loading" and automatic code splitting, pre-rendering which make our application more versatile, etc. For the back-end, our website static data will be fetched from <a href="https://rapidapi.com/apidojo/api/asos2">RapidAPI</a> and dynamic data will be stored in <a href="https://www.mongodb.com/">MongoDB</a> and queried using <a href="https://www.apollographql.com/docs/">Apollo GraphQL</a>. We chose GraphQL over REST APIs because again for practical purposes, putting up the challenge, but must not despite the fact that GraphQL has the power to dominate Rest in some aspects such as Data fetching control, alleviating multiple data sources, etc. We use Firebase Auth for user identification and authentication, simulating items purchased using Stripe, and testing with Unit tests.Finally host our website on <a href="https://vercel.com/dashboard">Vercel</a>.
 
 
 ### Built With
@@ -65,109 +65,61 @@ For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fits in 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+ 
+Follow these steps below to get and run a copy local version of FullStack Asos 
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Go to <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a> and subscribe their API
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get RapidAPI Keys and urls at <a href="https://rapidapi.com/apidojo/api/asos2">Asos Rapid API</a>
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/NateRiver4612/FullStack-Asos.git
    ```
 3. Install NPM packages
    ```sh
-   npm install
+   npm install // yarn install 
    ```
-4. Enter your API in `config.js`
+4. Enter your API and copy this code to `.env`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   X_RAPIDAPI_KEY= "ENTER_YOUR_X_RAPIDAPI_KEY"
+   X_RAPIDAPI_HOST= "asos2.p.rapidapi.com"
+   PRODUCT_LIST= "https://asos2.p.rapidapi.com/products/v2/list"
+   PRODUCT_DETAIL= "https://asos2.p.rapidapi.com/products/v3/detail"
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+This website is uncompleted due to missing data supply, however there won't be no harm for clicking around. This website is responsive so you can use multiple devices, there's few things you can do right now is just view the list and detail of products, and google // email password sign in,sign up.   
 
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+- [ ] Home page
+- [ ] Products page
+- [ ] Product detail page
+- [ ] Registe page
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Email: 
+- nguyenchinhan502@gmail.com 
+- nguyenchinhan.dev@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Mobile:
+- 0909209967
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+Project Link: [https://github.com/NateRiver4612/FullStack-Asos.git](https://github.com/NateRiver4612/FullStack-Asos.git)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -210,5 +162,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [AppoloGraphQl-url]: https://www.apollographql.com/
 [Firebase.com]: https://img.shields.io/badge/firebase-blue?style=for-the-badge&logo=Firebase
 [Firebase-url]: https://console.firebase.google.com/
-[ReduxToolkit.com]: https://img.shields.io/badge/redux-purple?style=for-the-badge&logo=Redux
+[ReduxToolkit.com]: https://img.shields.io/badge/redux_toolkit-purple?style=for-the-badge&logo=Redux
 [ReduxToolkit-url]: https://redux-toolkit.js.org/
