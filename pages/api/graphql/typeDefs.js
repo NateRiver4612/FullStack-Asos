@@ -38,6 +38,8 @@ const typeDefs = gql`
     link: String!
     likes: [Like]
     comments: [Comment]
+    likeCount: Int
+    commentCount: Int
   }
 
   input CreateProduct_Input {
@@ -69,12 +71,16 @@ const typeDefs = gql`
   }
 
   type Query {
-    getAccounts: [Account]
+    getLikedProducts: [Product]
   }
 
   type Mutation {
     createProduct(input: CreateProduct_Input!): Product!
     likeProduct(input: LikeProduct_Input!): Product!
+  }
+
+  type Subscription {
+    productLiked(productID: ID!): Product
   }
 `;
 

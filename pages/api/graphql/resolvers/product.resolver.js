@@ -2,16 +2,56 @@ const Product = require("../../models/product.model");
 const axios = require("axios");
 const clientPromise = require("../../../../utils/mongodb");
 
+const create_LikeProduct = async (
+  id,
+  cur_price,
+  pre_price,
+  imageUrl,
+  name,
+  isSellingFast,
+  link,
+  userID,
+  userName
+) => {
+  const likeProduct = new Product({
+    id: id,
+    price: {
+      current: {
+        text: "$" + cur_price.toString(),
+        value: cur_price,
+      },
+      previous: {
+        text: "$" + pre_price.toString(),
+        value: pre_price,
+      },
+    },
+    imageUrl: imageUrl,
+    name: name,
+    isSellingFast: isSellingFast,
+    link: link,
+    likes: [
+      {
+        id: userID,
+        displayName: userName,
+        createdAt: new Date().toISOString(),
+      },
+    ],
+    likeCount: 1,
+  });
+
+  var product = await likeProduct.save();
+
+  return product;
+};
+
 module.exports = {
   Query: {
-    getAccounts: async () => {
+    getLikedProducts: async () => {
       try {
-        const users = await axios.get("https://api.github.com/users");
-        return users.data.map(({ id, login, avatar_url }) => ({
-          id,
-          login,
-          avatar_url,
-        }));
+        const likedProducts = await Product.find({
+          likeCount: { $gte: 1 },
+        }).exec();
+        return likedProducts;
       } catch (error) {
         throw error;
       }
@@ -76,40 +116,49 @@ module.exports = {
       },
       context
     ) {
-      // Check if product existed ?
-      // Check if user liked product ?
+      const existedProduct = (await Product.find({ id }))[0];
 
-      //
-      const likeProduct = new Product({
+      // Check if product existed ?
+      if (existedProduct) {
+        // Check if user liked product ?
+        const likedUser = existedProduct.likes.find(
+          (user) => user.id == userID
+        );
+
+        if (likedUser) {
+          existedProduct.likes = existedProduct.likes.filter(
+            (user) => user.id !== userID
+          );
+          existedProduct.likeCount -= 1;
+        } else {
+          existedProduct.likes.push({
+            id: userID,
+            displayName: userName,
+            createdAt: new Date().toISOString(),
+          });
+          existedProduct.likeCount += 1;
+        }
+
+        await existedProduct.save();
+
+        return existedProduct;
+      }
+
+      const product = await create_LikeProduct(
         id,
-        price: {
-          current: {
-            text: "$" + cur_price.toString(),
-            value: cur_price,
-          },
-          previous: {
-            text: "$" + pre_price.toString(),
-            value: pre_price,
-          },
-        },
+        cur_price,
+        pre_price,
         imageUrl,
         name,
         isSellingFast,
         link,
-        likes: [
-          {
-            id: userID,
-            displayName: userName,
-            createdAt: new Date().toISOString(),
-          },
-        ],
-      });
+        userID,
+        userName
+      );
 
-      // var product = await likeProduct.save();
-
-      console.log(likeProduct);
-
-      return likeProduct;
+      return product;
     },
   },
+
+  Subscription: {},
 };
