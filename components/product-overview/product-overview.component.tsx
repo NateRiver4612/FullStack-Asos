@@ -1,7 +1,8 @@
-import React from "react";
-import { AiFillHeart } from "react-icons/ai";
+import React, { useState } from "react";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { gql, useMutation } from "@apollo/client";
 
 const ProductOverview = ({ product }) => {
   const { price, imageUrl, name, isSellingFast, id } = product;
@@ -12,6 +13,8 @@ const ProductOverview = ({ product }) => {
     const { categoryId, mainRouteId, categoryRouteId } = router.query;
 
     const url1 = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
+
+    console.log(url1);
 
     const query = {
       cid: router.query.cid,
@@ -25,16 +28,32 @@ const ProductOverview = ({ product }) => {
     });
   };
 
+  const values = {
+    id: id,
+    price: price,
+    imageUrl: imageUrl,
+    name: name,
+    isSellingFast: isSellingFast,
+  };
+
+  // const [createProduct, { error }] = useMutation(CREATE_PRODUCT, {
+  //   variables: { input: values },
+  // });
+
+  const handleLike = () => {
+    // createProduct();
+    console.log("Like ", id);
+  };
+
   return (
     <div
-      onClick={handleSelect}
       key={product.id}
       className="flex relative flex-col cursor-pointer  mt-5 "
     >
       <div className="flex justify-end items-end ">
-        <img
+        <Image
+          onClick={handleSelect}
           height={380}
-          loading="lazy"
           width={300}
           src={`https://${imageUrl}`}
         />
@@ -44,12 +63,21 @@ const ProductOverview = ({ product }) => {
           </span>
         )}
 
-        <span className="absolute text-[20px] sm:text-[24px] bg-white/50 rounded-full p-[5px] mb-[10px] mr-[10px]">
-          {/* <AiOutlineHeart size={26}></AiOutlineHeart> */}
+        {/* <span
+          onClick={handleLikeProduct}
+          className="absolute text-[20px] sm:text-[24px] bg-white/50 rounded-full p-[5px] mb-[10px] mr-[10px]"
+        >
           <AiFillHeart></AiFillHeart>
+        </span> */}
+
+        <span
+          onClick={handleLike}
+          className="absolute text-[20px] sm:text-[24px] bg-white/50 rounded-full p-[5px] mb-[10px] mr-[10px]"
+        >
+          <AiOutlineHeart></AiOutlineHeart>
         </span>
       </div>
-      <div className="flex flex-col h-full">
+      <div onClick={handleSelect} className="flex flex-col h-full">
         <span className="capitalize  mt-2 font-thin line-clamp-2 tracking-wider text-black text-[15px]">
           {name}
         </span>
@@ -72,5 +100,52 @@ const ProductOverview = ({ product }) => {
     </div>
   );
 };
+
+const CREATE_PRODUCT = gql`
+  mutation (
+    $ID: String
+    $ImageUrl: String
+    $Name: String
+    $IsSellingFast: Boolean
+    # $Price: {
+    #   current:{text: String, value: Int}
+    #   previous:{text: String, value: Int}
+    # }
+    $Price_Text: String
+    $Price_Value: String
+  ) {
+    createProduct(
+      input: {
+        id: $ID
+        price: {
+          current: { text: $Price_Text, value: $Price_Value }
+          previous: { text: $Price_Text, value: $Price_Value }
+        }
+        imageUrl: $ImageUrl
+        name: $Name
+        isSellingFast: $IsSellingFast
+      }
+    ) {
+      id
+      # price {
+      #   current {
+      #     text
+      #     value
+      #   }
+      #   previous {
+      #     text
+      #     value
+      #   }
+      # }
+      imageUrl
+      name
+      isSellingFast
+      likes {
+        id
+        displayName
+      }
+    }
+  }
+`;
 
 export default ProductOverview;

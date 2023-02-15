@@ -1,26 +1,23 @@
-import { ApolloServer } from "apollo-server-micro";
-import { typeDefs } from "./typeDefs";
-import { resolvers } from "./resolvers/index";
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import { ApolloServer, gql } from "@apollo/server";
+import typeDefs from "./typeDefs";
+import resolvers from "./resolvers";
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import clientPromise from "../../../utils/mongodb";
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  cors: { origin: true },
-  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
 });
 
-const startServer = apolloServer.start();
+const connect = async () => {
+  return await clientPromise;
+};
 
-export default async function handler(req, res) {
-  await startServer;
-  await apolloServer.createHandler({
-    path: "/api/graphql",
-  })(req, res);
+try {
+  connect();
+  console.log("Connected to MongoDb");
+} catch (error) {
+  console.log(error);
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export default startServerAndCreateNextHandler(apolloServer);
