@@ -1,11 +1,8 @@
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "http://localhost:3000/api/graphql"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
-  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT"
@@ -18,7 +15,12 @@ const allowCors = (fn) => async (req, res) => {
     res.status(200).end();
     return;
   }
-  await fn(req, res);
+  return await fn(req, res);
 };
 
-export default allowCors;
+const handler = (req, res) => {
+  const d = new Date();
+  res.end(d.toString());
+};
+
+module.exports = allowCors(handler);

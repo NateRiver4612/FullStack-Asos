@@ -1,22 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
-    domains: [
-      "static.wikia.nocookie.net",
-      "lh3.googleusercontent.com",
-      "upload.wikimedia.org",
-      "cdn.imgbin.com",
-      "www.clipartmax.com",
-      "s0.2mdn.net",
-      "images.asos-media.com",
-      "content.asos-media.com",
-      "images.asos-media.com/products/reclaimed-vintage-unisex-oversized-blazer-in-check-with-fur-trim-part-of-a-set/203439085-1-multi",
-    ],
-  },
   async headers() {
     return [
       {
@@ -37,6 +20,23 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  reactStrictMode: true,
+  swcMinify: true,
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+    domains: [
+      "static.wikia.nocookie.net",
+      "lh3.googleusercontent.com",
+      "upload.wikimedia.org",
+      "cdn.imgbin.com",
+      "www.clipartmax.com",
+      "s0.2mdn.net",
+      "images.asos-media.com",
+      "content.asos-media.com",
+      "images.asos-media.com/products/reclaimed-vintage-unisex-oversized-blazer-in-check-with-fur-trim-part-of-a-set/203439085-1-multi",
+    ],
   },
 };
 
