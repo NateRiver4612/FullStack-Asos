@@ -6,10 +6,10 @@ const client = new ApolloClient({
   headers: {
     Authorization: process.env.NEXT_PUBLIC_WP_AUTHORIZATION,
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:3000/api/graphql",
-    "Access-Control-Allow-Credentials": false,
+    "Access-Control-Allow-Origin": "http://localhost:3000/api/grapqh",
+    "Access-Control-Allow-Credentials": true,
   },
-  credentials: false,
+  credentials: "include",
 });
 
 export default client;
