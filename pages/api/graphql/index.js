@@ -3,6 +3,7 @@ import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import connectMongo from "../../../utils/mongodb";
+import cors from "cors";
 
 const apolloServer = new ApolloServer({
   typeDefs,
