@@ -71,16 +71,13 @@ const typeDefs = gql`
   }
 
   type Query {
+    getUsers: [Account]
     getLikedProducts: [Product]
   }
 
   type Mutation {
     createProduct(input: CreateProduct_Input!): Product!
     likeProduct(input: LikeProduct_Input!): Product!
-  }
-
-  type Subscription {
-    productLiked(productID: ID!): Product
   }
 `;
 

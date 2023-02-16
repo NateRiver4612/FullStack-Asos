@@ -1,6 +1,6 @@
 const Product = require("../../models/product.model");
 const axios = require("axios");
-const clientPromise = require("../../../../utils/mongodb");
+const connectMongo = require("../../../../utils/mongodb");
 
 const create_LikeProduct = async (
   id,
@@ -39,6 +39,8 @@ const create_LikeProduct = async (
     likeCount: 1,
   });
 
+  console.log(likeProduct);
+
   var product = await likeProduct.save();
 
   return product;
@@ -51,7 +53,21 @@ module.exports = {
         const likedProducts = await Product.find({
           likeCount: { $gte: 1 },
         }).exec();
+
         return likedProducts;
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    getUsers: async () => {
+      try {
+        const users = await axios.get("https://api.github.com/users");
+        return users.data.map(({ id, login, avatar_url }) => ({
+          id,
+          login,
+          avatar_url,
+        }));
       } catch (error) {
         throw error;
       }
@@ -92,11 +108,9 @@ module.exports = {
         isSellingFast,
       });
 
-      await clientPromise;
-
       const product = await newProduct.save();
 
-      return newProduct;
+      return product;
     },
 
     async likeProduct(
@@ -159,6 +173,4 @@ module.exports = {
       return product;
     },
   },
-
-  Subscription: {},
 };

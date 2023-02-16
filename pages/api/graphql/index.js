@@ -2,7 +2,7 @@ import { ApolloServer, gql } from "@apollo/server";
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import clientPromise from "../../../utils/mongodb";
+import connectMongo from "../../../utils/mongodb";
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -10,7 +10,7 @@ const apolloServer = new ApolloServer({
 });
 
 const connect = async () => {
-  return await clientPromise;
+  return await connectMongo();
 };
 
 try {
