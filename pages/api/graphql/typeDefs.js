@@ -34,7 +34,7 @@ const typeDefs = gql`
     price: Price!
     imageUrl: String!
     name: String!
-    isSellingFast: Boolean!
+    isSellingFast: Boolean
     link: String!
     likes: [Like]
     comments: [Comment]
@@ -58,7 +58,7 @@ const typeDefs = gql`
     pre_price: Float!
     imageUrl: String!
     name: String!
-    isSellingFast: Boolean!
+    isSellingFast: Boolean
     link: String!
     userID: String!
     userName: String!

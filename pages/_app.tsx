@@ -9,6 +9,8 @@ import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
 import { AuthUserContextProvider } from "../context/authUserContext";
 import "nprogress/nprogress.css";
+import { ApolloProvider } from "@apollo/client";
+import client from "../utils/apolloClient";
 
 import dynamic from "next/dynamic";
 import Spinner from "../components/spinner/spinner.component";
@@ -80,29 +82,31 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <Head>
-        <link
-          rel="shortcut icon"
-          href="/dynamic_icon.png"
-          type="image/x-icon"
-        />
-      </Head>
-      <PersistGate loading={null} persistor={persistor}>
-        <Navigation navigations={navigationData}></Navigation>
-        <Breadcrumbs />
-        {loading && <Spinner />}
-        <div>
+      <ApolloProvider client={client}>
+        <Head>
+          <link
+            rel="shortcut icon"
+            href="/dynamic_icon.png"
+            type="image/x-icon"
+          />
+        </Head>
+        <PersistGate loading={null} persistor={persistor}>
+          <Navigation navigations={navigationData}></Navigation>
+          <Breadcrumbs />
+          {loading && <Spinner />}
           <div>
-            <AuthUserContextProvider>
-              <Component {...pageProps} />
-            </AuthUserContextProvider>
+            <div>
+              <AuthUserContextProvider>
+                <Component {...pageProps} />
+              </AuthUserContextProvider>
+            </div>
+            <PaymentSection />
+            <Footer footers={footerData} />
+            <Bottom_Section />
           </div>
-          <PaymentSection />
-          <Footer footers={footerData} />
-          <Bottom_Section />
-        </div>
-      </PersistGate>
-      <ProgressBar></ProgressBar>
+        </PersistGate>
+        <ProgressBar></ProgressBar>
+      </ApolloProvider>
     </Provider>
   );
 }

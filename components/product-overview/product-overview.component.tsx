@@ -1,21 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
+import { useAuth } from "../../context/authUserContext";
+import { motion } from "framer-motion";
 
 const ProductOverview = ({ product }) => {
-  const { price, imageUrl, name, isSellingFast, id } = product;
-
   const router = useRouter();
 
+  const [isProductLiked, setIsProductLiked] = useState(false);
+  const [isclicked, setIsClicked] = useState(false);
+
+  const { price, imageUrl, name, isSellingFast, id } = product;
+  const { categoryId, mainRouteId, categoryRouteId } = router.query;
+  const { authUser, SignInWithGooglePopup }: any = useAuth();
+
+  const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
+
+  const { loading: Liked_Products_Loading, data: Liked_Products_Data } =
+    useQuery(GET_LIKED_PRODUCTS);
+
+  const [likeProduct, { error: Like_Product_Error }] = useMutation(
+    LIKE_PRODUCT,
+    {
+      refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
+      update(cache, result) {
+        const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
+
+        cache.writeQuery({
+          query: GET_LIKED_PRODUCTS,
+          data: { getLikedProducts: [...data.getLikedProducts] },
+        });
+      },
+    }
+  );
+
+  const handleOnClick = () => {
+    return setIsClicked(!isclicked);
+  };
+
+  let likedProducts =
+    !Liked_Products_Loading && Liked_Products_Data?.getLikedProducts;
+
+  useEffect(() => {
+    const isLiked =
+      likedProducts && likedProducts.find((product) => product.id == id);
+
+    if (isLiked) {
+      return setIsProductLiked(true);
+    }
+    return setIsProductLiked(false);
+  }, [likedProducts]);
+
   const handleSelect = () => {
-    const { categoryId, mainRouteId, categoryRouteId } = router.query;
-
-    const url1 = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
-
-    console.log(url1);
-
     const query = {
       cid: router.query.cid,
       item: product.name,
@@ -23,26 +62,32 @@ const ProductOverview = ({ product }) => {
     };
 
     return router.push({
-      pathname: url1,
+      pathname: url,
       query: query,
     });
   };
 
-  const values = {
-    id: id,
-    price: price,
-    imageUrl: imageUrl,
-    name: name,
-    isSellingFast: isSellingFast,
-  };
+  const handleLike = async () => {
+    if (!authUser) {
+      await SignInWithGooglePopup();
+      return;
+    }
 
-  // const [createProduct, { error }] = useMutation(CREATE_PRODUCT, {
-  //   variables: { input: values },
-  // });
+    const input = {
+      value: {
+        id: id.toString(),
+        imageUrl: imageUrl,
+        name: name,
+        userID: authUser.id,
+        userName: authUser.name,
+        isSellingFast: isSellingFast,
+        link: url,
+        cur_price: parseFloat(price.current.value),
+        pre_price: parseFloat(price.current.value),
+      },
+    };
 
-  const handleLike = () => {
-    // createProduct();
-    console.log("Like ", id);
+    const result = await likeProduct({ variables: { input: input.value } });
   };
 
   return (
@@ -52,7 +97,10 @@ const ProductOverview = ({ product }) => {
     >
       <div className="flex justify-end items-end ">
         <Image
-          onClick={handleSelect}
+          onClick={() => {
+            handleSelect();
+            handleOnClick();
+          }}
           height={380}
           width={300}
           src={`https://${imageUrl}`}
@@ -63,18 +111,19 @@ const ProductOverview = ({ product }) => {
           </span>
         )}
 
-        {/* <span
-          onClick={handleLikeProduct}
-          className="absolute text-[20px] sm:text-[24px] bg-white/50 rounded-full p-[5px] mb-[10px] mr-[10px]"
-        >
-          <AiFillHeart></AiFillHeart>
-        </span> */}
-
         <span
           onClick={handleLike}
-          className="absolute text-[20px] sm:text-[24px] bg-white/50 rounded-full p-[5px] mb-[10px] mr-[10px]"
+          className={`absolute text-gray-900 ease-out text-[20px] sm:text-[24px] transition-all duration-500 ${
+            isProductLiked ? "opacity-100" : "opacity-50"
+          } bg-black/5 rounded-full p-[6px] mb-[10px] mr-[10px]`}
         >
-          <AiOutlineHeart></AiOutlineHeart>
+          <motion.div
+            className="box"
+            whileTap={{ scale: 0.4 }}
+            transition={{ type: "spring", stiffness: 300, damping: 8 }}
+          >
+            {isProductLiked || isclicked ? <AiFillHeart /> : <AiOutlineHeart />}
+          </motion.div>
         </span>
       </div>
       <div onClick={handleSelect} className="flex flex-col h-full">
@@ -100,52 +149,5 @@ const ProductOverview = ({ product }) => {
     </div>
   );
 };
-
-const CREATE_PRODUCT = gql`
-  mutation (
-    $ID: String
-    $ImageUrl: String
-    $Name: String
-    $IsSellingFast: Boolean
-    # $Price: {
-    #   current:{text: String, value: Int}
-    #   previous:{text: String, value: Int}
-    # }
-    $Price_Text: String
-    $Price_Value: String
-  ) {
-    createProduct(
-      input: {
-        id: $ID
-        price: {
-          current: { text: $Price_Text, value: $Price_Value }
-          previous: { text: $Price_Text, value: $Price_Value }
-        }
-        imageUrl: $ImageUrl
-        name: $Name
-        isSellingFast: $IsSellingFast
-      }
-    ) {
-      id
-      # price {
-      #   current {
-      #     text
-      #     value
-      #   }
-      #   previous {
-      #     text
-      #     value
-      #   }
-      # }
-      imageUrl
-      name
-      isSellingFast
-      likes {
-        id
-        displayName
-      }
-    }
-  }
-`;
 
 export default ProductOverview;

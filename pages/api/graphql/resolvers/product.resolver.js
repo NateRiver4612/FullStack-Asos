@@ -1,6 +1,5 @@
 const Product = require("../../models/product.model");
 const axios = require("axios");
-const connectMongo = require("../../../../utils/mongodb");
 
 const create_LikeProduct = async (
   id,
@@ -21,7 +20,7 @@ const create_LikeProduct = async (
         value: cur_price,
       },
       previous: {
-        text: "$" + pre_price.toString(),
+        text: pre_price ? "$" + pre_price.toString() : "",
         value: pre_price,
       },
     },
