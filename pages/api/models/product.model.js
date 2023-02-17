@@ -17,6 +17,7 @@ const ProductSchema = new Schema({
   name: String,
   isSellingFast: Boolean,
   link: String,
+  colour: String,
   likes: [
     {
       id: String,

@@ -3,7 +3,7 @@ import "../styles/globals.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { navigationData, footerData } from "../public/data";
 import PaymentSection from "../components/payment/paymentSection.component";
@@ -11,7 +11,6 @@ import { AuthUserContextProvider } from "../context/authUserContext";
 import "nprogress/nprogress.css";
 import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apolloClient";
-
 import dynamic from "next/dynamic";
 import Spinner from "../components/spinner/spinner.component";
 
@@ -63,6 +62,10 @@ function MyApp({ Component, pageProps }) {
 
   const [loading, setLoading] = React.useState(false);
 
+  const { router } = Router;
+
+  const query_number = router && Object.keys(router["state"]["query"]).length;
+
   React.useEffect(() => {
     const start = () => {
       setLoading(true);
@@ -93,7 +96,7 @@ function MyApp({ Component, pageProps }) {
           </Head>
           <PersistGate loading={null} persistor={persistor}>
             <Navigation navigations={navigationData}></Navigation>
-            <Breadcrumbs />
+            {query_number >= 2 && <Breadcrumbs />}
             {loading && <Spinner />}
             <div>
               <div>

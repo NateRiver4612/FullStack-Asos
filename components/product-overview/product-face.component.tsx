@@ -10,7 +10,9 @@ const ProductFace = ({
   addFilters,
   handleClick,
   clearFilters,
+  setActive,
   selectAllFilters,
+  handleSubmit,
   index,
 }) => {
   const router = useRouter();
@@ -27,14 +29,19 @@ const ProductFace = ({
     // Check if filter already fired
     // by checking if the face id included in the url query
     if (Object.keys(router.query).includes(id)) {
+      setActive("");
+
       delete router.query[face.id];
       return router.push(router);
     }
     return clearFilters(id);
   };
 
-  const handleSelectAllFilters = () => {
-    const allFaceFiltersId = face.facetValues.map((filter) => filter.id);
+  const handleSelectAllFilters = async () => {
+    const allFaceFiltersId = face.facetValues.map(
+      (filter: { id: String }) => filter.id
+    );
+
     return selectAllFilters(face.id, allFaceFiltersId);
   };
 

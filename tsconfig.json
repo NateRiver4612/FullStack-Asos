@@ -24,7 +24,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx", 
-    "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "components/product/product-display.component.js", "components/product/product-display.component.js", "pages/indentity/Register.js", "pages/indentity/Register.js", "context/authUserContext.tsx", "context/authUserContext.tsx", "utils/mongodb.js", "utils/mongodb.js", "utils/apolloClient.js", "utils/apolloClient.js" ],
+    "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/[categoryId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/index.js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "pages/[mainRouteId]/[categoryRouteId]/[categoryId]/Product/[productId].js", "components/product/product-display.component.js", "components/product/product-display.component.js", "pages/indentity/Register.js", "pages/indentity/Register.js", "context/authUserContext.tsx", "context/authUserContext.tsx", "utils/mongodb.js", "utils/mongodb.js", "utils/apolloClient.js", "utils/apolloClient.js", "pages/[mainRouteId]/wish-list/index.js", "pages/[mainRouteId]/wish-list/index.js" ],
   "exclude": [
     "node_modules"
   ]  

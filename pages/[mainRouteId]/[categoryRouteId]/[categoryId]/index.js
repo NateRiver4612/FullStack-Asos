@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 
 import dynamic from "next/dynamic";
 
-const ProductOverview = dynamic(() =>
-  import("../../../../components/product-overview/product-overview.component")
+const ProductOverview_Container = dynamic(() =>
+  import(
+    "../../../../components/product-overview-container/product-overview.container"
+  )
 );
 
 const ProductFace = dynamic(() =>
@@ -74,6 +76,7 @@ const ProductList = ({ data }) => {
   };
 
   const handleSubmit = () => {
+    console.log(filters);
     //Convert filters to query format
     if (Object.keys(filters).length <= 0) return;
 
@@ -104,7 +107,19 @@ const ProductList = ({ data }) => {
     const updateFilters = { ...filters };
     updateFilters[key] = value;
 
-    return setFilters(updateFilters);
+    setFilters(updateFilters);
+
+    Object.keys(updateFilters).map((key) => {
+      updateFilters[key] = updateFilters[key].join(",");
+      router.query[key] = updateFilters[key];
+      if (router.query[key].length <= 0) {
+        delete router.query[key];
+      }
+    });
+
+    setActive("");
+    setOpenFilter(false);
+    return router.push(router);
   };
 
   return (
@@ -141,6 +156,7 @@ const ProductList = ({ data }) => {
                 clearFilters={clearFilters}
                 index={index}
                 active={active}
+                setActive={setActive}
                 selectAllFilters={selectAllFilters}
                 handleClick={setActive}
                 handleSubmit={handleSubmit}
@@ -175,16 +191,7 @@ const ProductList = ({ data }) => {
           {itemCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} styles
           found
         </div>
-        <div className="grid w-[85%] grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-          {products.map((product) => {
-            return (
-              <ProductOverview
-                key={product.id}
-                product={product}
-              ></ProductOverview>
-            );
-          })}
-        </div>
+        <ProductOverview_Container products={products} />
       </div>
     </Fragment>
   );

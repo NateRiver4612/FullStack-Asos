@@ -11,6 +11,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { HiLogout } from "react-icons/hi";
 import { useAuth } from "../../context/authUserContext";
+import { useRouter } from "next/router";
 
 const map1 = new Map([
   ["my account", BiUser],
@@ -33,8 +34,11 @@ const ProfileCard = () => {
 
   const handleSignOut = async () => {
     await SignOut();
-    console.log(authUser);
   };
+
+  const router = useRouter();
+
+  const { mainRouteId } = router.query;
 
   return (
     <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
@@ -94,9 +98,12 @@ const ProfileCard = () => {
             </div>
           </div>
         </li>
+
         <Tooltip title="saved items" arrow>
-          <li>
-            <AiOutlineHeart size={26} />
+          <li className="cursor-pointer">
+            <Link href={`/${mainRouteId}/wish-list`}>
+              <AiOutlineHeart size={26} />
+            </Link>
           </li>
         </Tooltip>
 

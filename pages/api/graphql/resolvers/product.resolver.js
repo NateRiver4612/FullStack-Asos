@@ -9,6 +9,7 @@ const create_LikeProduct = async (
   name,
   isSellingFast,
   link,
+  colour,
   userID,
   userName
 ) => {
@@ -28,6 +29,7 @@ const create_LikeProduct = async (
     name: name,
     isSellingFast: isSellingFast,
     link: link,
+    colour: colour,
     likes: [
       {
         id: userID,
@@ -72,44 +74,6 @@ module.exports = {
   },
 
   Mutation: {
-    createProduct: async (
-      parent,
-      {
-        input: {
-          id,
-          cur_price,
-          pre_price,
-          imageUrl,
-          name,
-          link,
-          isSellingFast,
-        },
-      },
-      context
-    ) => {
-      const newProduct = new Product({
-        id,
-        price: {
-          current: {
-            text: "$" + cur_price.toString(),
-            value: cur_price,
-          },
-          previous: {
-            text: "$" + pre_price.toString(),
-            value: pre_price,
-          },
-        },
-        link,
-        imageUrl,
-        name,
-        isSellingFast,
-      });
-
-      const product = await newProduct.save();
-
-      return product;
-    },
-
     async likeProduct(
       parent,
       {
@@ -120,6 +84,7 @@ module.exports = {
           imageUrl,
           name,
           isSellingFast,
+          colour,
           link,
           userID,
           userName,
@@ -163,6 +128,7 @@ module.exports = {
         name,
         isSellingFast,
         link,
+        colour,
         userID,
         userName
       );

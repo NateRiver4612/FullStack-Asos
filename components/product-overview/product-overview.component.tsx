@@ -12,7 +12,7 @@ const ProductOverview = ({ product }) => {
 
   const [isProductLiked, setIsProductLiked] = useState(false);
 
-  const { price, imageUrl, name, isSellingFast, id } = product;
+  const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
 
@@ -71,7 +71,6 @@ const ProductOverview = ({ product }) => {
     if (!authUser) {
       return await SignInWithGooglePopup();
     }
-    console.log(authUser);
 
     const input = {
       value: {
@@ -81,6 +80,7 @@ const ProductOverview = ({ product }) => {
         userID: authUser.id,
         userName: authUser.name,
         isSellingFast: isSellingFast,
+        colour: colour,
         link: url,
         cur_price: parseFloat(price.current.value),
         pre_price: parseFloat(price.current.value),
@@ -105,7 +105,7 @@ const ProductOverview = ({ product }) => {
           src={`https://${imageUrl}`}
         />
         {isSellingFast && (
-          <span className="font-bold text-[8px] absolute mb-[30%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
+          <span className="font-bold absolute mb-[30%] text-[12px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast
           </span>
         )}

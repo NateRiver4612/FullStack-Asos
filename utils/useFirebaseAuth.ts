@@ -44,15 +44,12 @@ const useFirebaseAuth = () => {
   const auth = getAuth(app);
 
   const authStateChagne = async (authState: any) => {
-    console.log("Hello");
     if (authState) {
       setLoading(true);
 
       setAuthUser(formateAuthUser(authState));
 
       setLoading(false);
-
-      console.log(authUser);
     } else {
       setAuthUser(null);
       setLoading(false);

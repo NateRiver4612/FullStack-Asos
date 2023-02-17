@@ -36,6 +36,7 @@ const typeDefs = gql`
     name: String!
     isSellingFast: Boolean
     link: String!
+    colour: String
     likes: [Like]
     comments: [Comment]
     likeCount: Int
@@ -60,6 +61,7 @@ const typeDefs = gql`
     name: String!
     isSellingFast: Boolean
     link: String!
+    colour: String
     userID: String!
     userName: String!
   }
