@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
+import { InMemoryCache, useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import { useAuth } from "../../context/authUserContext";
 import { motion } from "framer-motion";
@@ -11,10 +11,11 @@ const ProductOverview = ({ product }) => {
   const router = useRouter();
 
   const [isProductLiked, setIsProductLiked] = useState(false);
-  const [isclicked, setIsClicked] = useState(false);
 
   const { price, imageUrl, name, isSellingFast, id } = product;
+
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
+
   const { authUser, SignInWithGooglePopup }: any = useAuth();
 
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
@@ -22,29 +23,22 @@ const ProductOverview = ({ product }) => {
   const { loading: Liked_Products_Loading, data: Liked_Products_Data } =
     useQuery(GET_LIKED_PRODUCTS);
 
-  const [likeProduct, { error: Like_Product_Error }] = useMutation(
-    LIKE_PRODUCT,
-    {
-      refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
-      update(cache, result) {
-        const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
+  const [likeProduct] = useMutation(LIKE_PRODUCT, {
+    refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
+    update(cache, result) {
+      const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
 
-        cache.writeQuery({
-          query: GET_LIKED_PRODUCTS,
-          data: { getLikedProducts: [...data.getLikedProducts] },
-        });
-      },
-    }
-  );
-
-  const handleOnClick = () => {
-    return setIsClicked(!isclicked);
-  };
-
-  let likedProducts =
-    !Liked_Products_Loading && Liked_Products_Data?.getLikedProducts;
+      cache.writeQuery({
+        query: GET_LIKED_PRODUCTS,
+        data: { getLikedProducts: [...data.getLikedProducts] },
+      });
+    },
+  });
 
   useEffect(() => {
+    let likedProducts =
+      !Liked_Products_Loading && Liked_Products_Data?.getLikedProducts;
+
     const isLiked =
       likedProducts &&
       likedProducts.find(
@@ -57,7 +51,7 @@ const ProductOverview = ({ product }) => {
       return setIsProductLiked(true);
     }
     return setIsProductLiked(false);
-  }, [likedProducts]);
+  }, [Liked_Products_Data, authUser]);
 
   const handleSelect = () => {
     const query = {
@@ -95,6 +89,20 @@ const ProductOverview = ({ product }) => {
     const result = await likeProduct({ variables: { input: input.value } });
   };
 
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Book: {
+        fields: {
+          author: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming);
+            },
+          },
+        },
+      },
+    },
+  });
+
   return (
     <div
       key={product.id}
@@ -104,7 +112,6 @@ const ProductOverview = ({ product }) => {
         <Image
           onClick={() => {
             handleSelect();
-            handleOnClick();
           }}
           height={380}
           width={300}
