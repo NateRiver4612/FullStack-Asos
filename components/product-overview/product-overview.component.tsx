@@ -124,8 +124,6 @@ const ProductOverview = ({ product }) => {
         )}
 
         <span
-          data-mdb-ripple="true"
-          data-mdb-ripple-color="light"
           onClick={handleLike}
           className={`absolute text-gray-900 ease-out text-[20px] sm:text-[24px] transition-all duration-500 ${
             isProductLiked ? "opacity-100" : "opacity-50"

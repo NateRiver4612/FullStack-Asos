@@ -4,23 +4,18 @@ import resolvers from "./resolvers";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import connectMongo from "../../../utils/mongodb";
 import allowCors from "../../../utils/cors.utils";
-// import Cors from "micro-cors";
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  context: connectMongo(),
 });
 
-const connect = async () => {
-  return await connectMongo();
+export const config = {
+  api: {
+    bodyParser: false,
+  },
 };
-
-try {
-  connect();
-  console.log("Connected to MongoDb");
-} catch (error) {
-  console.log(error);
-}
 
 const handler = startServerAndCreateNextHandler(apolloServer);
 
