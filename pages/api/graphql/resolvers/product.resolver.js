@@ -38,8 +38,6 @@ const create_LikeProduct = async (
     likeCount: 1,
   });
 
-  console.log(likeProduct);
-
   var product = await likeProduct.save();
 
   return product;

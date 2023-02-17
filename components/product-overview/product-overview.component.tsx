@@ -125,9 +125,7 @@ const ProductOverview = ({ product }) => {
 
         <span
           onClick={handleLike}
-          className={`absolute text-gray-900 ease-out text-[20px] sm:text-[24px] transition-all duration-500 ${
-            isProductLiked ? "opacity-100" : "opacity-50"
-          } bg-black/5 rounded-full p-[6px] mb-[10px] mr-[10px]`}
+          className={`absolute text-black ease-out  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
         >
           <motion.div
             className="box "

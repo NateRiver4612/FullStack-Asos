@@ -10,7 +10,6 @@ export const Sidebar_CircleImageRight = ({
   return (
     <ul className={`grid grid-cols-1 gap-3 mt-3 px-4`}>
       {categoryItems.map((item, index) => {
-        console.log(item);
         return (
           <li
             key={item.id + index}

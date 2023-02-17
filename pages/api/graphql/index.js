@@ -11,12 +11,6 @@ const apolloServer = new ApolloServer({
   context: connectMongo(),
 });
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 const handler = startServerAndCreateNextHandler(apolloServer);
 
 export default allowCors(handler);
