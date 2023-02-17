@@ -68,8 +68,7 @@ const ProductOverview = ({ product }) => {
 
   const handleLike = async () => {
     if (!authUser) {
-      await SignInWithGooglePopup();
-      return;
+      return await SignInWithGooglePopup();
     }
 
     const input = {
@@ -86,27 +85,13 @@ const ProductOverview = ({ product }) => {
       },
     };
 
-    const result = await likeProduct({ variables: { input: input.value } });
+    await likeProduct({ variables: { input: input.value } });
   };
-
-  const cache = new InMemoryCache({
-    typePolicies: {
-      Book: {
-        fields: {
-          author: {
-            merge(existing, incoming, { mergeObjects }) {
-              return mergeObjects(existing, incoming);
-            },
-          },
-        },
-      },
-    },
-  });
 
   return (
     <div
       key={product.id}
-      className="flex relative flex-col cursor-pointer  mt-5 "
+      className="flex relative flex-col cursor-pointer  mt-5"
     >
       <div className="flex justify-end items-end ">
         <Image
@@ -118,14 +103,14 @@ const ProductOverview = ({ product }) => {
           src={`https://${imageUrl}`}
         />
         {isSellingFast && (
-          <span className="font-bold text-[8px] absolute mb-[12%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
+          <span className="font-bold text-[8px] absolute mb-[30%] sm:mb-[7%] md:mb-[6%] lg:mb-[5%] xl:mb-[3.8%] sm:text-[13px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast
           </span>
         )}
 
         <span
           onClick={handleLike}
-          className={`absolute text-black ease-out  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
+          className={`absolute text-black ease-out flex  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
         >
           <motion.div
             className="box "

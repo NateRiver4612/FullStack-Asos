@@ -19,6 +19,7 @@ const FilterSidebar = dynamic(
 
 const ProductList = ({ data }) => {
   const { categoryName, products, itemCount, facets } = data;
+
   const [active, setActive] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
   const [filters, setFilters] = useState({});
@@ -86,6 +87,7 @@ const ProductList = ({ data }) => {
       }
     });
 
+    setActive("");
     setOpenFilter(false);
     return router.push(router);
   };
