@@ -83,28 +83,29 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <Head>
-          <link
-            rel="shortcut icon"
-            href="/dynamic_icon.png"
-            type="image/x-icon"
-          />
-        </Head>
-        <PersistGate loading={null} persistor={persistor}>
-          <Navigation navigations={navigationData}></Navigation>
-          <Breadcrumbs />
-          {loading && <Spinner />}
-          <div>
+        <AuthUserContextProvider>
+          <Head>
+            <link
+              rel="shortcut icon"
+              href="/dynamic_icon.png"
+              type="image/x-icon"
+            />
+          </Head>
+          <PersistGate loading={null} persistor={persistor}>
+            <Navigation navigations={navigationData}></Navigation>
+            <Breadcrumbs />
+            {loading && <Spinner />}
             <div>
-              <AuthUserContextProvider>
+              <div>
                 <Component {...pageProps} />
-              </AuthUserContextProvider>
+              </div>
+              <PaymentSection />
+              <Footer footers={footerData} />
+              <Bottom_Section />
             </div>
-            <PaymentSection />
-            <Footer footers={footerData} />
-            <Bottom_Section />
-          </div>
-        </PersistGate>
+          </PersistGate>
+        </AuthUserContextProvider>
+
         <ProgressBar></ProgressBar>
       </ApolloProvider>
     </Provider>

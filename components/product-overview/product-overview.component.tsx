@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { InMemoryCache, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import { useAuth } from "../../context/authUserContext";
 import { motion } from "framer-motion";
@@ -50,6 +50,7 @@ const ProductOverview = ({ product }) => {
     if (isLiked) {
       return setIsProductLiked(true);
     }
+
     return setIsProductLiked(false);
   }, [Liked_Products_Data, authUser]);
 
@@ -70,6 +71,7 @@ const ProductOverview = ({ product }) => {
     if (!authUser) {
       return await SignInWithGooglePopup();
     }
+    console.log(authUser);
 
     const input = {
       value: {

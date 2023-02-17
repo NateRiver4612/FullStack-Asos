@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BiMenu } from "react-icons/bi";
 import { useRouter } from "next/router";
 import SearchForm from "./search-form.component";
-
+import { useAuth } from "../../context/authUserContext";
 import Link from "next/link";
 import NavigationAdd from "./navigation-ad.component";
 import dynamic from "next/dynamic";
@@ -22,6 +22,8 @@ const CategoryCard = dynamic(
 const Navigation = ({ navigations }) => {
   const router = useRouter();
   const section = router.query.mainRouteId;
+
+  const { authUser } = useAuth();
 
   const [showSearch, setShowSearch] = useState(false);
   const [showCategoryCard, setShowCategoryCard] = useState(false);

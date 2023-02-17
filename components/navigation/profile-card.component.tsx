@@ -9,6 +9,8 @@ import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
+import { HiLogout } from "react-icons/hi";
+import { useAuth } from "../../context/authUserContext";
 
 const map1 = new Map([
   ["my account", BiUser],
@@ -27,29 +29,51 @@ const platMain = [
 ];
 
 const ProfileCard = () => {
+  const { authUser, SignOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await SignOut();
+    console.log(authUser);
+  };
+
   return (
     <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
       <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
         <li>
-          <div className="overflow-hidden cursor-pointer group">
-            <BiUser size={26}></BiUser>
+          <div className="overflow-hidden group">
+            <BiUser size={26} />
 
             <div
               className={`transition-all hidden md:block
-                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-36 absolute md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
+                        max-h-0 group-hover:max-h-[380px] duration-500 xl:right-[9.3%] absolute md:right-0 z-20 top-[60px] w-[325px] overflow-hidden bg-gray-100`}
             >
               <div className="h-full">
                 <div className="static">
-                  <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
-                    <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                      <Link href="/indentity/register">Sign In</Link>
-                    </span>
+                  {authUser ? (
+                    <div className="flex justify-center text-gray-600  items-center w-full ">
+                      <span className=" p-3 h-[50px] text-md font-semibold  text-start w-[78%]">
+                        <span>Hi {authUser.name}!</span>
+                      </span>
 
-                    <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
-                    <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                      <Link href="/indentity/register">Join</Link>
-                    </span>
-                  </div>
+                      <button
+                        onClick={handleSignOut}
+                        className="text-xl justify-end flex items-center p-3 h-[50px] w-fit"
+                      >
+                        <HiLogout />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
+                      <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
+                        <Link href="/indentity/register">Sign In</Link>
+                      </span>
+
+                      <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
+                      <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
+                        <Link href="/indentity/register">Join</Link>
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <ul className="flex flex-col text-gray-600  capitalize">
                   {platMain.map((key, index) => {

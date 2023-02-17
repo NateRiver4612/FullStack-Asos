@@ -8,10 +8,23 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   UserCredential,
+  signOut,
 } from "firebase/auth";
 import { app } from "./firebase.util";
 
-const formateAuthUser = (user) => ({
+export type formatUser = {
+  name: String;
+  email: String;
+  photo: String;
+  id: String;
+};
+
+const formateAuthUser = (user: {
+  displayName: any;
+  email: any;
+  photoURL: any;
+  uid: any;
+}): formatUser => ({
   name: user.displayName,
   email: user.email,
   photo: user.photoURL,
@@ -30,7 +43,8 @@ const useFirebaseAuth = () => {
 
   const auth = getAuth(app);
 
-  const authStateChagne = async (authState) => {
+  const authStateChagne = async (authState: any) => {
+    console.log("Hello");
     if (authState) {
       setLoading(true);
 
@@ -40,19 +54,27 @@ const useFirebaseAuth = () => {
 
       console.log(authUser);
     } else {
+      setAuthUser(null);
       setLoading(false);
     }
   };
 
-  const SignInWithGooglePopup = async () => signInWithPopup(auth, provider);
+  const SignInWithGooglePopup = async () =>
+    await signInWithPopup(auth, provider);
 
   const SignInWithEmailAndPassword = async (email: string, password: string) =>
-    signInWithEmailAndPassword(auth, email, password);
+    await signInWithEmailAndPassword(auth, email, password);
 
-  const SignUpWithEmailAndPassword = async (name, email, password) =>
+  const SignUpWithEmailAndPassword = async (
+    name: string,
+    email: string,
+    password: string
+  ) =>
     createUserWithEmailAndPassword(auth, email, password).then(() => {
       return updateProfile(auth.currentUser, { displayName: name });
     });
+
+  const SignOut = async () => await signOut(auth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authStateChagne);
@@ -66,6 +88,7 @@ const useFirebaseAuth = () => {
     SignInWithEmailAndPassword,
     SignInWithGooglePopup,
     SignUpWithEmailAndPassword,
+    SignOut,
   };
 };
 
