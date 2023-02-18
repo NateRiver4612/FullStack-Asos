@@ -90,7 +90,7 @@ const ProductOverview = ({
           width={300}
           src={`https://${imageUrl}`}
         />
-        {!isSellingFast && (
+        {isSellingFast && (
           <span className="font-bold absolute mb-[45%] text-[8px] sm:text-[11px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast
           </span>
@@ -130,9 +130,9 @@ const ProductOverview = ({
         <span className="capitalize  mt-2 font-thin line-clamp-2 tracking-wider text-black text-[15px]">
           {name}
         </span>
-        <div className="flex items-center mt-3">
+        <div className="flex justify-between items-center mt-3">
           {price.previous.value && (
-            <span className="text-xs pr-5 items-center tracking-wider flex line-through text-gray-500">
+            <span className="text-[10px] items-center tracking-wider flex line-through text-gray-500">
               {price.previous.text}
             </span>
           )}
