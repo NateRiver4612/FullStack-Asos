@@ -15,6 +15,7 @@ export const GET_LIKED_PRODUCTS = gql`
       }
       link
       name
+      colour
       price {
         current {
           value

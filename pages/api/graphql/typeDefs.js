@@ -56,7 +56,7 @@ const typeDefs = gql`
   input LikeProduct_Input {
     id: String!
     cur_price: Float!
-    pre_price: Float!
+    pre_price: Float
     imageUrl: String!
     name: String!
     isSellingFast: Boolean

@@ -17,11 +17,11 @@ const create_LikeProduct = async (
     id: id,
     price: {
       current: {
-        text: "$" + cur_price.toString(),
+        text: "$" + cur_price.toFixed(2).toString(),
         value: cur_price,
       },
       previous: {
-        text: pre_price ? "$" + pre_price.toString() : "",
+        text: pre_price ? "$" + pre_price.toFixed(2).toString() : "",
         value: pre_price,
       },
     },

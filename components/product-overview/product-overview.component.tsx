@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
-import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import { useAuth } from "../../context/authUserContext";
 import { motion } from "framer-motion";
+import { CgTrash } from "react-icons/cg";
+import { Like } from "../../types";
 
-const ProductOverview = ({ product }) => {
+const ProductOverview = ({
+  product,
+  isWish,
+  handleLikeProduct,
+  getLikedProducts,
+}) => {
   const router = useRouter();
 
   const [isProductLiked, setIsProductLiked] = useState(false);
@@ -20,31 +24,13 @@ const ProductOverview = ({ product }) => {
 
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
-  const { loading: Liked_Products_Loading, data: Liked_Products_Data } =
-    useQuery(GET_LIKED_PRODUCTS);
-
-  const [likeProduct] = useMutation(LIKE_PRODUCT, {
-    refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
-    update(cache, result) {
-      const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
-
-      cache.writeQuery({
-        query: GET_LIKED_PRODUCTS,
-        data: { getLikedProducts: [...data.getLikedProducts] },
-      });
-    },
-  });
-
   useEffect(() => {
-    let likedProducts =
-      !Liked_Products_Loading && Liked_Products_Data?.getLikedProducts;
-
     const isLiked =
-      likedProducts &&
-      likedProducts.find(
-        (product) =>
+      getLikedProducts &&
+      getLikedProducts.find(
+        (product: { id: String; likes: Like[] }) =>
           product.id == id &&
-          product.likes.find((like) => like.id == authUser?.id)
+          product.likes.find((like: { id: String }) => like.id == authUser?.id)
       );
 
     if (isLiked) {
@@ -52,7 +38,7 @@ const ProductOverview = ({ product }) => {
     }
 
     return setIsProductLiked(false);
-  }, [Liked_Products_Data, authUser]);
+  }, [getLikedProducts, authUser]);
 
   const handleSelect = () => {
     const query = {
@@ -83,11 +69,15 @@ const ProductOverview = ({ product }) => {
         colour: colour,
         link: url,
         cur_price: parseFloat(price.current.value),
-        pre_price: parseFloat(price.current.value),
+        pre_price: parseFloat(price.previous.value),
       },
     };
 
-    await likeProduct({ variables: { input: input.value } });
+    await handleLikeProduct({ variables: { input: input.value } });
+  };
+
+  const handleRemoveWish = () => {
+    console.log("Hellos");
   };
 
   return (
@@ -119,20 +109,24 @@ const ProductOverview = ({ product }) => {
             whileTap={{ scale: 0.4 }}
             transition={{ type: "spring", stiffness: 300, damping: 8 }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill={isProductLiked ? "true" : "none"}
-              viewBox="0 0 24 24"
-              stroke-width="1.7"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-              />
-            </svg>
+            {isWish ? (
+              <CgTrash />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill={isProductLiked ? "true" : "none"}
+                viewBox="0 0 24 24"
+                stroke-width="1.7"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            )}
           </motion.div>
         </span>
       </div>
@@ -156,6 +150,11 @@ const ProductOverview = ({ product }) => {
           </span>
         </div>
       </div>
+      {isWish && colour && (
+        <div className="py-2 mt-3 border-y-[1px] border-gray-200">
+          <span className="text-gray-300 text-sm font-thin">{colour}</span>
+        </div>
+      )}
     </div>
   );
 };

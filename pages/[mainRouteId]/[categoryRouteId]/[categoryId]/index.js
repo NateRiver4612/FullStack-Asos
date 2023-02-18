@@ -5,9 +5,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 const ProductOverview_Container = dynamic(() =>
-  import(
-    "../../../../components/product-overview-container/product-overview.container"
-  )
+  import("../../../../components/product-overview/product-overview.container")
 );
 
 const ProductFace = dynamic(() =>
