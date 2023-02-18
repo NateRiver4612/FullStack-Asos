@@ -98,7 +98,7 @@ const ProductOverview = ({
 
         <span
           onClick={handleLike}
-          className={`absolute text-black ease-out flex  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
+          className={`absolute text-black  flex  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
         >
           <motion.div
             className=""
@@ -111,7 +111,6 @@ const ProductOverview = ({
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill={isProductLiked ? "true" : "none"}
-                viewBox="0 0 24 24"
                 stroke-width="1.7"
                 stroke="currentColor"
                 className="w-6 h-6"
