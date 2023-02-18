@@ -26,7 +26,7 @@ const ProductOverview_Container = ({ products, wish }) => {
 
   return (
     <div className="grid w-[85%] transition-all duration-1000 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-      {products?.map((product: { id: React.Key }) => {
+      {products?.map((product) => {
         return (
           <ProductOverview
             getLikedProducts={likedProducts}

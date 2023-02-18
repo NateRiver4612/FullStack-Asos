@@ -20,7 +20,7 @@ const ProductOverview = ({
 
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
 
-  const { authUser, SignInWithGooglePopup }: any = useAuth();
+  const { authUser, SignInWithGooglePopup } = useAuth();
 
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 

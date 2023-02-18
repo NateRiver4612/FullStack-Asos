@@ -169,7 +169,7 @@ const Navigation = ({ navigations }) => {
         </div>
         <div className={`navigation h-[50px] bg-[#525050] hidden lg:flex `}>
           <div className="hidden relative xl:mx-[110px] text-[13px] mx-4 h-full md:flex">
-            {categories?.map((category: any, index: number) => {
+            {categories?.map((category, index: number) => {
               if (index != 1 && index != categories.length - 1) {
                 return (
                   <div
