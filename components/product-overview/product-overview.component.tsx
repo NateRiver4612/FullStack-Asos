@@ -101,7 +101,7 @@ const ProductOverview = ({
           className={`absolute text-black ease-out flex  opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
         >
           <motion.div
-            className="box "
+            className=""
             whileTap={{ scale: 0.4 }}
             transition={{ type: "spring", stiffness: 300, damping: 8 }}
           >
