@@ -19,6 +19,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ProductRating from "../../../../../components/product/product-rating.component";
 
+import dynamic from "next/dynamic";
+
+const ProductOverview_Container = dynamic(() =>
+  import(
+    "../../../../../components/product-overview/product-overview.container"
+  )
+);
+
 const ProductDetailPage = ({ data }) => {
   const {
     media: { images },
@@ -38,7 +46,7 @@ const ProductDetailPage = ({ data }) => {
 
     const random_items = [...similar_items].sort(() => 0.5 - Math.random());
 
-    setSimilarItems(random_items.slice(0, 18));
+    setSimilarItems(random_items.slice(0, 15));
   }, []);
 
   return (
@@ -53,16 +61,7 @@ const ProductDetailPage = ({ data }) => {
             you might also like
           </span>
         </div>
-        <div className="grid w-full grid-cols-3 sm:grid-cols-5 gap-3">
-          {similaritems.map((product) => {
-            return (
-              <ProductOverview
-                key={product.id}
-                product={product}
-              ></ProductOverview>
-            );
-          })}
-        </div>
+        <ProductOverview_Container similarList={true} products={similaritems} />
       </div>
       <div className="flex w-full flex-col mt-[5%] px-4 md:px-0">
         <div>

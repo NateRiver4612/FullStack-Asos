@@ -3,7 +3,7 @@ import ProductOverview from "./product-overview.component";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 
-const ProductOverview_Container = ({ products, wish }: any | null) => {
+const ProductOverview_Container = ({ products, wish, similarList }) => {
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
     update(cache, result) {
@@ -25,7 +25,13 @@ const ProductOverview_Container = ({ products, wish }: any | null) => {
     Liked_Products_Data.getLikedProducts;
 
   return (
-    <div className="grid w-[85%] transition-all duration-1000 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+    <div
+      className={`grid transition-all ${
+        similarList
+          ? "w-full grid-cols-3 sm:grid-cols-5"
+          : "grid-cols-2 w-[85%] md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+      } duration-1000  gap-3`}
+    >
       {products?.map((product) => {
         return (
           <ProductOverview
