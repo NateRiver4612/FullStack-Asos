@@ -3,7 +3,7 @@ import ProductOverview from "./product-overview.component";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 
-const ProductOverview_Container = ({ products, wish }) => {
+const ProductOverview_Container = ({ products, wish }: any | null) => {
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
     update(cache, result) {
