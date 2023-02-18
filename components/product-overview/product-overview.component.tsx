@@ -76,10 +76,6 @@ const ProductOverview = ({
     await handleLikeProduct({ variables: { input: input.value } });
   };
 
-  const handleRemoveWish = () => {
-    console.log("Hellos");
-  };
-
   return (
     <div
       key={product.id}
@@ -94,8 +90,8 @@ const ProductOverview = ({
           width={300}
           src={`https://${imageUrl}`}
         />
-        {isSellingFast && (
-          <span className="font-bold absolute mb-[30%] text-[12px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
+        {!isSellingFast && (
+          <span className="font-bold absolute mb-[45%] text-[8px] sm:text-[11px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast
           </span>
         )}
