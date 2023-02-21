@@ -45,7 +45,9 @@ const ProfileCard = () => {
       <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
         <li>
           <div className="overflow-hidden group">
-            <BiUser size={26} />
+            <Link href="/indentity/register">
+              <BiUser size={26} />
+            </Link>
 
             <div
               className={`transition-all hidden md:block

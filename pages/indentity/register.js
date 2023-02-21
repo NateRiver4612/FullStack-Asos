@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import RegisterForm from "../../components/register/form.component";
+import { RegisterForm, Display } from "../../components/register";
 import { motion } from "framer-motion";
 import { textContainer, textVariant2, staggerContainer } from "../../motion";
-import Display from "../../components/register/display.component";
 import Spinner from "../../components/spinner/spinner.component";
 
 export const TypingText = ({ title, switchState }) => (
@@ -28,13 +27,13 @@ const Register = () => {
   return (
     <div className="fixed flex justify-center items-center top-0 bottom-0 w-screen h-screen bg-white z-50 bg-gray-400">
       {loading && <Spinner></Spinner>}
-      <div className="w-[70%] h-[90%] rounded-xl bg-gray-100">
+      <div className="w-[90%] md:w-[80%] lg:w-[70%] xl:w-[70%] 2xl:w-[60%] relative h-fit rounded-xl bg-gray-100 ">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: false }}
           variants={staggerContainer}
-          className="p-[3%] flex w-full h-full relative"
+          className="p-[3%] block w-full h-[37rem] sm:h-[40rem] relative"
         >
           <RegisterForm
             setLoading={setLoading}

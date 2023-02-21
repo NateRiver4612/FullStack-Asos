@@ -72,9 +72,9 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
 
   return (
     <div
-      className={`w-[40%] ${
+      className={` w-[80%] sm:w-[50%] ${
         switchState ? " -left-0" : "left-[50%] "
-      }  transition-all duration-1000 mx-[10%] pt-10 absolute h-[90%] flex flex-col `}
+      }  transition-all duration-1000 mx-[10%] pt-10 absolute h-[90%] flex flex-col`}
     >
       <Link href="/men">
         <div className="cursor-pointer w-fit flex h-fit items-center gap-2">
@@ -83,7 +83,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
         </div>
       </Link>
 
-      <div className="flex flex-col pt-8">
+      <div className="flex flex-col pt-8 ">
         <div className="flex flex-col">
           <span
             className={`text-[28px] ${
@@ -135,7 +135,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
         <div
           className={`flex transition-all duration-500 ${
             switchState ? "h-full" : "h-0 opacity-0"
-          } flex-col w-[60%] mt-4`}
+          } flex-col w-[95%] sm:w-[60%] mt-4`}
         >
           <StyledTextField
             id="standard-basic"
@@ -145,7 +145,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
             label="Name"
           />
         </div>
-        <div className="flex flex-col w-[60%] mt-4 gap-4">
+        <div className="flex flex-col w-[95%] sm:w-[60%] mt-4 gap-4">
           <StyledTextField
             id="standard-basic"
             variant="standard"
@@ -217,7 +217,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
             </button>
           </div>
         </div>
-        <span className="text-[10px] mt-2 text-gray-400 tracking-wide w-[60%] ">
+        <span className="text-[10px] mt-2 text-gray-400 tracking-wide w-[90%] sm:w-[60%] ">
           By signing up, i agree to the{" "}
           <span className="underline cursor-pointer">Terms of Service</span> and{" "}
           <span className="underline cursor-pointer">Privacy Policy</span>
