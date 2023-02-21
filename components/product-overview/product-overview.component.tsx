@@ -22,6 +22,8 @@ const ProductOverview = ({
 
   const { authUser, SignInWithGooglePopup } = useAuth();
 
+  console.log(price);
+
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
   useEffect(() => {
@@ -130,12 +132,6 @@ const ProductOverview = ({
           {name}
         </span>
         <div className="flex justify-between items-center mt-3">
-          {price.previous.value && (
-            <span className="text-[10px] items-center tracking-wider flex line-through text-gray-500">
-              {price.previous.text}
-            </span>
-          )}
-
           <span
             className={`${
               price.previous.value ? "text-red-700" : "text-gray-600"
@@ -143,6 +139,12 @@ const ProductOverview = ({
           >
             {price.current.text}
           </span>
+
+          {price.previous.value && (
+            <span className="text-[10px] items-center tracking-wider flex line-through text-gray-500">
+              {price.previous.text}
+            </span>
+          )}
         </div>
       </div>
       {isWish && colour && (
