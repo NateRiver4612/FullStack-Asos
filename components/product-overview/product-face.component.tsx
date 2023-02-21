@@ -71,7 +71,7 @@ const ProductFace = ({
         <div
           className={`absolute z-10 ${
             index % 2 != 0 ? "right-[0]" : "left-[0]"
-          } drop-shadow-2xl h-fit bg-gray-200 h-full  w-[340px] p-3`}
+          } drop-shadow-2xl h-fit bg-gray-200  w-[340px] p-3`}
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">
@@ -114,7 +114,7 @@ const ProductFace = ({
             </div>
           )}
 
-          <ul className="flex overflow-scroll pb-4 border-t-2 border-gray-300  max-h-[220px] flex-col mt-5">
+          <ul className="flex overflow-scroll  pb-4 border-t-2 border-gray-300  max-h-[220px] flex-col mt-5">
             {face.facetValues.map((value, index) => {
               const { count, id, name } = value;
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { RegisterForm, Display } from "../../components/register";
 import { motion } from "framer-motion";
 import { textContainer, textVariant2, staggerContainer } from "../../motion";
 import Spinner from "../../components/spinner/spinner.component";
+import dynamic from "next/dynamic";
+
+const { RegisterForm } = dynamic(() => import("../../components/register"));
+
+const { Display } = dynamic(() => import("../../components/register"));
 
 export const TypingText = ({ title, switchState }) => (
   <motion.p
@@ -27,7 +31,7 @@ const Register = () => {
   return (
     <div className="fixed flex justify-center items-center top-0 bottom-0 w-screen h-screen bg-white z-50 bg-gray-400">
       {loading && <Spinner></Spinner>}
-      <div className="w-[90%] md:w-[80%] lg:w-[70%] xl:w-[70%] 2xl:w-[60%] relative h-fit rounded-xl bg-gray-100 ">
+      <div className="w-[90%] md:w-[85%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] relative h-fit rounded-xl bg-gray-100 ">
         <motion.div
           initial="hidden"
           whileInView="show"

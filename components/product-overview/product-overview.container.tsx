@@ -6,6 +6,7 @@ import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 const ProductOverview_Container = ({ products, wish, similarList }) => {
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
+
     update(cache, result) {
       const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
 

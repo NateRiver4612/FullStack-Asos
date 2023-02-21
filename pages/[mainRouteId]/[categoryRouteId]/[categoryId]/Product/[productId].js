@@ -44,9 +44,10 @@ const ProductDetailPage = ({ data }) => {
   useEffect(() => {
     const similar_items = JSON.parse(localStorage.getItem("items"));
 
-    const random_items = [...similar_items].sort(() => 0.5 - Math.random());
+    const random_items =
+      similar_items && [...similar_items].sort(() => 0.5 - Math.random());
 
-    setSimilarItems(random_items.slice(0, 15));
+    setSimilarItems(random_items?.slice(0, 15));
   }, []);
 
   return (

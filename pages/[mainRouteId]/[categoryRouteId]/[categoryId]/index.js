@@ -12,9 +12,8 @@ const ProductFace = dynamic(() =>
   import("../../../../components/product-overview/product-face.component")
 );
 
-const FilterSidebar = dynamic(
-  () => import("../../../../components/sidebar/filter-sidebar.component"),
-  { ssr: true }
+const FilterSidebar = dynamic(() =>
+  import("../../../../components/sidebar/filter-sidebar.component")
 );
 
 const ProductList = ({ data }) => {
@@ -70,11 +69,15 @@ const ProductList = ({ data }) => {
       finalObj[title] = [filter.id];
     }
 
+    //If user remove all the filter of one face
+    if (finalObj[title].length == 0) {
+      return setFilters({});
+    }
+
     return setFilters(finalObj);
   };
 
   const handleSubmit = () => {
-    console.log(filters);
     //Convert filters to query format
     if (Object.keys(filters).length <= 0) return;
 
@@ -195,7 +198,12 @@ const ProductList = ({ data }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ query, res, req }) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
+
   const axios = require("axios");
   const { ListProduct } = require("../../../../public/listProduct.data");
 
@@ -210,7 +218,7 @@ export async function getServerSideProps(context) {
   } else {
     // production build code
     console.log("Prodution");
-    Object.entries(context.query).map((object, index) => {
+    Object.entries(query).map((object, index) => {
       const key = object[0];
       const value = object[1];
 

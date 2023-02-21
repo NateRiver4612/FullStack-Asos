@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "../../context/authUserContext";

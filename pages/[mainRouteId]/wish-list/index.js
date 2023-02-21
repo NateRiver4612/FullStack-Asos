@@ -17,8 +17,6 @@ const WishList = () => {
     }
   }, [data]);
 
-  console.log(likedProducts);
-
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
       <div className="w-full flex items-center justify-center bg-gray-100">

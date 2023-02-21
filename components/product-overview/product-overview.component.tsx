@@ -22,8 +22,6 @@ const ProductOverview = ({
 
   const { authUser, SignInWithGooglePopup } = useAuth();
 
-  console.log(price);
-
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
   useEffect(() => {
