@@ -48,7 +48,7 @@ const ProductOverview = ({
     };
 
     return router.push({
-      pathname: url,
+      pathname: isWish ? product.link : url,
       query: query,
     });
   };
