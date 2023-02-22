@@ -18,17 +18,32 @@ const PaymentSection = () => {
       <ul className="flex w-[50%] xl:w-[75%] gap-12 items-center justify-end border-r-[1px] border-gray-300 pr-14">
         <li>
           <Link href="/">
-            <img src="/icons/facebook_icon.svg" alt="facebook" />
+            <Image
+              height={30}
+              width={30}
+              src="/icons/facebook_icon.svg"
+              alt="facebook"
+            />
           </Link>
         </li>
         <li>
           <Link href="/">
-            <img src="/icons/instagram_icon.svg" alt="facebook" />
+            <Image
+              height={30}
+              width={30}
+              src="/icons/instagram_icon.svg"
+              alt="facebook"
+            />
           </Link>
         </li>
         <li>
           <Link href="/">
-            <img src="/icons/snapchat_icon.svg" alt="facebook" />
+            <Image
+              height={30}
+              width={30}
+              src="/icons/snapchat_icon.svg"
+              alt="facebook"
+            />
           </Link>
         </li>
       </ul>

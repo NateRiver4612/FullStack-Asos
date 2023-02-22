@@ -17,32 +17,32 @@ import Spinner from "../components/spinner/spinner.component";
 const ProgressBar = dynamic(
   () => import("../components/progress-bar/progress-bar.component"),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
 const Bottom_Section = dynamic(
   () => import("../components/homeSections/bottom-section.component"),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
 const Navigation = dynamic(
   () => import("../components/navigation/navigation.component"),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
 const Footer = dynamic(() => import("../components/footer/footer.component"), {
-  ssr: true,
+  ssr: false,
 });
 
 const Breadcrumbs = dynamic(
   () => import("../components/breadcrums/breadcrums.component"),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 

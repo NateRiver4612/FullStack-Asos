@@ -9,14 +9,14 @@ import NavigationAdd from "./navigation-ad.component";
 import dynamic from "next/dynamic";
 
 const Sidebar = dynamic(() => import("../sidebar/sidebar.component"), {
-  ssr: true,
+  ssr: false,
 });
 const ProfileCard = dynamic(() => import("./profile-card.component"), {
-  ssr: true,
+  ssr: false,
 });
 const CategoryCard = dynamic(
   () => import("../category-card/category-card.component"),
-  { ssr: true }
+  { ssr: false }
 );
 
 const Navigation = ({ navigations }) => {

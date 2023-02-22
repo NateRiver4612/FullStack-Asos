@@ -8,7 +8,7 @@ const Spinner = () => {
         role="status"
       >
         <span className="visually-hidden">
-          <img src="/dynamic_incon.svg" />
+          <img loading="lazy" src="/dynamic_incon.svg" />
         </span>
       </div>
     </div>

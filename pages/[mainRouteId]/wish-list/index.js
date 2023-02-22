@@ -3,8 +3,10 @@ import { useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
 import dynamic from "next/dynamic";
 
-const ProductOverview_Container = dynamic(() =>
-  import("../../../components/product-overview/product-overview.container")
+const ProductOverview_Container = dynamic(
+  () =>
+    import("../../../components/product-overview/product-overview.container"),
+  { ssr: false }
 );
 
 const WishList = () => {

@@ -7,6 +7,7 @@ const Section_2 = ({ data }) => {
   return (
     <div className="cursor-pointer">
       <img
+        loading="lazy"
         className="object-cover  w-full h-[100px] xl:h-[140px]"
         src={item.content.webLargeImageUrl}
       />

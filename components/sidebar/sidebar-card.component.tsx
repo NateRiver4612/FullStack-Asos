@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper";
 import { Sidebar_CircleImageList } from "./sidebar-section.component/Sidebar-CircleImageList.component";
 import { Sidebar_CircleImageRight } from "./sidebar-section.component/Sidebar-CirlcleImageRight.component";
+import Image from "next/image";
 
 const SidebarCard = ({ gender, category }) => {
   return (
@@ -51,7 +52,9 @@ const SidebarCard = ({ gender, category }) => {
                             key={item.id + index}
                             className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold  capitalize w-full  text-gray-800`}
                           >
-                            <img
+                            <Image
+                              layout="fill"
+                              loading="lazy"
                               src={item.content.webLargeImageUrl}
                               alt="picture"
                             />

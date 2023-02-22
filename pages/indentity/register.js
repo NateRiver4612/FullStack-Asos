@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { textContainer, textVariant2, staggerContainer } from "../../motion";
 import Spinner from "../../components/spinner/spinner.component";
 import dynamic from "next/dynamic";
 
-const { RegisterForm } = dynamic(() => import("../../components/register"));
+const RegisterForm = dynamic(
+  () => import("../../components/register/form.component"),
+  {
+    ssr: false,
+  }
+);
 
-const { Display } = dynamic(() => import("../../components/register"));
+const Display = dynamic(
+  () => import("../../components/register/display.component"),
+  {
+    ssr: false,
+  }
+);
 
 export const TypingText = ({ title, switchState }) => (
   <motion.p

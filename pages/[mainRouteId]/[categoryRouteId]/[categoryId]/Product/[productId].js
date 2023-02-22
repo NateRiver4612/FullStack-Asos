@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { ProductOverview } from "../../../../../components/product-overview";
-import ProductDisplay from "../../../../../components/product/product-display.component";
-import ProductInformation from "../../../../../components/product/product-information.component";
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,10 +18,23 @@ import ProductRating from "../../../../../components/product/product-rating.comp
 
 import dynamic from "next/dynamic";
 
-const ProductOverview_Container = dynamic(() =>
-  import(
-    "../../../../../components/product-overview/product-overview.container"
-  )
+const ProductOverview_Container = dynamic(
+  () =>
+    import(
+      "../../../../../components/product-overview/product-overview.container"
+    ),
+  { ssr: false }
+);
+
+const ProductDisplay = dynamic(
+  () => import("../../../../../components/product/product-display.component"),
+  { ssr: false }
+);
+
+const ProductInformation = dynamic(
+  () =>
+    import("../../../../../components/product/product-information.component"),
+  { ssr: false }
 );
 
 const ProductDetailPage = ({ data }) => {

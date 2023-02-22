@@ -91,6 +91,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
                               className={`text-[15x] relative flex flex-start items-center cursor-pointer tracking-widest hover:font-bold py-[5px] capitalize w-full  text-gray-500`}
                             >
                               <img
+                                loading="lazy"
                                 src={item.content.webLargeImageUrl}
                                 alt="picture"
                               />
@@ -144,6 +145,7 @@ const Sidebar = ({ navigations, openSidebar }) => {
                           }  items-center cursor-pointer tracking-widest hover:font-bold py-[5px] capitalize w-full  text-gray-500`}
                         >
                           <img
+                            loading="lazy"
                             src={item.content.webLargeImageUrl}
                             alt="picture"
                           />

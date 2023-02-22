@@ -63,6 +63,7 @@ const ProductDisplay = ({ images }) => {
               <SwiperSlide key={index}>
                 <div key={index} className="swiper-zoom-container">
                   <img
+                    loading="lazy"
                     src={`https://${image.url}`}
                     width={650}
                     alt="product image"

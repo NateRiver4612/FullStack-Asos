@@ -4,16 +4,29 @@ import { useRouter } from "next/router";
 
 import dynamic from "next/dynamic";
 
-const ProductOverview_Container = dynamic(() =>
-  import("../../../../components/product-overview/product-overview.container")
+const ProductOverview_Container = dynamic(
+  () =>
+    import(
+      "../../../../components/product-overview/product-overview.container"
+    ),
+  {
+    ssr: true,
+  }
 );
 
-const ProductFace = dynamic(() =>
-  import("../../../../components/product-overview/product-face.component")
+const ProductFace = dynamic(
+  () =>
+    import("../../../../components/product-overview/product-face.component"),
+  {
+    ssr: true,
+  }
 );
 
-const FilterSidebar = dynamic(() =>
-  import("../../../../components/sidebar/filter-sidebar.component")
+const FilterSidebar = dynamic(
+  () => import("../../../../components/sidebar/filter-sidebar.component"),
+  {
+    ssr: false,
+  }
 );
 
 const ProductList = ({ data }) => {

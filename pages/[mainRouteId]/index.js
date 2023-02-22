@@ -5,6 +5,7 @@ const Section_1 = dynamic(
   () => import("../../components/homeSections/section-1.component"),
   {
     loading: () => "Loading...",
+    ssr: true,
   }
 );
 
@@ -12,13 +13,14 @@ const Section_2 = dynamic(
   () => import("../../components/homeSections/section-2.component"),
   {
     loading: () => "Loading...",
+    ssr: true,
   }
 );
 
 const Section_3 = dynamic(
   () => import("../../components/homeSections/section-3.component"),
   {
-    loading: () => "Loading...",
+    ssr: true,
   }
 );
 
@@ -26,6 +28,7 @@ const Section_4 = dynamic(
   () => import("../../components/homeSections/section-4.component"),
   {
     loading: () => "Loading...",
+    ssr: true,
   }
 );
 
@@ -33,6 +36,7 @@ const Section_6 = dynamic(
   () => import("../../components/homeSections/section-6.component"),
   {
     loading: () => "Loading...",
+    ssr: true,
   }
 );
 
@@ -40,6 +44,7 @@ const Section_5 = dynamic(
   () => import("../../components/homeSections/section-5.component"),
   {
     loading: () => "Loading...",
+    ssr: true,
   }
 );
 
@@ -47,6 +52,7 @@ const Mutual_Section_1 = dynamic(
   () => import("../../components/homeSections/mutual-section-1.component"),
   {
     loading: () => "Loading...",
+    ssr: false,
   }
 );
 
@@ -54,6 +60,7 @@ const Mutual_Section_2 = dynamic(
   () => import("../../components/homeSections/mutual-section-2.component"),
   {
     loading: () => "Loading...",
+    ssr: false,
   }
 );
 
