@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { TypingText } from "../../pages/indentity/register";
+import dynamic from "next/dynamic";
+
+const TypingText = dynamic(() => import("./typingText.component"), {
+  ssr: true,
+});
 
 const Display = ({ switchState }) => {
   return (
@@ -19,10 +23,10 @@ const Display = ({ switchState }) => {
           ease: [0, 0.71, 0.21, 1.01],
         }}
       >
-        <img src="/images/register_1.jpg" layout="fill" loading="lazy" />
+        <img src="/images/register_1.jpg" loading="lazy" />
       </motion.div>
       <div className="flex justify-center ">
-        <TypingText switchState={switchState} title="Shop till you drop" />
+        <TypingText title="Shop till you drop" switchState={switchState} />
       </div>
       <motion.div
         className="flex md:w-[70%] lg:w-[55%] xl:w-[50%] 2xl:w-[45%]"

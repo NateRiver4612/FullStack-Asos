@@ -17,10 +17,14 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
     },
   });
 
-  const { loading: Liked_Products_Loading, data: Liked_Products_Data } =
-    useQuery(GET_LIKED_PRODUCTS);
+  const {
+    loading: Liked_Products_Loading,
+    data: Liked_Products_Data,
+    error: Liked_Products_Error,
+  } = useQuery(GET_LIKED_PRODUCTS);
 
   const likedProducts =
+    !Liked_Products_Error &&
     !Liked_Products_Loading &&
     Liked_Products_Data &&
     Liked_Products_Data.getLikedProducts;

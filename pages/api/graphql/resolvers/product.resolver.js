@@ -13,7 +13,7 @@ const create_LikeProduct = async (
   userID,
   userName
 ) => {
-  const likeProduct = new Product({
+  const likeProduct = await Product.create({
     id: id,
     price: {
       current: {
@@ -40,9 +40,7 @@ const create_LikeProduct = async (
     likeCount: 1,
   });
 
-  var product = await likeProduct.save();
-
-  return product;
+  return likeProduct;
 };
 
 module.exports = {
@@ -92,7 +90,7 @@ module.exports = {
       },
       context
     ) {
-      const existedProduct = (await Product.find({ id }))[0];
+      const existedProduct = await Product.findOne({ id: id }).exec();
 
       // Check if product existed ?
       if (existedProduct) {
@@ -102,24 +100,26 @@ module.exports = {
         );
 
         if (likedUser) {
-          existedProduct.likes = existedProduct.likes.filter(
-            (user) => user.id !== userID
-          );
-          existedProduct.likeCount -= 1;
-        } else {
-          existedProduct.likes.push({
-            id: userID,
-            displayName: userName,
-            createdAt: new Date().toISOString(),
+          const res = await existedProduct.update({
+            likes: existedProduct.likes.filter((user) => user.id !== userID),
+            // $pull: { likes: { $id: id } },
+            $inc: { likeCount: -1 },
           });
-          existedProduct.likeCount += 1;
+        } else {
+          const res = await existedProduct.update({
+            $push: {
+              likes: {
+                id: userID,
+                displayName: userName,
+                createdAt: new Date().toISOString(),
+              },
+            },
+            $inc: { likeCount: 1 },
+          });
         }
-
-        await existedProduct.save();
 
         return existedProduct;
       }
-
       const product = await create_LikeProduct(
         id,
         cur_price,
