@@ -31,7 +31,7 @@ const Bottom_Section = dynamic(
 const Navigation = dynamic(
   () => import("../components/navigation/navigation.component"),
   {
-    ssr: false,
+    ssr: true,
   }
 );
 
