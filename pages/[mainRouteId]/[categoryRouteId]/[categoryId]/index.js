@@ -63,7 +63,7 @@ const ProductList = ({ data }) => {
   //New Object: contain an ID as the key the array of filter Id as value
   const addFilters = (title, filter) => {
     var finalObj = { ...filters };
-    console.log(finalObj);
+
     // check if final object has the relevent key
     if (finalObj.hasOwnProperty(title)) {
       // if it has that key then push the value according to the key
@@ -76,10 +76,15 @@ const ProductList = ({ data }) => {
           (filterId) => filterId != filter.id
         );
 
-        console.log(finalObj);
-        // if (finalObj[title].length <= 0) {
-        //   delete finalObj[title];
-        // }
+        // This is for when user remove the selected filter
+        // selected filter means they included in the router query
+        if (Object.keys(router.query).includes(title)) {
+          return handleRemove(finalObj);
+        }
+
+        if (finalObj[title].length <= 0) {
+          delete finalObj[title];
+        }
       } else {
         finalObj[title].push(filter.id);
       }
@@ -87,12 +92,21 @@ const ProductList = ({ data }) => {
       finalObj[title] = [filter.id];
     }
 
-    //If user remove all the filter of one face
-    // if (finalObj[title].length == 0) {
-    //   return setFilters({});
-    // }
-
     return setFilters(finalObj);
+  };
+
+  const handleRemove = (filters) => {
+    Object.keys(filters).map((key) => {
+      filters[key] = filters[key].join(",");
+      router.query[key] = filters[key];
+      if (router.query[key].length <= 0) {
+        delete router.query[key];
+      }
+    });
+
+    setActive("");
+    setOpenFilter(false);
+    return router.push(router);
   };
 
   const handleSubmit = () => {
@@ -110,6 +124,7 @@ const ProductList = ({ data }) => {
       }
     });
 
+    setOpenFilter(false);
     setActive("");
     setOpenFilter(false);
     return router.push(router);

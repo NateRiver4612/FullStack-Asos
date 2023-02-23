@@ -65,7 +65,10 @@ const FilterCard = ({
       </ul>
       <div className="w-full bottom-0 flex justify-center p-3">
         <button
-          onClick={handleSubmit}
+          onClick={() => {
+            setFaceClick(null);
+            handleSubmit();
+          }}
           className="font-bold tracking-widest uppercase bg-black py-3 text-white text-[15px] w-full"
         >
           view items

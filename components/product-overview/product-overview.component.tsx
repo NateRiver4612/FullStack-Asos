@@ -55,7 +55,7 @@ const ProductOverview = ({
   const handleLike = async () => {
     if (!authUser) {
       try {
-        return await SignInWithGooglePopup();
+        await SignInWithGooglePopup();
       } catch (error) {
         alert("You have to sign in first to actually interact with website");
         return;
