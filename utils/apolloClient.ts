@@ -1,6 +1,4 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-// import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-// dotenv.config();
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -18,7 +16,7 @@ const cache = new InMemoryCache({
 
 // const cache = new InMemoryCache();
 
-var client: string;
+var client: any;
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   client = new ApolloClient({

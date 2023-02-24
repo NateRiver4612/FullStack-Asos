@@ -13,8 +13,6 @@ const WishList = () => {
   const { data, error, loading } = useQuery(GET_LIKED_PRODUCTS);
   const [likedProducts, setLikedProducts] = useState([]);
 
-  console.log(likedProducts);
-
   useEffect(() => {
     if (!loading) {
       return setLikedProducts(data.getLikedProducts);
