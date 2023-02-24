@@ -4,16 +4,23 @@ import Link from "next/link";
 import Tooltip from "@mui/material/Tooltip";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiShoppingBagLine } from "react-icons/ri";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage, AiOutlineQuestionCircle } from "react-icons/ai";
 import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { HiLogout } from "react-icons/hi";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
 
-const map1 = new Map([
+const urls = new Map([
+  ["my account", "/indentity/myaccount"],
+  ["my orders", ""],
+  ["my returns", ""],
+  ["return information", ""],
+  ["contact preferences", ""],
+]);
+
+const icons = new Map([
   ["my account", BiUser],
   ["my orders", FiPackage],
   ["my returns", TbPackgeImport],
@@ -83,16 +90,19 @@ const ProfileCard = () => {
                 </div>
                 <ul className="flex flex-col text-gray-600  capitalize">
                   {platMain.map((key, index) => {
-                    const icon = map1.get(key);
+                    const icon = icons.get(key);
+                    const url = urls.get(key);
                     return (
-                      <li
-                        key={index}
-                        className="flex item-center px-6 py-[12px] hover:bg-gray-300"
-                      >
-                        {icon({ size: 24 })}
-                        <div className="px-3"></div>
-                        <span className="text-sm">{key}</span>
-                      </li>
+                      <Link href={url}>
+                        <li
+                          key={index}
+                          className="flex cursor-pointer item-center px-6 py-[12px] hover:bg-gray-300"
+                        >
+                          {icon({ size: 24 })}
+                          <div className="px-3"></div>
+                          <span className="text-sm">{key}</span>
+                        </li>
+                      </Link>
                     );
                   })}
                 </ul>
