@@ -18,20 +18,18 @@ const cache = new InMemoryCache({
 
 // const cache = new InMemoryCache();
 
-var uri: string;
+var client: string;
 
-console.log(process.env.APOLLO_PRODUCTION_URI);
-
-if (process.env.NODE_ENV == "production") {
-  uri = process.env.APOLLO_PRODUCTION_URI;
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  client = new ApolloClient({
+    uri: "http://localhost:3000/api/graphql/",
+    cache: cache,
+  });
 } else {
-  uri = process.env.APOLLO_DEVELOPMENT_URI;
+  client = new ApolloClient({
+    uri: "https://fullstack-asos-server-production.up.railway.app/",
+    cache: cache,
+  });
 }
-
-const client = new ApolloClient({
-  // uri: uri,
-  uri: "https://fullstack-asos-server-production.up.railway.app/",
-  cache: cache,
-});
 
 export default client;
