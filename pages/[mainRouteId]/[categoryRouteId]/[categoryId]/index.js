@@ -10,7 +10,7 @@ const ProductOverview_Container = dynamic(
       "../../../../components/product-overview/product-overview.container"
     ),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
@@ -18,7 +18,7 @@ const ProductFace = dynamic(
   () =>
     import("../../../../components/product-overview/product-face.component"),
   {
-    ssr: true,
+    ssr: false,
   }
 );
 
@@ -164,7 +164,7 @@ const ProductList = ({ data }) => {
         className={` ${
           !openFilter
             ? "opacity-0 w-0 right-0 top-0 bottom-0 left-0"
-            : "bg-black overflow-none h-screen opacity-50 transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
+            : "bg-black/60  h-screen transition-all duration-500 fixed top-0 bottom-0 flex z-30 w-screen"
         }  sm:hidden `}
       ></div>
       <FilterSidebar
@@ -176,7 +176,7 @@ const ProductList = ({ data }) => {
         facets={facets}
       />
 
-      <div className=" w-full flex flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
+      <div className=" w-full flex  flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200 ">
         <div className="font-bold text-center text-2xl pb-16 border-b-[1px] border-gray-200 w-full">
           {categoryName}
         </div>
@@ -261,7 +261,7 @@ export async function getServerSideProps({ query, res, req }) {
 
     const options = {
       method: "GET",
-      url: "https://asos2.p.rapidapi.com/products/v2/list",
+      url: process.env.PRODUCT_LIST,
       params: {
         store: "US",
         offset: "0",
@@ -274,8 +274,8 @@ export async function getServerSideProps({ query, res, req }) {
         ...bodyObj,
       },
       headers: {
-        "X-RapidAPI-Key": "f906b6c3a6msh49a5389c512d5c0p1819eajsn3b16cc8b1128",
-        "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY,
+        "X-RapidAPI-Host": process.env.X_RAPIDAPI_HOST,
       },
     };
 

@@ -13,6 +13,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apolloClient";
 import dynamic from "next/dynamic";
 import Spinner from "../components/spinner/spinner.component";
+// require("dotenv").config();
 
 const ProgressBar = dynamic(
   () => import("../components/progress-bar/progress-bar.component"),
