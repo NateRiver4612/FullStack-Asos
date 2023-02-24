@@ -2,6 +2,7 @@ import React from "react";
 import ProductOverview from "./product-overview.component";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
+import Spinner from "../spinner/spinner.component";
 
 const ProductOverview_Container = ({ products, wish, similarList }) => {
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
@@ -23,11 +24,9 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
     error: Liked_Products_Error,
   } = useQuery(GET_LIKED_PRODUCTS);
 
-  const likedProducts =
-    !Liked_Products_Error &&
-    !Liked_Products_Loading &&
-    Liked_Products_Data &&
-    Liked_Products_Data.getLikedProducts;
+  if (Liked_Products_Loading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div
@@ -40,7 +39,7 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
       {products?.map((product) => {
         return (
           <ProductOverview
-            getLikedProducts={likedProducts}
+            getLikedProducts={Liked_Products_Data.getLikedProducts}
             handleLikeProduct={likeProduct}
             isWish={wish}
             key={product.id}

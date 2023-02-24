@@ -100,13 +100,13 @@ module.exports = {
         );
 
         if (likedUser) {
-          const res = await existedProduct.update({
+          const res = await existedProduct.updateOne({
             likes: existedProduct.likes.filter((user) => user.id !== userID),
             // $pull: { likes: { $id: id } },
             $inc: { likeCount: -1 },
           });
         } else {
-          const res = await existedProduct.update({
+          const res = await existedProduct.updateOne({
             $push: {
               likes: {
                 id: userID,
