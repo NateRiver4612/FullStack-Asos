@@ -16,7 +16,7 @@ const cache = new InMemoryCache({
 
 // const cache = new InMemoryCache();
 
-var client: any;
+var client: ApolloClient<any>;
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   client = new ApolloClient({

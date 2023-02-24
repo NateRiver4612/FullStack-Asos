@@ -26,10 +26,18 @@ const WishList = () => {
           Saved Items
         </span>
       </div>
-      <ProductOverview_Container
-        wish={true}
-        products={likedProducts}
-      ></ProductOverview_Container>
+      {likedProducts.length > 0 ? (
+        <ProductOverview_Container
+          wish={true}
+          products={likedProducts}
+        ></ProductOverview_Container>
+      ) : (
+        <div className="h-[65vh] flex justify-center items-center w-screen">
+          <span className="font-bold font-raleway tracking-widest text-gray-300  text-[15px] md:text-[20px] lg:text-[25px] xl:text-[30px] uppercase">
+            You haven't like any item
+          </span>
+        </div>
+      )}
     </div>
   );
 };
