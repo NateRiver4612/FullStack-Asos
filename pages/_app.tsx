@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { navigationData, footerData } from "../public/data";
-import PaymentSection from "../components/payment/paymentSection.component";
+import PaymentSection from "../components/payment/payment-section.component";
 import { AuthUserContextProvider } from "../context/authUserContext";
 import "nprogress/nprogress.css";
 import { ApolloProvider } from "@apollo/client";
