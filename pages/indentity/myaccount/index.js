@@ -108,7 +108,7 @@ const MyAccount = () => {
                     onClick={() => {
                       handleSelect(key);
                     }}
-                    key={index}
+                    key={key}
                     className={`flex cursor-pointer items-center ${
                       selectedItem == key
                         ? "text-white bg-[#2d2d2d] font-bold"
@@ -143,7 +143,7 @@ const MyAccount = () => {
 
                 return (
                   <li
-                    key={index}
+                    key={key}
                     onClick={() => {
                       handleSelect(key);
                     }}
@@ -190,7 +190,7 @@ const MyAccount = () => {
 
                 return (
                   <li
-                    key={index}
+                    key={key}
                     onClick={() => {
                       handleSelect(key);
                     }}

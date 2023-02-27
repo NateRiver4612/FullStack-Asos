@@ -93,11 +93,8 @@ const ProfileCard = () => {
                     const icon = icons.get(key);
                     const url = urls.get(key);
                     return (
-                      <Link href={url}>
-                        <li
-                          key={index}
-                          className="flex cursor-pointer item-center px-6 py-[12px] hover:bg-gray-300"
-                        >
+                      <Link key={index} href={url}>
+                        <li className="flex cursor-pointer item-center px-6 py-[12px] hover:bg-gray-300">
                           {icon({ size: 24 })}
                           <div className="px-3"></div>
                           <span className="text-sm">{key}</span>
