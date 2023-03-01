@@ -4,7 +4,12 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import Spinner from "../spinner/spinner.component";
 
-const ProductOverview_Container = ({ products, wish, similarList }) => {
+const ProductOverview_Container = ({
+  products,
+  wish,
+  similarList,
+  handleUnWish,
+}) => {
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
 
@@ -43,6 +48,7 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
             handleLikeProduct={likeProduct}
             isWishItem={wish}
             key={product.id}
+            handleUnWish={handleUnWish}
             product={product}
           ></ProductOverview>
         );

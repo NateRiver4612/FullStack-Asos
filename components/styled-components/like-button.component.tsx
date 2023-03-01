@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { CgTrash } from "react-icons/cg";
 
 const LikeButton = ({
-  handleUnclick,
   handleLike,
+  handleUnWish,
   isWishItem,
   isProductLiked,
   isClicked,
@@ -19,7 +19,7 @@ const LikeButton = ({
         transition={{ type: "spring", stiffness: 300, damping: 8 }}
       >
         {isWishItem ? (
-          <CgTrash onClick={handleUnclick} />
+          <CgTrash onClick={handleUnWish} />
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"

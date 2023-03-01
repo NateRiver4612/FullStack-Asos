@@ -25,6 +25,18 @@ const WishList = () => {
     }
   }, [data, authUser]);
 
+  const handleUnWish = () => {
+    if (!loading && authUser) {
+      const likedProductsByUser = likedProducts.filter((product) =>
+        product.likes.filter((like) => like.id != authUser.id)
+      );
+
+      console.log(likedProductsByUser);
+
+      return setLikedProducts(likedProductsByUser);
+    }
+  };
+
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
       <div className="w-full flex items-center justify-center bg-gray-100">
@@ -36,6 +48,7 @@ const WishList = () => {
         <ProductOverview_Container
           wish={true}
           products={likedProducts}
+          handleUnWish={handleUnWish}
         ></ProductOverview_Container>
       ) : (
         <div className="h-[65vh] flex justify-center items-center w-screen">

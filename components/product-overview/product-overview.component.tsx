@@ -10,10 +10,10 @@ const ProductOverview = ({
   isWishItem,
   handleLikeProduct,
   getLikedProducts,
+  handleUnWish,
 }) => {
   const router = useRouter();
 
-  const [likedProducts, setLikedProducts] = useState(getLikedProducts);
   const [isProductLiked, setIsProductLiked] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -27,8 +27,8 @@ const ProductOverview = ({
 
   useEffect(() => {
     const isLiked =
-      likedProducts &&
-      likedProducts.find(
+      getLikedProducts &&
+      getLikedProducts.find(
         (product: { id: String; likes: Like[] }) =>
           product.id == id &&
           product.likes.find((like: { id: String }) => like.id == authUser?.id)
@@ -39,15 +39,7 @@ const ProductOverview = ({
     }
 
     return setIsProductLiked(false);
-  }, [likedProducts, authUser]);
-
-  const handleUnclick = () => {
-    const likedProductsNotUser = likedProducts.filter((product) =>
-      product.likes.find((like) => like.id != authUser.id)
-    );
-    console.log("fucl");
-    return setLikedProducts(likedProductsNotUser);
-  };
+  }, [getLikedProducts, authUser]);
 
   const handleSelect = () => {
     const query = {
@@ -115,8 +107,8 @@ const ProductOverview = ({
         <LikeButton
           handleLike={handleLike}
           isWishItem={isWishItem}
+          handleUnWish={handleUnWish}
           isClicked={isClicked}
-          handleUnclick={handleUnclick}
           isProductLiked={isProductLiked}
         />
       </div>
