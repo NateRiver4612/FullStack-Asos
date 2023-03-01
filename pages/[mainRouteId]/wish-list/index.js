@@ -3,6 +3,12 @@ import { useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
 import dynamic from "next/dynamic";
 import { useAuth } from "../../../context/authUserContext";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+
+import {
+  selectWishItems,
+  setWishItems,
+} from "../../../redux/features/wish/wish.slice";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -12,30 +18,22 @@ const ProductOverview_Container = dynamic(
 
 const WishList = () => {
   const { data, error, loading } = useQuery(GET_LIKED_PRODUCTS);
-  const [likedProducts, setLikedProducts] = useState([]);
   const { authUser } = useAuth();
 
-  useEffect(() => {
-    if (!loading && authUser) {
-      const likedProductsByUser = data.getLikedProducts.filter((product) =>
-        product.likes.find((like) => like.id == authUser.id)
-      );
+  const wishItems = useAppSelector(selectWishItems);
+  // const dispatch = useAppDispatch();
 
-      return setLikedProducts(likedProductsByUser);
-    }
-  }, [data, authUser]);
+  // useEffect(() => {
+  //   if (!loading && authUser) {
+  //     const likedProductsByUser = data.getLikedProducts.filter((product) =>
+  //       product.likes.find((like) => like.id == authUser.id)
+  //     );
 
-  const handleUnWish = () => {
-    if (!loading && authUser) {
-      const likedProductsByUser = likedProducts.filter((product) =>
-        product.likes.filter((like) => like.id != authUser.id)
-      );
+  //     dispatch(setWishItems(likedProductsByUser));
+  //   }
+  // }, [data, authUser]);
 
-      console.log(likedProductsByUser);
-
-      return setLikedProducts(likedProductsByUser);
-    }
-  };
+  // console.log(wishItems);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
@@ -44,12 +42,8 @@ const WishList = () => {
           Saved Items
         </span>
       </div>
-      {likedProducts.length > 0 ? (
-        <ProductOverview_Container
-          wish={true}
-          products={likedProducts}
-          handleUnWish={handleUnWish}
-        ></ProductOverview_Container>
+      {wishItems.length > 0 ? (
+        <ProductOverview_Container wish={true} products={wishItems} />
       ) : (
         <div className="h-[65vh] flex justify-center items-center w-screen">
           <span className="font-bold font-raleway tracking-widest text-gray-300  text-[15px] md:text-[20px] lg:text-[25px] xl:text-[30px] uppercase">

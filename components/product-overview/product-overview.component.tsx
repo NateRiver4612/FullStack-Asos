@@ -4,15 +4,12 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/authUserContext";
 import { Like } from "../../types";
 import LikeButton from "../styled-components/like-button.component";
+import { useAppSelector } from "../../redux/hooks";
+import { selectWishItems } from "../../redux/features/wish/wish.slice";
 
-const ProductOverview = ({
-  product,
-  isWishItem,
-  handleLikeProduct,
-  getLikedProducts,
-  handleUnWish,
-}) => {
+const ProductOverview = ({ product, isWishItem, handleLikeProduct }) => {
   const router = useRouter();
+  const wishItems = useAppSelector(selectWishItems);
 
   const [isProductLiked, setIsProductLiked] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -27,8 +24,8 @@ const ProductOverview = ({
 
   useEffect(() => {
     const isLiked =
-      getLikedProducts &&
-      getLikedProducts.find(
+      wishItems &&
+      wishItems.find(
         (product: { id: String; likes: Like[] }) =>
           product.id == id &&
           product.likes.find((like: { id: String }) => like.id == authUser?.id)
@@ -39,7 +36,7 @@ const ProductOverview = ({
     }
 
     return setIsProductLiked(false);
-  }, [getLikedProducts, authUser]);
+  }, [wishItems, authUser]);
 
   const handleSelect = () => {
     const query = {
@@ -107,7 +104,6 @@ const ProductOverview = ({
         <LikeButton
           handleLike={handleLike}
           isWishItem={isWishItem}
-          handleUnWish={handleUnWish}
           isClicked={isClicked}
           isProductLiked={isProductLiked}
         />

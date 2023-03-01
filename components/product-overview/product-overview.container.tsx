@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductOverview from "./product-overview.component";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import Spinner from "../spinner/spinner.component";
+import client from "../../utils/apolloClient";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  setWishItems,
+  selectWishItems,
+} from "../../redux/features/wish/wish.slice";
+import { useAuth } from "../../context/authUserContext";
 
-const ProductOverview_Container = ({
-  products,
-  wish,
-  similarList,
-  handleUnWish,
-}) => {
+const ProductOverview_Container = ({ products, wish, similarList }) => {
+  const dispatch = useAppDispatch();
+  const wishItems = useAppSelector(selectWishItems);
+
+  const { authUser } = useAuth();
+
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
-
-    update(cache, result) {
-      const data: any = cache.readQuery({ query: GET_LIKED_PRODUCTS });
-
-      cache.writeQuery({
-        query: GET_LIKED_PRODUCTS,
-        data: { getLikedProducts: [...data.getLikedProducts] },
-      });
-    },
   });
 
   const {
@@ -29,9 +27,27 @@ const ProductOverview_Container = ({
     error: Liked_Products_Error,
   } = useQuery(GET_LIKED_PRODUCTS);
 
+  useEffect(() => {
+    if (!Liked_Products_Loading && authUser) {
+      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
+        (product) => product.likes.find((like) => like.id == authUser.id)
+      );
+
+      dispatch(setWishItems(likedProductsByUser));
+    }
+  }, [Liked_Products_Data?.getLikedProducts, authUser]);
+
+  // const getLikedProducts = client.readQuery({
+  //   query: GET_LIKED_PRODUCTS,
+  // });
+
+  // console.log(getLikedProducts);
+
   if (Liked_Products_Loading) {
     return <Spinner></Spinner>;
   }
+
+  console.log(wishItems);
 
   return (
     <div
@@ -44,11 +60,9 @@ const ProductOverview_Container = ({
       {products?.map((product) => {
         return (
           <ProductOverview
-            getLikedProducts={Liked_Products_Data.getLikedProducts}
             handleLikeProduct={likeProduct}
             isWishItem={wish}
             key={product.id}
-            handleUnWish={handleUnWish}
             product={product}
           ></ProductOverview>
         );
