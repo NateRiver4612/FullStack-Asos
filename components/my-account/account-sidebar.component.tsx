@@ -49,10 +49,10 @@ const section_3 = [
 
 const AccountSidebar = ({ handleSelect, selectedItem }) => {
   return (
-    <div className="w-[31%] flex flex-col gap-2">
+    <div className="w-screen sm:w-[31%] flex flex-col gap-2">
       <div className="h-[15%] bg-white flex gap-2 flex-col justify-center">
         <div className="flex justify-center ">
-          <div className="w-[90px]  h-[90px] tracking-wider text-white font-bold text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
+          <div className=" w-[60px] h-[60px] md:w-[90px]  md:h-[90px] tracking-wider text-white font-bold lg:text-[25px] xl:text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
             NR
           </div>
         </div>
@@ -91,7 +91,7 @@ const AccountSidebar = ({ handleSelect, selectedItem }) => {
               onClick={() => {
                 handleSelect(key);
               }}
-              key={index}
+              key={key}
               className={`flex cursor-pointer items-center ${
                 selectedItem == key
                   ? "text-white bg-[#2d2d2d] font-bold"
@@ -126,7 +126,7 @@ const AccountSidebar = ({ handleSelect, selectedItem }) => {
 
           return (
             <li
-              key={index}
+              key={key}
               onClick={() => {
                 handleSelect(key);
               }}
@@ -173,7 +173,7 @@ const AccountSidebar = ({ handleSelect, selectedItem }) => {
 
           return (
             <li
-              key={index}
+              key={key}
               onClick={() => {
                 handleSelect(key);
               }}

@@ -45,7 +45,7 @@ const create_LikeProduct = async (
 
 module.exports = {
   Query: {
-    getLikedProducts: async () => {
+    getLikedProducts: async (parent) => {
       try {
         const likedProducts = await Product.find({
           likeCount: { $gte: 1 },

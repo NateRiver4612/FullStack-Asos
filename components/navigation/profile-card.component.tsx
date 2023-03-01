@@ -109,7 +109,7 @@ const ProfileCard = () => {
         </li>
 
         <Tooltip title="saved items" arrow>
-          <li className="cursor-pointer">
+          <li className="cursor-pointer ">
             <Link href={`/${mainRouteId}/wish-list`}>
               <AiOutlineHeart size={26} />
             </Link>

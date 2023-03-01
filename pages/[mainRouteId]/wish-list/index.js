@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
 import dynamic from "next/dynamic";
+import { useAuth } from "../../../context/authUserContext";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -12,12 +13,17 @@ const ProductOverview_Container = dynamic(
 const WishList = () => {
   const { data, error, loading } = useQuery(GET_LIKED_PRODUCTS);
   const [likedProducts, setLikedProducts] = useState([]);
+  const { authUser } = useAuth();
 
   useEffect(() => {
     if (!loading) {
-      return setLikedProducts(data.getLikedProducts);
+      const likedProductsByUser = data.getLikedProducts.filter((product) =>
+        product.likes.find((like) => like.id == authUser.id)
+      );
+
+      return setLikedProducts(likedProductsByUser);
     }
-  }, [data]);
+  }, [data, authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
