@@ -16,7 +16,7 @@ const WishList = () => {
   const { authUser } = useAuth();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && authUser) {
       const likedProductsByUser = data.getLikedProducts.filter((product) =>
         product.likes.find((like) => like.id == authUser.id)
       );

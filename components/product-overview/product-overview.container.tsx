@@ -41,7 +41,7 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
           <ProductOverview
             getLikedProducts={Liked_Products_Data.getLikedProducts}
             handleLikeProduct={likeProduct}
-            isWish={wish}
+            isWishItem={wish}
             key={product.id}
             product={product}
           ></ProductOverview>

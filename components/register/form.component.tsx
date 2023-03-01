@@ -34,8 +34,8 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
       if (user) {
         console.log(user);
       }
-      clearState();
       setLoading(false);
+      clearState();
       router.back();
     } catch (error) {
       alert(error);

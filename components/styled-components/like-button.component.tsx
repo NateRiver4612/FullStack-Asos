@@ -2,7 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { CgTrash } from "react-icons/cg";
 
-const LikeButton = ({ handleLike, isWish, isProductLiked }) => {
+const LikeButton = ({
+  handleUnclick,
+  handleLike,
+  isWishItem,
+  isProductLiked,
+  isClicked,
+}) => {
   return (
     <span
       onClick={handleLike}
@@ -12,12 +18,12 @@ const LikeButton = ({ handleLike, isWish, isProductLiked }) => {
         whileTap={{ scale: 0.4 }}
         transition={{ type: "spring", stiffness: 300, damping: 8 }}
       >
-        {isWish ? (
-          <CgTrash />
+        {isWishItem ? (
+          <CgTrash onClick={handleUnclick} />
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill={isProductLiked ? "true" : "none"}
+            fill={isProductLiked || isClicked ? "true" : "none"}
             stroke-width="1.7"
             stroke="currentColor"
             className="w-6 h-6"

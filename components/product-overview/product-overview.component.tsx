@@ -7,13 +7,15 @@ import LikeButton from "../styled-components/like-button.component";
 
 const ProductOverview = ({
   product,
-  isWish,
+  isWishItem,
   handleLikeProduct,
   getLikedProducts,
 }) => {
   const router = useRouter();
 
+  const [likedProducts, setLikedProducts] = useState(getLikedProducts);
   const [isProductLiked, setIsProductLiked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
@@ -25,8 +27,8 @@ const ProductOverview = ({
 
   useEffect(() => {
     const isLiked =
-      getLikedProducts &&
-      getLikedProducts.find(
+      likedProducts &&
+      likedProducts.find(
         (product: { id: String; likes: Like[] }) =>
           product.id == id &&
           product.likes.find((like: { id: String }) => like.id == authUser?.id)
@@ -37,7 +39,15 @@ const ProductOverview = ({
     }
 
     return setIsProductLiked(false);
-  }, [getLikedProducts, authUser]);
+  }, [likedProducts, authUser]);
+
+  const handleUnclick = () => {
+    const likedProductsNotUser = likedProducts.filter((product) =>
+      product.likes.find((like) => like.id != authUser.id)
+    );
+    console.log("fucl");
+    return setLikedProducts(likedProductsNotUser);
+  };
 
   const handleSelect = () => {
     const query = {
@@ -47,7 +57,7 @@ const ProductOverview = ({
     };
 
     return router.push({
-      pathname: isWish ? product.link : url,
+      pathname: isWishItem ? product.link : url,
       query: query,
     });
   };
@@ -61,6 +71,8 @@ const ProductOverview = ({
         return;
       }
     }
+
+    setIsClicked(!isClicked);
 
     const input = {
       value: {
@@ -102,7 +114,9 @@ const ProductOverview = ({
 
         <LikeButton
           handleLike={handleLike}
-          isWish={isWish}
+          isWishItem={isWishItem}
+          isClicked={isClicked}
+          handleUnclick={handleUnclick}
           isProductLiked={isProductLiked}
         />
       </div>
@@ -126,7 +140,7 @@ const ProductOverview = ({
           )}
         </div>
       </div>
-      {isWish && colour && (
+      {isWishItem && colour && (
         <div className="py-2 mt-3 border-y-[1px] border-gray-200">
           <span className="text-gray-300 text-sm font-thin">{colour}</span>
         </div>
