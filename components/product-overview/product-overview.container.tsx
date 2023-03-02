@@ -33,7 +33,7 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
     }
   }, [Liked_Products_Data?.getLikedProducts, authUser]);
 
-  if (Liked_Products_Loading || !authUser) {
+  if (Liked_Products_Loading) {
     return <Spinner></Spinner>;
   }
 
