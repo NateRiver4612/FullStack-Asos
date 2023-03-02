@@ -21,12 +21,6 @@ const AccountSidebar = dynamic(
 );
 
 const MyAccount = () => {
-  const [selectedItem, setSelectedItem] = useState("Account overview");
-
-  const handleSelect = (select) => {
-    return setSelectedItem(select);
-  };
-
   return (
     <div className="h-screen lg:h-fit pb-[5%] absolute top-0 lg:px-[15%] 2xl:px-[20%]  w-screen bg-gray-200 z-30 ">
       <div className="">
@@ -45,10 +39,7 @@ const MyAccount = () => {
           </span>
         </div>
         <div className="body pb-10 px-2 lg:px-0 flex bg-gray-200  gap-5 ">
-          <AccountSidebar
-            handleSelect={handleSelect}
-            selectedItem={selectedItem}
-          />
+          <AccountSidebar />
 
           <div className="hidden sm:block w-[68%] relative ">
             <div className="uppercase left-8 top-16 tracking-widest font-bold text-white absolute flex gap-1 flex-col">

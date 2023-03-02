@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
 import Link from "next/link";
@@ -14,6 +14,8 @@ import {
   BiLogOut,
 } from "react-icons/bi";
 import { IconType } from "react-icons/lib";
+import ListItem from "./list-item.component";
+import SidebarList from "./sidebar-list.component";
 
 const icons: Map<string, IconType> = new Map([
   ["My orders", FiPackage],
@@ -47,7 +49,12 @@ const section_3 = [
   "I need a new returns note",
 ];
 
-const AccountSidebar = ({ handleSelect, selectedItem }) => {
+const AccountSidebar = () => {
+  const [selectedItem, setSelectedItem] = useState("Account overview");
+
+  const handleSelect = (select: string) => {
+    return setSelectedItem(select);
+  };
   return (
     <div className="w-screen sm:w-[31%] flex flex-col gap-2">
       <div className="h-[15%] bg-white flex gap-2 flex-col justify-center">
@@ -64,148 +71,51 @@ const AccountSidebar = ({ handleSelect, selectedItem }) => {
         </div>
       </div>
 
-      <li
-        onClick={() => {
+      <ListItem
+        handleSelect={() => {
           handleSelect("Account overview");
         }}
-        className={`flex cursor-pointer items-center ${
-          selectedItem == "Account overview"
-            ? "text-white bg-[#2d2d2d] font-bold"
-            : "text-gray-700 bg-white"
-        } px-6 py-[12px] `}
-      >
-        <BiUser size={30} />
-        <div className="px-3"></div>
-        <span className="text-sm flex items-center w-full border-gray-200">
-          Account overview
-        </span>
-        <span className="h-full bg-white w-[2px]"></span>
-      </li>
+        selectedItem={selectedItem}
+        icon={BiUser}
+        label="Account overview"
+      ></ListItem>
 
-      <ul className="flex flex-col bg-white text-gray-700  capitalize">
-        {section_1.map((key, index) => {
-          const icon = icons.get(key);
+      <SidebarList
+        section={section_1}
+        icons={icons}
+        handleSelect={handleSelect}
+        selectedItem={selectedItem}
+      ></SidebarList>
 
-          return (
-            <li
-              onClick={() => {
-                handleSelect(key);
-              }}
-              key={key}
-              className={`flex cursor-pointer items-center ${
-                selectedItem == key
-                  ? "text-white bg-[#2d2d2d] font-bold"
-                  : "text-gray-700 bg-white"
-              } px-6 py-[12px] `}
-            >
-              {index == section_1.length - 1 ? (
-                <img
-                  loading="lazy"
-                  className="w-[24px] h-[24px]"
-                  src="/images/asos_premier_icon.png"
-                />
-              ) : (
-                icon({ size: 30 })
-              )}
+      <SidebarList
+        section={section_2}
+        icons={icons}
+        handleSelect={handleSelect}
+        selectedItem={selectedItem}
+      ></SidebarList>
 
-              <div className="px-3"></div>
-              <span
-                className={`text-sm flex items-center w-full border-gray-200`}
-              >
-                {key}
-              </span>
-              <span className="h-full bg-white w-[2px]"></span>
-            </li>
-          );
-        })}
-      </ul>
-
-      <ul className="flex flex-col bg-white text-gray-700  capitalize">
-        {section_2.map((key, index) => {
-          const icon = icons.get(key);
-
-          return (
-            <li
-              key={key}
-              onClick={() => {
-                handleSelect(key);
-              }}
-              className={`flex cursor-pointer items-center ${
-                selectedItem == key
-                  ? "text-white bg-[#2d2d2d] font-bold"
-                  : "text-gray-700 bg-white"
-              } px-6 py-[12px] `}
-            >
-              {icon({ size: 30 })}
-              <div className="px-3"></div>
-              <span
-                className={`text-sm flex items-center  w-full border-gray-200`}
-              >
-                {key}
-              </span>
-              <span className="h-full bg-white w-[2px]"></span>
-            </li>
-          );
-        })}
-      </ul>
-
-      <li
-        onClick={() => {
+      <ListItem
+        handleSelect={() => {
           handleSelect("Gift cards & e-gift cards");
         }}
-        className={`flex cursor-pointer items-center ${
-          selectedItem == "Gift cards & e-gift cards"
-            ? "text-white bg-[#2d2d2d] font-bold"
-            : "text-gray-700 bg-white"
-        } px-6 py-[12px] `}
-      >
-        <HiGiftTop size={30} />
-        <div className="px-3"></div>
-        <span className="text-sm flex items-center w-full border-gray-200">
-          Gift cards & e-gift cards
-        </span>
-        <span className="h-full bg-white w-[2px]"></span>
-      </li>
+        selectedItem={selectedItem}
+        icon={HiGiftTop}
+        label="Gift cards & e-gift cards"
+      ></ListItem>
 
-      <ul className="flex flex-col bg-white text-gray-700  capitalize">
-        {section_3.map((key, index) => {
-          const icon = icons.get(key);
+      <SidebarList
+        section={section_3}
+        icons={icons}
+        handleSelect={handleSelect}
+        selectedItem={selectedItem}
+      ></SidebarList>
 
-          return (
-            <li
-              key={key}
-              onClick={() => {
-                handleSelect(key);
-              }}
-              className={`flex cursor-pointer items-center ${
-                selectedItem == key
-                  ? "text-white bg-[#2d2d2d] font-bold"
-                  : "text-gray-700 bg-white"
-              } px-6 py-[12px] `}
-            >
-              {icon({ size: 30 })}
-              <div className="px-3"></div>
-              <span
-                className={`text-sm flex items-center  w-full border-gray-200`}
-              >
-                {key}
-              </span>
-              <span className="h-full bg-white w-[2px]"></span>
-            </li>
-          );
-        })}
-      </ul>
-
-      <li
-        className={`flex cursor-pointer items-center text-gray-700 bg-white px-6 py-[12px] `}
-      >
-        <BiLogOut size={30} />
-        <div className="px-3"></div>
-        <span className="text-sm flex items-center w-full border-gray-200">
-          Sign out
-        </span>
-        <span className="h-full bg-white w-[2px]"></span>
-      </li>
+      <ListItem
+        label="Sign Out"
+        handleSelect={() => {}}
+        selectedItem={null}
+        icon={BiLogOut}
+      ></ListItem>
     </div>
   );
 };

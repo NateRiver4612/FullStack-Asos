@@ -19,7 +19,7 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
   const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
-  const { authUser, SignInWithGooglePopup } = useAuth();
+  const { authUser } = useAuth();
 
   useEffect(() => {
     setIsClicked(isProductLiked);
@@ -40,12 +40,14 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
   const handleLike = async () => {
     if (!authUser) {
       try {
-        return await SignInWithGooglePopup();
+        return router.push("/indentity/register");
       } catch (error) {
         alert("You have to sign in first to actually interact with website");
         return;
       }
     }
+
+    setIsClicked(!isClicked);
 
     const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
@@ -69,10 +71,7 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
 
   return (
     <span
-      onClick={() => {
-        setIsClicked(!isClicked);
-        handleLike();
-      }}
+      onClick={handleLike}
       className={`absolute text-black flex opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
     >
       <motion.button

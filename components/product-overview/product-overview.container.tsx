@@ -24,9 +24,9 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
   } = useQuery(GET_LIKED_PRODUCTS);
 
   useEffect(() => {
-    if (!Liked_Products_Loading && authUser) {
+    if (!Liked_Products_Loading) {
       const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
-        (product) => product.likes.find((like) => like.id == authUser.id)
+        (product) => product.likes.find((like) => like.id == authUser?.id)
       );
 
       dispatch(setWishItems(likedProductsByUser));

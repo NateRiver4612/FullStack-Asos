@@ -1,10 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-
-const TypingText = dynamic(() => import("./typingText.component"), {
-  ssr: true,
-});
+import TypingText from "./typingText.component";
 
 const Display = ({ switchState }) => {
   return (
@@ -29,7 +25,7 @@ const Display = ({ switchState }) => {
         <TypingText title="Shop till you drop" switchState={switchState} />
       </div>
       <motion.div
-        className="flex md:w-[70%] lg:w-[55%] xl:w-[50%] 2xl:w-[45%]"
+        className="flex md:w-[70%] lg:w-[45%] xl:w-[50%] 2xl:w-[45%]"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
