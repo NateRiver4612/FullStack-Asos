@@ -245,7 +245,7 @@ export async function getServerSideProps({ query, res, req }) {
 
   let data = {};
 
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development") {
     // development build code
     console.log("Development");
     data = ListProduct[0];

@@ -7,18 +7,23 @@ import {
   setWishItems,
 } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
+import { useMutation } from "@apollo/client";
+import { LIKE_PRODUCT, GET_LIKED_PRODUCTS } from "../../utils/graphQl.utils";
+import router from "next/router";
 
-const LikeButton = ({ handleLike, isWishItem, isProductLiked }) => {
+const LikeButton = ({ product, isWishItem, isProductLiked }) => {
   const wishItems = useAppSelector(selectWishItems);
   const dispatch = useAppDispatch();
-  const { authUser } = useAuth();
   const [isClicked, setIsClicked] = useState(false);
+
+  const { categoryId, mainRouteId, categoryRouteId } = router.query;
+  const { price, imageUrl, name, isSellingFast, id, colour } = product;
+
+  const { authUser, SignInWithGooglePopup } = useAuth();
 
   useEffect(() => {
     setIsClicked(isProductLiked);
   }, [isProductLiked]);
-
-  console.log(isClicked);
 
   const handleRemoveItem = () => {
     const likedProductsByUser = wishItems.filter((product) =>
@@ -26,6 +31,40 @@ const LikeButton = ({ handleLike, isWishItem, isProductLiked }) => {
     );
 
     return dispatch(setWishItems(likedProductsByUser));
+  };
+
+  const [likeProduct] = useMutation(LIKE_PRODUCT, {
+    refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
+  });
+
+  const handleLike = async () => {
+    if (!authUser) {
+      try {
+        return await SignInWithGooglePopup();
+      } catch (error) {
+        alert("You have to sign in first to actually interact with website");
+        return;
+      }
+    }
+
+    const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
+
+    const input = {
+      value: {
+        id: id.toString(),
+        imageUrl: imageUrl,
+        name: name,
+        userID: authUser.id,
+        userName: authUser.name,
+        isSellingFast: isSellingFast,
+        colour: colour,
+        link: url,
+        cur_price: parseFloat(price.current.value),
+        pre_price: parseFloat(price.previous.value),
+      },
+    };
+
+    await likeProduct({ variables: { input: input.value } });
   };
 
   return (

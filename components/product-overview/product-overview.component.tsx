@@ -5,12 +5,7 @@ import { useAuth } from "../../context/authUserContext";
 import { Like } from "../../types";
 import LikeButton from "../styled-components/like-button.component";
 
-const ProductOverview = ({
-  product,
-  isWishItem,
-  handleLikeProduct,
-  wishItems,
-}) => {
+const ProductOverview = ({ product, isWishItem, wishItems }) => {
   const router = useRouter();
 
   const [isProductLiked, setIsProductLiked] = useState(false);
@@ -19,7 +14,7 @@ const ProductOverview = ({
 
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
 
-  const { authUser, SignInWithGooglePopup } = useAuth();
+  const { authUser } = useAuth();
 
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
@@ -53,34 +48,6 @@ const ProductOverview = ({
     });
   };
 
-  const handleLike = async () => {
-    if (!authUser) {
-      try {
-        return await SignInWithGooglePopup();
-      } catch (error) {
-        alert("You have to sign in first to actually interact with website");
-        return;
-      }
-    }
-
-    const input = {
-      value: {
-        id: id.toString(),
-        imageUrl: imageUrl,
-        name: name,
-        userID: authUser.id,
-        userName: authUser.name,
-        isSellingFast: isSellingFast,
-        colour: colour,
-        link: url,
-        cur_price: parseFloat(price.current.value),
-        pre_price: parseFloat(price.previous.value),
-      },
-    };
-
-    await handleLikeProduct({ variables: { input: input.value } });
-  };
-
   return (
     <div
       key={product.id}
@@ -102,9 +69,9 @@ const ProductOverview = ({
         )}
 
         <LikeButton
-          handleLike={handleLike}
           isWishItem={isWishItem}
           isProductLiked={isProductLiked}
+          product={product}
         />
       </div>
       <div onClick={handleSelect} className="flex flex-col h-full">

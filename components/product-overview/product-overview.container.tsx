@@ -17,10 +17,6 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
 
   const { authUser } = useAuth();
 
-  const [likeProduct] = useMutation(LIKE_PRODUCT, {
-    refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
-  });
-
   const {
     loading: Liked_Products_Loading,
     data: Liked_Products_Data,
@@ -52,7 +48,6 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
       {products?.map((product) => {
         return (
           <ProductOverview
-            handleLikeProduct={likeProduct}
             isWishItem={wish}
             wishItems={wishItems}
             key={product.id}

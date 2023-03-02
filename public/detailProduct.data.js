@@ -1,7 +1,7 @@
 export const ProductDetail = [
   {
-    id: 9851612,
-    name: "Another Influence Arm Panel Crew Neck Sweat",
+    id: 12686740,
+    name: "Lacoste Court Slam chunky sneakers with gum sole in white",
     description:
       '<ul><li><a href="/men/hoodies-sweatshirts/cat/?cid=5668"><strong>Sweatshirt</strong></a> by Another Influence<ul>    <li>One for your wardrobe </li>    <li>Crew neck</li><li>Contrast sleeve panels </li>    <li>Fitted trims</li><li>Regular fit </li><li>No surprises, just a classic cut</li></ul></li></ul>',
     alternateNames: [
@@ -51,11 +51,11 @@ export const ProductDetail = [
       },
     ],
     gender: "Men",
-    productCode: "1281961",
+    productCode: "1505734",
     pdpLayout: "Core",
     brand: {
       brandId: 13762,
-      name: "Another Influence",
+      name: "Lacoste",
       description: "",
     },
     sizeGuide:
@@ -78,9 +78,9 @@ export const ProductDetail = [
     variants: [
       {
         id: 9851847,
-        name: "Another Influence Arm Panel Crew Neck Sweat",
+        name: "Lacoste Court Slam chunky sneakers with gum sole in white",
         sizeId: 5353,
-        brandSize: "XS",
+        brandSize: "US 7",
         sizeDescription: "",
         sizeOrder: 212,
         sku: "7360647",
@@ -123,9 +123,9 @@ export const ProductDetail = [
       },
       {
         id: 9851637,
-        name: "Another Influence Arm Panel Crew Neck Sweat",
+        name: "Lacoste Court Slam chunky sneakers with gum sole in white",
         sizeId: 5345,
-        brandSize: "S",
+        brandSize: "US 8",
         sizeDescription: "",
         sizeOrder: 213,
         sku: "7360648",
@@ -168,9 +168,9 @@ export const ProductDetail = [
       },
       {
         id: 9851864,
-        name: "Another Influence Arm Panel Crew Neck Sweat",
+        name: "Lacoste Court Slam chunky sneakers with gum sole in white",
         sizeId: 5343,
-        brandSize: "M",
+        brandSize: "US 9",
         sizeDescription: "",
         sizeOrder: 214,
         sku: "7360649",
@@ -213,9 +213,9 @@ export const ProductDetail = [
       },
       {
         id: 9851850,
-        name: "Another Influence Arm Panel Crew Neck Sweat",
+        name: "Lacoste Court Slam chunky sneakers with gum sole in white",
         sizeId: 5342,
-        brandSize: "L",
+        brandSize: "US 10",
         sizeDescription: "",
         sizeOrder: 215,
         sku: "7360650",
@@ -258,9 +258,9 @@ export const ProductDetail = [
       },
       {
         id: 9851875,
-        name: "Another Influence Arm Panel Crew Neck Sweat",
+        name: "Lacoste Court Slam chunky sneakers with gum sole in white",
         sizeId: 5352,
-        brandSize: "XL",
+        brandSize: "US 11",
         sizeDescription: "",
         sizeOrder: 216,
         sku: "7360651",
@@ -305,7 +305,7 @@ export const ProductDetail = [
     media: {
       images: [
         {
-          url: "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-1-black",
+          url: "images.asos-media.com/products/lacoste-court-slam-chunky-sneakers-with-gum-sole-in-white/12686740-1-white",
           type: "Standard1",
           colourWayId: 15074573,
           colourCode: "BK1",
@@ -313,7 +313,7 @@ export const ProductDetail = [
           isPrimary: true,
         },
         {
-          url: "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-2",
+          url: "images.asos-media.com/products/lacoste-court-slam-chunky-sneakers-with-gum-sole-in-white/12686740-2",
           type: "Standard2",
           colourWayId: null,
           colourCode: "",
@@ -321,7 +321,7 @@ export const ProductDetail = [
           isPrimary: false,
         },
         {
-          url: "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-3",
+          url: "images.asos-media.com/products/lacoste-court-slam-chunky-sneakers-with-gum-sole-in-white/12686740-3",
           type: "Standard3",
           colourWayId: null,
           colourCode: "",
@@ -329,7 +329,7 @@ export const ProductDetail = [
           isPrimary: false,
         },
         {
-          url: "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-4",
+          url: "images.asos-media.com/products/lacoste-court-slam-chunky-sneakers-with-gum-sole-in-white/12686740-4",
           type: "Standard4",
           colourWayId: null,
           colourCode: "",

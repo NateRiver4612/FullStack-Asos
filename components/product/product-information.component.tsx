@@ -1,12 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
 import Select, { StylesConfig } from "react-select";
+import LikeButton from "../styled-components/like-button.component";
+import { useAuth } from "../../context/authUserContext";
+import { Like } from "../../types";
+import { useAppSelector } from "../../redux/hooks";
+import { selectWishItems } from "../../redux/features/wish/wish.slice";
 
-const ProductInformation = ({ variants, name, price }) => {
+const ProductInformation = ({ product }) => {
   const options = [];
+
+  const { variants, name, price } = product;
+
+  const { authUser } = useAuth();
+  const [isProductLiked, setIsProductLiked] = useState(false);
+
+  const wishItems = useAppSelector(selectWishItems);
+
+  const similar_items = JSON.parse(localStorage.getItem("items"));
+
+  // Take product from list to apply Like Button parameter format
+  const listProduct = similar_items.find((item) => item.id === product.id);
+
+  console.log(listProduct);
+
+  // check product is Liked before by the user base on Id
+  useEffect(() => {
+    const isLiked =
+      wishItems &&
+      wishItems.find(
+        (wish: { id: String; likes: Like[] }) =>
+          wish.id == listProduct.id &&
+          wish.likes.find((like: { id: String }) => like.id == authUser?.id)
+      );
+
+    if (isLiked) {
+      return setIsProductLiked(true);
+    }
+
+    return setIsProductLiked(false);
+  }, [wishItems, authUser]);
 
   variants.map((variant) => {
     if (variant.isInStock) {
@@ -75,11 +111,17 @@ const ProductInformation = ({ variants, name, price }) => {
           />
         </div>
         <div>
-          <div className="flex mt-4 items-center gap-4 ">
+          <div className="flex mt-4 items-center gap-3 ">
             <button className="uppercase bg-[#0a8950] w-full font-bold bg-black text-[10px] sm:text-[14px] tracking-widest text-white  py-2">
               add to bag
             </button>
-            <AiOutlineHeart className="cursor-pointer" size={25} />
+            <div className="h-full flex items-center pt-2 w-[11%]">
+              <LikeButton
+                product={listProduct}
+                isWishItem={undefined}
+                isProductLiked={isProductLiked}
+              ></LikeButton>
+            </div>
           </div>
           <div className="flex flex-col p-4 border-[1px] border-gray-200 gap-4 mt-5 ">
             <div className="flex gap-3 tracking-wide text-gray-600">

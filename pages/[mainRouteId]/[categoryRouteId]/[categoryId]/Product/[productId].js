@@ -64,7 +64,7 @@ const ProductDetailPage = ({ data }) => {
     <div className="flex flex-col items-center 2xl:pl-[20%] 2xl:pr-[20%] lg:pl-[10%] lg:pr-[10%] md:pr-[5%] sm:pr-[5%] sm:pl-[5%]">
       <div className="flex flex-col w-full sm:flex-row">
         <ProductDisplay images={images} />
-        <ProductInformation name={name} variants={variants} price={price} />
+        <ProductInformation product={data} />
       </div>
       <div className="flex w-full flex-col mt-[5%] px-4 md:px-0">
         <div>
@@ -122,7 +122,7 @@ export const getServerSideProps = async (context) => {
   // We fetch local sample data because RapidAPI has expired temporarily
   let data = {};
 
-  if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development") {
     // development build code
     data = ProductDetail[0];
   } else {
