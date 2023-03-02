@@ -4,15 +4,16 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../context/authUserContext";
 import { Like } from "../../types";
 import LikeButton from "../styled-components/like-button.component";
-import { useAppSelector } from "../../redux/hooks";
-import { selectWishItems } from "../../redux/features/wish/wish.slice";
 
-const ProductOverview = ({ product, isWishItem, handleLikeProduct }) => {
+const ProductOverview = ({
+  product,
+  isWishItem,
+  handleLikeProduct,
+  wishItems,
+}) => {
   const router = useRouter();
-  const wishItems = useAppSelector(selectWishItems);
 
   const [isProductLiked, setIsProductLiked] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
 
   const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
@@ -22,6 +23,7 @@ const ProductOverview = ({ product, isWishItem, handleLikeProduct }) => {
 
   const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
+  // check product is Liked before by the user base on Id
   useEffect(() => {
     const isLiked =
       wishItems &&
@@ -60,8 +62,6 @@ const ProductOverview = ({ product, isWishItem, handleLikeProduct }) => {
         return;
       }
     }
-
-    setIsClicked(!isClicked);
 
     const input = {
       value: {
@@ -104,7 +104,6 @@ const ProductOverview = ({ product, isWishItem, handleLikeProduct }) => {
         <LikeButton
           handleLike={handleLike}
           isWishItem={isWishItem}
-          isClicked={isClicked}
           isProductLiked={isProductLiked}
         />
       </div>

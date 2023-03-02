@@ -37,17 +37,9 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
     }
   }, [Liked_Products_Data?.getLikedProducts, authUser]);
 
-  // const getLikedProducts = client.readQuery({
-  //   query: GET_LIKED_PRODUCTS,
-  // });
-
-  // console.log(getLikedProducts);
-
-  if (Liked_Products_Loading) {
+  if (Liked_Products_Loading || !authUser) {
     return <Spinner></Spinner>;
   }
-
-  console.log(wishItems);
 
   return (
     <div
@@ -62,6 +54,7 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
           <ProductOverview
             handleLikeProduct={likeProduct}
             isWishItem={wish}
+            wishItems={wishItems}
             key={product.id}
             product={product}
           ></ProductOverview>

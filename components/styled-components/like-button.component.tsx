@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CgTrash } from "react-icons/cg";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -8,10 +8,17 @@ import {
 } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
 
-const LikeButton = ({ handleLike, isWishItem, isProductLiked, isClicked }) => {
+const LikeButton = ({ handleLike, isWishItem, isProductLiked }) => {
   const wishItems = useAppSelector(selectWishItems);
   const dispatch = useAppDispatch();
   const { authUser } = useAuth();
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    setIsClicked(isProductLiked);
+  }, [isProductLiked]);
+
+  console.log(isClicked);
 
   const handleRemoveItem = () => {
     const likedProductsByUser = wishItems.filter((product) =>
@@ -23,7 +30,10 @@ const LikeButton = ({ handleLike, isWishItem, isProductLiked, isClicked }) => {
 
   return (
     <span
-      onClick={handleLike}
+      onClick={() => {
+        setIsClicked(!isClicked);
+        handleLike();
+      }}
       className={`absolute text-black flex opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
     >
       <motion.button
@@ -35,7 +45,7 @@ const LikeButton = ({ handleLike, isWishItem, isProductLiked, isClicked }) => {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            fill={isProductLiked ? "true" : "none"}
+            fill={isProductLiked || isClicked ? "true" : "none"}
             stroke-width="1.7"
             stroke="currentColor"
             className="w-6 h-6"
