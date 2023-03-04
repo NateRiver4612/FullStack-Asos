@@ -9,6 +9,7 @@ const SidebarList = ({ section, icons, handleSelect, selectedItem }) => {
 
         return (
           <ListItem
+            key={key + index}
             handleSelect={() => {
               handleSelect(key);
             }}
