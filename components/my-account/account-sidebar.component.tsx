@@ -57,10 +57,6 @@ const AccountSidebar = () => {
 
   const router = useRouter();
 
-  if (!authUser) {
-    return router.push("/identity/register");
-  }
-
   const handleSelect = (select: string) => {
     return setSelectedItem(select);
   };
@@ -75,7 +71,14 @@ const AccountSidebar = () => {
     }
   };
 
-  const name = authUser?.name.split(" ");
+  if (!authUser) {
+    return <Spinner></Spinner>;
+  }
+
+  const nameArr = authUser?.name.split(" ");
+
+  const nameChars =
+    nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
 
   return (
     <div className="w-screen relative sm:w-[31%] flex flex-col gap-2">
@@ -89,7 +92,7 @@ const AccountSidebar = () => {
       <div className="h-[15%] mt-20 sm:mt-0 bg-white flex gap-2 pb-4 flex-col justify-center">
         <div className="flex z-10 justify-center ">
           <div className=" w-[90px] h-[90px]  tracking-wider text-white font-bold text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
-            NR
+            {nameChars}
           </div>
         </div>
         <div className=" text-center">
