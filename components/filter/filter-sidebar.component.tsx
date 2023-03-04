@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const FilterCard = dynamic(() => import("./filter-card.component"), {
   ssr: false,
@@ -19,6 +20,8 @@ const FilterSidebar = ({
 }) => {
   const [face, setFace] = useState(null);
 
+  const router = useRouter();
+
   return (
     <Fragment>
       <div
@@ -32,7 +35,7 @@ const FilterSidebar = ({
         <ul className="h-[80%] text-gray-600  tracking-wide w-full p-4 pb-8 flex flex-col overflow-scroll relative">
           {facets.map((face: any, index: Int16Array) => {
             const faceFilters = face.facetValues.filter((filter) =>
-              filters[face.id]?.includes(filter.id)
+              router.query[face.id]?.includes(filter.id)
             );
 
             return (

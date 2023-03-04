@@ -79,7 +79,9 @@ const ProductList = ({ data }) => {
         // This is for when user remove the selected filter
         // selected filter means they included in the router query
         if (Object.keys(router.query).includes(title)) {
-          return handleRemove(finalObj);
+          if (router.query[title].toString().split(",").includes(filter.id)) {
+            return handleRemove(finalObj);
+          }
         }
 
         if (finalObj[title].length <= 0) {

@@ -1,5 +1,6 @@
 import React from "react";
 import { MdArrowBackIos } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const FilterCard = ({
   filters,
@@ -11,16 +12,11 @@ const FilterCard = ({
 }) => {
   let filterItemsId = [];
 
+  const router = useRouter();
+
   if (filters && face) {
     filterItemsId = filters[face.id];
   }
-
-  // var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  // if (isIOS) {
-  //   console.log("This is a IOS device");
-  // } else {
-  //   console.log("This is Not a IOS device");
-  // }
 
   return (
     <div
