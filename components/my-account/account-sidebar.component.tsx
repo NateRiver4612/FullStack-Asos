@@ -55,6 +55,7 @@ const AccountSidebar = () => {
   const handleSelect = (select: string) => {
     return setSelectedItem(select);
   };
+
   return (
     <div className="w-screen sm:w-[31%] flex flex-col gap-2">
       <div className="h-[15%] bg-white flex gap-2 flex-col justify-center">
@@ -113,7 +114,7 @@ const AccountSidebar = () => {
       <ListItem
         label="Sign Out"
         handleSelect={() => {}}
-        selectedItem={null}
+        selectedItem={selectedItem}
         icon={BiLogOut}
       ></ListItem>
     </div>

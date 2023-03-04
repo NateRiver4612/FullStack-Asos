@@ -54,11 +54,14 @@ declare global {
 }
 
 function MyApp({ Component, pageProps }) {
+  // Import Progress bar
   useEffect(() => {
     const use = async () => {
       (await import("tw-elements")).default;
     };
     use();
+
+    persistor.persist;
   }, []);
 
   const [loading, setLoading] = React.useState(false);

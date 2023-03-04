@@ -17,23 +17,7 @@ const ProductOverview_Container = dynamic(
 );
 
 const WishList = () => {
-  const { data, error, loading } = useQuery(GET_LIKED_PRODUCTS);
-  const { authUser } = useAuth();
-
   const wishItems = useAppSelector(selectWishItems);
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   if (!loading && authUser) {
-  //     const likedProductsByUser = data.getLikedProducts.filter((product) =>
-  //       product.likes.find((like) => like.id == authUser.id)
-  //     );
-
-  //     dispatch(setWishItems(likedProductsByUser));
-  //   }
-  // }, [data, authUser]);
-
-  // console.log(wishItems);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">

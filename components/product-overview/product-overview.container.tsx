@@ -3,7 +3,6 @@ import ProductOverview from "./product-overview.component";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
 import Spinner from "../spinner/spinner.component";
-import client from "../../utils/apolloClient";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   setWishItems,
@@ -29,9 +28,12 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
         (product) => product.likes.find((like) => like.id == authUser?.id)
       );
 
-      dispatch(setWishItems(likedProductsByUser));
+      if (likedProductsByUser.length > 0)
+        dispatch(setWishItems(likedProductsByUser));
     }
   }, [Liked_Products_Data?.getLikedProducts, authUser]);
+
+  console.log(wishItems);
 
   if (Liked_Products_Loading) {
     return <Spinner></Spinner>;

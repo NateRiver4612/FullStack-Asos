@@ -52,9 +52,12 @@ const ProfileCard = () => {
       <ul className="flex h-full items-center gap-6 md:gap-4 xl:gap-6 ">
         <li>
           <div className="overflow-hidden group">
-            <Link href="/indentity/register">
-              <BiUser size={26} />
-            </Link>
+            <BiUser
+              onClick={() => {
+                router.push("/indentity/register");
+              }}
+              size={26}
+            />
 
             <div
               className={`transition-all hidden md:block
@@ -110,9 +113,12 @@ const ProfileCard = () => {
 
         <Tooltip title="saved items" arrow>
           <li className="cursor-pointer ">
-            <Link href={`/${mainRouteId}/wish-list`}>
-              <AiOutlineHeart size={26} />
-            </Link>
+            <AiOutlineHeart
+              onClick={() => {
+                router.push(`/${mainRouteId}/wish-list`);
+              }}
+              size={26}
+            />
           </li>
         </Tooltip>
 

@@ -61,7 +61,7 @@ const Navigation = ({ navigations }) => {
     const fixedHeader = () => {
       for (var i = 0; i < mainHeader.length; i++) {
         if (mainHeader[i] != undefined) {
-          if (window.pageYOffset > fixedTop) {
+          if (window && window.pageYOffset > fixedTop) {
             // Whenever user scroll throught the LINE
             // we will style it as fixed
             mainHeader[i].className =

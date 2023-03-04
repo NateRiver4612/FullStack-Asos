@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./features/search/search.slice";
 import wishReducer from "./features/wish/wish.slice";
-import storage from "redux-persist/lib/storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistReducer,
   persistStore,
@@ -20,21 +20,41 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage,
-  whitelist: ["search"],
+  storage: AsyncStorage,
+  whitelist: ["search", "wish"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = configureStore({
-  reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== "production",
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
+const makeConfiguredStore = () =>
+  configureStore({
+    reducer: rootReducer,
+    devTools: true,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
+  });
+
+const isServer = typeof window === "undefined";
+
+let ConfigureStore;
+
+if (isServer) {
+  ConfigureStore = makeConfiguredStore();
+} else {
+  ConfigureStore = configureStore({
+    reducer: persistedReducer,
+    devTools: process.env.NODE_ENV !== "production",
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
+  });
+}
+
+export const store = ConfigureStore;
 
 export const persistor = persistStore(store);
 

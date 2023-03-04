@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Zoom, Navigation, Pagination, Thumbs } from "swiper";
 import Image from "next/image";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 const ProductDisplay = ({ images }) => {
   const [imagesNavSlider, setImagesNavSlider] = useState(null);

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
-import Select, { StylesConfig } from "react-select";
+import Select from "react-select";
 import LikeButton from "../styled-components/like-button.component";
 import { useAuth } from "../../context/authUserContext";
 import { Like } from "../../types";
@@ -24,8 +23,6 @@ const ProductInformation = ({ product }) => {
 
   // Take product from list to apply Like Button parameter format
   const listProduct = similar_items.find((item) => item.id === product.id);
-
-  console.log(listProduct);
 
   // check product is Liked before by the user base on Id
   useEffect(() => {
@@ -58,6 +55,7 @@ const ProductInformation = ({ product }) => {
       });
     }
   });
+
   const colourStyles = {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
       return {

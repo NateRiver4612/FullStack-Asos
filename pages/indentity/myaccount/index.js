@@ -1,18 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import {
-  BiUser,
-  BiMessageDetail,
-  BiHelpCircle,
-  BiLogOut,
-} from "react-icons/bi";
-import { FiPackage } from "react-icons/fi";
-import { TbPackgeImport } from "react-icons/tb";
 import Link from "next/link";
-import { MdPayment } from "react-icons/md";
-import { FaAddressCard, FaHome } from "react-icons/fa";
-import { BsPeopleFill, BsFillGiftFill } from "react-icons/bs";
-import { AiOutlineSwitcher } from "react-icons/ai";
 import dynamic from "next/dynamic";
 
 const AccountSidebar = dynamic(

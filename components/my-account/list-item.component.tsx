@@ -1,8 +1,6 @@
 import React from "react";
 
 const ListItem = ({ handleSelect, selectedItem, icon, label }) => {
-  console.log(label);
-
   return (
     <li
       key={label}
