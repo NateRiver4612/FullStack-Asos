@@ -13,11 +13,11 @@ import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
 
 const urls = new Map([
-  ["my account", "/indentity/myaccount"],
-  ["my orders", "/indentity/myaccount"],
-  ["my returns", "/indentity/myaccount"],
-  ["return information", "/indentity/myaccount"],
-  ["contact preferences", "/indentity/myaccount"],
+  ["my account", "/identity/myaccount"],
+  ["my orders", "/identity/myaccount"],
+  ["my returns", "/identity/myaccount"],
+  ["return information", "/identity/myaccount"],
+  ["contact preferences", "/identity/myaccount"],
 ]);
 
 const icons = new Map([
@@ -55,8 +55,8 @@ const ProfileCard = () => {
             <BiUser
               onClick={() => {
                 authUser
-                  ? router.push("/indentity/myaccount")
-                  : router.push("/indentity/register");
+                  ? router.push("/identity/myaccount")
+                  : router.push("/identity/register");
               }}
               size={26}
             />
@@ -83,12 +83,12 @@ const ProfileCard = () => {
                   ) : (
                     <div className="flex justify-center items-center w-full text-sm font-semibold text-gray-500 ">
                       <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                        <Link href="/indentity/register">Sign In</Link>
+                        <Link href="/identity/register">Sign In</Link>
                       </span>
 
                       <span className="border-gray-200 border-r-[1px] h-[30px] w-[0px]"></span>
                       <span className="hover:text-gray-900 hover:border-gray-800 border-b-2 p-3 h-[50px] text-center w-full">
-                        <Link href="/indentity/register">Join</Link>
+                        <Link href="/identity/register">Join</Link>
                       </span>
                     </div>
                   )}
@@ -96,7 +96,8 @@ const ProfileCard = () => {
                 <ul className="flex flex-col text-gray-600  capitalize">
                   {platMain.map((key, index) => {
                     const icon = icons.get(key);
-                    const url = urls.get(key);
+                    const url = authUser ? urls.get(key) : "/identity/register";
+
                     return (
                       <Link key={index} href={url}>
                         <li className="flex cursor-pointer item-center px-6 py-[12px] hover:bg-gray-300">

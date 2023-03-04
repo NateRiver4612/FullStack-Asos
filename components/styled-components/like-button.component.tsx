@@ -41,7 +41,7 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
   const handleLike = async () => {
     if (!authUser) {
       try {
-        return router.push("/indentity/register");
+        return router.push("/identity/register");
       } catch (error) {
         alert("You have to sign in first to actually interact with website");
         return;

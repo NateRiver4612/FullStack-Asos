@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FiPackage } from "react-icons/fi";
 import { TbPackgeImport } from "react-icons/tb";
-import Link from "next/link";
 import { MdPayment } from "react-icons/md";
 import { FaAddressCard, FaHome } from "react-icons/fa";
 import { BsPeopleFill, BsFillGiftFill } from "react-icons/bs";
@@ -16,6 +15,9 @@ import {
 import { IconType } from "react-icons/lib";
 import ListItem from "./list-item.component";
 import SidebarList from "./sidebar-list.component";
+import { useAuth } from "../../context/authUserContext";
+import { useRouter } from "next/router";
+import Spinner from "../spinner/spinner.component";
 
 const icons: Map<string, IconType> = new Map([
   ["My orders", FiPackage],
@@ -50,11 +52,30 @@ const section_3 = [
 ];
 
 const AccountSidebar = () => {
+  const { authUser, SignOut } = useAuth();
   const [selectedItem, setSelectedItem] = useState("Account overview");
+
+  const router = useRouter();
+
+  if (!authUser) {
+    return router.push("/identity/register");
+  }
 
   const handleSelect = (select: string) => {
     return setSelectedItem(select);
   };
+
+  const handleSignOut = async () => {
+    try {
+      await SignOut();
+
+      router.back();
+    } catch (error) {
+      throw Error(error);
+    }
+  };
+
+  const name = authUser?.name.split(" ");
 
   return (
     <div className="w-screen relative sm:w-[31%] flex flex-col gap-2">
@@ -74,7 +95,7 @@ const AccountSidebar = () => {
         <div className=" text-center">
           <span className="font-thin text-gray-600">Hi, </span>
           <span className="font-semibold text-lg text-[#2d2d2d] tracking-wider">
-            Nate River
+            {authUser?.name}
           </span>
         </div>
       </div>
@@ -120,7 +141,7 @@ const AccountSidebar = () => {
 
       <ListItem
         label="Sign Out"
-        handleSelect={() => {}}
+        handleSelect={handleSignOut}
         selectedItem={selectedItem}
         icon={BiLogOut}
       ></ListItem>
