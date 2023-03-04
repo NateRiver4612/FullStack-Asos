@@ -14,10 +14,10 @@ import { useRouter } from "next/router";
 
 const urls = new Map([
   ["my account", "/indentity/myaccount"],
-  ["my orders", ""],
-  ["my returns", ""],
-  ["return information", ""],
-  ["contact preferences", ""],
+  ["my orders", "/indentity/myaccount"],
+  ["my returns", "/indentity/myaccount"],
+  ["return information", "/indentity/myaccount"],
+  ["contact preferences", "/indentity/myaccount"],
 ]);
 
 const icons = new Map([
@@ -54,7 +54,9 @@ const ProfileCard = () => {
           <div className="overflow-hidden group">
             <BiUser
               onClick={() => {
-                router.push("/indentity/register");
+                authUser
+                  ? router.push("/indentity/myaccount")
+                  : router.push("/indentity/register");
               }}
               size={26}
             />

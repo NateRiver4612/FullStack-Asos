@@ -57,10 +57,17 @@ const AccountSidebar = () => {
   };
 
   return (
-    <div className="w-screen sm:w-[31%] flex flex-col gap-2">
-      <div className="h-[15%] bg-white flex gap-2 flex-col justify-center">
-        <div className="flex justify-center ">
-          <div className=" w-[60px] h-[60px] md:w-[90px]  md:h-[90px] tracking-wider text-white font-bold lg:text-[25px] xl:text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
+    <div className="w-screen relative sm:w-[31%] flex flex-col gap-2">
+      <div className="sm:hidden absolute ">
+        <img
+          loading="lazy"
+          src="/icons/account_bg.svg"
+          className="object-cover w-screen h-32"
+        ></img>
+      </div>
+      <div className="h-[15%] mt-20 sm:mt-0 bg-white flex gap-2 pb-4 flex-col justify-center">
+        <div className="flex z-10 justify-center ">
+          <div className=" w-[90px] h-[90px]  tracking-wider text-white font-bold text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
             NR
           </div>
         </div>
