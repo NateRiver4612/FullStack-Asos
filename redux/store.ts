@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./features/search/search.slice";
 import wishReducer from "./features/wish/wish.slice";
+import cartReducer from "./features/cart/cart.slice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistReducer,
@@ -16,12 +17,13 @@ import {
 const rootReducer = combineReducers({
   search: searchReducer,
   wish: wishReducer,
+  cart: cartReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["search", "wish"],
+  whitelist: ["search", "wish", "cart"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

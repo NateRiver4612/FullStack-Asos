@@ -17,10 +17,15 @@ export const wishSlice = createSlice({
     setWishItems: (state, action: PayloadAction<Product[]>) => {
       state.wishItems = action.payload;
     },
+    removeWishItem: (state, action: PayloadAction<string>) => {
+      state.wishItems = state.wishItems.filter(
+        (item) => item.id != action.payload
+      );
+    },
   },
 });
 
-export const { setWishItems } = wishSlice.actions;
+export const { setWishItems, removeWishItem } = wishSlice.actions;
 
 export const selectWishItems = (state: RootState) => state.wish.wishItems;
 

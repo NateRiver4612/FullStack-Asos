@@ -1,14 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
+import React from "react";
 import dynamic from "next/dynamic";
-import { useAuth } from "../../../context/authUserContext";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-
-import {
-  selectWishItems,
-  setWishItems,
-} from "../../../redux/features/wish/wish.slice";
+import { useAppSelector } from "../../../redux/hooks";
+import Toast from "../../../components/styled-components/toast-message.component";
+import { selectWishItems } from "../../../redux/features/wish/wish.slice";
 
 const ProductOverview_Container = dynamic(
   () =>

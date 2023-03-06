@@ -11,6 +11,7 @@ import { BiMessageSquareDots } from "react-icons/bi";
 import { HiLogout } from "react-icons/hi";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
+import { GoPrimitiveDot } from "react-icons/go";
 
 const urls = new Map([
   ["my account", "/identity/myaccount"],
@@ -125,11 +126,19 @@ const ProfileCard = () => {
           </li>
         </Tooltip>
 
-        <Tooltip title="bag" arrow>
-          <li>
-            <RiShoppingBagLine size={26} />
-          </li>
-        </Tooltip>
+        <div className="relative">
+          <Tooltip title="bag" arrow>
+            <li>
+              <RiShoppingBagLine size={26} />
+            </li>
+          </Tooltip>
+          <span className="absolute right-0 top-[5px] ">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-300 "></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+          </span>
+        </div>
 
         <Tooltip title="texting" arrow>
           <li>

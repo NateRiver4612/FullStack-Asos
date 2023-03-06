@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CgTrash } from "react-icons/cg";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -50,6 +50,19 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
 
     setIsClicked(!isClicked);
 
+    var likeButton = document.getElementById(`like_button_${id}`);
+
+    likeButton.className += " pulse-animation ";
+
+    setTimeout(() => {
+      likeButton.className = likeButton.className.replace(
+        " pulse-animation ",
+        ""
+      );
+    }, 800);
+
+    console.log(likeButton.className);
+
     const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 
     const input = {
@@ -72,11 +85,13 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
 
   return (
     <span
+      id={`like_button_${id}`}
       onClick={handleLike}
       className={`absolute text-black flex opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
     >
       <motion.button
-        whileTap={{ scale: 0.4 }}
+        className="rounded-full"
+        whileTap={{ scale: 0.5 }}
         transition={{ type: "spring", stiffness: 300, damping: 8 }}
       >
         {isWishItem ? (

@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/authUserContext";
-import { Like } from "../../types";
+import { Cart, Like } from "../../types";
 import LikeButton from "../styled-components/like-button.component";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  addToCart,
+  selectCartItems,
+} from "../../redux/features/cart/cart.slice";
+import { removeWishItem } from "../../redux/features/wish/wish.slice";
 
 const ProductOverview = ({ product, isWishItem, wishItems }) => {
   const router = useRouter();
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   const [isProductLiked, setIsProductLiked] = useState(false);
 
@@ -48,11 +56,19 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
     });
   };
 
+  const handleAddToCart = () => {
+    const cartItem: Cart = {
+      ...product,
+      quantity: 1,
+      totalPrice: product.price.current.value,
+    };
+
+    dispatch(addToCart(cartItem));
+    dispatch(removeWishItem(id));
+  };
+
   return (
-    <div
-      key={product.id}
-      className="flex relative flex-col cursor-pointer  mt-5"
-    >
+    <div key={id} className="flex relative flex-col cursor-pointer  mt-5">
       <div className="flex justify-end items-end ">
         <Image
           onClick={() => {
@@ -95,9 +111,17 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
         </div>
       </div>
       {isWishItem && colour && (
-        <div className="py-2 mt-3 border-y-[1px] border-gray-200">
-          <span className="text-gray-300 text-sm font-thin">{colour}</span>
-        </div>
+        <Fragment>
+          <div className="py-2 mt-3 border-y-[1px] border-gray-200">
+            <span className="text-gray-300 text-sm font-thin">{colour}</span>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="rounded-[1px] uppercase transition-all duration-300 bg-gray-400 hover:bg-gray-600 font-semibold tracking-wide text-gray-300 py-2 my-2 "
+          >
+            move to bag
+          </button>
+        </Fragment>
       )}
     </div>
   );

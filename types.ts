@@ -1,27 +1,27 @@
-export type Like = {
+export interface Like {
   id: String;
   displayName: String;
   createdAt: String;
-};
+}
 
-export type Comment = {
+export interface Comment {
   id: String;
   displayName: String;
   comment: String;
   createdAt: String;
-};
+}
 
-export type Price_Format = {
+export interface Price_Format {
   text: String;
   value: Number;
-};
+}
 
-export type Price = {
+export interface Price {
   current: Price_Format;
   previous: Price_Format;
-};
+}
 
-export type Product = {
+export interface Product {
   id: String;
   price: Price;
   imageUrl: String;
@@ -33,4 +33,9 @@ export type Product = {
   comments: [Comment];
   likeCount: Number;
   commentCount: Number;
-};
+}
+
+export interface Cart extends Product {
+  quantity: Number;
+  totalPrice: Number;
+}
