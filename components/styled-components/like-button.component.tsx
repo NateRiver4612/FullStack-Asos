@@ -29,7 +29,6 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
     const likedProductsByUser = wishItems.filter((product) =>
       product.likes.filter((like) => like.id != authUser.id)
     );
-    console.log(likedProductsByUser);
 
     return dispatch(setWishItems(likedProductsByUser));
   };
@@ -60,8 +59,6 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
         ""
       );
     }, 800);
-
-    console.log(likeButton.className);
 
     const url = `/${mainRouteId}/${categoryRouteId}/${categoryId}/Product/${id}`;
 

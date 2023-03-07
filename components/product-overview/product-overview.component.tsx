@@ -63,9 +63,16 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
       totalPrice: product.price.current.value,
     };
 
-    dispatch(addToCart(cartItem));
-    dispatch(removeWishItem(id));
+    if (cartItems.find((item) => item.id == id)) {
+      alert("You have added this item before");
+      return;
+    } else {
+      dispatch(addToCart(cartItem));
+      dispatch(removeWishItem(id));
+    }
   };
+
+  console.log(cartItems);
 
   return (
     <div key={id} className="flex relative flex-col cursor-pointer  mt-5">

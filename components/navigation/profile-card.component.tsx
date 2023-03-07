@@ -126,7 +126,12 @@ const ProfileCard = () => {
           </li>
         </Tooltip>
 
-        <div className="relative">
+        <div
+          className="relative"
+          onClick={() => {
+            router.push(`/${mainRouteId}/cart`);
+          }}
+        >
           <Tooltip title="bag" arrow>
             <li>
               <RiShoppingBagLine size={26} />
