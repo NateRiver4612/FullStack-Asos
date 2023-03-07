@@ -67,7 +67,7 @@ const useFirebaseAuth = () => {
     email: string,
     password: string
   ) =>
-    createUserWithEmailAndPassword(auth, email, password).then(() => {
+    await createUserWithEmailAndPassword(auth, email, password).then(() => {
       return updateProfile(auth.currentUser, { displayName: name });
     });
 

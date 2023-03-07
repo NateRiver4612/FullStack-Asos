@@ -72,8 +72,6 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
     }
   };
 
-  console.log(cartItems);
-
   return (
     <div key={id} className="flex relative flex-col cursor-pointer  mt-5">
       <div className="flex justify-end items-end ">

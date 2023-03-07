@@ -81,7 +81,7 @@ const AccountSidebar = () => {
     nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
 
   return (
-    <div className="w-screen relative sm:w-[31%] flex flex-col gap-2">
+    <div className="w-screen relative sm:w-[35%] flex flex-col gap-2">
       <div className="sm:hidden absolute ">
         <img
           loading="lazy"

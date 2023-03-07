@@ -66,6 +66,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
       setLoading(false);
       router.back();
     } catch (error) {
+      setLoading(false);
       alert(error);
     }
   };
