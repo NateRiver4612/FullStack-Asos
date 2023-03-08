@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CgTrash } from "react-icons/cg";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
+  removeWishItem,
   selectWishItems,
   setWishItems,
 } from "../../redux/features/wish/wish.slice";
@@ -26,11 +27,11 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
   }, [isProductLiked]);
 
   const handleRemoveItem = () => {
-    const likedProductsByUser = wishItems.filter((product) =>
-      product.likes.filter((like) => like.id != authUser.id)
-    );
+    // const likedProductsByUser = wishItems.filter((product) =>
+    //   product.likes.filter((like) => like.id != authUser.id)
+    // );
 
-    return dispatch(setWishItems(likedProductsByUser));
+    return dispatch(removeWishItem(authUser.id.toString()));
   };
 
   const [likeProduct] = useMutation(LIKE_PRODUCT, {

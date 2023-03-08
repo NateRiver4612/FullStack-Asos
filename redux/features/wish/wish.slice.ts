@@ -18,8 +18,8 @@ export const wishSlice = createSlice({
       state.wishItems = action.payload;
     },
     removeWishItem: (state, action: PayloadAction<string>) => {
-      state.wishItems = state.wishItems.filter(
-        (item) => item.id != action.payload
+      state.wishItems = state.wishItems.filter((product) =>
+        product.likes.filter((like) => like.id != action.payload)
       );
     },
   },

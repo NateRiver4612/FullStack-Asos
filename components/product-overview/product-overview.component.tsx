@@ -68,7 +68,7 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
       return;
     } else {
       dispatch(addToCart(cartItem));
-      dispatch(removeWishItem(id));
+      dispatch(removeWishItem(authUser.id.toString()));
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { selectCartItems } from "../../redux/features/cart/cart.slice";
 import { useAppSelector } from "../../redux/hooks";
@@ -7,12 +7,28 @@ import CartList from "./cart-list.component";
 import Image from "next/image";
 import CartWishList from "./cart-wishList.components";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
+import { useAuth } from "../../context/authUserContext";
 
 const Cart = () => {
   const cartItems = useAppSelector(selectCartItems);
   const wishItems = useAppSelector(selectWishItems);
+  const { authUser } = useAuth();
 
-  const cartWishItems = [...wishItems].slice(3, 6);
+  const [cart, setCart] = useState([]);
+
+  const cartWishItems = [...wishItems].slice(0, 3);
+
+  useEffect(() => {
+    if (authUser) {
+      const cartsByUser = cartItems.filter((product) =>
+        product.likes.find((like) => like.id == authUser?.id)
+      );
+
+      if (cartsByUser.length > 0) setCart(cartsByUser);
+    } else {
+      setCart([]);
+    }
+  }, [authUser]);
 
   return (
     <div className="w-[60%] h-fit flex flex-col gap-2 ">
@@ -26,7 +42,7 @@ const Cart = () => {
           </span>
         </div>
       </div>
-      <CartList cartItems={cartItems}></CartList>
+      <CartList cartItems={cart}></CartList>
       <div className="bg-gray-100 h-[4rem] flex items-center">
         <div className="flex justify-between  w-full tracking-wider items-center px-6">
           <span className="uppercase font-bold text-md text-gray-600">
