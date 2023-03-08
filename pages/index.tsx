@@ -26,6 +26,7 @@ export default function Home({ isConnected }) {
 
 export async function getServerSideProps(context) {
   try {
+    console.log("Hello");
     await clientPromise;
 
     return {
