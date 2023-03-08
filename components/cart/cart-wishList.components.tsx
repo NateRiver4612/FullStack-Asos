@@ -13,10 +13,10 @@ const CartWishList = ({ cartWishItems }) => {
         </span>
       </div>
       <div className="flex justify-between mt-4 w-[80%]">
-        {cartWishItems.map((item) => {
+        {cartWishItems.map((item, index) => {
           const { imageUrl, id, isSellingFast, name, price, colour } = item;
           return (
-            <div className="flex flex-col w-[28%] gap-2">
+            <div key={index + id} className="flex flex-col w-[28%] gap-2">
               <Image src={`https:${imageUrl}`} height={160} width={120} />
               <span className="text-xs font-semibold text-gray-500 line-clamp-2">
                 {name}
