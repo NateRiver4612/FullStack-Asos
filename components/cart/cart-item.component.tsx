@@ -1,17 +1,35 @@
 import React from "react";
 import Image from "next/image";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useRouter } from "next/router";
 
 const CartItem = ({ cartItem }) => {
-  const { imageUrl, name, quantity, price, colour } = cartItem;
+  const { id, imageUrl, name, quantity, price, colour, link } = cartItem;
+
+  const router = useRouter();
+
+  const handleSelect = () => {
+    const query = {
+      cid: router.query.cid,
+      item: name,
+      pid: id.toString(),
+    };
+
+    return router.push({
+      pathname: link,
+      query: query,
+    });
+  };
 
   return (
     <div className="flex border-b-[1px] gap-5 pb-5 border-gray-200">
-      <div className=" w-[20%] ">
+      <div className="w-[20%] " onClick={handleSelect}>
         <Image height={140} width={110} src={`https:${imageUrl}`} />
       </div>
       <div className=" w-[80%] flex flex-col gap-2">
-        <span className="text-gray-600 w-[80%]">{name}</span>
+        <span onClick={handleSelect} className="text-gray-600 w-[80%]">
+          {name}
+        </span>
         <div className="flex items-center gap-3 ">
           <span
             className={`${

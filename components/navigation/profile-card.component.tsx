@@ -127,7 +127,7 @@ const ProfileCard = () => {
         </Tooltip>
 
         <div
-          className="relative"
+          className="relative cursor-pointer"
           onClick={() => {
             router.push(`/${mainRouteId}/cart`);
           }}

@@ -13,7 +13,9 @@ import { removeWishItem } from "../../redux/features/wish/wish.slice";
 
 const ProductOverview = ({ product, isWishItem, wishItems }) => {
   const router = useRouter();
-  const cartItems = useAppSelector(selectCartItems);
+  const cartItems = useAppSelector((state) =>
+    selectCartItems(state, authUser?.id)
+  );
   const dispatch = useAppDispatch();
 
   const [isProductLiked, setIsProductLiked] = useState(false);
