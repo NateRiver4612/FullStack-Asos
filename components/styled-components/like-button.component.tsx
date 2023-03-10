@@ -8,31 +8,47 @@ import {
   setWishItems,
 } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { LIKE_PRODUCT, GET_LIKED_PRODUCTS } from "../../utils/graphQl.utils";
-import router from "next/router";
+import { useRouter } from "next/router";
+import { selectCartItems } from "../../redux/features/cart/cart.slice";
+import { Like } from "../../types";
+import { RiShoppingBagLine } from "react-icons/ri";
 
-const LikeButton = ({ product, isWishItem, isProductLiked }) => {
+const LikeButton = ({ product, isWishItem }) => {
+  const router = useRouter();
+
   const wishItems = useAppSelector(selectWishItems);
-  const dispatch = useAppDispatch();
+
+  const [isProductLiked, setIsProductLiked] = useState(false);
+
+  const { authUser } = useAuth();
+  const cartItems = useAppSelector((state) =>
+    selectCartItems(state, authUser?.id)
+  );
+
   const [isClicked, setIsClicked] = useState(false);
 
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
   const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
-  const { authUser } = useAuth();
+  const isAddToCart = cartItems && !!cartItems.find((item) => item.id == id);
+
+  useEffect(() => {
+    const isLiked =
+      wishItems &&
+      !!wishItems.find(
+        (wish: { id: String; likes: Like[] }) =>
+          wish.id == product.id &&
+          wish.likes.find((like: { id: String }) => like.id == authUser?.id)
+      );
+
+    setIsProductLiked(isLiked);
+  }, [wishItems, authUser]);
 
   useEffect(() => {
     setIsClicked(isProductLiked);
   }, [isProductLiked]);
-
-  const handleRemoveItem = () => {
-    // const likedProductsByUser = wishItems.filter((product) =>
-    //   product.likes.filter((like) => like.id != authUser.id)
-    // );
-
-    return dispatch(removeWishItem(authUser.id.toString()));
-  };
 
   const [likeProduct] = useMutation(LIKE_PRODUCT, {
     refetchQueries: [{ query: GET_LIKED_PRODUCTS }],
@@ -81,19 +97,28 @@ const LikeButton = ({ product, isWishItem, isProductLiked }) => {
     await likeProduct({ variables: { input: input.value } });
   };
 
+  const handleGoToCart = async () => {
+    router.push(`/${mainRouteId}/cart`);
+  };
+
   return (
     <span
       id={`like_button_${id}`}
-      onClick={handleLike}
-      className={`absolute text-black flex opacity-80 text-[20px] sm:text-[24px] transition-all duration-500  bg-white rounded-full p-[6px] mb-[10px] mr-[10px]`}
+      onClick={isAddToCart ? handleGoToCart : handleLike}
+      className={`absolute  flex opacity-80 text-[20px] sm:text-[24px] 
+      transition-all duration-500  rounded-full p-[6px] mb-[10px] mr-[10px] ${
+        isAddToCart ? "text-white bg-black" : "bg-white"
+      }`}
     >
       <motion.button
         className="rounded-full"
         whileTap={{ scale: 0.5 }}
         transition={{ type: "spring", stiffness: 300, damping: 8 }}
       >
-        {isWishItem ? (
-          <CgTrash onClick={handleRemoveItem} />
+        {isAddToCart ? (
+          <RiShoppingBagLine />
+        ) : isWishItem ? (
+          <CgTrash />
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"

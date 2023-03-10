@@ -23,13 +23,14 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
   } = useQuery(GET_LIKED_PRODUCTS);
 
   useEffect(() => {
-    if (!Liked_Products_Loading) {
+    if (!Liked_Products_Loading && authUser) {
       const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
-        (product) => product.likes.find((like) => like.id == authUser?.id)
+        (product) => product.likes.find((like) => like.id == authUser.id)
       );
-
-      if (likedProductsByUser.length > 0)
-        dispatch(setWishItems(likedProductsByUser));
+      console.log(likedProductsByUser);
+      dispatch(setWishItems(likedProductsByUser));
+    } else {
+      dispatch(setWishItems([]));
     }
   }, [Liked_Products_Data?.getLikedProducts, authUser]);
 

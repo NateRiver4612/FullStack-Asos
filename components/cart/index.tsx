@@ -13,7 +13,7 @@ import CartCheckout from "./cart-checkout.component";
 const Cart = () => {
   const { authUser } = useAuth();
   const cartItems = useAppSelector((state) =>
-    selectCartItems(state, authUser?.id.toString())
+    selectCartItems(state, authUser?.id)
   );
   const wishItems = useAppSelector(selectWishItems);
 
@@ -21,8 +21,6 @@ const Cart = () => {
   const [cartAmount, setCartAmount] = useState(0);
 
   const cartWishItems = [...wishItems].slice(0, 3);
-
-  console.log(cartSubTotal.toFixed(2));
 
   useEffect(() => {
     const priceSum = cartItems.reduce(
@@ -40,7 +38,16 @@ const Cart = () => {
     setcartSubTotal(priceSum);
   }, [cartItems]);
 
-  console.log(cartAmount);
+  const priceSum = cartItems.reduce(
+    (accumulator, item) =>
+      accumulator + item.price.current.value * item.quantity,
+    0
+  );
+
+  const quantitySum = cartItems.reduce(
+    (accumulator, item) => accumulator + item.quantity,
+    0
+  );
 
   return (
     <div className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2 ">

@@ -3,6 +3,9 @@ import searchReducer from "./features/search/search.slice";
 import wishReducer from "./features/wish/wish.slice";
 import cartReducer from "./features/cart/cart.slice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./root-saga";
+
 import {
   persistReducer,
   persistStore,
@@ -14,6 +17,9 @@ import {
   REGISTER,
 } from "redux-persist";
 
+let sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+
 const rootReducer = combineReducers({
   search: searchReducer,
   wish: wishReducer,
@@ -23,7 +29,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["search", "wish", "cart"],
+  whitelist: ["search", "cart", "wish"],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -34,7 +40,7 @@ const makeConfiguredStore = () =>
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }),
+      }).concat(middleware),
   });
 
 const isServer = typeof window === "undefined";
@@ -52,9 +58,11 @@ if (isServer) {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }),
+      }).concat(middleware),
   });
 }
+
+sagaMiddleware.run(rootSaga);
 
 export const store = ConfigureStore;
 

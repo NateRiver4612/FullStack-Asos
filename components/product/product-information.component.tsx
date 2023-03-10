@@ -24,23 +24,6 @@ const ProductInformation = ({ product }) => {
   // Take product from list to apply Like Button parameter format
   const listProduct = similar_items.find((item) => item.id === product.id);
 
-  // check product is Liked before by the user base on Id
-  useEffect(() => {
-    const isLiked =
-      wishItems &&
-      wishItems.find(
-        (wish: { id: String; likes: Like[] }) =>
-          wish.id == listProduct.id &&
-          wish.likes.find((like: { id: String }) => like.id == authUser?.id)
-      );
-
-    if (isLiked) {
-      return setIsProductLiked(true);
-    }
-
-    return setIsProductLiked(false);
-  }, [wishItems, authUser]);
-
   variants.map((variant) => {
     if (variant.isInStock) {
       options.push({
@@ -117,7 +100,6 @@ const ProductInformation = ({ product }) => {
               <LikeButton
                 product={listProduct}
                 isWishItem={undefined}
-                isProductLiked={isProductLiked}
               ></LikeButton>
             </div>
           </div>

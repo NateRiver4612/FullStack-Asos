@@ -1,8 +1,16 @@
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAuth } from "../../../../context/authUserContext";
 import React, { useEffect, useState, Fragment } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
+import { useQuery } from "@apollo/client";
 
 import dynamic from "next/dynamic";
+import {
+  selectWishItems,
+  setWishItems,
+} from "../../../../redux/features/wish/wish.slice";
+import { GET_LIKED_PRODUCTS } from "../../../../utils/graphQl.utils";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -52,7 +60,7 @@ const ProductList = ({ data }) => {
     //Convert query obj into filters object format
     Object.keys(filterObj).map((key) => {
       if (typeof filterObj[key] == "string") {
-        filterObj[key] = filterObj[key].split(",");
+        filterObj[key] = filterObj[key].toString().split(",");
       }
     });
 

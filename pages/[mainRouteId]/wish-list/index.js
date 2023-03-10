@@ -1,8 +1,15 @@
-import React from "react";
+import { useAppDispatch } from "../../../redux/hooks";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppSelector } from "../../../redux/hooks";
-import Toast from "../../../components/styled-components/toast-message.component";
-import { selectWishItems } from "../../../redux/features/wish/wish.slice";
+import {
+  selectWishItems,
+  setWishItems,
+} from "../../../redux/features/wish/wish.slice";
+import { useAuth } from "../../../context/authUserContext";
+import { useRouter } from "next/router";
+import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
+import { useQuery } from "@apollo/client";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -12,6 +19,28 @@ const ProductOverview_Container = dynamic(
 
 const WishList = () => {
   const wishItems = useAppSelector(selectWishItems);
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+  const { authUser } = useAuth();
+
+  const {
+    loading: Liked_Products_Loading,
+    data: Liked_Products_Data,
+    error: Liked_Products_Error,
+  } = useQuery(GET_LIKED_PRODUCTS);
+
+  useEffect(() => {
+    if (!Liked_Products_Loading && authUser) {
+      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
+        (product) => product.likes.find((like) => like.id == authUser.id)
+      );
+      console.log(likedProductsByUser);
+      dispatch(setWishItems(likedProductsByUser));
+    } else {
+      dispatch(setWishItems([]));
+    }
+  }, [Liked_Products_Data?.getLikedProducts, authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">

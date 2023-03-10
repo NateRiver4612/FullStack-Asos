@@ -13,10 +13,10 @@ import {
 import { app } from "./firebase.util";
 
 export type formatUser = {
-  name: String;
-  email: String;
-  photo: String;
-  id: String;
+  name: string;
+  email: string;
+  photo: string;
+  id: string;
 };
 
 const formateAuthUser = (user: {

@@ -13,7 +13,7 @@ const CartWishList = ({ cartWishItems }) => {
           These items were recently moved to your Saved Items
         </span>
       </div>
-      <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-between mt-4 w-[80%]">
+      <div className="flex flex-col gap-6 sm:gap-10 sm:flex-row mt-4 w-[80%]">
         {cartWishItems.map((item, index) => {
           return (
             <CartWishlistItem key={item.id} item={item}></CartWishlistItem>

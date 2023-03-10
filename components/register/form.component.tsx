@@ -31,9 +31,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
     setLoading(true);
     try {
       const { user } = await SignInWithGooglePopup();
-      if (user) {
-        console.log(user);
-      }
+
       setLoading(false);
       clearState();
       router.back();
@@ -46,9 +44,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
     setLoading(true);
     try {
       const { user } = await SignInWithEmailAndPassword(email, password);
-      if (user) {
-        console.log(user);
-      }
+
       clearState();
       setLoading(false);
       router.back();
@@ -61,7 +57,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
     setLoading(true);
     try {
       await SignUpWithEmailAndPassword(name, email, password);
-      console.log(authUser);
+
       clearState();
       setLoading(false);
       router.back();
@@ -74,7 +70,7 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
   return (
     <div
       className={` w-[80%] sm:w-[50%] ${
-        switchState ? " -left-0" : "left-[50%] "
+        switchState ? " sm:-left-0" : "sm:left-[50%] "
       }  transition-all duration-1000 mx-[10%] pt-10 absolute h-[90%] flex flex-col`}
     >
       <Link href="/men">
@@ -89,14 +85,14 @@ const RegisterForm = ({ switchState, setSwitchState, setLoading }) => {
           <span
             className={`text-[28px] ${
               switchState ? "opacity-100" : "opacity-0"
-            } h-0 transition-all duration-700 font-bold tracking-wide`}
+            } h-0 transition-all duration-700 sm:duration-700 font-bold tracking-wide`}
           >
             Get started
           </span>
           <span
             className={`text-[28px] ${
               switchState ? "opacity-0" : "opacity-100"
-            } transition-all duration-1000 font-bold tracking-wide`}
+            } transition-all duration-700 sm:duration-1000 font-bold tracking-wide`}
           >
             Welcome back
           </span>

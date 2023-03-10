@@ -12,7 +12,7 @@ const MyAccount = () => {
   return (
     <div className="h-screen lg:h-fit pb-[5%] absolute top-0 lg:px-[15%] 2xl:px-[20%]  w-screen bg-gray-200 z-30 ">
       <div className="">
-        <div className="header px-5 py-2 sm:py-8 flex justify-between items-center">
+        <div className="header p-2 sm:px-5  sm:py-8 flex justify-between items-center">
           <Link href="/">
             <span className="relative cursor-pointer w-[50px] h-[15px]  sm:w-[96px] sm:h-[29px]">
               <Image layout="fill" src="/icons/asos_icon.svg" />

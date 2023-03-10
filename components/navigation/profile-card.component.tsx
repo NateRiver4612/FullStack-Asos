@@ -12,6 +12,8 @@ import { HiLogout } from "react-icons/hi";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
 import { GoPrimitiveDot } from "react-icons/go";
+import { useAppSelector } from "../../redux/hooks";
+import { selectCartItems } from "../../redux/features/cart/cart.slice";
 
 const urls = new Map([
   ["my account", "/identity/myaccount"],
@@ -40,6 +42,10 @@ const platMain = [
 const ProfileCard = () => {
   const { authUser, SignOut } = useAuth();
 
+  const cartItems = useAppSelector((state) =>
+    selectCartItems(state, authUser?.id)
+  );
+
   const handleSignOut = async () => {
     await SignOut();
   };
@@ -47,6 +53,14 @@ const ProfileCard = () => {
   const router = useRouter();
 
   const { mainRouteId } = router.query;
+
+  const handleSelect = (path) => {
+    if (!authUser) {
+      router.push("/identity/register");
+    } else {
+      router.push(`/${mainRouteId}/${path}`);
+    }
+  };
 
   return (
     <div className="h-full mx-2 md:mr-6 lg:mr-10 xl:mr-36 ">
@@ -118,9 +132,7 @@ const ProfileCard = () => {
         <Tooltip title="saved items" arrow>
           <li className="cursor-pointer ">
             <AiOutlineHeart
-              onClick={() => {
-                router.push(`/${mainRouteId}/wish-list`);
-              }}
+              onClick={() => handleSelect("wish-list")}
               size={26}
             />
           </li>
@@ -128,9 +140,7 @@ const ProfileCard = () => {
 
         <div
           className="relative cursor-pointer"
-          onClick={() => {
-            router.push(`/${mainRouteId}/cart`);
-          }}
+          onClick={() => handleSelect("cart")}
         >
           <Tooltip title="bag" arrow>
             <li>
