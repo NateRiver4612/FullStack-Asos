@@ -38,17 +38,6 @@ const ProductInformation = dynamic(
 );
 
 const ProductDetailPage = ({ data }) => {
-  const {
-    media: { images },
-    info,
-    price,
-    variants,
-    brand,
-    description,
-    name,
-    rating,
-  } = data;
-
   console.log(data);
 
   const [similaritems, setSimilarItems] = useState([]);
