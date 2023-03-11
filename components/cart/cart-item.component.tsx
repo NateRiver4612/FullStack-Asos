@@ -2,13 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { CiCircleRemove } from "react-icons/ci";
+import { useAuth } from "../../context/authUserContext";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { removeCartItem } from "../../redux/features/cart/cart.slice";
 
 const CartItem = ({ cartItem }) => {
   const { id, imageUrl, name, quantity, price, colour, link } = cartItem;
 
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  console.log(imageUrl);
+  const { authUser } = useAuth();
 
   const handleSelect = () => {
     const query = {
@@ -21,6 +26,10 @@ const CartItem = ({ cartItem }) => {
       pathname: link,
       query: query,
     });
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeCartItem({ userId: authUser?.id, productId: id }));
   };
 
   return (
@@ -56,6 +65,14 @@ const CartItem = ({ cartItem }) => {
           <AiOutlineHeart size={20}></AiOutlineHeart>
           <span>Save for later</span>
         </div>
+      </div>
+      <div className="w-fit">
+        <span className="transition-all duration-300 text-gray-800">
+          <CiCircleRemove
+            onClick={handleRemoveFromCart}
+            size={25}
+          ></CiCircleRemove>
+        </span>
       </div>
     </div>
   );

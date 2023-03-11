@@ -1,4 +1,3 @@
-import { RootState } from "./../../store";
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Cart } from "../../../types";
 
@@ -10,6 +9,11 @@ const initialState: CartState = {
   cartItems: [],
 };
 
+interface removeCart_Input {
+  userId: string;
+  productId: string;
+}
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -17,10 +21,18 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Cart>) => {
       state.cartItems = [...state.cartItems, action.payload];
     },
+    removeCartItem: (state, action: PayloadAction<removeCart_Input>) => {
+      const { userId, productId } = action.payload;
+      state.cartItems = state.cartItems.filter(
+        (product) =>
+          product.id != productId &&
+          product.likes.filter((like) => like.id != userId)
+      );
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeCartItem } = cartSlice.actions;
 
 export const selectCartItems = createSelector(
   [(state) => state.cart.cartItems, (state, userId) => userId],

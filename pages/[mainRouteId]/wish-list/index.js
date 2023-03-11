@@ -40,7 +40,7 @@ const WishList = () => {
     } else {
       dispatch(setWishItems([]));
     }
-  }, [Liked_Products_Data?.getLikedProducts, authUser]);
+  }, [authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
