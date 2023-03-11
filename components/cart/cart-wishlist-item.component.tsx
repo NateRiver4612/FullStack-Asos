@@ -6,7 +6,7 @@ const CartWishlistItem = ({ item }) => {
   return (
     <div className="flex sm:flex-col pb-6 w-full sm:w-[28%] gap-2 border-b-[1px] border-gray-300">
       <div className="">
-        <Image src={`https:${imageUrl}`} height={160} width={120} />
+        <Image src={`https://${imageUrl}`} height={160} width={120} />
       </div>
 
       <div className="w-full">

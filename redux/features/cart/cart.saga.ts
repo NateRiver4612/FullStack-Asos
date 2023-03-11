@@ -5,7 +5,6 @@ import { removeWishItem } from "../wish/wish.slice";
 
 export function* addToCartAsync({ payload: { cartItem, authUser } }: any) {
   try {
-    console.log("Saga bitch", cartItem, authUser);
     yield put(addToCart(cartItem));
     yield put(removeWishItem(authUser.id));
   } catch (error) {}

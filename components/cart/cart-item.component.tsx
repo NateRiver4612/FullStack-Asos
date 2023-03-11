@@ -8,6 +8,8 @@ const CartItem = ({ cartItem }) => {
 
   const router = useRouter();
 
+  console.log(imageUrl);
+
   const handleSelect = () => {
     const query = {
       cid: router.query.cid,
@@ -24,7 +26,7 @@ const CartItem = ({ cartItem }) => {
   return (
     <div className="flex border-b-[1px] gap-5 pb-5 border-gray-200">
       <div className="w-[20%] " onClick={handleSelect}>
-        <Image height={140} width={110} src={`https:${imageUrl}`} />
+        <Image height={140} width={110} src={`https://${imageUrl}`} />
       </div>
       <div className=" w-[80%] flex flex-col gap-2">
         <span onClick={handleSelect} className="text-gray-600 w-[80%]">

@@ -35,7 +35,7 @@ const WishList = () => {
       const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
-      console.log(likedProductsByUser);
+
       dispatch(setWishItems(likedProductsByUser));
     } else {
       dispatch(setWishItems([]));
