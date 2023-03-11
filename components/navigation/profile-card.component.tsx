@@ -46,6 +46,11 @@ const ProfileCard = () => {
     selectCartItems(state, authUser?.id)
   );
 
+  const quantitySum = cartItems.reduce(
+    (accumulator, item) => accumulator + item.quantity,
+    0
+  );
+
   const handleSignOut = async () => {
     await SignOut();
   };
@@ -152,6 +157,9 @@ const ProfileCard = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-300 "></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
             </span>
+          </span>
+          <span className="absolute text-gray-100 font-bold top-[9px] left-[10px] text-[10px]">
+            {quantitySum}
           </span>
         </div>
 
