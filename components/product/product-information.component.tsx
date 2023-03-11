@@ -8,6 +8,7 @@ import { useAuth } from "../../context/authUserContext";
 import { Like } from "../../types";
 import { useAppSelector } from "../../redux/hooks";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
+import Spinner from "../spinner/spinner.component";
 
 const ProductInformation = ({ product }) => {
   const options = [];
@@ -15,11 +16,6 @@ const ProductInformation = ({ product }) => {
   const { variants, name, price } = product;
 
   console.log(product);
-
-  const { authUser } = useAuth();
-  const [isProductLiked, setIsProductLiked] = useState(false);
-
-  const wishItems = useAppSelector(selectWishItems);
 
   const similar_items = JSON.parse(localStorage.getItem("items"));
 
@@ -56,6 +52,10 @@ const ProductInformation = ({ product }) => {
       };
     },
   };
+
+  if (!product) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <div className=" w-[80%] sm:w-[50%] sm:flex ml-6 2xl:ml-0 ">
