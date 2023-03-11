@@ -14,6 +14,8 @@ const ProductInformation = ({ product }) => {
 
   const { variants, name, price } = product;
 
+  console.log(product);
+
   const { authUser } = useAuth();
   const [isProductLiked, setIsProductLiked] = useState(false);
 
