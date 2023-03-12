@@ -95,7 +95,7 @@ const ProductInformation = ({ product }) => {
         </div>
         <div>
           <div className="flex mt-4 items-center gap-3 ">
-            <button className="uppercase bg-[#0a8950] w-full font-bold bg-black text-[10px] sm:text-[14px] tracking-widest text-white  py-2">
+            <button className="uppercase bg-[#0a8950] w-full font-bold bg-black text-[14px] tracking-widest text-white  py-2">
               add to bag
             </button>
             <div className="h-full flex items-center pt-2 w-[11%]">
