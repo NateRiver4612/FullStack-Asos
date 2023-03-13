@@ -7,9 +7,16 @@ import {
   setWishItems,
 } from "../../../redux/features/wish/wish.slice";
 import { useAuth } from "../../../context/authUserContext";
-import { useRouter } from "next/router";
-import { GET_LIKED_PRODUCTS } from "../../../utils/graphQl.utils";
+import {
+  GET_LIKED_PRODUCTS,
+  GET_CART_ITEMS,
+} from "../../../utils/graphQl.utils";
 import { useQuery } from "@apollo/client";
+import {
+  clearCart,
+  setCartItems,
+} from "../../../redux/features/cart/cart.slice";
+import { NetworkStatus } from "@apollo/client";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -19,28 +26,45 @@ const ProductOverview_Container = dynamic(
 
 const WishList = () => {
   const wishItems = useAppSelector(selectWishItems);
-  const router = useRouter();
 
   const dispatch = useAppDispatch();
   const { authUser } = useAuth();
 
   const {
-    loading: Liked_Products_Loading,
-    data: Liked_Products_Data,
-    error: Liked_Products_Error,
+    loading: LIKED_PRODUCT_LOADING,
+    data: LIKED_PRODUCT_DATA,
+    error: LIKED_PRODUCTS_ERROR,
   } = useQuery(GET_LIKED_PRODUCTS);
 
+  const {
+    data: CART_ITEMS_DATA,
+    loading: CART_ITEMS_LOADING,
+    error: CART_ITEMS_ERROR,
+  } = useQuery(GET_CART_ITEMS, {
+    variables: { userId: authUser?.id },
+  });
+
   useEffect(() => {
-    if (!Liked_Products_Loading && authUser) {
-      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
+    if (!CART_ITEMS_LOADING && !LIKED_PRODUCT_LOADING && authUser) {
+      const likedProductsByUser = LIKED_PRODUCT_DATA?.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
 
+      const cartByUser = CART_ITEMS_DATA.getCart;
+
+      console.log(CART_ITEMS_DATA);
+
+      dispatch(setCartItems(cartByUser));
       dispatch(setWishItems(likedProductsByUser));
     } else {
+      dispatch(clearCart());
       dispatch(setWishItems([]));
     }
-  }, [authUser]);
+  }, [
+    CART_ITEMS_DATA?.getCart,
+    LIKED_PRODUCT_DATA?.getLikedProducts,
+    authUser,
+  ]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">

@@ -43,6 +43,18 @@ const typeDefs = gql`
     commentCount: Int
   }
 
+  type CartItem {
+    id: String!
+    userId: String!
+    price: Price!
+    imageUrl: String!
+    name: String!
+    link: String!
+    quantity: Int!
+    colour: String
+    createdAt: String
+  }
+
   input CreateProduct_Input {
     id: String!
     cur_price: Float!
@@ -51,6 +63,19 @@ const typeDefs = gql`
     name: String!
     isSellingFast: Boolean!
     link: String
+  }
+
+  input AddToCart_Input {
+    id: String!
+    userId: String!
+    cur_price: Float!
+    pre_price: Float
+    imageUrl: String!
+    name: String!
+    link: String!
+    quantity: Int!
+    colour: String
+    createdAt: String
   }
 
   input LikeProduct_Input {
@@ -75,10 +100,12 @@ const typeDefs = gql`
   type Query {
     getUsers: [Account]
     getLikedProducts: [Product]
+    getCart(userId: String!): [CartItem]
   }
 
   type Mutation {
     createProduct(input: CreateProduct_Input!): Product!
+    addToCart(input: AddToCart_Input!): CartItem!
     likeProduct(input: LikeProduct_Input!): Product!
   }
 `;

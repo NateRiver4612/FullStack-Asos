@@ -1,4 +1,5 @@
 const productResolvers = require("./product.resolver");
+const cartResolvers = require("./cart.resolver");
 
 module.exports = {
   Product: {
@@ -8,9 +9,11 @@ module.exports = {
 
   Query: {
     ...productResolvers.Query,
+    ...cartResolvers.Query,
   },
 
   Mutation: {
     ...productResolvers.Mutation,
+    ...cartResolvers.Mutation,
   },
 };

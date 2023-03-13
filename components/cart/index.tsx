@@ -1,46 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
-import { selectCartItems } from "../../redux/features/cart/cart.slice";
-import { useAppSelector } from "../../redux/hooks";
-import ProductOverview_Container from "../product-overview/product-overview.container";
+import {
+  clearCart,
+  selectCartItems,
+  setCartItems,
+} from "../../redux/features/cart/cart.slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import CartList from "./cart-list.component";
 import Image from "next/image";
 import CartWishList from "./cart-wishList.components";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
 import CartCheckout from "./cart-checkout.component";
+import { useQuery } from "@apollo/client";
+import { GET_CART_ITEMS } from "../../utils/graphQl.utils";
 
 const Cart = () => {
   const { authUser } = useAuth();
-  const cartItems = useAppSelector((state) =>
-    selectCartItems(state, authUser?.id)
-  );
-  const wishItems = useAppSelector(selectWishItems);
+  const cartItems = useAppSelector(selectCartItems);
 
-  const [cartSubTotal, setcartSubTotal] = useState(0);
-  const [cartAmount, setCartAmount] = useState(0);
+  const dispatch = useAppDispatch();
+
+  const wishItems = useAppSelector(selectWishItems);
 
   const cartWishItems = [...wishItems].slice(0, 3);
 
-  useEffect(() => {
-    const priceSum = cartItems.reduce(
-      (accumulator, item) =>
-        accumulator + item.price.current.value * item.quantity,
-      0
-    );
-
-    const quantitySum = cartItems.reduce(
-      (accumulator, item) => accumulator + item.quantity,
-      0
-    );
-
-    setCartAmount(quantitySum);
-    setcartSubTotal(priceSum);
-  }, [cartItems]);
-
   const priceSum = cartItems.reduce(
     (accumulator, item) =>
-      accumulator + item.price.current.value * item.quantity,
+      accumulator + item.price?.current.value * item.quantity,
     0
   );
 
@@ -48,6 +35,24 @@ const Cart = () => {
     (accumulator, item) => accumulator + item.quantity,
     0
   );
+
+  const {
+    data: CART_ITEMS_DATA,
+    loading: CART_ITEMS_LOADING,
+    error,
+  } = useQuery(GET_CART_ITEMS, {
+    variables: { userId: authUser?.id },
+  });
+
+  useEffect(() => {
+    if (!CART_ITEMS_LOADING && authUser) {
+      const cartByUser = CART_ITEMS_DATA.getCart;
+
+      dispatch(setCartItems(cartByUser));
+    } else {
+      dispatch(clearCart());
+    }
+  }, [CART_ITEMS_DATA, authUser]);
 
   return (
     <div className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2 ">
@@ -69,9 +74,9 @@ const Cart = () => {
               Sub-total
             </span>
             <span className="uppercase font-bold text-md text-gray-800 flex items-center gap-1">
-              ${cartSubTotal.toFixed(2)}{" "}
+              ${priceSum.toFixed(2)}{" "}
               <span className="text-xs font-light text-gray-400">
-                ({cartAmount} items)
+                ({quantitySum} items)
               </span>
             </span>
           </div>
@@ -92,7 +97,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <CartCheckout subTotal={cartSubTotal}></CartCheckout>
+      <CartCheckout subTotal={priceSum}></CartCheckout>
     </div>
   );
 };

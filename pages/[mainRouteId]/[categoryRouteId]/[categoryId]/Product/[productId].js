@@ -42,8 +42,6 @@ const ProductDetailPage = ({ data }) => {
     media: { images },
   } = data;
 
-  console.log(data);
-
   const [similaritems, setSimilarItems] = useState([]);
 
   useEffect(() => {

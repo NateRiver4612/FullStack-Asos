@@ -35,7 +35,15 @@ export interface Product {
   commentCount: Number;
 }
 
-export interface Cart extends Product {
+export interface Cart {
+  id: String;
+  userId: String;
+  name: String;
+  link: String;
+  imageUrl: String;
+  cur_price: Number;
+  pre_price: Number;
   quantity: Number;
-  totalPrice: Number;
+  colour: String;
+  createdAt: String;
 }

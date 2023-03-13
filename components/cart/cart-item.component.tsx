@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { AiOutlineHeart } from "react-icons/ai";
 import { useRouter } from "next/router";
+import Select from "react-select";
 import { CiCircleRemove } from "react-icons/ci";
 import { useAuth } from "../../context/authUserContext";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { removeCartItem } from "../../redux/features/cart/cart.slice";
+import {
+  setQuantity,
+  removeCartItem,
+  selectCartItems,
+} from "../../redux/features/cart/cart.slice";
 
 const CartItem = ({ cartItem }) => {
   const { id, imageUrl, name, quantity, price, colour, link } = cartItem;
-
-  const router = useRouter();
-  const dispatch = useAppDispatch();
+  const [totalQty, setTotalQty] = useState();
 
   const { authUser } = useAuth();
+
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(selectCartItems);
 
   const handleSelect = () => {
     const query = {
@@ -29,7 +37,53 @@ const CartItem = ({ cartItem }) => {
   };
 
   const handleRemoveFromCart = () => {
-    dispatch(removeCartItem({ userId: authUser?.id, productId: id }));
+    dispatch(removeCartItem({ productId: id }));
+  };
+
+  const options = [
+    {
+      value: 1,
+      label: "1",
+    },
+    {
+      value: 2,
+      label: "2",
+    },
+    {
+      value: 3,
+      label: "3",
+    },
+    {
+      value: 4,
+      label: "4",
+    },
+    {
+      value: 5,
+      label: "5",
+    },
+  ];
+
+  const qtyIndex = options.findIndex((item) => item.value == quantity);
+
+  const handleSetQuantity = (e: any) => {
+    dispatch(setQuantity({ productId: id, quantity: e.value }));
+  };
+
+  const colourStyles = {
+    option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? undefined
+          : isSelected
+          ? "#e3e4eb"
+          : isFocused
+          ? "#e5e7eb"
+          : undefined,
+        // color: isDisabled ? "#ccc" : "#757280",
+        color: "#757280",
+      };
+    },
   };
 
   return (
@@ -44,22 +98,29 @@ const CartItem = ({ cartItem }) => {
         <div className="flex items-center gap-3 ">
           <span
             className={`${
-              price.previous.value ? "text-red-700" : "text-gray-600"
+              price?.previous.value ? "text-red-700" : "text-gray-600"
             } items-center tracking-wider flex text-sm font-bold`}
           >
-            {price.current.text}
+            {price?.current.text}
           </span>
 
-          {price.previous.value && (
+          {price?.previous.value && (
             <span className="text-[10px] items-center tracking-wider flex line-through text-gray-500">
               {price.previous.text}
             </span>
           )}
         </div>
-        <div className="flex gap-2 text-gray-400 text-sm">
+        <div className="flex gap-2 items-center text-gray-400 text-sm">
           <span>{colour}</span>
-          <div className="border-r-2 border-gray-200"></div>
-          <span>Qty: {quantity}</span>
+          <div className="border-r-[1px] h-[60%] border-gray-200"></div>
+          <span>Qty:</span>
+          <Select
+            onChange={handleSetQuantity}
+            className="outline-none;"
+            styles={colourStyles}
+            options={options}
+            defaultValue={options[qtyIndex]}
+          />
         </div>
         <div className="flex items-center gap-2 mt-4 text-sm w-fit text-gray-600 px-2 py-1 rounded-[1px] border-2 border-gray-300">
           <AiOutlineHeart size={20}></AiOutlineHeart>

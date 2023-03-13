@@ -23,9 +23,7 @@ const LikeButton = ({ product, isWishItem }) => {
   const [isProductLiked, setIsProductLiked] = useState(false);
 
   const { authUser } = useAuth();
-  const cartItems = useAppSelector((state) =>
-    selectCartItems(state, authUser?.id)
-  );
+  const cartItems = useAppSelector(selectCartItems);
 
   const [isClicked, setIsClicked] = useState(false);
 

@@ -10,8 +10,12 @@ const initialState: CartState = {
 };
 
 interface removeCart_Input {
-  userId: string;
   productId: string;
+}
+
+interface setQty_Input {
+  productId: string;
+  quantity: Number;
 }
 
 export const cartSlice = createSlice({
@@ -21,27 +25,39 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Cart>) => {
       state.cartItems = [...state.cartItems, action.payload];
     },
+    setCartItems: (state, action: PayloadAction<[Cart]>) => {
+      state.cartItems = action.payload;
+    },
     removeCartItem: (state, action: PayloadAction<removeCart_Input>) => {
-      const { userId, productId } = action.payload;
+      const { productId } = action.payload;
       state.cartItems = state.cartItems.filter(
-        (product) =>
-          product.id != productId &&
-          product.likes.filter((like) => like.id != userId)
+        (product) => product.id != productId
       );
+    },
+    setQuantity: (state, action: PayloadAction<setQty_Input>) => {
+      const { productId, quantity } = action.payload;
+
+      state.cartItems = state.cartItems.map((product) => {
+        if (product.id == productId) {
+          product.quantity = quantity;
+        }
+        return product;
+      });
+    },
+    clearCart: (state) => {
+      state.cartItems = [];
     },
   },
 });
 
-export const { addToCart, removeCartItem } = cartSlice.actions;
+export const {
+  setCartItems,
+  addToCart,
+  removeCartItem,
+  setQuantity,
+  clearCart,
+} = cartSlice.actions;
 
-export const selectCartItems = createSelector(
-  [(state) => state.cart.cartItems, (state, userId) => userId],
-  (cartItems, userId) =>
-    cartItems.filter((product) =>
-      product.likes.find((like) => like.id == userId)
-    )
-);
-
-export const selectAllCartItems = (state) => state.cart.cartItems;
+export const selectCartItems = (state) => state.cart.cartItems;
 
 export default cartSlice.reducer;

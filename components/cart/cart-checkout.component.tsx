@@ -3,6 +3,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import Select from "react-select";
 import Image from "next/image";
 import Tooltip from "@mui/material/Tooltip";
+import { useAuth } from "../../context/authUserContext";
 
 const CartCheckout = ({ subTotal }) => {
   const listPaymentIcon = [
@@ -23,6 +24,8 @@ const CartCheckout = ({ subTotal }) => {
       label: "Standart Delivery ($31.58)",
     },
   ];
+
+  const { authUser } = useAuth();
 
   const colourStyles = {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -67,6 +70,7 @@ const CartCheckout = ({ subTotal }) => {
             className="outline-none;"
             styles={colourStyles}
             options={options}
+            defaultValue={options[0]}
           />
           <button
             onClick={handleCheckout}
@@ -105,7 +109,7 @@ const CartCheckout = ({ subTotal }) => {
         </div>
 
         <span className="text-gray-400 text-sm">
-          nguyenchinhan502@gmail.com
+          {authUser ? authUser.email : "Unknown"}
         </span>
       </div>
       <div className=" text-gray-800 h-fit bg-gray-100 p-5 flex flex-col gap-2">
@@ -113,7 +117,9 @@ const CartCheckout = ({ subTotal }) => {
           delivery address
         </div>
 
-        <span className="text-gray-400 text-sm">Nate River</span>
+        <span className="text-gray-400 text-sm">
+          {authUser ? authUser.name : "Unknown"}
+        </span>
         <span className="text-gray-400 text-sm">9, 49 Binh Thuan, Q7</span>
         <span className="text-gray-400 text-sm">Ho Chi Minh</span>
         <span className="text-gray-400 text-sm">700000</span>

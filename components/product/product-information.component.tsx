@@ -15,8 +15,6 @@ const ProductInformation = ({ product }) => {
 
   const { variants, name, price } = product;
 
-  console.log(product);
-
   const similar_items = JSON.parse(localStorage.getItem("items"));
 
   // Take product from list to apply Like Button parameter format
