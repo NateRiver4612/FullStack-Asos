@@ -49,22 +49,11 @@ const WishList = () => {
       const likedProductsByUser = LIKED_PRODUCT_DATA?.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
-
-      const cartByUser = CART_ITEMS_DATA.getCart;
-
-      console.log(CART_ITEMS_DATA);
-
-      dispatch(setCartItems(cartByUser));
       dispatch(setWishItems(likedProductsByUser));
     } else {
-      dispatch(clearCart());
       dispatch(setWishItems([]));
     }
-  }, [
-    CART_ITEMS_DATA?.getCart,
-    LIKED_PRODUCT_DATA?.getLikedProducts,
-    authUser,
-  ]);
+  }, [LIKED_PRODUCT_DATA?.getLikedProducts, authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">

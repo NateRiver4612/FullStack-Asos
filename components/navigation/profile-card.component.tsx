@@ -42,9 +42,7 @@ const platMain = [
 const ProfileCard = () => {
   const { authUser, SignOut } = useAuth();
 
-  const cartItems = useAppSelector((state) =>
-    selectCartItems(state, authUser?.id)
-  );
+  const cartItems = useAppSelector(selectCartItems);
 
   const quantitySum = cartItems.reduce(
     (accumulator, item) => accumulator + item.quantity,
