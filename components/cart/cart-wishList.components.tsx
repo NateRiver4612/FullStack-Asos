@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
 import CartWishlistItem from "./cart-wishlist-item.component";
+import { CartWishlistItem_Skeleton } from "./cart-skeleton";
 
 const CartWishList = ({ cartWishItems }) => {
   return (

@@ -11,12 +11,12 @@ import {
   removeCartItem,
   selectCartItems,
 } from "../../redux/features/cart/cart.slice";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CartItem = ({ cartItem }) => {
   const { id, imageUrl, name, quantity, price, colour, link } = cartItem;
   const [totalQty, setTotalQty] = useState();
-
-  const { authUser } = useAuth();
 
   const router = useRouter();
 

@@ -1,9 +1,6 @@
 import React from "react";
-import { selectCartItems } from "../../redux/features/cart/cart.slice";
-import { useAppSelector } from "../../redux/hooks";
-import Image from "next/image";
-import { AiOutlineHeart } from "react-icons/ai";
 import CartItem from "./cart-item.component";
+import { CartItem_Skeleton } from "./cart-skeleton";
 
 const CartList = ({ cartItems }) => {
   return (

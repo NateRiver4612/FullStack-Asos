@@ -29,8 +29,6 @@ const ProductOverview_Container = ({ products, wish, similarList }) => {
       );
 
       dispatch(setWishItems(likedProductsByUser));
-    } else {
-      dispatch(setWishItems([]));
     }
   }, [Liked_Products_Data?.getLikedProducts, authUser]);
 

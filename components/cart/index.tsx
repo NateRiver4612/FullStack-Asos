@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import {
   clearCart,
@@ -6,14 +6,21 @@ import {
   setCartItems,
 } from "../../redux/features/cart/cart.slice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import CartList from "./cart-list.component";
-import Image from "next/image";
-import CartWishList from "./cart-wishList.components";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
-import CartCheckout from "./cart-checkout.component";
 import { useQuery } from "@apollo/client";
 import { GET_CART_ITEMS } from "../../utils/graphQl.utils";
+import dynamic from "next/dynamic";
+import CartCheckout from "./cart-checkout.component";
+import CartList from "./cart-list.component";
+import { RiShoppingBagLine } from "react-icons/ri";
+import Spinner from "../spinner/spinner.component";
+import CartSubTotal from "./cart-subTotal.component";
+import Cart_Skeleton from "./cart-skeleton";
+
+const CartWishList = dynamic(() => import("./cart-wishList.components"), {
+  ssr: false,
+});
 
 const Cart = () => {
   const { authUser } = useAuth();
@@ -49,10 +56,44 @@ const Cart = () => {
       const cartByUser = CART_ITEMS_DATA.getCart;
 
       dispatch(setCartItems(cartByUser));
-    } else {
-      dispatch(clearCart());
     }
   }, [CART_ITEMS_DATA, authUser]);
+
+  if (CART_ITEMS_DATA && CART_ITEMS_DATA.getCart.length == 0) {
+    return (
+      <div className="h-screen sm:h-[67vh] flex pt-20 justify-center w-screen">
+        <div className="flex w-full sm:w-[30vw] tracking-widest items-center flex-col gap-4">
+          <span className="text-[30px]">
+            <RiShoppingBagLine></RiShoppingBagLine>
+          </span>
+          <span className="font-bold text-xl">Your bag is empty</span>
+          <span className="text-center text-[13px]  ">
+            Items remain in your bag for 60 minutes, and then they’re moved to
+            your Saved Items.
+          </span>
+          {authUser ? (
+            <Fragment>
+              <button className="bg-gray-500 uppercase w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+                View saved items
+              </button>
+              <span className="underline text-xs">Continue Shopping</span>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <span className="text-[13px] font-bold">
+                Sign in to see your bag
+              </span>
+              <button className="bg-gray-500 w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+                SIGN IN
+              </button>
+            </Fragment>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (CART_ITEMS_LOADING) return <Cart_Skeleton></Cart_Skeleton>;
 
   return (
     <div className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2 ">
@@ -68,20 +109,14 @@ const Cart = () => {
           </div>
         </div>
         <CartList cartItems={cartItems}></CartList>
-        <div className="bg-gray-100 h-[4rem] flex items-center">
-          <div className="flex justify-between  w-full tracking-wider items-center px-6">
-            <span className="uppercase font-bold text-md text-gray-600">
-              Sub-total
-            </span>
-            <span className="uppercase font-bold text-md text-gray-800 flex items-center gap-1">
-              ${priceSum.toFixed(2)}{" "}
-              <span className="text-xs font-light text-gray-400">
-                ({quantitySum} items)
-              </span>
-            </span>
-          </div>
-        </div>
+
+        <CartSubTotal
+          priceSum={priceSum}
+          quantitySum={quantitySum}
+        ></CartSubTotal>
+
         <CartWishList cartWishItems={cartWishItems}></CartWishList>
+
         <div className="flex bg-gray-100 p-5 gap-2">
           <div className=" w-[15%] text-gray-600 flex justify-center ">
             <TbTruckDelivery size={35}></TbTruckDelivery>

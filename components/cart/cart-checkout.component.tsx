@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Select from "react-select";
 import Image from "next/image";
 import Tooltip from "@mui/material/Tooltip";
 import { useAuth } from "../../context/authUserContext";
+import { CartCheckout_Skeleton } from "./cart-skeleton";
 
 const CartCheckout = ({ subTotal }) => {
   const listPaymentIcon = [
