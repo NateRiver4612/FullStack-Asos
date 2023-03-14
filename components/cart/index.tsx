@@ -12,20 +12,10 @@ import { GET_CART_ITEMS } from "../../utils/graphQl.utils";
 import dynamic from "next/dynamic";
 import { RiShoppingBagLine } from "react-icons/ri";
 import Cart_Skeleton from "./cart-skeleton";
-
-const CartWishList = dynamic(() => import("./cart-wishList.components"), {
-  ssr: false,
-});
-
-const CartList = dynamic(() => import("./cart-list.component"), { ssr: false });
-
-const CartCheckout = dynamic(() => import("./cart-checkout.component"), {
-  ssr: false,
-});
-
-const CartSubTotal = dynamic(() => import("./cart-subTotal.component"), {
-  ssr: false,
-});
+import CartWishList from "./cart-wishList.components";
+import CartList from "./cart-list.component";
+import CartCheckout from "./cart-checkout.component";
+import CartSubTotal from "./cart-subTotal.component";
 
 const Cart = () => {
   const cartItems = useAppSelector(selectCartItems);
@@ -38,6 +28,8 @@ const Cart = () => {
 
   const cartWishItems = [...wishItems].slice(0, 3);
 
+  const [rendering, setRendering] = useState(true);
+
   const priceSum = cartItems.reduce(
     (accumulator, item) =>
       accumulator + item.price?.current.value * item.quantity,
@@ -49,6 +41,8 @@ const Cart = () => {
     0
   );
 
+  console.log(priceSum, quantitySum);
+
   const {
     data: CART_ITEMS_DATA,
     loading: CART_ITEMS_LOADING,
@@ -56,6 +50,12 @@ const Cart = () => {
   } = useQuery(GET_CART_ITEMS, {
     variables: { userId: authUser?.id },
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRendering(CART_ITEMS_LOADING);
+    }, 3000);
+  }, [CART_ITEMS_LOADING]);
 
   useEffect(() => {
     if (!CART_ITEMS_LOADING && authUser) {
@@ -99,7 +99,7 @@ const Cart = () => {
     );
   }
 
-  if (CART_ITEMS_LOADING) return <Cart_Skeleton></Cart_Skeleton>;
+  if (rendering) return <Cart_Skeleton></Cart_Skeleton>;
 
   return (
     <div className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2 ">
