@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import {
-  clearCart,
   selectCartItems,
   setCartItems,
 } from "../../redux/features/cart/cart.slice";
@@ -11,24 +10,31 @@ import { useAuth } from "../../context/authUserContext";
 import { useQuery } from "@apollo/client";
 import { GET_CART_ITEMS } from "../../utils/graphQl.utils";
 import dynamic from "next/dynamic";
-import CartCheckout from "./cart-checkout.component";
-import CartList from "./cart-list.component";
 import { RiShoppingBagLine } from "react-icons/ri";
-import Spinner from "../spinner/spinner.component";
-import CartSubTotal from "./cart-subTotal.component";
 import Cart_Skeleton from "./cart-skeleton";
 
 const CartWishList = dynamic(() => import("./cart-wishList.components"), {
   ssr: false,
 });
 
+const CartList = dynamic(() => import("./cart-list.component"), { ssr: false });
+
+const CartCheckout = dynamic(() => import("./cart-checkout.component"), {
+  ssr: false,
+});
+
+const CartSubTotal = dynamic(() => import("./cart-subTotal.component"), {
+  ssr: false,
+});
+
 const Cart = () => {
-  const { authUser } = useAuth();
   const cartItems = useAppSelector(selectCartItems);
 
   const dispatch = useAppDispatch();
 
   const wishItems = useAppSelector(selectWishItems);
+
+  const { authUser } = useAuth();
 
   const cartWishItems = [...wishItems].slice(0, 3);
 
