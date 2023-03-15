@@ -35,7 +35,7 @@ export const GET_CART_ITEMS = gql`
     getCart(userId: $userId) {
       colour
       createdAt
-      id
+      productId
       imageUrl
       link
       name
@@ -73,7 +73,7 @@ export const ADD_TO_CART = gql`
     addToCart(input: $input) {
       colour
       createdAt
-      id
+      productId
       imageUrl
       link
       name

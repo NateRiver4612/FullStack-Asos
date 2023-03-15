@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 import Image from "next/image";
 
 const CartWishlistItem = ({ item }) => {
-  const { imageUrl, id, isSellingFast, name, price, colour } = item;
+  const { imageUrl, name, price, colour } = item;
   return (
-    <div className="flex sm:flex-col pb-6 w-full sm:w-[28%] gap-2 border-b-[1px] border-gray-300">
+    <div className="flex sm:flex-col pb-6 w-full sm:w-[28%] gap-4 border-b-[1px] border-gray-300">
       <div className="">
         <Image src={`https://${imageUrl}`} height={160} width={120} />
       </div>

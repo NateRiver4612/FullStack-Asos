@@ -25,13 +25,13 @@ const AddToCart_Button = ({ product }) => {
   const isAddToCart =
     cartItems &&
     !!cartItems.find(
-      (product: { id: String; likes: Like[] }) => product.id == id
+      (product: { productId: String; likes: Like[] }) => product.productId == id
     );
 
   const handleAddToCart = async () => {
     const input = {
       value: {
-        id: id,
+        productId: id,
         userId: authUser.id,
         name: name,
         link: link,

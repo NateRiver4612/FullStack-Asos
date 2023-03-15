@@ -1,5 +1,3 @@
-import React, { Fragment } from "react";
-import Image from "next/image";
 import CartWishlistItem_Skeleton from "./cart-wishList-item.skeleton";
 
 const CartWishList_Skeleton = () => {

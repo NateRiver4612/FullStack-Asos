@@ -36,7 +36,7 @@ export interface Product {
 }
 
 export interface Cart {
-  id: String;
+  productId: String;
   userId: String;
   name: String;
   link: String;

@@ -4,6 +4,7 @@ import Select from "react-select";
 import Image from "next/image";
 import Tooltip from "@mui/material/Tooltip";
 import { useAuth } from "../../context/authUserContext";
+import { motion } from "framer-motion";
 
 const CartCheckout = ({ subTotal }) => {
   const listPaymentIcon = [

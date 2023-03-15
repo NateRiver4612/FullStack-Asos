@@ -1,7 +1,7 @@
 const Cart = require("../../models/cart.model");
 
 const create_CartItem = async (
-  id,
+  productId,
   cur_price,
   pre_price,
   imageUrl,
@@ -13,7 +13,7 @@ const create_CartItem = async (
   createdAt
 ) => {
   const cartItem = await Cart.create({
-    id: id,
+    productId: productId,
     userId: userId,
     price: {
       current: {
@@ -56,7 +56,7 @@ module.exports = {
       parent,
       {
         input: {
-          id,
+          productId,
           cur_price,
           pre_price,
           imageUrl,
@@ -71,7 +71,10 @@ module.exports = {
       context
     ) {
       // Check if cart is exist
-      const existCart = await Cart.findOne({ id: id, userId: userId });
+      const existCart = await Cart.findOne({
+        productId: productId,
+        userId: userId,
+      });
 
       if (existCart) {
         //If yes
@@ -80,7 +83,7 @@ module.exports = {
       } else {
         //If no
         return create_CartItem(
-          id,
+          productId,
           cur_price,
           pre_price,
           imageUrl,
@@ -92,6 +95,15 @@ module.exports = {
           createdAt
         );
       }
+    },
+
+    async removeFromCart(parent, { input: { userId, productId }, context }) {
+      const deleteItem = await Cart.findOneAndDelete({
+        userId: userId,
+        productId: productId,
+      });
+
+      console.log(deleteItem);
     },
   },
 };

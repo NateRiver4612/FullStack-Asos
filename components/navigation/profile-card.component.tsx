@@ -12,8 +12,12 @@ import { HiLogout } from "react-icons/hi";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
 import { GoPrimitiveDot } from "react-icons/go";
-import { useAppSelector } from "../../redux/hooks";
-import { selectCartItems } from "../../redux/features/cart/cart.slice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  clearCart,
+  selectCartItems,
+} from "../../redux/features/cart/cart.slice";
+import { clearWish } from "../../redux/features/wish/wish.slice";
 
 const urls = new Map([
   ["my account", "/identity/myaccount"],
@@ -41,16 +45,19 @@ const platMain = [
 
 const ProfileCard = () => {
   const { authUser, SignOut } = useAuth();
+  const dispatch = useAppDispatch();
 
   const cartItems = useAppSelector(selectCartItems);
 
-  const quantitySum = cartItems.reduce(
+  const quantitySum = cartItems?.reduce(
     (accumulator, item) => accumulator + item.quantity,
     0
   );
 
   const handleSignOut = async () => {
     await SignOut();
+    dispatch(clearCart());
+    dispatch(clearWish());
   };
 
   const router = useRouter();

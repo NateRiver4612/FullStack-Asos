@@ -25,43 +25,25 @@ const ProductOverview_Container = dynamic(
 
 const WishList = () => {
   const wishItems = useAppSelector(selectWishItems);
-
   const dispatch = useAppDispatch();
+
   const { authUser } = useAuth();
 
-  // const {
-  //   loading: LIKED_PRODUCT_LOADING,
-  //   data: LIKED_PRODUCT_DATA,
-  //   error: LIKED_PRODUCTS_ERROR,
-  // } = useQuery(GET_LIKED_PRODUCTS);
+  const {
+    loading: Liked_Products_Loading,
+    data: Liked_Products_Data,
+    error: Liked_Products_Error,
+  } = useQuery(GET_LIKED_PRODUCTS);
 
-  // const {
-  //   data: CART_ITEMS_DATA,
-  //   loading: CART_ITEMS_LOADING,
-  //   error: CART_ITEMS_ERROR,
-  // } = useQuery(GET_CART_ITEMS, {
-  //   variables: { userId: authUser?.id },
-  // });
+  useEffect(() => {
+    if (!Liked_Products_Loading && authUser) {
+      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
+        (product) => product.likes.find((like) => like.id == authUser.id)
+      );
 
-  // useEffect(() => {
-  //   if (!CART_ITEMS_LOADING && !LIKED_PRODUCT_LOADING && authUser) {
-  //     const likedProductsByUser = LIKED_PRODUCT_DATA?.getLikedProducts.filter(
-  //       (product) => product.likes.find((like) => like.id == authUser.id)
-  //     );
-
-  //     const cartByUser = CART_ITEMS_DATA.getCart;
-
-  //     dispatch(setCartItems(cartByUser));
-  //     dispatch(setWishItems(likedProductsByUser));
-  //   } else {
-  //     dispatch(clearCart());
-  //     dispatch(setWishItems([]));
-  //   }
-  // }, [
-  //   CART_ITEMS_DATA?.getCart,
-  //   LIKED_PRODUCT_DATA?.getLikedProducts,
-  //   authUser,
-  // ]);
+      dispatch(setWishItems(likedProductsByUser));
+    }
+  }, [Liked_Products_Data?.getLikedProducts, authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">

@@ -22,10 +22,13 @@ export const wishSlice = createSlice({
         product.likes.filter((like) => like.id != action.payload)
       );
     },
+    clearWish: (state) => {
+      state.wishItems = [];
+    },
   },
 });
 
-export const { setWishItems, removeWishItem } = wishSlice.actions;
+export const { setWishItems, removeWishItem, clearWish } = wishSlice.actions;
 
 export const selectWishItems = (state: RootState) => state.wish.wishItems;
 

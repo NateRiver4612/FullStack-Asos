@@ -44,7 +44,7 @@ const typeDefs = gql`
   }
 
   type CartItem {
-    id: String!
+    productId: String!
     userId: String!
     price: Price!
     imageUrl: String!
@@ -53,6 +53,12 @@ const typeDefs = gql`
     quantity: Int!
     colour: String
     createdAt: String
+  }
+
+  type Account {
+    id: ID!
+    login: String!
+    avatar_url: String!
   }
 
   input CreateProduct_Input {
@@ -66,7 +72,7 @@ const typeDefs = gql`
   }
 
   input AddToCart_Input {
-    id: String!
+    productId: String!
     userId: String!
     cur_price: Float!
     pre_price: Float
@@ -91,10 +97,9 @@ const typeDefs = gql`
     userName: String!
   }
 
-  type Account {
-    id: ID!
-    login: String!
-    avatar_url: String!
+  input RemoveFromCart_Input {
+    userId: String!
+    productId: String!
   }
 
   type Query {
@@ -107,6 +112,7 @@ const typeDefs = gql`
     createProduct(input: CreateProduct_Input!): Product!
     addToCart(input: AddToCart_Input!): CartItem!
     likeProduct(input: LikeProduct_Input!): Product!
+    removeFromCart(input: RemoveFromCart_Input!): CartItem
   }
 `;
 

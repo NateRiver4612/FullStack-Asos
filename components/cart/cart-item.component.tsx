@@ -15,19 +15,17 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const CartItem = ({ cartItem }) => {
-  const { id, imageUrl, name, quantity, price, colour, link } = cartItem;
-  const [totalQty, setTotalQty] = useState();
+  const { productId, imageUrl, name, quantity, price, colour, link } = cartItem;
 
   const router = useRouter();
 
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(selectCartItems);
 
   const handleSelect = () => {
     const query = {
       cid: router.query.cid,
       item: name,
-      pid: id.toString(),
+      pid: productId.toString(),
     };
 
     return router.push({
@@ -37,7 +35,7 @@ const CartItem = ({ cartItem }) => {
   };
 
   const handleRemoveFromCart = () => {
-    dispatch(removeCartItem({ productId: id }));
+    dispatch(removeCartItem({ productId: productId }));
   };
 
   const options = [
@@ -66,7 +64,7 @@ const CartItem = ({ cartItem }) => {
   const qtyIndex = options.findIndex((item) => item.value == quantity);
 
   const handleSetQuantity = (e: any) => {
-    dispatch(setQuantity({ productId: id, quantity: e.value }));
+    dispatch(setQuantity({ productId: productId, quantity: e.value }));
   };
 
   const colourStyles = {
@@ -87,15 +85,18 @@ const CartItem = ({ cartItem }) => {
   };
 
   return (
-    <div className="flex border-b-[1px] gap-5 pb-5 border-gray-200">
-      <div className="w-[20%] " onClick={handleSelect}>
+    <div className="flex border-b-[1px] gap-5 py-5 border-gray-200">
+      <div className="w-[30%] sm:w-[20%] " onClick={handleSelect}>
         <Image height={140} width={110} src={`https://${imageUrl}`} />
       </div>
-      <div className=" w-[80%] flex flex-col gap-2">
-        <span onClick={handleSelect} className="text-gray-600 w-[80%]">
+      <div className=" w-[80%] flex flex-col gap-1 sm:gap-2">
+        <span
+          onClick={handleSelect}
+          className="text-gray-600 text-sm w-full sm:w-[90%]"
+        >
           {name}
         </span>
-        <div className="flex items-center gap-3 ">
+        <div className="flex items-center gap-2 ">
           <span
             className={`${
               price?.previous.value ? "text-red-700" : "text-gray-600"
@@ -110,7 +111,7 @@ const CartItem = ({ cartItem }) => {
             </span>
           )}
         </div>
-        <div className="flex gap-2 items-center text-gray-400 text-sm">
+        <div className="flex gap-2  items-center text-gray-400 text-sm">
           <span>{colour}</span>
           <div className="border-r-[1px] h-[60%] border-gray-200"></div>
           <span>Qty:</span>
@@ -129,10 +130,10 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="w-fit">
         <span className="transition-all duration-300 text-gray-800">
-          <CiCircleRemove
+          {/* <CiCircleRemove
             onClick={handleRemoveFromCart}
             size={25}
-          ></CiCircleRemove>
+          ></CiCircleRemove> */}
         </span>
       </div>
     </div>

@@ -1,8 +1,6 @@
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 import clientPromise from "../utils/mongodb";
-import { useAuth } from "../context/authUserContext";
-import { useAppDispatch } from "../redux/hooks";
 
 export default function Home({ isConnected }) {
   const router = useRouter();

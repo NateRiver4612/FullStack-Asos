@@ -113,7 +113,6 @@ export const getServerSideProps = async (context) => {
 
   // We fetch local sample data because RapidAPI has expired temporarily
   let data = {};
-  console.log(context.params.productId);
 
   if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     // development build code
