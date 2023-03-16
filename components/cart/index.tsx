@@ -6,30 +6,18 @@ import {
 } from "../../redux/features/cart/cart.slice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
-import { useAuth } from "../../context/authUserContext";
-import { useQuery } from "@apollo/client";
-import { GET_CART_ITEMS } from "../../utils/graphQl.utils";
 import { motion } from "framer-motion";
-import { RiShoppingBagLine } from "react-icons/ri";
-import Cart_Skeleton from "./cart-skeleton";
 import CartWishList from "./cart-wishList.components";
 import CartList from "./cart-list.component";
 import CartCheckout from "./cart-checkout.component";
 import CartSubTotal from "./cart-subTotal.component";
-import CartEmpty from "./cart-empty.component";
 
 const Cart = () => {
   const cartItems = useAppSelector(selectCartItems);
 
-  const dispatch = useAppDispatch();
-
   const wishItems = useAppSelector(selectWishItems);
 
-  const { authUser } = useAuth();
-
   const cartWishItems = [...wishItems].slice(0, 3);
-
-  const [rendering, setRendering] = useState(true);
 
   const priceSum = cartItems.reduce(
     (accumulator, item) =>
@@ -41,34 +29,6 @@ const Cart = () => {
     (accumulator, item) => accumulator + item.quantity,
     0
   );
-
-  const {
-    data: CART_ITEMS_DATA,
-    loading: CART_ITEMS_LOADING,
-    error,
-  } = useQuery(GET_CART_ITEMS, {
-    variables: { userId: authUser?.id },
-  });
-
-  useEffect(() => {
-    if (!CART_ITEMS_LOADING && authUser) {
-      const cartByUser = CART_ITEMS_DATA.getCart;
-
-      dispatch(setCartItems(cartByUser));
-    }
-  }, [CART_ITEMS_DATA, authUser]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setRendering(false);
-    }, 2000);
-  }, [CART_ITEMS_LOADING]);
-
-  if (CART_ITEMS_DATA && CART_ITEMS_DATA.getCart.length == 0) {
-    return <CartEmpty></CartEmpty>;
-  }
-
-  if (rendering) return <Cart_Skeleton></Cart_Skeleton>;
 
   return (
     <motion.div

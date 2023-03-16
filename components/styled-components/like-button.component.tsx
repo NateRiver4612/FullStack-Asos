@@ -32,7 +32,7 @@ const LikeButton = ({ product, isWishItem }) => {
   const { categoryId, mainRouteId, categoryRouteId } = router.query;
   const { price, imageUrl, name, isSellingFast, id, colour } = product;
 
-  const isAddToCart = cartItems.find((item) => item.productId == id);
+  const isAddToCart = cartItems?.find((item) => item.productId == id);
 
   useEffect(() => {
     const isLiked =

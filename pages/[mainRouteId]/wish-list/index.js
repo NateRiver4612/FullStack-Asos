@@ -12,10 +12,7 @@ import {
   GET_CART_ITEMS,
 } from "../../../utils/graphQl.utils";
 import { useQuery } from "@apollo/client";
-import {
-  clearCart,
-  setCartItems,
-} from "../../../redux/features/cart/cart.slice";
+import { setCartItems } from "../../../redux/features/cart/cart.slice";
 
 const ProductOverview_Container = dynamic(
   () =>
@@ -23,7 +20,7 @@ const ProductOverview_Container = dynamic(
   { ssr: false }
 );
 
-const WishList = () => {
+const WishList_Page = () => {
   const wishItems = useAppSelector(selectWishItems);
   const dispatch = useAppDispatch();
 
@@ -31,19 +28,39 @@ const WishList = () => {
 
   const {
     loading: Liked_Products_Loading,
-    data: Liked_Products_Data,
+    data: LIKED_PRODUCTS_DATA,
     error: Liked_Products_Error,
   } = useQuery(GET_LIKED_PRODUCTS);
 
+  const {
+    data: CART_ITEMS_DATA,
+    loading: CART_ITEMS_LOADING,
+    error,
+  } = useQuery(GET_CART_ITEMS, {
+    variables: { userId: authUser?.id },
+  });
+
   useEffect(() => {
-    if (!Liked_Products_Loading && authUser) {
-      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
+    if (authUser) {
+      const likedProductsByUser = LIKED_PRODUCTS_DATA?.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
 
-      dispatch(setWishItems(likedProductsByUser));
+      if (likedProductsByUser) {
+        dispatch(setWishItems(likedProductsByUser));
+      }
     }
-  }, [Liked_Products_Data?.getLikedProducts, authUser]);
+  }, [LIKED_PRODUCTS_DATA, authUser]);
+
+  useEffect(() => {
+    if (authUser) {
+      const cartByUser = CART_ITEMS_DATA?.getCart;
+
+      if (cartByUser) {
+        dispatch(setCartItems(cartByUser));
+      }
+    }
+  }, [CART_ITEMS_DATA, authUser]);
 
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
@@ -65,4 +82,4 @@ const WishList = () => {
   );
 };
 
-export default WishList;
+export default WishList_Page;

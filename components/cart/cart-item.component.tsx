@@ -130,10 +130,10 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="w-fit">
         <span className="transition-all duration-300 text-gray-800">
-          {/* <CiCircleRemove
+          <CiCircleRemove
             onClick={handleRemoveFromCart}
             size={25}
-          ></CiCircleRemove> */}
+          ></CiCircleRemove>
         </span>
       </div>
     </div>
