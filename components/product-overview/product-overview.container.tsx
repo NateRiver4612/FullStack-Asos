@@ -1,35 +1,10 @@
 import React, { useEffect } from "react";
 import ProductOverview from "./product-overview.component";
-import { useQuery } from "@apollo/client";
-import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  setWishItems,
-  selectWishItems,
-} from "../../redux/features/wish/wish.slice";
-import { useAuth } from "../../context/authUserContext";
+import { useAppSelector } from "../../redux/hooks";
+import { selectWishItems } from "../../redux/features/wish/wish.slice";
 
 const ProductOverview_Container = ({ products, wish, similarList }) => {
-  const dispatch = useAppDispatch();
   const wishItems = useAppSelector(selectWishItems);
-
-  const { authUser } = useAuth();
-
-  const {
-    loading: Liked_Products_Loading,
-    data: Liked_Products_Data,
-    error: Liked_Products_Error,
-  } = useQuery(GET_LIKED_PRODUCTS);
-
-  useEffect(() => {
-    if (!Liked_Products_Loading && authUser) {
-      const likedProductsByUser = Liked_Products_Data.getLikedProducts.filter(
-        (product) => product.likes.find((like) => like.id == authUser.id)
-      );
-
-      dispatch(setWishItems(likedProductsByUser));
-    }
-  }, [Liked_Products_Data?.getLikedProducts, authUser]);
 
   return (
     <div

@@ -13,6 +13,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apolloClient";
 import dynamic from "next/dynamic";
 import Spinner from "../components/spinner/spinner.component";
+import State_Provider from "../provider/global_state_provider";
 // require("dotenv").config();
 
 const ProgressBar = dynamic(
@@ -98,14 +99,15 @@ function MyApp({ Component, pageProps }) {
               type="image/x-icon"
             />
           </Head>
+
           <PersistGate loading={null} persistor={persistor}>
             <Navigation navigations={navigationData}></Navigation>
             {query_number >= 2 && <Breadcrumbs />}
             {loading && <Spinner />}
             <div>
-              <div>
+              <State_Provider>
                 <Component {...pageProps} />
-              </div>
+              </State_Provider>
               <PaymentSection />
               <Footer footers={footerData} />
               <Bottom_Section />

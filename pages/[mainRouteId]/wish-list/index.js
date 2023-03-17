@@ -19,54 +19,15 @@ import Wish_Skeleton from "../../../components/wish-list/wish-skeleton";
 
 const WishList_Page = () => {
   const wishItems = useAppSelector(selectWishItems);
-  const dispatch = useAppDispatch();
   const [rendering, setRendering] = useState(true);
 
   const { authUser } = useAuth();
 
-  const {
-    loading: LIKED_PRODUCTS_LOADING,
-    data: LIKED_PRODUCTS_DATA,
-    error: Liked_Products_Error,
-  } = useQuery(GET_LIKED_PRODUCTS);
-
-  const {
-    data: CART_ITEMS_DATA,
-    loading: CART_ITEMS_LOADING,
-    error,
-  } = useQuery(GET_CART_ITEMS, {
-    variables: { userId: authUser?.id },
-  });
-
-  useEffect(() => {
-    if (!LIKED_PRODUCTS_LOADING && authUser) {
-      const likedProductsByUser = LIKED_PRODUCTS_DATA.getLikedProducts.filter(
-        (product) => product.likes.find((like) => like.id == authUser.id)
-      );
-
-      if (likedProductsByUser) {
-        dispatch(setWishItems(likedProductsByUser));
-      }
-    }
-  }, [LIKED_PRODUCTS_DATA, authUser]);
-
-  useEffect(() => {
-    if (!CART_ITEMS_LOADING && authUser) {
-      const cartByUser = CART_ITEMS_DATA.getCart;
-
-      if (cartByUser) {
-        dispatch(setCartItems(cartByUser));
-      }
-    }
-  }, [CART_ITEMS_DATA, authUser]);
-
   useEffect(() => {
     setTimeout(() => {
       setRendering(false);
-    }, 2000);
-  }, [LIKED_PRODUCTS_LOADING]);
-
-  console.log(LIKED_PRODUCTS_DATA);
+    }, 3000);
+  }, []);
 
   if (!authUser || wishItems.length == 0) {
     return <WishEmpty></WishEmpty>;
