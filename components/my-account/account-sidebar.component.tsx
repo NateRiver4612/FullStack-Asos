@@ -18,6 +18,9 @@ import SidebarList from "./sidebar-list.component";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
 import Spinner from "../spinner/spinner.component";
+import { useAppDispatch } from "../../redux/hooks";
+import { clearCart } from "../../redux/features/cart/cart.slice";
+import { clearWish } from "../../redux/features/wish/wish.slice";
 
 const icons: Map<string, IconType> = new Map([
   ["My orders", FiPackage],
@@ -56,6 +59,7 @@ const AccountSidebar = () => {
   const [selectedItem, setSelectedItem] = useState("Account overview");
 
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleSelect = (select: string) => {
     return setSelectedItem(select);
@@ -64,6 +68,9 @@ const AccountSidebar = () => {
   const handleSignOut = async () => {
     try {
       await SignOut();
+
+      dispatch(clearCart());
+      dispatch(clearWish());
 
       router.back();
     } catch (error) {

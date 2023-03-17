@@ -66,7 +66,7 @@ const Cart_Page = () => {
     }, 2000);
   }, [CART_ITEMS_LOADING]);
 
-  if (CART_ITEMS_DATA && CART_ITEMS_DATA.getCart.length == 0) {
+  if ((CART_ITEMS_DATA && CART_ITEMS_DATA.getCart.length == 0) || !authUser) {
     return <CartEmpty></CartEmpty>;
   }
 
