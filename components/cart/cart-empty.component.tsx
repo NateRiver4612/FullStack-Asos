@@ -2,9 +2,14 @@ import { motion } from "framer-motion";
 import React, { Fragment } from "react";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { useAuth } from "../../context/authUserContext";
+import { useRouter } from "next/router";
 
 const CartEmpty = () => {
   const { authUser } = useAuth();
+
+  const router = useRouter();
+
+  const { mainRouteId } = router.query;
 
   return (
     <div className="h-screen sm:h-[67vh] flex pt-20 justify-center w-screen">
@@ -28,7 +33,10 @@ const CartEmpty = () => {
           </span>
           {authUser ? (
             <Fragment>
-              <button className="bg-gray-500 uppercase px-[10%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+              <button
+                onClick={() => router.push(`/${mainRouteId}/wish-list`)}
+                className="bg-gray-500 uppercase px-[10%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest"
+              >
                 View saved items
               </button>
               <span className="underline text-xs">Continue Shopping</span>
@@ -38,7 +46,10 @@ const CartEmpty = () => {
               <span className="text-[13px] font-bold">
                 Sign in to see your bag
               </span>
-              <button className="bg-gray-500 w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+              <button
+                onClick={() => router.push("/identity/register")}
+                className="bg-gray-500 w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest"
+              >
                 SIGN IN
               </button>
             </Fragment>

@@ -5,10 +5,13 @@ import {
   GET_CART_ITEMS,
   GET_LIKED_PRODUCTS,
 } from "../../../utils/graphQl.utils";
-import { setCartItems } from "../../../redux/features/cart/cart.slice";
+import {
+  selectCartItems,
+  setCartItems,
+} from "../../../redux/features/cart/cart.slice";
 import { useAuth } from "../../../context/authUserContext";
 // import Cart_Skeleton from "../../../components/cart/cart-skeleton";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setWishItems } from "../../../redux/features/wish/wish.slice";
 // import CartEmpty from "../../../components/cart/cart-empty.component";
 
@@ -27,6 +30,7 @@ const Cart_Page = () => {
 
   const { authUser } = useAuth();
 
+  const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
 
   const { data: CART_ITEMS_DATA, loading: CART_ITEMS_LOADING } = useQuery(
@@ -67,7 +71,7 @@ const Cart_Page = () => {
     }, 2000);
   }, [CART_ITEMS_LOADING]);
 
-  if ((CART_ITEMS_DATA && CART_ITEMS_DATA.getCart.length == 0) || !authUser) {
+  if (!authUser || cartItems) {
     return <CartEmpty></CartEmpty>;
   }
 

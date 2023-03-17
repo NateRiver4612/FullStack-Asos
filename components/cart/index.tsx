@@ -40,9 +40,9 @@ const Cart = () => {
         delay: 0.2,
         ease: [0, 0.71, 0.2, 1.01],
       }}
-      className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2 "
+      className="flex flex-col sm:flex-row pb-12 px-2 w-full lg:w-[85%] xl:w-[75%] 2xl:w-[65%] mt-2 gap-2"
     >
-      <div className="w-full sm:w-[60%] h-fit flex flex-col gap-2 ">
+      <div className="w-full sm:w-[60%] h-fit flex flex-col gap-2">
         <div className="bg-gray-100 h-[4rem] flex items-center">
           <div className="flex justify-between  w-full tracking-wider items-center px-6">
             <span className="uppercase font-bold text-lg text-gray-800">

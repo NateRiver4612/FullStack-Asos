@@ -66,10 +66,9 @@ const WishList_Page = () => {
     }, 2000);
   }, [LIKED_PRODUCTS_LOADING]);
 
-  if (
-    (LIKED_PRODUCTS_DATA && LIKED_PRODUCTS_DATA.getLikedProducts.length == 0) ||
-    !authUser
-  ) {
+  console.log(LIKED_PRODUCTS_DATA);
+
+  if (!authUser || wishItems.length == 0) {
     return <WishEmpty></WishEmpty>;
   }
 

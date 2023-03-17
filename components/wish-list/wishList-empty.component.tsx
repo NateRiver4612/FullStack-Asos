@@ -2,9 +2,13 @@ import { motion } from "framer-motion";
 import React, { Fragment } from "react";
 import { useAuth } from "../../context/authUserContext";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useRouter } from "next/router";
 
 const WishEmpty = () => {
   const { authUser } = useAuth();
+  const router = useRouter();
+
+  const { mainRouteId } = router.query;
 
   return (
     <div className="h-screen sm:h-[67vh] flex pt-20 justify-center w-screen">
@@ -28,7 +32,10 @@ const WishEmpty = () => {
           </span>
           {authUser ? (
             <Fragment>
-              <button className="bg-gray-500 uppercase px-[10%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+              <button
+                onClick={() => router.push(`/${mainRouteId}`)}
+                className="bg-gray-500 uppercase px-[10%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest"
+              >
                 start shopping
               </button>
             </Fragment>
@@ -37,7 +44,10 @@ const WishEmpty = () => {
               <span className="text-[13px] font-bold">
                 Sign in to sync your Saved Items.
               </span>
-              <button className="bg-gray-500 w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest">
+              <button
+                onClick={() => router.push("/identity/register")}
+                className="bg-gray-500 w-[50%] text-gray-200 transition-all duration-300 hover:bg-gray-400 py-3 text-sm font-bold tracking-widest"
+              >
                 SIGN IN
               </button>
             </Fragment>
