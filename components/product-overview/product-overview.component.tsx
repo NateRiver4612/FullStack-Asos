@@ -1,12 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useAuth } from "../../context/authUserContext";
-import { Cart, Like } from "../../types";
 import LikeButton from "../styled-components/like-button.component";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectCartItems } from "../../redux/features/cart/cart.slice";
 import AddToCart_Button from "../styled-components/addToCart-button.component";
+import { motion } from "framer-motion";
 
 const ProductOverview = ({ product, isWishItem, wishItems }) => {
   const router = useRouter();
@@ -33,7 +30,17 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
   };
 
   return (
-    <div key={id} className="flex relative flex-col cursor-pointer  mt-5">
+    <motion.div
+      key={id}
+      initial={{ opacity: 0, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className="flex relative flex-col cursor-pointer  mt-5"
+    >
       <div className="flex justify-end items-end ">
         <Image
           onClick={() => {
@@ -79,7 +86,7 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
           <AddToCart_Button product={product}></AddToCart_Button>
         </Fragment>
       )}
-    </div>
+    </motion.div>
   );
 };
 

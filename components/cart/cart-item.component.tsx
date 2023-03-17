@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import Select from "react-select";
 import { CiCircleRemove } from "react-icons/ci";
 import { useAuth } from "../../context/authUserContext";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import {
   setQuantity,
   removeCartItem,
   selectCartItems,
 } from "../../redux/features/cart/cart.slice";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const CartItem = ({ cartItem }) => {
@@ -20,6 +19,8 @@ const CartItem = ({ cartItem }) => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
+
+  console.log(link);
 
   const handleSelect = () => {
     const query = {
@@ -86,13 +87,13 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <div className="flex border-b-[1px] gap-5 py-5 border-gray-200">
-      <div className="w-[30%] sm:w-[20%] " onClick={handleSelect}>
+      <div className="w-[30%] sm:w-[20%] cursor-pointer" onClick={handleSelect}>
         <Image height={140} width={110} src={`https://${imageUrl}`} />
       </div>
       <div className=" w-[80%] flex flex-col gap-1 sm:gap-2">
         <span
           onClick={handleSelect}
-          className="text-gray-600 text-sm w-full sm:w-[90%]"
+          className="text-gray-600 cursor-pointer text-sm w-full sm:w-[90%]"
         >
           {name}
         </span>

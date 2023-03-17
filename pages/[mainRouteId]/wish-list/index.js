@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../../redux/hooks";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useAppSelector } from "../../../redux/hooks";
 import {
@@ -13,21 +13,19 @@ import {
 } from "../../../utils/graphQl.utils";
 import { useQuery } from "@apollo/client";
 import { setCartItems } from "../../../redux/features/cart/cart.slice";
-
-const ProductOverview_Container = dynamic(
-  () =>
-    import("../../../components/product-overview/product-overview.container"),
-  { ssr: false }
-);
+import WishEmpty from "../../../components/wish-list/wishList-empty.component";
+import Wish from "../../../components/wish-list";
+import Wish_Skeleton from "../../../components/wish-list/wish-skeleton";
 
 const WishList_Page = () => {
   const wishItems = useAppSelector(selectWishItems);
   const dispatch = useAppDispatch();
+  const [rendering, setRendering] = useState(true);
 
   const { authUser } = useAuth();
 
   const {
-    loading: Liked_Products_Loading,
+    loading: LIKED_PRODUCTS_LOADING,
     data: LIKED_PRODUCTS_DATA,
     error: Liked_Products_Error,
   } = useQuery(GET_LIKED_PRODUCTS);
@@ -62,24 +60,22 @@ const WishList_Page = () => {
     }
   }, [CART_ITEMS_DATA, authUser]);
 
-  return (
-    <div className="h-fit pb-24 flex flex-col items-center">
-      <div className="w-full flex items-center justify-center bg-gray-100">
-        <span className="py-6 text-2xl font-extrabold text-gray-800 tracking-wider">
-          Saved Items
-        </span>
-      </div>
-      {wishItems.length > 0 ? (
-        <ProductOverview_Container wish={true} products={wishItems} />
-      ) : (
-        <div className="h-[65vh] flex justify-center items-center w-screen">
-          <span className="font-bold font-raleway tracking-widest text-gray-300  text-[15px] md:text-[20px] lg:text-[25px] xl:text-[30px] uppercase">
-            You haven't like any item
-          </span>
-        </div>
-      )}
-    </div>
-  );
+  useEffect(() => {
+    setTimeout(() => {
+      setRendering(false);
+    }, 2000);
+  }, [LIKED_PRODUCTS_LOADING]);
+
+  if (
+    (LIKED_PRODUCTS_DATA && LIKED_PRODUCTS_DATA.getLikedProducts.length == 0) ||
+    !authUser
+  ) {
+    return <WishEmpty></WishEmpty>;
+  }
+
+  if (rendering) return <Wish_Skeleton></Wish_Skeleton>;
+
+  return <Wish wishItems={wishItems}></Wish>;
 };
 
 export default WishList_Page;

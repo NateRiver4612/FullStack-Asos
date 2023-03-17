@@ -9,6 +9,7 @@ import {
   selectWishItems,
 } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
+import ProductOverview_Skeleton from "./product-overview-skeleton/product-overview.skeleton";
 
 const ProductOverview_Container = ({ products, wish, similarList }) => {
   const dispatch = useAppDispatch();
