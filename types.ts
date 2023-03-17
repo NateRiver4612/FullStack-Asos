@@ -36,14 +36,15 @@ export interface Product {
 }
 
 export interface Cart {
-  productId: String;
-  userId: String;
-  name: String;
-  link: String;
-  imageUrl: String;
-  cur_price: Number;
-  pre_price: Number;
-  quantity: Number;
-  colour: String;
-  createdAt: String;
+  productId: string;
+  userId: string;
+  name: string;
+  link: string;
+  imageUrl: string;
+  cur_price: number;
+  pre_price: number;
+  quantity: number;
+  colour: string;
+  createdAt: string;
+  total: number;
 }

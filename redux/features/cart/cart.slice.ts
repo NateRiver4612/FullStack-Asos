@@ -16,7 +16,7 @@ interface removeCart_Input {
 
 interface setQty_Input {
   productId: string;
-  quantity: Number;
+  quantity: number;
 }
 
 export const cartSlice = createSlice({
@@ -59,6 +59,7 @@ export const {
   clearCart,
 } = cartSlice.actions;
 
-export const selectCartItems = (state: RootState) => state.cart.cartItems;
+export const selectCartItems = (state: RootState): [Cart] =>
+  state.cart.cartItems;
 
 export default cartSlice.reducer;

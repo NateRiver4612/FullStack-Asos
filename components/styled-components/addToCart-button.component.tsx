@@ -6,7 +6,6 @@ import {
   selectCartItems,
 } from "../../redux/features/cart/cart.slice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { Like } from "../../types";
 import { ADD_TO_CART, GET_CART_ITEMS } from "../../utils/graphQl.utils";
 
 const AddToCart_Button = ({ product }) => {
@@ -27,7 +26,7 @@ const AddToCart_Button = ({ product }) => {
   const isAddToCart =
     cartItems &&
     !!cartItems.find(
-      (product: { productId: String; likes: Like[] }) => product.productId == id
+      (product: { productId: String }) => product.productId == id
     );
 
   const handleAddToCart = async () => {
@@ -46,7 +45,7 @@ const AddToCart_Button = ({ product }) => {
       },
     };
 
-    dispatch(addToCart(input.value));
+    dispatch(addToCart({ ...input.value, total: price.current.value }));
 
     await addCartItem({ variables: { input: input.value } });
   };

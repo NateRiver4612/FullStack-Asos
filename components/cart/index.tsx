@@ -14,7 +14,12 @@ const Cart = () => {
 
   const wishItems = useAppSelector(selectWishItems);
 
-  const cartWishItems = [...wishItems].slice(0, 3);
+  const cartWishItems = [...wishItems]
+    .filter(
+      (wishItem) =>
+        !cartItems.find((cartItem) => cartItem.productId == wishItem.id)
+    )
+    .slice(0, 3);
 
   const priceSum = cartItems.reduce(
     (accumulator, item) => accumulator + item.total,
@@ -55,7 +60,9 @@ const Cart = () => {
           quantitySum={quantitySum}
         ></CartSubTotal>
 
-        <CartWishList cartWishItems={cartWishItems}></CartWishList>
+        {cartWishItems.length > 0 && (
+          <CartWishList cartWishItems={cartWishItems}></CartWishList>
+        )}
 
         <div className="flex bg-gray-100 p-5 gap-2">
           <div className=" w-[15%] text-gray-600 flex justify-center ">
