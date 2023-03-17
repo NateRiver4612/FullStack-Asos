@@ -21,6 +21,7 @@ const CartSchema = new Schema(
     quantity: Number,
     colour: String,
     createdAt: Date,
+    total: Number,
   },
   { versionKey: false }
 );

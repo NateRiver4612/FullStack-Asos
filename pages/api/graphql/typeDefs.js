@@ -51,6 +51,7 @@ const typeDefs = gql`
     name: String!
     link: String!
     quantity: Int!
+    total: Float!
     colour: String
     createdAt: String
   }
@@ -102,6 +103,12 @@ const typeDefs = gql`
     productId: String!
   }
 
+  input UpdateQuantity_Input {
+    userId: String!
+    productId: String!
+    quantity: Int!
+  }
+
   type Query {
     getUsers: [Account]
     getLikedProducts: [Product]
@@ -113,6 +120,7 @@ const typeDefs = gql`
     addToCart(input: AddToCart_Input!): CartItem!
     likeProduct(input: LikeProduct_Input!): Product!
     removeFromCart(input: RemoveFromCart_Input!): CartItem
+    updateQuantity(input: UpdateQuantity_Input): CartItem!
   }
 `;
 

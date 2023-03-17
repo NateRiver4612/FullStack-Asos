@@ -51,6 +51,7 @@ export const GET_CART_ITEMS = gql`
       }
       quantity
       userId
+      total
     }
   }
 `;
@@ -89,6 +90,7 @@ export const ADD_TO_CART = gql`
       }
       userId
       quantity
+      total
     }
   }
 `;
@@ -113,6 +115,32 @@ export const REMOVE_FROM_CART = gql`
       name
       userId
       quantity
+    }
+  }
+`;
+
+export const UPDATE_CART_QUANTITY = gql`
+  mutation UpdateQuantity($input: UpdateQuantity_Input) {
+    updateQuantity(input: $input) {
+      createdAt
+      colour
+      imageUrl
+      link
+      name
+      price {
+        previous {
+          text
+          value
+        }
+        current {
+          value
+          text
+        }
+      }
+      productId
+      quantity
+      userId
+      total
     }
   }
 `;

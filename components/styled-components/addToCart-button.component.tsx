@@ -17,7 +17,9 @@ const AddToCart_Button = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const [addCartItem] = useMutation(ADD_TO_CART, {
-    refetchQueries: [{ query: GET_CART_ITEMS }],
+    refetchQueries: [
+      { query: GET_CART_ITEMS, variables: { userId: authUser?.id } },
+    ],
   });
 
   const cartItems = useAppSelector(selectCartItems);

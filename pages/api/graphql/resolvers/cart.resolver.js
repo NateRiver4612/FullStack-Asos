@@ -30,6 +30,7 @@ const create_CartItem = async (
     link: link,
     quantity: quantity,
     colour: colour,
+    total: cur_price,
     createdAt: createdAt,
   });
 
@@ -104,6 +105,29 @@ module.exports = {
       });
 
       return deleteItem;
+    },
+
+    async updateQuantity(
+      parent,
+      { input: { userId, productId, quantity }, context }
+    ) {
+      const existItem = await Cart.findOne({
+        userId: userId,
+        productId: productId,
+      });
+
+      const updateItem = await Cart.findOneAndUpdate(
+        {
+          userId: userId,
+          productId: productId,
+        },
+        {
+          quantity: quantity,
+          total: existItem.price.current.value * quantity,
+        }
+      );
+
+      return updateItem;
     },
   },
 };

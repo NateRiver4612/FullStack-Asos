@@ -13,10 +13,15 @@ import {
 } from "../../redux/features/cart/cart.slice";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useMutation } from "@apollo/client";
-import { GET_CART_ITEMS, REMOVE_FROM_CART } from "../../utils/graphQl.utils";
+import {
+  GET_CART_ITEMS,
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+} from "../../utils/graphQl.utils";
 
 const CartItem = ({ cartItem }) => {
-  const { productId, imageUrl, name, quantity, price, colour, link } = cartItem;
+  const { productId, imageUrl, name, quantity, price, colour, link, total } =
+    cartItem;
 
   const router = useRouter();
 
@@ -38,7 +43,9 @@ const CartItem = ({ cartItem }) => {
   };
 
   const [removeFromCart] = useMutation(REMOVE_FROM_CART, {
-    refetchQueries: [{ query: GET_CART_ITEMS }],
+    refetchQueries: [
+      { query: GET_CART_ITEMS, variables: { userId: authUser?.id } },
+    ],
   });
 
   const handleRemoveFromCart = async () => {
@@ -79,7 +86,21 @@ const CartItem = ({ cartItem }) => {
 
   const qtyIndex = options.findIndex((item) => item.value == quantity);
 
-  const handleSetQuantity = (e: any) => {
+  const [updateQuantity] = useMutation(UPDATE_CART_QUANTITY, {
+    refetchQueries: [
+      { query: GET_CART_ITEMS, variables: { userId: authUser?.id } },
+    ],
+  });
+
+  const handleSetQuantity = async (e: any) => {
+    const input = {
+      value: {
+        productId: productId,
+        userId: authUser.id,
+        quantity: e.value,
+      },
+    };
+    await updateQuantity({ variables: { input: input.value } });
     dispatch(setQuantity({ productId: productId, quantity: e.value }));
   };
 
@@ -101,17 +122,26 @@ const CartItem = ({ cartItem }) => {
   };
 
   return (
-    <div className="flex border-b-[1px] gap-5 py-5 border-gray-200">
-      <div className="w-[30%] sm:w-[20%] cursor-pointer" onClick={handleSelect}>
+    <div className="flex border-b-[1px] gap-4 py-5 border-gray-200">
+      <div className="w-[40%] sm:w-[20%] cursor-pointer" onClick={handleSelect}>
         <Image height={140} width={110} src={`https://${imageUrl}`} />
       </div>
-      <div className=" w-[80%] flex flex-col gap-1 sm:gap-2">
-        <span
-          onClick={handleSelect}
-          className="text-gray-600 cursor-pointer text-sm w-full sm:w-[90%]"
-        >
-          {name}
-        </span>
+      <div className=" w-full sm:w-[80%] flex flex-col gap-1 sm:gap-2">
+        <div className="flex justify-between">
+          <span
+            onClick={handleSelect}
+            className="text-gray-600 cursor-pointer text-sm w-full sm:w-[90%]"
+          >
+            {name}
+          </span>
+          <span className="transition-all duration-300 text-gray-800">
+            <CiCircleRemove
+              onClick={handleRemoveFromCart}
+              size={25}
+            ></CiCircleRemove>
+          </span>
+        </div>
+
         <div className="flex items-center gap-2 ">
           <span
             className={`${
@@ -121,11 +151,9 @@ const CartItem = ({ cartItem }) => {
             {price?.current.text}
           </span>
 
-          {price?.previous.value && (
-            <span className="text-[10px] items-center tracking-wider flex line-through text-gray-500">
-              {price.previous.text}
-            </span>
-          )}
+          <span className="text-xs font-light items-center tracking-wider flex text-gray-400">
+            Total: ${total.toFixed(2)}
+          </span>
         </div>
         <div className="flex gap-2  items-center text-gray-400 text-sm">
           <span>{colour}</span>
@@ -143,14 +171,6 @@ const CartItem = ({ cartItem }) => {
           <AiOutlineHeart size={20}></AiOutlineHeart>
           <span>Save for later</span>
         </div>
-      </div>
-      <div className="w-fit">
-        <span className="transition-all duration-300 text-gray-800">
-          <CiCircleRemove
-            onClick={handleRemoveFromCart}
-            size={25}
-          ></CiCircleRemove>
-        </span>
       </div>
     </div>
   );

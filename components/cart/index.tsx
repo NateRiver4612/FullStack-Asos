@@ -1,9 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
-import {
-  selectCartItems,
-  setCartItems,
-} from "../../redux/features/cart/cart.slice";
+import { selectCartItems } from "../../redux/features/cart/cart.slice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
 import { motion } from "framer-motion";
@@ -20,8 +17,7 @@ const Cart = () => {
   const cartWishItems = [...wishItems].slice(0, 3);
 
   const priceSum = cartItems.reduce(
-    (accumulator, item) =>
-      accumulator + item.price?.current.value * item.quantity,
+    (accumulator, item) => accumulator + item.total,
     0
   );
 
