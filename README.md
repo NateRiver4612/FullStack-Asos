@@ -7,7 +7,7 @@
 <h3 align="center">FullStack Asos</h3>
 
   <p align="center">
-   This website is a clone website that was built for practical purposes, got inspired by this original website, the initial idea was to put every modern technology that we have learned into one place and hope to be the perfect combination to build a website.
+   This website got inspired by the original website <a href="https://www.asos.com/">ASOS</a> , the initial idea was to put every modern technology that we have learned into one place and hope to be the perfect combination to build a website.
   </p>
 </div>
 
@@ -105,6 +105,8 @@ This website is uncompleted due to missing data supply, however there won't be n
 - [ ] Products page
 - [ ] Product detail page
 - [ ] Registe page
+- [ ] Cart page
+- [ ] Wish List page
 
 <!-- CONTACT -->
 ## Contact
