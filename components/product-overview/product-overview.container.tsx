@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import ProductOverview from "./product-overview.component";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_LIKED_PRODUCTS, LIKE_PRODUCT } from "../../utils/graphQl.utils";
-import Spinner from "../spinner/spinner.component";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   setWishItems,
   selectWishItems,
 } from "../../redux/features/wish/wish.slice";
 import { useAuth } from "../../context/authUserContext";
-import ProductOverview_Skeleton from "./product-overview-skeleton/product-overview.skeleton";
 
 const ProductOverview_Container = ({ products, wish, similarList }) => {
   const dispatch = useAppDispatch();

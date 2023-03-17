@@ -39,8 +39,8 @@ const WishList_Page = () => {
   });
 
   useEffect(() => {
-    if (authUser) {
-      const likedProductsByUser = LIKED_PRODUCTS_DATA?.getLikedProducts.filter(
+    if (!LIKED_PRODUCTS_LOADING && authUser) {
+      const likedProductsByUser = LIKED_PRODUCTS_DATA.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
 
@@ -51,8 +51,8 @@ const WishList_Page = () => {
   }, [LIKED_PRODUCTS_DATA, authUser]);
 
   useEffect(() => {
-    if (authUser) {
-      const cartByUser = CART_ITEMS_DATA?.getCart;
+    if (!CART_ITEMS_LOADING && authUser) {
+      const cartByUser = CART_ITEMS_DATA.getCart;
 
       if (cartByUser) {
         dispatch(setCartItems(cartByUser));

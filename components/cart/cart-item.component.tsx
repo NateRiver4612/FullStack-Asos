@@ -12,6 +12,8 @@ import {
   selectCartItems,
 } from "../../redux/features/cart/cart.slice";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useMutation } from "@apollo/client";
+import { GET_CART_ITEMS, REMOVE_FROM_CART } from "../../utils/graphQl.utils";
 
 const CartItem = ({ cartItem }) => {
   const { productId, imageUrl, name, quantity, price, colour, link } = cartItem;
@@ -20,7 +22,7 @@ const CartItem = ({ cartItem }) => {
 
   const dispatch = useAppDispatch();
 
-  console.log(link);
+  const { authUser } = useAuth();
 
   const handleSelect = () => {
     const query = {
@@ -35,7 +37,20 @@ const CartItem = ({ cartItem }) => {
     });
   };
 
-  const handleRemoveFromCart = () => {
+  const [removeFromCart] = useMutation(REMOVE_FROM_CART, {
+    refetchQueries: [{ query: GET_CART_ITEMS }],
+  });
+
+  const handleRemoveFromCart = async () => {
+    const input = {
+      value: {
+        productId: productId,
+        userId: authUser.id,
+      },
+    };
+
+    await removeFromCart({ variables: { input: input.value } });
+
     dispatch(removeCartItem({ productId: productId }));
   };
 

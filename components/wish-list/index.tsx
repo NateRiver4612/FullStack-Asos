@@ -1,10 +1,11 @@
 import dynamic from "next/dynamic";
 import React from "react";
+import ProductOverview_Container from "../product-overview/product-overview.container";
 
-const ProductOverview_Container = dynamic(
-  () => import("../product-overview/product-overview.container"),
-  { ssr: false }
-);
+// const ProductOverview_Container = dynamic(
+//   () => import("../product-overview/product-overview.container"),
+//   { ssr: false }
+// );
 
 const Wish = ({ wishItems }) => {
   return (

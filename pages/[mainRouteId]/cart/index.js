@@ -36,11 +36,12 @@ const Cart_Page = () => {
     }
   );
 
-  const { data: LIKED_PRODUCTS_DATA } = useQuery(GET_LIKED_PRODUCTS);
+  const { data: LIKED_PRODUCTS_DATA, loading: LIKED_PRODUCTS_LOADING } =
+    useQuery(GET_LIKED_PRODUCTS);
 
   useEffect(() => {
-    if (authUser) {
-      const likedProductsByUser = LIKED_PRODUCTS_DATA?.getLikedProducts.filter(
+    if (!LIKED_PRODUCTS_LOADING && authUser) {
+      const likedProductsByUser = LIKED_PRODUCTS_DATA.getLikedProducts.filter(
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
 
@@ -51,8 +52,8 @@ const Cart_Page = () => {
   }, [LIKED_PRODUCTS_DATA, authUser]);
 
   useEffect(() => {
-    if (authUser) {
-      const cartByUser = CART_ITEMS_DATA?.getCart;
+    if (!CART_ITEMS_LOADING && authUser) {
+      const cartByUser = CART_ITEMS_DATA.getCart;
 
       if (cartByUser) {
         dispatch(setCartItems(cartByUser));

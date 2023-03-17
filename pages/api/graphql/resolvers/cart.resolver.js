@@ -103,7 +103,7 @@ module.exports = {
         productId: productId,
       });
 
-      console.log(deleteItem);
+      return deleteItem;
     },
   },
 };

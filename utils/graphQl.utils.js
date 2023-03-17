@@ -92,3 +92,27 @@ export const ADD_TO_CART = gql`
     }
   }
 `;
+
+export const REMOVE_FROM_CART = gql`
+  mutation RemoveFromCart($input: RemoveFromCart_Input!) {
+    removeFromCart(input: $input) {
+      colour
+      createdAt
+      productId
+      imageUrl
+      link
+      price {
+        previous {
+          text
+        }
+        current {
+          value
+          text
+        }
+      }
+      name
+      userId
+      quantity
+    }
+  }
+`;
