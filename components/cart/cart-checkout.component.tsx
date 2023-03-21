@@ -7,6 +7,8 @@ import { useAuth } from "../../context/authUserContext";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCartItems } from "../../redux/features/cart/cart.slice";
 import { useShoppingCart } from "use-shopping-cart";
+import useSWR from "swr";
+import { fetchPostJSON } from "../../utils/api-helpers";
 
 const listPaymentIcon = [
   "visa_icon",
@@ -53,20 +55,10 @@ const CartCheckout = ({ subTotal }) => {
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    const url = "/api/stripe/checkout_sessions";
-
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(cartItems || {}),
-      });
+      const url = "/api/stripe/checkout_sessions";
+
+      const response = await fetchPostJSON(url, cartItems);
 
       const data = await response.json();
 

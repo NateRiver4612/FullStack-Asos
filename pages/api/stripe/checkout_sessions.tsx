@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { useRouter } from "next/router";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-11-15",
@@ -16,7 +17,7 @@ export default async function handler(req, res) {
             currency: "usd",
             product_data: {
               name: item.name,
-              images: [`http://${item.imageUrl}`],
+              images: [`https://${item.imageUrl}`],
             },
             unit_amount: item.price.current.value * 100,
           },
@@ -32,8 +33,8 @@ export default async function handler(req, res) {
           allowed_countries: ["US", "CA"],
         },
         line_items: transformedItems,
-        success_url: "http://localhost:3000/men/cart/success",
-        cancel_url: "http://localhost:3000/men/cart",
+        success_url: `http://localhost:3000/men/cart/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `http://localhost:3000/men/cart/`,
       };
 
       const checkoutSession: Stripe.Checkout.Session =
