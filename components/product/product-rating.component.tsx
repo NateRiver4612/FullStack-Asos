@@ -5,11 +5,11 @@ import { IoDiamondOutline } from "react-icons/io5";
 
 const ProductRating = () => {
   return (
-    <div className="flex flex-col gap-8 sm:flex-row w-full ">
+    <div className="flex flex-col gap-8 sm:flex-row w-full">
       <div className="w-full flex-col">
         <div>
           <div className="mt-4 flex text-[10px] lg:text-[13px] gap-2 items-center">
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               <BsStarFill></BsStarFill>
               <BsStarFill></BsStarFill>
               <BsStarFill></BsStarFill>

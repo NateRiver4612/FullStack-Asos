@@ -74,7 +74,7 @@ const CartCheckout = ({ subTotal }) => {
         console.error(data.message);
         return;
       }
-      console.log(data);
+
       redirectToCheckout(data.id);
     } catch (error) {
       throw new Error(error.message);

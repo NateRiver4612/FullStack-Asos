@@ -19,7 +19,7 @@ const WishList_Page = () => {
     }, 3000);
   }, []);
 
-  if (rendering) return <Wish_Skeleton></Wish_Skeleton>;
+  if (rendering) return <Wish_Skeleton wishItems={wishItems}></Wish_Skeleton>;
 
   if (!authUser || wishItems.length == 0) {
     return <WishEmpty></WishEmpty>;

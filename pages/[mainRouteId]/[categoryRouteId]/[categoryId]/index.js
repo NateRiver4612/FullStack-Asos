@@ -1,26 +1,11 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
-
+import ProductOverview_Container from "../../../../components/product-overview/product-overview.container";
 import dynamic from "next/dynamic";
-
-const ProductOverview_Container = dynamic(
-  () =>
-    import(
-      "../../../../components/product-overview/product-overview.container"
-    ),
-  {
-    ssr: false,
-  }
-);
-
-const ProductFace = dynamic(
-  () =>
-    import("../../../../components/product-overview/product-face.component"),
-  {
-    ssr: false,
-  }
-);
+import ProductFace from "../../../../components/product-overview/product-face.component";
+import { motion } from "framer-motion";
+import Product_Overview_Skeleton from "../../../../components/product-overview/product-overview-skeleton";
 
 const FilterSidebar = dynamic(
   () => import("../../../../components/filter/filter-sidebar.component"),
@@ -35,6 +20,7 @@ const ProductList = ({ data }) => {
   const [active, setActive] = useState("");
   const [openFilter, setOpenFilter] = useState(false);
   const [filters, setFilters] = useState({});
+  const [rendering, setRendering] = useState(true);
 
   //Save products to localstorage for later using
   localStorage.setItem("items", JSON.stringify(products));
@@ -159,8 +145,30 @@ const ProductList = ({ data }) => {
     return router.push(router);
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setRendering(false);
+    }, 3000);
+  }, []);
+
+  if (rendering)
+    return (
+      <Product_Overview_Skeleton
+        facets={facets}
+        products={products}
+      ></Product_Overview_Skeleton>
+    );
+
   return (
-    <Fragment>
+    <motion.div
+      initial={{ opacity: 0, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+    >
       <div
         onClick={() => setOpenFilter(false)}
         className={` ${
@@ -230,7 +238,7 @@ const ProductList = ({ data }) => {
         </div>
         <ProductOverview_Container products={products} />
       </div>
-    </Fragment>
+    </motion.div>
   );
 };
 
