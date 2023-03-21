@@ -16,6 +16,7 @@ import { setWishItems } from "../../../redux/features/wish/wish.slice";
 // import CartEmpty from "../../../components/cart/cart-empty.component";
 
 import dynamic from "next/dynamic";
+import Cart_Provider from "../../../provider/shoppingCart_provider";
 
 const CartEmpty = dynamic(() =>
   import("../../../components/cart/cart-empty.component")
@@ -51,7 +52,9 @@ const Cart_Page = () => {
 
   return (
     <div className="w-screen bg-gray-200 flex justify-center ">
-      <Cart></Cart>
+      <Cart_Provider>
+        <Cart></Cart>
+      </Cart_Provider>
     </div>
   );
 };

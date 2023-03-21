@@ -5,7 +5,7 @@ import LikeButton from "../styled-components/like-button.component";
 import AddToCart_Button from "../styled-components/addToCart-button.component";
 import { motion } from "framer-motion";
 
-const ProductOverview = ({ product, isWishItem, wishItems }) => {
+const ProductOverview = ({ product, isWishItem }) => {
   const router = useRouter();
 
   const { price, imageUrl, name, isSellingFast, id, colour, link } = product;
@@ -46,7 +46,7 @@ const ProductOverview = ({ product, isWishItem, wishItems }) => {
           onClick={() => {
             handleSelect();
           }}
-          height={380}
+          height={385}
           width={300}
           src={`https://${imageUrl}`}
         />

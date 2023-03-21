@@ -1,4 +1,4 @@
-const Product = require("../../models/product.model");
+const Product = require("../models/product.model");
 const axios = require("axios");
 
 const create_LikeProduct = async (

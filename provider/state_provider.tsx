@@ -31,8 +31,6 @@ const State_Provider = ({ children }) => {
         (product) => product.likes.find((like) => like.id == authUser.id)
       );
 
-      console.log(likedProductsByUser);
-
       if (likedProductsByUser) {
         dispatch(setWishItems(likedProductsByUser));
       }
@@ -42,8 +40,6 @@ const State_Provider = ({ children }) => {
   useEffect(() => {
     if (!CART_ITEMS_LOADING && authUser) {
       const cartByUser = CART_ITEMS_DATA.getCart;
-
-      console.log(cartByUser);
 
       if (cartByUser) {
         dispatch(setCartItems(cartByUser));

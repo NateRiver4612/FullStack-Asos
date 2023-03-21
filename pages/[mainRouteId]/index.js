@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 const Section_1 = dynamic(
   () => import("../../components/homeSections/section-1.component"),
@@ -66,7 +67,16 @@ const Mutual_Section_2 = dynamic(
 
 const index = ({ sections }) => {
   return (
-    <Fragment>
+    <motion.div
+      initial={{ opacity: 0, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01],
+      }}
+      className="-z-10"
+    >
       <div className="h-full w-full pb-20">
         <Section_1 data={sections[1]} />
         <Section_2 data={sections[2]} />
@@ -77,7 +87,7 @@ const index = ({ sections }) => {
         <Section_5 data={sections[5]} />
         <Section_6 data={sections[6]} />
       </div>
-    </Fragment>
+    </motion.div>
   );
 };
 

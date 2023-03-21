@@ -4,28 +4,41 @@ import Select from "react-select";
 import Image from "next/image";
 import Tooltip from "@mui/material/Tooltip";
 import { useAuth } from "../../context/authUserContext";
+import { useAppSelector } from "../../redux/hooks";
+import { selectCartItems } from "../../redux/features/cart/cart.slice";
+import { useShoppingCart } from "use-shopping-cart";
+
+const listPaymentIcon = [
+  "visa_icon",
+  "payPal_icon",
+  "american-express_icon",
+  "apple-pay_icon",
+  "mastercard_icon",
+];
+
+const options = [
+  {
+    value: 15.79,
+    label: "Standart Delivery ($15.79)",
+  },
+  {
+    value: 31.58,
+    label: "Standart Delivery ($31.58)",
+  },
+];
 
 const CartCheckout = ({ subTotal }) => {
-  const listPaymentIcon = [
-    "visa_icon",
-    "payPal_icon",
-    "american-express_icon",
-    "apple-pay_icon",
-    "mastercard_icon",
-  ];
-
-  const options = [
-    {
-      value: 15.79,
-      label: "Standart Delivery ($15.79)",
-    },
-    {
-      value: 31.58,
-      label: "Standart Delivery ($31.58)",
-    },
-  ];
-
   const { authUser } = useAuth();
+
+  const cartItems = useAppSelector(selectCartItems);
+
+  const {
+    formattedTotalPrice,
+    cartCount,
+    clearCart,
+    cartDetails,
+    redirectToCheckout,
+  } = useShoppingCart();
 
   const colourStyles = {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -43,8 +56,35 @@ const CartCheckout = ({ subTotal }) => {
     },
   };
 
-  const handleCheckout = (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
+
+    const url = "/api/stripe/checkout_sessions";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(cartItems || {}),
+      });
+
+      const data = await response.json();
+
+      if (data.statusCode === 500) {
+        console.error(data.message);
+        return;
+      }
+      console.log(data);
+      redirectToCheckout(data.id);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
 
   return (

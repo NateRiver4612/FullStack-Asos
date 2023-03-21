@@ -29,11 +29,11 @@ const WishList_Page = () => {
     }, 3000);
   }, []);
 
+  if (rendering) return <Wish_Skeleton></Wish_Skeleton>;
+
   if (!authUser || wishItems.length == 0) {
     return <WishEmpty></WishEmpty>;
   }
-
-  if (rendering) return <Wish_Skeleton></Wish_Skeleton>;
 
   return <Wish wishItems={wishItems}></Wish>;
 };
