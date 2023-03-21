@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ProductOverview from "./product-overview.component";
 
 const ProductOverview_Container = ({ products, wish, similarList }) => {

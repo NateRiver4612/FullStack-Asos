@@ -32,13 +32,7 @@ const CartCheckout = ({ subTotal }) => {
 
   const cartItems = useAppSelector(selectCartItems);
 
-  const {
-    formattedTotalPrice,
-    cartCount,
-    clearCart,
-    cartDetails,
-    redirectToCheckout,
-  } = useShoppingCart();
+  const { redirectToCheckout } = useShoppingCart();
 
   const colourStyles = {
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {

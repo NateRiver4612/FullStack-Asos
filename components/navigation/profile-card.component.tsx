@@ -49,10 +49,7 @@ const ProfileCard = () => {
 
   const cartItems = useAppSelector(selectCartItems);
 
-  const quantitySum = cartItems?.reduce(
-    (accumulator, item) => accumulator + item.quantity,
-    0
-  );
+  const quantitySum = cartItems.length;
 
   const handleSignOut = async () => {
     await SignOut();

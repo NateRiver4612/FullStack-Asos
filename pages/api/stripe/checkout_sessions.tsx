@@ -23,8 +23,6 @@ export default async function handler(req, res) {
           quantity: item.quantity,
         }));
 
-      console.log(`${req.headers.origin}/men/cart`);
-
       const params: Stripe.Checkout.SessionCreateParams = {
         submit_type: "pay",
         mode: "payment",

@@ -1,18 +1,8 @@
-import { useAppDispatch } from "../../../redux/hooks";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useAppSelector } from "../../../redux/hooks";
-import {
-  selectWishItems,
-  setWishItems,
-} from "../../../redux/features/wish/wish.slice";
+import { selectWishItems } from "../../../redux/features/wish/wish.slice";
 import { useAuth } from "../../../context/authUserContext";
-import {
-  GET_LIKED_PRODUCTS,
-  GET_CART_ITEMS,
-} from "../../../utils/graphQl.utils";
-import { useQuery } from "@apollo/client";
-import { setCartItems } from "../../../redux/features/cart/cart.slice";
 import WishEmpty from "../../../components/wish-list/wishList-empty.component";
 import Wish from "../../../components/wish-list";
 import Wish_Skeleton from "../../../components/wish-list/wish-skeleton";

@@ -1,30 +1,21 @@
 import Cart from "../../../components/cart";
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
-import {
-  GET_CART_ITEMS,
-  GET_LIKED_PRODUCTS,
-} from "../../../utils/graphQl.utils";
-import {
-  selectCartItems,
-  setCartItems,
-} from "../../../redux/features/cart/cart.slice";
+import { selectCartItems } from "../../../redux/features/cart/cart.slice";
 import { useAuth } from "../../../context/authUserContext";
-// import Cart_Skeleton from "../../../components/cart/cart-skeleton";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { setWishItems } from "../../../redux/features/wish/wish.slice";
-// import CartEmpty from "../../../components/cart/cart-empty.component";
-
+import Cart_Skeleton from "../../../components/cart/cart-skeleton";
+import { useAppSelector } from "../../../redux/hooks";
+import CartEmpty from "../../../components/cart/cart-empty.component";
 import dynamic from "next/dynamic";
 import Cart_Provider from "../../../provider/shoppingCart_provider";
 
-const CartEmpty = dynamic(() =>
-  import("../../../components/cart/cart-empty.component")
-);
+// const CartEmpty = dynamic(() =>
+//   import("../../../components/cart/cart-empty.component")
+// );
 
-const Cart_Skeleton = dynamic(() =>
-  import("../../../components/cart/cart-skeleton")
-);
+// const Cart_Skeleton = dynamic(
+//   () => import("../../../components/cart/cart-skeleton"),
+//   { ssr: false }
+// );
 
 const Cart_Page = () => {
   const [rendering, setRendering] = useState(true);

@@ -13,7 +13,7 @@ const ProductOverview_Container_Skeleton = ({ similarList }) => {
       } duration-1000  gap-3`}
     >
       {wishItems.map((item, index) => (
-        <ProductOverview_Skeleton></ProductOverview_Skeleton>
+        <ProductOverview_Skeleton key={item.id}></ProductOverview_Skeleton>
       ))}
     </div>
   );
