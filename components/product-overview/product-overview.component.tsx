@@ -51,7 +51,7 @@ const ProductOverview = ({ product, isWishItem }) => {
           src={`https://${imageUrl}`}
         />
         {isSellingFast && (
-          <span className="font-bold absolute mb-[45%] text-[8px] sm:text-[11px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
+          <span className="font-bold absolute mb-[45%] sm:mb-[25%] text-[8px] sm:text-[11px] bg-black/50 rounded-l-full px-3 text-gray-200 p-[5px] uppercase">
             selling fast
           </span>
         )}

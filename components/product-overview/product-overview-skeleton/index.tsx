@@ -4,7 +4,7 @@ import ProductOverview_Container_Skeleton from "./product-overview-container.ske
 
 const Product_Overview_Skeleton = ({ facets, products }) => {
   return (
-    <div className="w-full flex  flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200">
+    <div className="w-full flex animate-pulse  flex-col  items-center mt-10 border-b-[1px] pb-24 border-gray-200">
       <div className="font-bold text-center text-2xl pb-16 border-b-[1px] border-gray-200 flex justify-center w-full">
         <div className="h-10 rounded-md w-[80%] sm:w-[20%] bg-gray-200"></div>
       </div>

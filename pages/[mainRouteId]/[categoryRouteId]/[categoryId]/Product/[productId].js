@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Product_Detail from "../../../../../components/product";
+import Product_Detail_Skeleton from "../../../../../components/product/product-skeleton";
 
 const ProductDetail_Page = ({ data }) => {
-  return <Product_Detail product={data}></Product_Detail>;
+  const [rendering, setRendering] = useState(true);
+  const [similarItems, setSimilarItems] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRendering(false);
+    }, 3000);
+  }, []);
+
+  useEffect(() => {
+    const similar_items = JSON.parse(localStorage.getItem("items"));
+
+    const random_items =
+      similar_items && [...similar_items].sort(() => 0.5 - Math.random());
+
+    setSimilarItems(random_items?.slice(0, 15));
+  }, []);
+
+  if (rendering)
+    return (
+      <div className="w-full flex justify-center">
+        <Product_Detail_Skeleton
+          similarItems={similarItems}
+        ></Product_Detail_Skeleton>
+      </div>
+    );
+
+  return (
+    <Product_Detail similarItems={similarItems} product={data}></Product_Detail>
+  );
 };
 
 export const getServerSideProps = async (context) => {

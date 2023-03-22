@@ -7,13 +7,13 @@ const ProductOverview_Skeleton = () => {
         <div className="absolute rounded-full w-[40px] h-[40px] mb-[15px] mr-[15px] bg-gray-100"></div>
       </div>
       <div className="flex flex-col gap-2 mt-2 h-full">
-        <div className="w-full h-6 bg-gray-200 rounded-md"></div>
+        <div className="w-full h-4 bg-gray-200 rounded-md"></div>
         <div className="flex justify-between">
-          <div className="w-[40%] h-6 bg-gray-200 rounded-md"></div>
-          <div className="w-[30%] h-6 bg-gray-200 rounded-md"></div>
+          <div className="w-[40%] h-2 bg-gray-200 rounded-full"></div>
+          <div className="w-[30%] h-2 bg-gray-200 rounded-full"></div>
         </div>
 
-        <div className="w-full h-10 bg-gray-200 rounded-md"></div>
+        <div className="w-full h-6 bg-gray-200 rounded-md"></div>
       </div>
     </div>
   );
