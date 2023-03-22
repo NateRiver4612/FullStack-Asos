@@ -56,19 +56,6 @@ module.exports = {
         throw error;
       }
     },
-
-    getUsers: async () => {
-      try {
-        const users = await axios.get("https://api.github.com/users");
-        return users.data.map(({ id, login, avatar_url }) => ({
-          id,
-          login,
-          avatar_url,
-        }));
-      } catch (error) {
-        throw error;
-      }
-    },
   },
 
   Mutation: {
@@ -91,6 +78,8 @@ module.exports = {
       context
     ) {
       const existedProduct = await Product.findOne({ id: id }).exec();
+
+      console.log(existedProduct);
 
       // Check if product existed ?
       if (existedProduct) {

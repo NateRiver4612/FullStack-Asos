@@ -86,7 +86,7 @@ const CartItem = ({ cartItem }) => {
 
   const qtyIndex = options.findIndex((item) => item.value == quantity);
 
-  const [updateQuantity] = useMutation(UPDATE_CART_QUANTITY, {
+  const [updateCartQuantity] = useMutation(UPDATE_CART_QUANTITY, {
     refetchQueries: [
       { query: GET_CART_ITEMS, variables: { userId: authUser?.id } },
     ],
@@ -100,7 +100,7 @@ const CartItem = ({ cartItem }) => {
         quantity: e.value,
       },
     };
-    await updateQuantity({ variables: { input: input.value } });
+    await updateCartQuantity({ variables: { input: input.value } });
     dispatch(setQuantity({ productId: productId, quantity: e.value }));
   };
 

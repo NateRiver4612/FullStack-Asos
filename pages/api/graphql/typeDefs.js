@@ -103,10 +103,15 @@ const typeDefs = gql`
     productId: String!
   }
 
-  input UpdateQuantity_Input {
+  input UpdateCartQuantity_Input {
     userId: String!
     productId: String!
     quantity: Int!
+  }
+
+  input CheckoutSuccess_Input {
+    userId: String!
+    items_id: [String]!
   }
 
   type Query {
@@ -120,7 +125,8 @@ const typeDefs = gql`
     addToCart(input: AddToCart_Input!): CartItem!
     likeProduct(input: LikeProduct_Input!): Product!
     removeFromCart(input: RemoveFromCart_Input!): CartItem
-    updateQuantity(input: UpdateQuantity_Input): CartItem!
+    updateCartQuantity(input: UpdateCartQuantity_Input): CartItem!
+    checkoutSuccess(input: CheckoutSuccess_Input): [Product]
   }
 `;
 

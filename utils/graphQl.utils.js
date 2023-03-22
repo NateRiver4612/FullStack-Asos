@@ -121,7 +121,7 @@ export const REMOVE_FROM_CART = gql`
 
 export const UPDATE_CART_QUANTITY = gql`
   mutation UpdateQuantity($input: UpdateQuantity_Input) {
-    updateQuantity(input: $input) {
+    updateCartQuantity(input: $input) {
       createdAt
       colour
       imageUrl
@@ -141,6 +141,36 @@ export const UPDATE_CART_QUANTITY = gql`
       quantity
       userId
       total
+    }
+  }
+`;
+
+export const CHECKOUT_SUCCESS = gql`
+  mutation CheckoutSuccess($input: CheckoutSuccess_Input) {
+    checkoutSuccess(input: $input) {
+      colour
+      commentCount
+      id
+      imageUrl
+      isSellingFast
+      likes {
+        createdAt
+        displayName
+        id
+      }
+      likeCount
+      link
+      name
+      price {
+        previous {
+          value
+          text
+        }
+        current {
+          value
+          text
+        }
+      }
     }
   }
 `;

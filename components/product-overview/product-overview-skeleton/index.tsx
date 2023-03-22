@@ -25,6 +25,9 @@ const Product_Overview_Skeleton = ({ facets, products }) => {
           <span className="flex items-center ml-[9%] h-9 w-[70%] bg-gray-200 rounded-md justify-center"></span>
         </div>
       </div>
+      <div className="w-[90%] text-center flex justify-center text-gray-500 pt-5 text-[13px]">
+        <div className="w-[40%] h-2 rounded-md bg-gray-200"></div>
+      </div>
       <ProductOverview_Container_Skeleton
         items={products}
         similarList={undefined}

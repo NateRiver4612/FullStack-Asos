@@ -32,6 +32,7 @@ const State_Provider = ({ children }) => {
       );
 
       if (likedProductsByUser) {
+        console.log(likedProductsByUser);
         dispatch(setWishItems(likedProductsByUser));
       }
     }

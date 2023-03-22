@@ -58,9 +58,7 @@ const CartCheckout = ({ subTotal }) => {
     try {
       const url = "/api/stripe/checkout_sessions";
 
-      const response = await fetchPostJSON(url, cartItems);
-
-      const data = await response.json();
+      const data = await fetchPostJSON(url, cartItems);
 
       if (data.statusCode === 500) {
         console.error(data.message);

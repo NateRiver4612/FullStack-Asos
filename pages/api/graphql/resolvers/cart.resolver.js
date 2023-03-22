@@ -1,4 +1,5 @@
 const Cart = require("../models/cart.model");
+const Product = require("../models/product.model");
 
 const create_CartItem = async (
   productId,
@@ -107,7 +108,7 @@ module.exports = {
       return deleteItem;
     },
 
-    async updateQuantity(
+    async updateCartQuantity(
       parent,
       { input: { userId, productId, quantity }, context }
     ) {
@@ -115,6 +116,8 @@ module.exports = {
         userId: userId,
         productId: productId,
       });
+
+      console.log(existItem);
 
       const updateItem = await Cart.findOneAndUpdate(
         {
@@ -128,6 +131,28 @@ module.exports = {
       );
 
       return updateItem;
+    },
+
+    async checkoutSuccess(parent, { input: { userId, items_id } }, context) {
+      return items_id.map(async (id) => {
+        const item = await Product.findOne({ id: id });
+
+        // Clear user's cart items
+        await Cart.findOneAndDelete({
+          userId: userId,
+          productId: id,
+        });
+
+        // Remove user from product likes
+        if (item && item.likes.length > 0) {
+          await item.updateOne({
+            likes: item.likes.filter((user) => user.id !== userId),
+            $inc: { likeCount: -1 },
+          });
+        }
+
+        return item;
+      });
     },
   },
 };

@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { TbTruckReturn } from "react-icons/tb";
 import Select from "react-select";
 import LikeButton from "../styled-components/like-button.component";
-import { useAuth } from "../../context/authUserContext";
-import { Like } from "../../types";
-import { useAppSelector } from "../../redux/hooks";
-import { selectWishItems } from "../../redux/features/wish/wish.slice";
 import Spinner from "../spinner/spinner.component";
 
 const ProductInformation = ({ product }) => {

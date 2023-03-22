@@ -7,7 +7,7 @@ import ProductOverview_Container_Skeleton from "../../product-overview/product-o
 //   { ssr: false }
 // );
 
-const Wish_Skeleton = ({ Wish_Skeleton }) => {
+const Wish_Skeleton = ({ wishItems }) => {
   return (
     <div className="h-fit pb-24 flex flex-col items-center">
       <div className="w-full flex items-center justify-center bg-gray-100">
@@ -18,7 +18,7 @@ const Wish_Skeleton = ({ Wish_Skeleton }) => {
 
       <ProductOverview_Container_Skeleton
         similarList={undefined}
-        items={Wish_Skeleton}
+        items={wishItems}
       />
     </div>
   );

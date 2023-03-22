@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
-import ProductOverview_Container from "../../../../components/product-overview/product-overview.container";
+// import ProductOverview_Container from "../../../../components/product-overview/product-overview.container";
 import dynamic from "next/dynamic";
-import ProductFace from "../../../../components/product-overview/product-face.component";
+// import ProductFace from "../../../../components/product-overview/product-face.component";
 import { motion } from "framer-motion";
 import Product_Overview_Skeleton from "../../../../components/product-overview/product-overview-skeleton";
 
@@ -12,6 +12,20 @@ const FilterSidebar = dynamic(
   {
     ssr: false,
   }
+);
+
+const ProductFace = dynamic(
+  () =>
+    import("../../../../components/product-overview/product-face.component"),
+  { ssr: false }
+);
+
+const ProductOverview_Container = dynamic(
+  () =>
+    import(
+      "../../../../components/product-overview/product-overview.container"
+    ),
+  { ssr: false }
 );
 
 const ProductList = ({ data }) => {

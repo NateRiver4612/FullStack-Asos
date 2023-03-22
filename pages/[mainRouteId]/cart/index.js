@@ -2,20 +2,20 @@ import Cart from "../../../components/cart";
 import React, { useState, useEffect } from "react";
 import { selectCartItems } from "../../../redux/features/cart/cart.slice";
 import { useAuth } from "../../../context/authUserContext";
-import Cart_Skeleton from "../../../components/cart/cart-skeleton";
+// import Cart_Skeleton from "../../../components/cart/cart-skeleton";
 import { useAppSelector } from "../../../redux/hooks";
-import CartEmpty from "../../../components/cart/cart-empty.component";
+// import CartEmpty from "../../../components/cart/cart-empty.component";
 import dynamic from "next/dynamic";
 import Cart_Provider from "../../../provider/shoppingCart_provider";
 
-// const CartEmpty = dynamic(() =>
-//   import("../../../components/cart/cart-empty.component")
-// );
+const CartEmpty = dynamic(() =>
+  import("../../../components/cart/cart-empty.component")
+);
 
-// const Cart_Skeleton = dynamic(
-//   () => import("../../../components/cart/cart-skeleton"),
-//   { ssr: false }
-// );
+const Cart_Skeleton = dynamic(
+  () => import("../../../components/cart/cart-skeleton"),
+  { ssr: false }
+);
 
 const Cart_Page = () => {
   const [rendering, setRendering] = useState(true);

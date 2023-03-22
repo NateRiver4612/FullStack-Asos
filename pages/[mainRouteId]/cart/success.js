@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { selectCartItems } from "../../../redux/features/cart/cart.slice";
 import { useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { fetchGetJSON } from "../../../utils/api-helpers";
+import { useMutation } from "@apollo/client";
 import { BsCheck2Circle } from "react-icons/bs";
+import {
+  CHECKOUT_SUCCESS,
+  GET_CART_ITEMS,
+  GET_LIKED_PRODUCTS,
+} from "../../../utils/graphQl.utils";
+import { useAuth } from "../../../context/authUserContext";
 
 const Payment_Success = () => {
   const router = useRouter();
 
   const cartItems = useAppSelector(selectCartItems);
+
+  const { authUser } = useAuth();
 
   const { session_id, mainRouteId } = router.query;
 
@@ -17,7 +26,40 @@ const Payment_Success = () => {
 
   const { data, error } = useSWR(url, fetchGetJSON);
 
-  console.log(data);
+  const cartItems_id = cartItems?.map((item, index) => item.productId);
+
+  const [checkoutSuccess] = useMutation(CHECKOUT_SUCCESS, {
+    refetchQueries: [
+      { query: GET_LIKED_PRODUCTS },
+      { query: GET_CART_ITEMS, variables: { userId: authUser?.id } },
+    ],
+  });
+
+  const handleCheckout = async () => {
+    const input = {
+      value: {
+        userId: authUser.id,
+        items_id: cartItems_id,
+      },
+    };
+
+    console.log(input);
+
+    await checkoutSuccess({ variables: { input: input.value } });
+  };
+
+  useEffect(() => {
+    if (
+      data?.payment_intent?.status == "succeeded" &&
+      data?.status == "complete" &&
+      cartItems_id.length > 0 &&
+      authUser
+    ) {
+      handleCheckout();
+    }
+  }, [data, authUser]);
+
+  //Reset customer cart and saved items after payment success
 
   return (
     <div className="h-screen sm:h-[80vh] w-screen flex justify-center">
