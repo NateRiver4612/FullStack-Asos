@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import ProductOverview_Container from "../product-overview/product-overview.container";
 // import ProductDisplay from "./product-display.component";
 import ProductInformation from "./product-information.component";

@@ -33,8 +33,8 @@ export default async function handler(req, res) {
           allowed_countries: ["US", "CA"],
         },
         line_items: transformedItems,
-        success_url: `http://localhost:3000/men/cart/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `http://localhost:3000/men/cart/`,
+        success_url: `${req.headers.origin}/men/cart/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.origin}/men/cart/`,
       };
 
       const checkoutSession: Stripe.Checkout.Session =

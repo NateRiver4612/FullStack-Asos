@@ -22,7 +22,7 @@ const State_Provider = ({ children }) => {
     loading: CART_ITEMS_LOADING,
     error,
   } = useQuery(GET_CART_ITEMS, {
-    variables: { userId: authUser?.id },
+    variables: { userId: authUser ? authUser.id : "" },
   });
 
   useEffect(() => {
@@ -41,6 +41,8 @@ const State_Provider = ({ children }) => {
   useEffect(() => {
     if (!CART_ITEMS_LOADING && authUser) {
       const cartByUser = CART_ITEMS_DATA.getCart;
+
+      console.log(cartByUser);
 
       if (cartByUser) {
         dispatch(setCartItems(cartByUser));
