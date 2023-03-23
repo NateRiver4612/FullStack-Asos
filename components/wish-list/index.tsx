@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import React from "react";
 import ProductOverview_Container from "../product-overview/product-overview.container";
 

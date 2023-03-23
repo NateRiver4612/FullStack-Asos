@@ -17,10 +17,10 @@ import ListItem from "./list-item.component";
 import SidebarList from "./sidebar-list.component";
 import { useAuth } from "../../context/authUserContext";
 import { useRouter } from "next/router";
-import Spinner from "../spinner/spinner.component";
 import { useAppDispatch } from "../../redux/hooks";
 import { clearCart } from "../../redux/features/cart/cart.slice";
 import { clearWish } from "../../redux/features/wish/wish.slice";
+import SidebarList_Skeleton from "./my-account-skeleton/sidebar-list.skeleton";
 
 const icons: Map<string, IconType> = new Map([
   ["My orders", FiPackage],
@@ -78,14 +78,10 @@ const AccountSidebar = () => {
     }
   };
 
-  if (!authUser) {
-    return <Spinner></Spinner>;
-  }
-
   const nameArr = authUser?.name.split(" ");
 
   const nameChars =
-    nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
+    nameArr && nameArr[0].charAt(0) + nameArr[nameArr.length - 1].charAt(0);
 
   return (
     <div className="w-screen relative sm:w-[35%] flex flex-col gap-2">
@@ -97,7 +93,7 @@ const AccountSidebar = () => {
         ></img>
       </div>
       <div className="h-[15%] mt-20 sm:mt-0 bg-white flex gap-2 pb-4 flex-col justify-center">
-        <div className="flex z-10 justify-center ">
+        <div className="flex z-10 justify-center pt-6">
           <div className=" w-[90px] h-[90px]  tracking-wider text-white font-bold text-[30px] flex items-center justify-center bg-[#2d2d2d] rounded-full">
             {nameChars}
           </div>

@@ -1,50 +1,25 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import dynamic from "next/dynamic";
+import React, { useState, useEffect } from "react";
+import MyAccount from "../../../components/my-account";
+import { useAuth } from "../../../context/authUserContext";
+import MyAccount_Skeleton from "../../../components/my-account/my-account-skeleton";
 
-const AccountSidebar = dynamic(
-  () => import("../../../components/my-account/account-sidebar.component"),
-  { ssr: false }
-);
+const MyAccount_Page = () => {
+  const { authUser } = useAuth();
+  const [rendering, setRendering] = useState(true);
 
-const MyAccount = () => {
-  return (
-    <div className="h-screen lg:h-fit pb-[5%] absolute top-0 lg:px-[15%] 2xl:px-[20%]  w-screen bg-gray-200 z-30 ">
-      <div className="">
-        <div className="header p-2 sm:px-5  sm:py-8 flex justify-between items-center">
-          <Link href="/">
-            <span className="relative cursor-pointer w-[50px] h-[15px]  sm:w-[96px] sm:h-[29px]">
-              <Image layout="fill" src="/icons/asos_icon.svg" />
-            </span>
-          </Link>
+  useEffect(() => {
+    setTimeout(() => {
+      if (authUser) {
+        setRendering(false);
+      }
+    }, 3000);
+  }, [authUser]);
 
-          <span className="uppercase text-[#2d2d2d] text-[15px] sm:text-[25px] font-bold tracking-wider font-raleway">
-            my account
-          </span>
+  if (rendering) {
+    return <MyAccount_Skeleton></MyAccount_Skeleton>;
+  }
 
-          <span className="relative w-[50px] h-[25px] sm:w-[80px] sm:h-[38px]">
-            <Image layout="fill" src="/images/secured_icon.png" />
-          </span>
-        </div>
-        <div className="body pb-10 px-2 lg:px-0 flex bg-gray-200  gap-3 ">
-          <AccountSidebar />
-
-          <div className="hidden sm:block w-[65%] relative ">
-            <div className="uppercase left-8 top-16 tracking-widest font-bold text-white absolute flex gap-1 flex-col">
-              <span className="p-3 w-fit text-2xl bg-[#2d2d2d]">
-                welcome to
-              </span>
-              <span className="p-3  w-fit  text-2xl bg-[#2d2d2d]">
-                your account
-              </span>
-            </div>
-            <img loading="lazy" src="/icons/account_QR.svg" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <MyAccount></MyAccount>;
 };
 
-export default MyAccount;
+export default MyAccount_Page;
