@@ -1,18 +1,23 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { selectCartItems } from "../../redux/features/cart/cart.slice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import { selectWishItems } from "../../redux/features/wish/wish.slice";
 import { motion } from "framer-motion";
-import CartWishList from "./cart-wishList.components";
+
 import CartList from "./cart-list.component";
 import CartCheckout from "./cart-checkout.component";
 import CartSubTotal from "./cart-subTotal.component";
+import dynamic from "next/dynamic";
+
+const CartWishList = dynamic(() => import("./cart-wishList.components"));
 
 const Cart = () => {
   const cartItems = useAppSelector(selectCartItems);
-
   const wishItems = useAppSelector(selectWishItems);
+
+  const [priceSum, setPriceSum] = useState(0);
+  const [quantitySum, setQuantitySum] = useState(0);
 
   const cartWishItems = [...wishItems]
     .filter(
@@ -21,15 +26,20 @@ const Cart = () => {
     )
     .slice(0, 3);
 
-  const priceSum = cartItems.reduce(
-    (accumulator, item) => accumulator + item.total,
-    0
-  );
+  useEffect(() => {
+    const priceSum = cartItems.reduce(
+      (accumulator, item) => accumulator + item.total,
+      0
+    );
 
-  const quantitySum = cartItems.reduce(
-    (accumulator, item) => accumulator + item.quantity,
-    0
-  );
+    const quantitySum = cartItems.reduce(
+      (accumulator, item) => accumulator + item.quantity,
+      0
+    );
+
+    setPriceSum(priceSum);
+    setQuantitySum(quantitySum);
+  }, [cartItems]);
 
   return (
     <motion.div

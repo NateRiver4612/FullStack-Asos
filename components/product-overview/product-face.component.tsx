@@ -12,7 +12,6 @@ const ProductFace = ({
   clearFilters,
   setActive,
   selectAllFilters,
-  handleSubmit,
   index,
 }) => {
   const router = useRouter();
@@ -71,7 +70,7 @@ const ProductFace = ({
         <div
           className={`absolute z-10 ${
             index % 2 != 0 ? "right-[0]" : "left-[0]"
-          } drop-shadow-2xl h-fit bg-gray-200  w-[340px] p-3`}
+          } drop-shadow-2xl h-fit bg-gray-200 w-[340px] p-3`}
         >
           <div className="flex justify-between items-center ">
             <span className="text-gray-500">

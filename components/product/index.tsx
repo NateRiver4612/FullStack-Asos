@@ -10,18 +10,9 @@ import { motion } from "framer-motion";
 import ProductSimliarities from "./product-simliarities.component";
 import ProductAdvertise from "./product-advertise.component";
 
-import Product_Detail_Skeleton from "./product-skeleton";
-
-const ProductOverview_Container = dynamic(
-  () => import("../product-overview/product-overview.container"),
-  { ssr: false }
-);
-
 const ProductDisplay = dynamic(() => import("./product-display.component"), {
   ssr: false,
 });
-
-// const
 
 const Product_Detail = ({ product, similarItems }) => {
   const {

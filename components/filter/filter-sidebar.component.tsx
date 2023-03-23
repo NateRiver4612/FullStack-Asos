@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";

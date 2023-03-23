@@ -100,8 +100,8 @@ const CartItem = ({ cartItem }) => {
         quantity: e.value,
       },
     };
+    // dispatch(setQuantity({ productId: productId, quantity: e.value }));
     await updateCartQuantity({ variables: { input: input.value } });
-    dispatch(setQuantity({ productId: productId, quantity: e.value }));
   };
 
   const colourStyles = {
