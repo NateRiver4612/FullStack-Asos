@@ -5,7 +5,7 @@ const SidebarList_Skeleton = ({ section }) => {
   return (
     <ul className="flex flex-col bg-white text-gray-700  capitalize">
       {section.map((key, index) => {
-        return <ListItem_Skeleton></ListItem_Skeleton>;
+        return <ListItem_Skeleton key={key}></ListItem_Skeleton>;
       })}
     </ul>
   );
