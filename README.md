@@ -58,6 +58,7 @@ For the Front-End, <a href="https://nextjs.org/">NextJS</a> is the best fit in t
 * [![AppoloGraphQl][AppoloGraphQl.com]][AppoloGraphQl-url]
 * [![Firebase][Firebase.com]][Firebase-url]
 * [![ReduxToolkit][ReduxToolkit.com]][ReduxToolkit-url]
+* [![Stripe][Stripe.com]][Stripe-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -106,7 +107,8 @@ This website is uncompleted due to missing data supply, however there won't be n
 - [ ] Product detail page
 - [ ] Registe page
 - [ ] Cart page
-- [ ] Wish List page
+- [ ] CheckOut page
+- [ ] Saved items page
 
 <!-- CONTACT -->
 ## Contact
@@ -166,3 +168,5 @@ Project Link: [https://github.com/NateRiver4612/FullStack-Asos.git](https://gith
 [Firebase-url]: https://console.firebase.google.com/
 [ReduxToolkit.com]: https://img.shields.io/badge/redux_toolkit-purple?style=for-the-badge&logo=Redux
 [ReduxToolkit-url]: https://redux-toolkit.js.org/
+[Stripe.com]: https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white
+[Stripe-url]: https://stripe.com/docs
