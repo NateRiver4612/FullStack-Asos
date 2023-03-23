@@ -120,7 +120,7 @@ export const REMOVE_FROM_CART = gql`
 `;
 
 export const UPDATE_CART_QUANTITY = gql`
-  mutation UpdateQuantity($input: UpdateQuantity_Input) {
+  mutation UpdateQuantity($input: UpdateCartQuantity_Input) {
     updateCartQuantity(input: $input) {
       createdAt
       colour
