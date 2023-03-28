@@ -43,8 +43,6 @@ const Payment_Success = () => {
       },
     };
 
-    console.log(input);
-
     await checkoutSuccess({ variables: { input: input.value } });
   };
 

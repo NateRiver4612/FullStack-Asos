@@ -16,8 +16,8 @@ const MyAccount_Skeleton = () => {
         <div className="hidden sm:block w-[65%] relative ">
           <div className=" left-8 bg-white w-[90%] h-[90vh]  absolute flex gap-1 flex-col">
             <div className="flex flex-col gap-1 mt-16 ml-10">
-              <div className="w-[12vw] h-10 bg-gray-200"></div>
-              <div className="w-[14vw] h-10 bg-gray-200"></div>
+              <div className="w-[16vw] h-10 bg-gray-200"></div>
+              <div className="w-[18vw] h-10 bg-gray-200"></div>
             </div>
           </div>
         </div>

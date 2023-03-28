@@ -3,7 +3,7 @@ import ProductOverview_Container from "../product-overview/product-overview.cont
 
 const Wish = ({ wishItems }) => {
   return (
-    <div className="h-fit pb-24 flex flex-col items-center">
+    <div className="h-screen sm:h-fit pb-24 flex flex-col items-center">
       <div className="w-full flex items-center justify-center bg-gray-100">
         <span className="py-6 text-2xl font-extrabold text-gray-800 tracking-wider">
           Saved Items

@@ -130,7 +130,7 @@ const CartItem = ({ cartItem }) => {
         <div className="flex justify-between">
           <span
             onClick={handleSelect}
-            className="text-gray-600 cursor-pointer text-sm w-full sm:w-[90%]"
+            className="text-gray-600 cursor-pointer line-clamp-2 text-sm w-full sm:w-[90%]"
           >
             {name}
           </span>
